@@ -1,0 +1,35 @@
+{
+  "id": "b3c4e4ad-d42d-41a7-b3f7-3a578f0468e6",
+  "name": "Hollywood Blockbuster Movie",
+  "timestamp": 1784458642303,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "westernAnimation": "",
+    "animeGenre": "",
+    "animeShowStyle": "",
+    "lighting": "High Key Lighting",
+    "mood": "",
+    "camera": "RED digital cinema camera",
+    "focalLength": "35mm Wide",
+    "lens": "Anamorphic Cinema Lens",
+    "fStop": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "HDR Tone Mapping",
+      "Bokeh"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K",
+    "imageQuality": "high",
+    "grokQualityMode": false,
+    "falRecraftColors": "",
+    "temperature": 1,
+    "showNewAnglePrompt": false,
+    "candidShot": false,
+    "noText": false
+  }
+}

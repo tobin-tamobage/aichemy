@@ -1,0 +1,32 @@
+{
+  "id": "909c39ba-5db4-4b39-a0ee-9cc4a9672977",
+  "name": "Storyboard",
+  "timestamp": 1785260311903,
+  "data": {
+    "shotType": "",
+    "viewingDirection": "",
+    "westernAnimation": "",
+    "animeGenre": "",
+    "animeShowStyle": "",
+    "lighting": "",
+    "camera": "",
+    "focalLength": "",
+    "lens": "",
+    "fStop": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [],
+    "aspectRatio": "21:9",
+    "imageSize": "1K",
+    "imageQuality": "high",
+    "grokQualityMode": false,
+    "falRecraftColors": "",
+    "temperature": 1,
+    "showNewAnglePrompt": false,
+    "candidShot": false,
+    "noText": false,
+    "subjectAction": "Create 9 distinct frames from the same scene, exploring [SHOT TYPES]. Keep the composition [COMPOSITION STYLE], with [NEGATIVE SPACE LEVEL], [CAMERA CHARACTER], and [ATMOSPHERIC QUALITY]. No text, no labels, no redesign, no extra characters.\n\nThe result should feel like a cinematographer’s contact sheet from the same film scene.\n\nExample variables:\n\n[AESTHETIC] = minimalist mythic surrealism\n[SHOT TYPES] = extreme wide, profile, close-up, overhead, low angle, detail shot\n[COMPOSITION STYLE] = precise, geometric, restrained\n[NEGATIVE SPACE LEVEL] = heavy\n[CAMERA CHARACTER] = elegant, patient, controlled\n[ATMOSPHERIC QUALITY] = hazy, quiet, cinematic\n"
+  }
+}

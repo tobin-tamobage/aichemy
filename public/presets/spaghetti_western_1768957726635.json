@@ -1,0 +1,24 @@
+{
+  "id": "2a778034-ff69-4310-85cf-61ef14d27430",
+  "name": "Spaghetti Western",
+  "timestamp": 1768957726635,
+  "data": {
+    "shotType": "Close up shot",
+    "viewingDirection": "",
+    "lighting": "harsh midday sun lighting",
+    "mood": "",
+    "camera": "s16mm film camera",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "Kodak UltraMax 400",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Vignette",
+      "Film Grain"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K"
+  }
+}

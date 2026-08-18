@@ -1,0 +1,98 @@
+{
+  "providerId": "renderzero-hedra-api",
+  "images": [
+    {
+      "key": "nano-banana-2",
+      "label": "Nano Banana 2",
+      "ids": ["ae01e1fd-5917-4e79-a65c-983b322bc5ce"],
+      "aliases": ["nano banana 2", "nano-banana-2", "nano banana t2i"]
+    },
+    {
+      "key": "nano-banana-pro",
+      "label": "Nano Banana Pro",
+      "ids": ["96d9d17d-a350-41d7-bb2e-006ff0a099c1"],
+      "aliases": ["nano banana pro", "nano-banana-pro", "nano banana pro t2i"]
+    },
+    {
+      "key": "gpt-image-2-high",
+      "label": "GPT Image 2 High",
+      "ids": ["9009450b-25de-45a3-9461-865674536f2f"],
+      "aliases": ["gpt image 2 high", "gpt-image-2 high", "gpt image 2 quality high"]
+    },
+    {
+      "key": "gpt-image-2-medium",
+      "label": "GPT Image 2 Medium",
+      "ids": ["8f481827-80ba-453d-8aba-c0cf5b920e77"],
+      "aliases": ["gpt image 2 medium", "gpt-image-2 medium", "gpt image 2 quality medium"]
+    },
+    {
+      "key": "gpt-image-2-low",
+      "label": "GPT Image 2 Low",
+      "ids": ["73c366bc-f2f8-4f9c-9b07-cb25176e13de"],
+      "aliases": ["gpt image 2 low", "gpt-image-2 low", "gpt image 2 quality low"]
+    }
+  ],
+  "videos": [
+    {
+      "key": "happy-horse",
+      "label": "Happy Horse",
+      "ids": ["8630f13d-d8f0-4eee-aaf7-f03a0c8fd5e9"],
+      "aliases": ["happy horse"]
+    },
+    {
+      "key": "kling-v3-standard",
+      "label": "Kling v3 Standard",
+      "ids": ["931b4681-c91e-40d7-91a1-bf743ceaf851"],
+      "aliases": ["kling v3 standard", "kling 3 standard", "kling 3.0 standard"]
+    },
+    {
+      "key": "kling-v3-pro",
+      "label": "Kling v3 Pro",
+      "ids": ["fcd99493-8a27-4f58-b40c-e03453fc4c64"],
+      "aliases": ["kling v3 pro", "kling 3 pro", "kling 3.0 pro"]
+    },
+    {
+      "key": "kling-v3-reference",
+      "label": "Kling v3 Reference",
+      "ids": ["c3be4de2-fbf5-4c6a-8573-4f13d1c5e1d0"],
+      "aliases": ["kling v3 reference", "kling 3 reference", "kling 3.0 reference", "kling v3 ref", "kling 3.0 ref", "kling o3 pro ir2v"]
+    },
+    {
+      "key": "seedance-2",
+      "label": "Seedance 2",
+      "ids": ["d1f0e387-fd9c-4750-bb43-8f93e0ddbc0c"],
+      "aliases": ["seedance 2", "seedance-2"],
+      "excludedTerms": ["fast", "lite", "turbo"]
+    },
+    {
+      "key": "kling-2.6-motion-control",
+      "label": "Kling 2.6 Motion Control",
+      "ids": ["f00f87c8-ec48-4e9c-bbb6-1e496c929f89"],
+      "aliases": ["kling 2.6 motion control", "kling v2.6 motion control", "kling 2 6 motion control", "kling 2.6 pro i2v"]
+    },
+    {
+      "key": "hedra-avatar",
+      "label": "Hedra Avatar",
+      "ids": ["26f0fc66-152b-40ab-abed-76c43df99bc8"],
+      "aliases": ["hedra avatar"]
+    },
+    {
+      "key": "hedra-omnia",
+      "label": "Hedra Omnia",
+      "ids": ["ab372b84-432f-44f5-bacc-c2542465f712"],
+      "aliases": ["hedra omnia"]
+    },
+    {
+      "key": "kling-ai-avatar-v2-standard",
+      "label": "Kling AI Avatar v2 Standard",
+      "ids": ["d7eb3b2e-c8f8-45f9-83db-34f18dd0ba85"],
+      "aliases": ["kling ai avatar v2 standard", "kling avatar v2 standard", "kling ai avatar 2 standard"]
+    },
+    {
+      "key": "kling-ai-avatar-v2-pro",
+      "label": "Kling AI Avatar v2 Pro",
+      "ids": ["0451ceea-a7b5-4275-a970-82bf4ef38055"],
+      "aliases": ["kling ai avatar v2 pro", "kling avatar v2 pro", "kling ai avatar 2 pro"]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "19af7751-b151-438f-8dbc-b2c033462a42",
+  "name": "Sitcom Footage (Recording)",
+  "timestamp": 1768951001764,
+  "data": {
+    "shotType": "Group shot",
+    "viewingDirection": "",
+    "lighting": "Soft Lighting",
+    "mood": "",
+    "camera": "VHS Camera",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "CRT Scanlines"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

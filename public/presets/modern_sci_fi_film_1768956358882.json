@@ -1,0 +1,23 @@
+{
+  "id": "9e57b67f-585b-49e4-8af7-cbb3ed239b7f",
+  "name": "Modern Sci-Fi Film",
+  "timestamp": 1768956358882,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "Hard Lighting with a small punchy key and crisp shadow edges",
+    "mood": "",
+    "camera": "ARRI ALEXA 65",
+    "focalLength": "",
+    "lens": "Anamorphic Cinema Lens",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "HDR Tone Mapping"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "caa47eb6-a28e-4c17-b1a2-53f2f62fa412",
+  "name": "Boudoir Photography",
+  "timestamp": 1768948609889,
+  "data": {
+    "shotType": "Three quarter body shot",
+    "viewingDirection": "",
+    "lighting": "Motivated Lighting",
+    "mood": "",
+    "camera": "Rolleiflex",
+    "focalLength": "",
+    "lens": "Petzval Portrait Lens",
+    "filmStock": "Portra 400",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Soft Focus"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

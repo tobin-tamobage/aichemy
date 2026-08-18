@@ -1,0 +1,23 @@
+{
+  "id": "dc787834-bda1-4eb9-a4b3-e3e8808b716f",
+  "name": "Romantic Comedy",
+  "timestamp": 1768955445572,
+  "data": {
+    "shotType": "Two-shot",
+    "viewingDirection": "",
+    "lighting": "Motivated Lighting",
+    "mood": "",
+    "camera": "Panavision Panaflex",
+    "focalLength": "24mm Wide Angle",
+    "lens": "",
+    "filmStock": "Kodak Gold 200",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Film Grain"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

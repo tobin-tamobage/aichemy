@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aichemy — Varian Pastel B</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0a0a; color:#eee; font-family:'Inter',sans-serif; padding:32px; }
+  h1 { font-size:22px; margin-bottom:6px; }
+  .sub { color:#999; font-size:13px; margin-bottom:28px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:1300px; }
+  .card { border:2px solid #222; border-radius:16px; overflow:hidden; background:#111; }
+  .card .meta { padding:14px 16px; }
+  .card .meta h2 { font-size:15px; margin-bottom:4px; }
+  .card .meta p { font-size:12px; color:#888; line-height:1.5; }
+  .swatches { display:flex; gap:6px; margin-top:10px; }
+  .sw { width:26px; height:26px; border-radius:8px; border:1px solid rgba(255,255,255,.12); }
+  .mock { height:360px; padding:14px; display:flex; flex-direction:column; gap:9px; font-family:'Nunito',sans-serif; }
+  .hdr { display:flex; justify-content:space-between; align-items:center; }
+  .logo { font-weight:900; font-size:18px; }
+  .pill { font-size:10px; font-weight:800; padding:5px 11px; border-radius:99px; }
+  .section { border-radius:18px; padding:11px; border-width:2px; border-style:solid; }
+  .sec-title { font-size:10px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; }
+  .input { border-radius:12px; padding:8px 10px; font-size:11px; margin-top:7px; border-width:2px; border-style:solid; }
+  .prompt { border-radius:14px; padding:11px; font-size:11px; line-height:1.6; }
+  .btn { font-size:10px; font-weight:800; padding:5px 12px; border-radius:99px; display:inline-block; margin-top:8px; }
+  .chips { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+  .chip { font-size:10px; font-weight:700; padding:4px 10px; border-radius:99px; }
+
+  /* ====== B1: Cotton Candy (pink + lilac + cream) ====== */
+  .b1 { background:#fff7f5; }
+  .b1 .logo { color:#b0427c; } .b1 .logo em { font-style:normal; color:#d671ab; }
+  .b1 .pill { background:#fce0ec; color:#c0518c; }
+  .b1 .section { background:#fff; border-color:#f6dce9; }
+  .b1 .sec-title { color:#c0518c; }
+  .b1 .input { background:#fef5f9; border-color:#f3d3e3; color:#97708a; }
+  .b1 .prompt { background:#fdf0f6; color:#7c3a5e; }
+  .b1 .btn { background:#e58ab4; color:#fff; }
+  .b1 .chip { background:#f3ecfc; color:#8a6fc0; } .b1 .chip:nth-child(2) { background:#fce8f1; color:#c0518c; } .b1 .chip:nth-child(3) { background:#eafaf1; color:#4d9d78; }
+
+  /* ====== B2: Sorbet (peach + mint + butter) ====== */
+  .b2 { background:#fffcf4; }
+  .b2 .logo { color:#c46a3b; } .b2 .logo em { font-style:normal; color:#e59a6c; }
+  .b2 .pill { background:#fdeeda; color:#c07a3e; }
+  .b2 .section { background:#fff; border-color:#f6e6cf; }
+  .b2 .sec-title { color:#c07a3e; }
+  .b2 .input { background:#fffaef; border-color:#f3e3c4; color:#9d8560; }
+  .b2 .prompt { background:#fdf6e8; color:#7d5a2e; }
+  .b2 .btn { background:#eda56f; color:#fff; }
+  .b2 .chip { background:#e5f7ee; color:#4d9d78; } .b2 .chip:nth-child(2) { background:#fdeeda; color:#c07a3e; } .b2 .chip:nth-child(3) { background:#e8f1fb; color:#5b87b8; }
+
+  /* ====== B3: Dreamy Sky (baby blue + lilac + rose) ====== */
+  .b3 { background:#f6fafd; }
+  .b3 .logo { color:#4a6fa0; } .b3 .logo em { font-style:normal; color:#7fa3cc; }
+  .b3 .pill { background:#e2eefa; color:#4a6fa0; }
+  .b3 .section { background:#fff; border-color:#ddeaf6; }
+  .b3 .sec-title { color:#5b87b8; }
+  .b3 .input { background:#f4f9fd; border-color:#d9e7f4; color:#7d93ab; }
+  .b3 .prompt { background:#eef5fb; color:#3d5a7d; }
+  .b3 .btn { background:#8fb6d9; color:#fff; }
+  .b3 .chip { background:#efe9fb; color:#8a6fc0; } .b3 .chip:nth-child(2) { background:#e2eefa; color:#4a6fa0; } .b3 .chip:nth-child(3) { background:#fce8f1; color:#c0518c; }
+</style>
+</head>
+<body>
+<h1>Aichemy · Playful Pastel — 3 Varian Palet</h1>
+<p class="sub">Semua memakai struktur B (rounded, Nunito, friendly). Bedanya hanya di warna. Balas dengan nomor varian (boleh minta penyesuaian, mis. "B3 tapi tombolnya lebih pink").</p>
+<div class="grid">
+
+  <div class="card">
+    <div class="mock b1">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+        <div class="chips"><span class="chip">Close Up</span><span class="chip">16:9</span><span class="chip">Neon Diner</span></div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>B1 · Cotton Candy</h2>
+      <p>Pink lembut + lilac + krim. Paling manis & feminin — kuat untuk konten lifestyle/beauty/aesthetic.</p>
+      <div class="swatches"><div class="sw" style="background:#fff7f5"></div><div class="sw" style="background:#fce0ec"></div><div class="sw" style="background:#e58ab4"></div><div class="sw" style="background:#b0427c"></div><div class="sw" style="background:#f3ecfc"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mock b2">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+        <div class="chips"><span class="chip">Close Up</span><span class="chip">16:9</span><span class="chip">Neon Diner</span></div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>B2 · Sorbet</h2>
+      <p>Peach + mint + butter di atas krim hangat. Cerah, sunny, appetizing — cocok untuk food/lifestyle/travel content.</p>
+      <div class="swatches"><div class="sw" style="background:#fffcf4"></div><div class="sw" style="background:#fdeeda"></div><div class="sw" style="background:#eda56f"></div><div class="sw" style="background:#e5f7ee"></div><div class="sw" style="background:#4d9d78"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mock b3">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+        <div class="chips"><span class="chip">Close Up</span><span class="chip">16:9</span><span class="chip">Neon Diner</span></div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>B3 · Dreamy Sky</h2>
+      <p>Baby blue + lilac + rose. Paling calm & airy, terasa "AI yang friendly". Netral gender, paling fleksibel untuk semua jenis konten.</p>
+      <div class="swatches"><div class="sw" style="background:#f6fafd"></div><div class="sw" style="background:#e2eefa"></div><div class="sw" style="background:#8fb6d9"></div><div class="sw" style="background:#efe9fb"></div><div class="sw" style="background:#fce8f1"></div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

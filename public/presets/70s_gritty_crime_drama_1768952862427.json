@@ -1,0 +1,23 @@
+{
+  "id": "23447266-a8be-42cb-b0ac-c68e6c761933",
+  "name": "70s Gritty Crime Drama",
+  "timestamp": 1768952862427,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "Hard Lighting with a small punchy key and crisp shadow edges",
+    "mood": "",
+    "camera": "s16mm film camera",
+    "focalLength": "",
+    "lens": "Voigtländer Nokton 50mm f1",
+    "filmStock": "Ilford XP2 Super",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Underexposed"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

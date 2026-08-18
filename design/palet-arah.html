@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aichemy — Arah Palet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Sora:wght@400;600;700;800&family=Fraunces:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0a0a; color:#eee; font-family:'Inter',sans-serif; padding:32px; }
+  h1 { font-size:22px; margin-bottom:6px; }
+  .sub { color:#999; font-size:13px; margin-bottom:28px; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:1200px; }
+  .card { border:2px solid #222; border-radius:16px; overflow:hidden; background:#111; }
+  .card .meta { padding:14px 16px; }
+  .card .meta h2 { font-size:16px; margin-bottom:4px; }
+  .card .meta p { font-size:12px; color:#888; line-height:1.5; }
+  .swatches { display:flex; gap:6px; margin-top:10px; }
+  .sw { width:28px; height:28px; border-radius:8px; border:1px solid rgba(255,255,255,.12); }
+  .mock { height:340px; padding:16px; display:flex; flex-direction:column; gap:10px; }
+
+  /* ====== A: Clean Fresh ====== */
+  .a { background:#ffffff; font-family:'Plus Jakarta Sans',sans-serif; }
+  .a .hdr { display:flex; justify-content:space-between; align-items:center; }
+  .a .logo { font-weight:800; font-size:19px; color:#111827; }
+  .a .logo em { font-style:normal; color:#2563eb; }
+  .a .pill { background:#eff6ff; color:#2563eb; font-size:10px; font-weight:700; padding:5px 12px; border-radius:99px; }
+  .a .section { background:#f8fafc; border:1px solid #e5e7eb; border-radius:12px; padding:12px; }
+  .a .sec-title { font-size:11px; font-weight:700; letter-spacing:.06em; color:#2563eb; text-transform:uppercase; }
+  .a .input { background:#fff; border:1px solid #d1d5db; border-radius:8px; padding:9px 11px; font-size:11px; color:#6b7280; margin-top:8px; }
+  .a .prompt { background:#111827; border-radius:12px; padding:12px; color:#e5e7eb; font-size:11px; line-height:1.6; }
+  .a .btn { background:#2563eb; color:#fff; font-size:10px; font-weight:700; padding:6px 14px; border-radius:8px; display:inline-block; margin-top:8px; }
+
+  /* ====== B: Playful Pastel ====== */
+  .b { background:#fdf6ee; font-family:'Nunito',sans-serif; }
+  .b .hdr { display:flex; justify-content:space-between; align-items:center; }
+  .b .logo { font-weight:900; font-size:19px; color:#3d2c8d; }
+  .b .logo em { font-style:normal; color:#ff6b9d; }
+  .b .pill { background:#ffe3ee; color:#e0447c; font-size:10px; font-weight:800; padding:5px 12px; border-radius:99px; }
+  .b .section { background:#fff; border:2px solid #f0e4ff; border-radius:18px; padding:12px; }
+  .b .sec-title { font-size:11px; font-weight:900; letter-spacing:.05em; color:#8b5cf6; text-transform:uppercase; }
+  .b .input { background:#faf5ff; border:2px solid #e9d5ff; border-radius:12px; padding:9px 11px; font-size:11px; color:#7c6a94; margin-top:8px; }
+  .b .prompt { background:linear-gradient(135deg,#f3e8ff,#ffe4f0); border-radius:16px; padding:12px; color:#4c1d95; font-size:11px; line-height:1.6; }
+  .b .btn { background:#ff6b9d; color:#fff; font-size:10px; font-weight:800; padding:6px 14px; border-radius:99px; display:inline-block; margin-top:8px; }
+
+  /* ====== C: Alchemy Gradient ====== */
+  .c { background:#fbfaff; font-family:'Sora',sans-serif; }
+  .c .hdr { display:flex; justify-content:space-between; align-items:center; }
+  .c .logo { font-weight:800; font-size:19px; background:linear-gradient(90deg,#7c3aed,#ec4899,#f59e0b); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .c .pill { background:linear-gradient(90deg,#ede9fe,#fce7f3); color:#9333ea; font-size:10px; font-weight:700; padding:5px 12px; border-radius:99px; }
+  .c .section { background:#fff; border:1px solid #ede9fe; border-radius:14px; padding:12px; box-shadow:0 2px 12px rgba(124,58,237,.06); }
+  .c .sec-title { font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:linear-gradient(90deg,#7c3aed,#ec4899); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .c .input { background:#faf9ff; border:1px solid #e5e0f8; border-radius:10px; padding:9px 11px; font-size:11px; color:#6d6a8a; margin-top:8px; }
+  .c .prompt { background:#1e1b2e; border-radius:14px; padding:12px; color:#e9e4ff; font-size:11px; line-height:1.6; border:1px solid #7c3aed44; }
+  .c .btn { background:linear-gradient(90deg,#7c3aed,#ec4899); color:#fff; font-size:10px; font-weight:700; padding:6px 14px; border-radius:10px; display:inline-block; margin-top:8px; }
+
+  /* ====== D: Sunny Editorial ====== */
+  .d { background:#fffbf2; font-family:'Inter',sans-serif; }
+  .d .hdr { display:flex; justify-content:space-between; align-items:center; }
+  .d .logo { font-family:'Fraunces',serif; font-weight:700; font-size:20px; color:#1c1917; }
+  .d .logo em { font-style:italic; color:#ea580c; }
+  .d .pill { background:#ffedd5; color:#c2410c; font-size:10px; font-weight:700; padding:5px 12px; border-radius:99px; }
+  .d .section { background:#fff; border:1px solid #f5ead9; border-radius:4px; padding:12px; }
+  .d .sec-title { font-size:10px; font-weight:700; letter-spacing:.14em; color:#b45309; text-transform:uppercase; }
+  .d .input { background:#fffdf7; border:1px solid #e7dcc8; border-radius:4px; padding:9px 11px; font-size:11px; color:#78716c; margin-top:8px; }
+  .d .prompt { background:#fff7ed; border-left:4px solid #ea580c; border-radius:4px; padding:12px; color:#431407; font-size:11px; line-height:1.6; }
+  .d .btn { background:#1c1917; color:#fffbf2; font-size:10px; font-weight:700; padding:6px 14px; border-radius:4px; display:inline-block; margin-top:8px; letter-spacing:.08em; }
+</style>
+</head>
+<body>
+<h1>Aichemy — 4 Arah Palet Cerah</h1>
+<p class="sub">Kreator konten & casual. Setiap mockup: header, satu seksi prompt, dan panel hasil. Balas di terminal dengan huruf pilihanmu (boleh juga "campur A dan C" dsb).</p>
+<div class="grid">
+
+  <div class="card">
+    <div class="mock a">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>A · Clean Fresh</h2>
+      <p>Putih bersih + biru elektrik. Terasa seperti tools modern (Linear/Notion vibe). Aman, rapi, mudah dibaca lama-lama. Paling "dewasa" dari yang casual.</p>
+      <div class="swatches"><div class="sw" style="background:#fff"></div><div class="sw" style="background:#f8fafc"></div><div class="sw" style="background:#2563eb"></div><div class="sw" style="background:#111827"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mock b">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>B · Playful Pastel</h2>
+      <p>Krim lembut + lavender/pink candy, sudut membulat, font rounded (Nunito). Paling ramah & fun — vibe Canva/Duolingo. Cocok kalau targetmu benar-benar casual.</p>
+      <div class="swatches"><div class="sw" style="background:#fdf6ee"></div><div class="sw" style="background:#f0e4ff"></div><div class="sw" style="background:#ff6b9d"></div><div class="sw" style="background:#8b5cf6"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mock c">
+      <div class="hdr"><div class="logo">Aichemy</div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>C · Alchemy Gradient</h2>
+      <p>Putih keunguan + aksen gradasi violet→pink→amber — nuansa "meracik prompt jadi emas", pas dengan nama Aichemy. Modern, sedikit magical, tetap cerah.</p>
+      <div class="swatches"><div class="sw" style="background:#fbfaff"></div><div class="sw" style="background:#7c3aed"></div><div class="sw" style="background:#ec4899"></div><div class="sw" style="background:#f59e0b"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="mock d">
+      <div class="hdr"><div class="logo">Ai<em>chemy</em></div><div class="pill">EXPORT</div></div>
+      <div class="section">
+        <div class="sec-title">01 · Subject &amp; Framing</div>
+        <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+      </div>
+      <div class="prompt">A photographic image of a robot chef flipping pancakes in a neon diner. Shot in 16:9.
+        <span class="btn">COPY PROMPT</span></div>
+    </div>
+    <div class="meta"><h2>D · Sunny Editorial</h2>
+      <p>Ivory hangat + oranye terbakar, serif display (Fraunces). Terasa seperti majalah kreatif — cerah, hangat, berkarakter. Evolusi paling natural dari kuning RenderZero lama.</p>
+      <div class="swatches"><div class="sw" style="background:#fffbf2"></div><div class="sw" style="background:#ffedd5"></div><div class="sw" style="background:#ea580c"></div><div class="sw" style="background:#1c1917"></div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

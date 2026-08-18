@@ -1,0 +1,26 @@
+{
+  "id": "86eddb66-edc7-48cd-8550-f1af67451d3a",
+  "name": "Action Movie",
+  "timestamp": 1773276573127,
+  "data": {
+    "shotType": "Tilted dutch angle shot",
+    "viewingDirection": "",
+    "lighting": "Hard Lighting with a small punchy key and crisp shadow edges",
+    "mood": "moody, cinematic, gritty",
+    "camera": "Sony Venice",
+    "focalLength": "85mm Portrait",
+    "lens": "Anamorphic Cinema Lens",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "HDR Tone Mapping"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K",
+    "temperature": 1,
+    "showNewAnglePrompt": false,
+    "candidShot": true
+  }
+}

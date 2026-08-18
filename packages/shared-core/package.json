@@ -1,0 +1,7 @@
+{
+  "name": "@renderzero/shared-core",
+  "private": true,
+  "version": "4.0.2",
+  "type": "module",
+  "description": "Shared RenderZero Suite source used by Studio and Animate"
+}

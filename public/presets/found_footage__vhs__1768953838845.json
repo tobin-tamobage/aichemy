@@ -1,0 +1,25 @@
+{
+  "id": "84340385-1602-4400-be9c-88016d47a69c",
+  "name": "Found Footage (VHS)",
+  "timestamp": 1768953838845,
+  "data": {
+    "shotType": "Tilted dutch angle",
+    "viewingDirection": "",
+    "lighting": "Chiaroscuro Lighting with a single hard key and heavy shadow contrast",
+    "mood": "",
+    "camera": "VHS Camera",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Underexposed",
+      "Soft Focus",
+      "Motion Blur"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

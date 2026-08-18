@@ -1,0 +1,23 @@
+{
+  "id": "c0ecad29-e789-4e19-ac64-08d6c6643543",
+  "name": "Indie Crime Film",
+  "timestamp": 1768951998493,
+  "data": {
+    "shotType": "Over the shoulder shot looking at someone or something else in the scene",
+    "viewingDirection": "",
+    "lighting": "Top Lighting with an overhead key and subtle fill to control eye shadows",
+    "mood": "",
+    "camera": "Sony FX3",
+    "focalLength": "",
+    "lens": "Voigtländer Nokton 50mm f1",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Desaturated Grunge"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

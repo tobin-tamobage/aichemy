@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aichemy — Desain Final (Light + Dark)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0a0a; color:#eee; font-family:'Inter',sans-serif; padding:28px; }
+  h1 { font-size:20px; margin-bottom:4px; }
+  .sub { color:#999; font-size:13px; margin-bottom:22px; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:1500px; }
+  .themewrap { border-radius:20px; overflow:hidden; border:2px solid #222; }
+  .themelabel { font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; padding:8px 14px; background:#161616; color:#aaa; }
+  .app { font-family:'Nunito',sans-serif; padding:16px; display:flex; flex-direction:column; gap:12px; min-height:520px; }
+  .hdr { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; }
+  .logo { font-weight:900; font-size:21px; }
+  .tagline { font-size:10px; font-weight:700; margin-top:1px; }
+  .nav { display:flex; gap:6px; flex-wrap:wrap; }
+  .navbtn { font-size:9px; font-weight:800; padding:5px 10px; border-radius:99px; border-width:2px; border-style:solid; }
+  .cols { display:grid; grid-template-columns:1.1fr 1fr; gap:12px; flex:1; }
+  .accordion { border-radius:16px; border-width:2px; border-style:solid; padding:11px; }
+  .acc-title { font-size:11px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; display:flex; justify-content:space-between; }
+  .input { border-radius:12px; border-width:2px; border-style:solid; padding:8px 10px; font-size:11px; margin-top:8px; }
+  .sel { border-radius:12px; border-width:2px; border-style:solid; padding:7px 10px; font-size:11px; margin-top:8px; display:flex; justify-content:space-between; align-items:center; }
+  .thumbs { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin-top:8px; }
+  .thumb { border-radius:10px; aspect-ratio:16/10; }
+  .promptbox { border-radius:16px; padding:12px; display:flex; flex-direction:column; gap:8px; }
+  .promptlabel { font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+  .prompttext { font-size:11.5px; line-height:1.65; }
+  .actions { display:flex; gap:6px; flex-wrap:wrap; }
+  .btn { font-size:9px; font-weight:800; padding:6px 12px; border-radius:99px; }
+  .btn-primary { color:#fff; }
+  .hint { font-size:9.5px; line-height:1.5; text-align:center; }
+
+  /* ============ LIGHT ============ */
+  .L { background:#fdf6ee; }
+  .L .logo { color:#3d2c8d; } .L .logo em { font-style:normal; color:#ff6b9d; }
+  .L .tagline { color:#a78bca; }
+  .L .navbtn { background:#fff; border-color:#f0e4ff; color:#8b5cf6; }
+  .L .navbtn.hot { background:#ff6b9d; border-color:#ff6b9d; color:#fff; }
+  .L .accordion { background:#fff; border-color:#f0e4ff; }
+  .L .acc-title { color:#8b5cf6; }
+  .L .acc-title span:last-child { color:#d3c2f0; }
+  .L .input { background:#faf5ff; border-color:#e9d5ff; color:#7c6a94; }
+  .L .sel { background:#fff; border-color:#f0e4ff; color:#5b4a75; font-weight:700; }
+  .L .thumb { background:linear-gradient(135deg,#f3e8ff,#ffe4f0); }
+  .L .thumb:nth-child(2) { background:linear-gradient(135deg,#ffe4f0,#fdf0e0); }
+  .L .thumb:nth-child(3) { background:linear-gradient(135deg,#e8f4ff,#f3e8ff); }
+  .L .thumb:nth-child(4) { background:linear-gradient(135deg,#e0f7ee,#e8f4ff); }
+  .L .promptbox { background:linear-gradient(135deg,#f3e8ff,#ffe4f0); }
+  .L .promptlabel { color:#a855f7; }
+  .L .prompttext { color:#4c1d95; }
+  .L .btn { background:#fff; color:#8b5cf6; border:2px solid #e9d5ff; }
+  .L .btn-primary { background:#ff6b9d; border-color:#ff6b9d; }
+  .L .hint { color:#b09cc9; }
+
+  /* ============ DARK ============ */
+  .D { background:#221c2e; }
+  .D .logo { color:#f3eefc; } .D .logo em { font-style:normal; color:#ff8ab8; }
+  .D .tagline { color:#8f7fb8; }
+  .D .navbtn { background:#2c2440; border-color:#453a5e; color:#c4b0f0; }
+  .D .navbtn.hot { background:#ff6b9d; border-color:#ff6b9d; color:#fff; }
+  .D .accordion { background:#2c2440; border-color:#453a5e; }
+  .D .acc-title { color:#c4b0f0; }
+  .D .acc-title span:last-child { color:#5e5180; }
+  .D .input { background:#241e33; border-color:#453a5e; color:#9b8db8; }
+  .D .sel { background:#2c2440; border-color:#453a5e; color:#e9e2f8; font-weight:700; }
+  .D .thumb { background:linear-gradient(135deg,#453a5e,#5e3a55); }
+  .D .thumb:nth-child(2) { background:linear-gradient(135deg,#5e3a55,#5e4a3a); }
+  .D .thumb:nth-child(3) { background:linear-gradient(135deg,#3a4a5e,#453a5e); }
+  .D .thumb:nth-child(4) { background:linear-gradient(135deg,#3a5e4e,#3a4a5e); }
+  .D .promptbox { background:#241e33; border:2px solid #453a5e; }
+  .D .promptlabel { color:#d8b4fe; }
+  .D .prompttext { color:#efe9fb; }
+  .D .btn { background:#2c2440; color:#c4b0f0; border:2px solid #453a5e; }
+  .D .btn-primary { background:#ff6b9d; border-color:#ff6b9d; }
+  .D .hint { color:#6e6190; }
+
+  /* token table */
+  .tokens { margin-top:26px; max-width:1500px; }
+  .tokens h2 { font-size:15px; margin-bottom:10px; }
+  table { border-collapse:collapse; width:100%; font-size:12px; }
+  th, td { text-align:left; padding:7px 10px; border-bottom:1px solid #222; }
+  th { color:#888; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.08em; }
+  td code { background:#1a1a1a; padding:2px 7px; border-radius:6px; font-size:11px; }
+  .tdot { display:inline-block; width:14px; height:14px; border-radius:5px; vertical-align:-2px; margin-right:7px; border:1px solid rgba(255,255,255,.15); }
+</style>
+</head>
+<body>
+<h1>Aichemy — Desain Final: Light (default) + Dark</h1>
+<p class="sub">Struktur & layout app tidak berubah — hanya reskin warna, font (Nunito), radius membulat, dan brand. Balas "setuju" atau minta penyesuaian.</p>
+
+<div class="split">
+
+  <div class="themewrap">
+    <div class="themelabel">☀ Light — Playful Pastel (default)</div>
+    <div class="app L">
+      <div class="hdr">
+        <div><div class="logo">Ai<em>chemy</em></div><div class="tagline">Brew your perfect prompt</div></div>
+        <div class="nav">
+          <span class="navbtn">NEW</span><span class="navbtn">PRESETS</span><span class="navbtn">IMPORT</span><span class="navbtn hot">EXPORT</span><span class="navbtn">🌙</span>
+        </div>
+      </div>
+      <div class="cols">
+        <div>
+          <div class="accordion">
+            <div class="acc-title"><span>01 · Subject &amp; Framing</span><span>▲</span></div>
+            <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+            <div class="sel">Close Up <span style="color:#d3c2f0">▾</span></div>
+            <div class="thumbs"><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div></div>
+          </div>
+          <div class="accordion" style="margin-top:10px">
+            <div class="acc-title"><span>02 · Lighting &amp; Mood</span><span>▼</span></div>
+          </div>
+          <div class="accordion" style="margin-top:10px">
+            <div class="acc-title"><span>03 · Camera Gear</span><span>▼</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="promptbox">
+            <div class="promptlabel">✦ Constructed Prompt</div>
+            <div class="prompttext">A photographic image of a robot chef flipping pancakes in a neon diner. Close up shot. The image should be in a 16:9 format.</div>
+            <div class="actions">
+              <span class="btn">SAVE PRESET</span><span class="btn">EDIT</span><span class="btn">EXPORT</span><span class="btn btn-primary">COPY</span>
+            </div>
+          </div>
+          <p class="hint" style="margin-top:10px">Copy the prompt and paste it into your favorite tool (Gemini, ChatGPT, Midjourney…). Aichemy never calls any API.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="themewrap">
+    <div class="themelabel">🌙 Dark — Midnight Potion</div>
+    <div class="app D">
+      <div class="hdr">
+        <div><div class="logo">Ai<em>chemy</em></div><div class="tagline">Brew your perfect prompt</div></div>
+        <div class="nav">
+          <span class="navbtn">NEW</span><span class="navbtn">PRESETS</span><span class="navbtn">IMPORT</span><span class="navbtn hot">EXPORT</span><span class="navbtn">☀</span>
+        </div>
+      </div>
+      <div class="cols">
+        <div>
+          <div class="accordion">
+            <div class="acc-title"><span>01 · Subject &amp; Framing</span><span>▲</span></div>
+            <div class="input">A robot chef flipping pancakes in a neon diner…</div>
+            <div class="sel">Close Up <span style="color:#5e5180">▾</span></div>
+            <div class="thumbs"><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div></div>
+          </div>
+          <div class="accordion" style="margin-top:10px">
+            <div class="acc-title"><span>02 · Lighting &amp; Mood</span><span>▼</span></div>
+          </div>
+          <div class="accordion" style="margin-top:10px">
+            <div class="acc-title"><span>03 · Camera Gear</span><span>▼</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="promptbox">
+            <div class="promptlabel">✦ Constructed Prompt</div>
+            <div class="prompttext">A photographic image of a robot chef flipping pancakes in a neon diner. Close up shot. The image should be in a 16:9 format.</div>
+            <div class="actions">
+              <span class="btn">SAVE PRESET</span><span class="btn">EDIT</span><span class="btn">EXPORT</span><span class="btn btn-primary">COPY</span>
+            </div>
+          </div>
+          <p class="hint" style="margin-top:10px">Copy the prompt and paste it into your favorite tool (Gemini, ChatGPT, Midjourney…). Aichemy never calls any API.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="tokens">
+  <h2>Design Tokens (CSS variables — satu file, dua tema)</h2>
+  <table>
+    <tr><th>Token</th><th>Light</th><th>Dark</th><th>Dipakai untuk</th></tr>
+    <tr><td><code>--bg</code></td><td><span class="tdot" style="background:#fdf6ee"></span>#fdf6ee</td><td><span class="tdot" style="background:#221c2e"></span>#221c2e</td><td>Latar app</td></tr>
+    <tr><td><code>--surface</code></td><td><span class="tdot" style="background:#ffffff"></span>#ffffff</td><td><span class="tdot" style="background:#2c2440"></span>#2c2440</td><td>Kartu, accordion, modal</td></tr>
+    <tr><td><code>--surface-2</code></td><td><span class="tdot" style="background:#faf5ff"></span>#faf5ff</td><td><span class="tdot" style="background:#241e33"></span>#241e33</td><td>Input, area prompt</td></tr>
+    <tr><td><code>--border</code></td><td><span class="tdot" style="background:#f0e4ff"></span>#f0e4ff</td><td><span class="tdot" style="background:#453a5e"></span>#453a5e</td><td>Border kartu & input</td></tr>
+    <tr><td><code>--accent</code></td><td><span class="tdot" style="background:#ff6b9d"></span>#ff6b9d</td><td><span class="tdot" style="background:#ff6b9d"></span>#ff6b9d</td><td>Tombol utama, "chemy", highlight</td></tr>
+    <tr><td><code>--accent-2</code></td><td><span class="tdot" style="background:#8b5cf6"></span>#8b5cf6</td><td><span class="tdot" style="background:#c4b0f0"></span>#c4b0f0</td><td>Judul seksi, label, link</td></tr>
+    <tr><td><code>--text</code></td><td><span class="tdot" style="background:#3d2c8d"></span>#3d2c8d</td><td><span class="tdot" style="background:#f3eefc"></span>#f3eefc</td><td>Teks utama</td></tr>
+    <tr><td><code>--text-dim</code></td><td><span class="tdot" style="background:#a78bca"></span>#a78bca</td><td><span class="tdot" style="background:#8f7fb8"></span>#8f7fb8</td><td>Placeholder, hint, tagline</td></tr>
+    <tr><td><code>--radius</code></td><td colspan="2">16–18px (kartu) · 99px (pill/button)</td><td>Sudut membulat khas B</td></tr>
+  </table>
+</div>
+
+</body>
+</html>

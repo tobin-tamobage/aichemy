@@ -1,0 +1,23 @@
+{
+  "id": "d4fcf73c-46f8-4a9d-aeeb-25c60b71695d",
+  "name": "YouTube Documentary",
+  "timestamp": 1768952128595,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "Overcast Lighting",
+    "mood": "",
+    "camera": "modern iPhone Pro camera",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Bokeh"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "2K"
+  }
+}

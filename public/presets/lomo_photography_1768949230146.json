@@ -1,0 +1,23 @@
+{
+  "id": "1c3001ea-0506-4720-8853-0e093fff0e81",
+  "name": "Lomo Photography",
+  "timestamp": 1768949230146,
+  "data": {
+    "shotType": "Wide shot",
+    "viewingDirection": "",
+    "lighting": "natural daylight",
+    "mood": "",
+    "camera": "Holga 120N",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "Lomography Color Tiger",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Vignette"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

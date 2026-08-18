@@ -1,0 +1,32 @@
+{
+  "id": "4f7879bf-513c-4da2-ba66-df1448f8da37",
+  "name": "Depth Map",
+  "timestamp": 1784894353069,
+  "data": {
+    "shotType": "",
+    "viewingDirection": "",
+    "westernAnimation": "",
+    "animeGenre": "",
+    "animeShowStyle": "",
+    "lighting": "",
+    "camera": "",
+    "focalLength": "",
+    "lens": "",
+    "fStop": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [],
+    "aspectRatio": "16:9",
+    "imageSize": "2K",
+    "imageQuality": "high",
+    "grokQualityMode": false,
+    "falRecraftColors": "#912727, #6A1F6F",
+    "temperature": 1,
+    "showNewAnglePrompt": false,
+    "candidShot": false,
+    "noText": false,
+    "subjectAction": "Use the provided reference images to guide the edit: file 1 as global visual reference.\n\nModify the source image to: Transform the supplied storyboard or contact sheet into a clean monocular grayscale depth map. Preserve the exact canvas size, aspect ratio, panel layout, divider lines, framing, perspective, composition, and object silhouettes.\n\nEstimate depth independently for each panel.\n\nUse this depth convention:\n\nWhite = closest surfaces\nLight gray = near foreground\nMid-gray = middle distance\nDark gray = distant background\nNear-black = farthest sky or horizon\nBlack = panel dividers\nMaintain accurate depth layering, occlusion, and smooth distance transitions. Nearer parts of objects should be brighter than farther parts, including limbs, clothing, props, terrain, and thin objects angled through space.\nPreserve crisp silhouettes and fine details such as fingers, hair, vegetation, wires, and object edges. Use smooth gradients on curved surfaces without flattening subjects into uniform gray shapes.\nDepth values must represent distance only. Ignore color, lighting, highlights, shadows, reflections, texture, fog, rain, smoke, and motion blur.\nAvoid halos, outlines, double edges, ambient occlusion, embossing, texture shading, and false depth.\nOutput only the neutral grayscale depth map with no text, labels, added objects, missing objects, or layout changes.\n. Don't blur faces randomly. The image should be in a 16:9 format."
+  }
+}

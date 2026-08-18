@@ -1,0 +1,23 @@
+{
+  "id": "a88ee0b2-3662-482c-a9a1-392436859f19",
+  "name": "Studio Catalog",
+  "timestamp": 1768943759933,
+  "data": {
+    "shotType": "Three quarter body shot",
+    "viewingDirection": "",
+    "lighting": "High Key Lighting",
+    "mood": "",
+    "camera": "Phase One XF IQ4",
+    "focalLength": "85mm Portrait",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "HDR Tone Mapping"
+    ],
+    "aspectRatio": "9:16",
+    "imageSize": "1K"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "4b9ff87c-3f06-417f-9272-c7f1d52135e7",
+  "name": "60s Historical Epic",
+  "timestamp": 1768957394131,
+  "data": {
+    "shotType": "Establishing shot",
+    "viewingDirection": "",
+    "lighting": "harsh midday sun lighting",
+    "mood": "",
+    "camera": "Panavision Panaflex",
+    "focalLength": "",
+    "lens": "Anamorphic Cinema Lens",
+    "filmStock": "Ektachrome E100",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Bloom Glow"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K"
+  }
+}

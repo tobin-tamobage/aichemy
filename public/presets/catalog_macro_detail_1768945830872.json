@@ -1,0 +1,23 @@
+{
+  "id": "8510bffc-cdaf-498c-a3ed-abd5c88d3576",
+  "name": "Catalog Macro Detail",
+  "timestamp": 1768945830872,
+  "data": {
+    "shotType": "Extreme close up",
+    "viewingDirection": "",
+    "lighting": "softbox key lighting",
+    "mood": "",
+    "camera": "Hasselblad 500CM",
+    "focalLength": "100mm Macro",
+    "lens": "Macro Lens",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "HDR Tone Mapping"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

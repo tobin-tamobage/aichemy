@@ -1,0 +1,23 @@
+{
+  "id": "f9cee2d2-38dc-45f4-9479-03dcad92b2b7",
+  "name": "Documentary Photography",
+  "timestamp": 1768948923459,
+  "data": {
+    "shotType": "Upper body shot",
+    "viewingDirection": "",
+    "lighting": "Practical Lighting from practical light sources visible in the scene",
+    "mood": "",
+    "camera": "Canon EOS 5D",
+    "focalLength": "50mm Standard",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Black And White"
+    ],
+    "aspectRatio": "3:4",
+    "imageSize": "1K"
+  }
+}

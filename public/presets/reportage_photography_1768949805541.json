@@ -1,0 +1,23 @@
+{
+  "id": "8af26ac4-6544-4bb7-932e-3efd1c382c5a",
+  "name": "Reportage Photography",
+  "timestamp": 1768949805541,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "open-shade skylight lighting",
+    "mood": "",
+    "camera": "Leica M3",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "Kodak Tri-X 400",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Film Grain"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

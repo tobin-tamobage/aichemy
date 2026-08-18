@@ -1,0 +1,23 @@
+{
+  "id": "17bd1f67-62c7-4eab-8280-3a865700b7f7",
+  "name": "War Film",
+  "timestamp": 1768955612766,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "harsh midday sun lighting",
+    "mood": "",
+    "camera": "Sony FX6",
+    "focalLength": "50mm Standard",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Desaturated Grunge"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "1K"
+  }
+}

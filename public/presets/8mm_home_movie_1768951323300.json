@@ -1,0 +1,23 @@
+{
+  "id": "546a7e13-0027-4b39-8e9b-1c0ca01d904f",
+  "name": "8mm Home Movie",
+  "timestamp": 1768951323300,
+  "data": {
+    "shotType": "Wide shot",
+    "viewingDirection": "",
+    "lighting": "harsh midday sun lighting",
+    "mood": "",
+    "camera": "8mm film camera",
+    "focalLength": "",
+    "lens": "Toy Plastic Lens",
+    "filmStock": "Kodachrome 64",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Film Grain"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

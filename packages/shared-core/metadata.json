@@ -1,0 +1,5 @@
+{
+  "name": "RenderZero Studio",
+  "description": "A professional prompt engineering tool for Gemini's Nano Banana Pro (gemini-3-pro-image-preview) model with multi-angle shot support.",
+  "requestFramePermissions": []
+}

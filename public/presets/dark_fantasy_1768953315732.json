@@ -1,0 +1,24 @@
+{
+  "id": "7d5e2bc3-2f9f-4fb5-8217-cfbb155683b0",
+  "name": "Dark Fantasy",
+  "timestamp": 1768953315732,
+  "data": {
+    "shotType": "Three quarter body shot",
+    "viewingDirection": "",
+    "lighting": "Low Key Lighting",
+    "mood": "",
+    "camera": "s16mm film camera",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "Agfa Vista",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Underexposed",
+      "Film Grain"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

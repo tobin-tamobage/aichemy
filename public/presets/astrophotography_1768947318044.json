@@ -1,0 +1,23 @@
+{
+  "id": "97d0fa34-87f1-4295-9028-0986ba2067bc",
+  "name": "Astrophotography",
+  "timestamp": 1768947318044,
+  "data": {
+    "shotType": "Wide shot",
+    "viewingDirection": "",
+    "lighting": "",
+    "mood": "",
+    "camera": "Nikon FM2",
+    "focalLength": "",
+    "lens": "Catadioptric (Mirror) Lens",
+    "filmStock": "Portra 160",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Long Exposure"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

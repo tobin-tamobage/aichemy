@@ -1,0 +1,23 @@
+{
+  "id": "b88a477b-a39b-4b24-9dea-df8b6087316e",
+  "name": "Analog",
+  "timestamp": 1768947076354,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "Overcast Lighting",
+    "mood": "",
+    "camera": "Canon AE-1",
+    "focalLength": "",
+    "lens": "Helios 44-2 Swirly Bokeh",
+    "filmStock": "Kodak Gold 200",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Film Grain"
+    ],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}

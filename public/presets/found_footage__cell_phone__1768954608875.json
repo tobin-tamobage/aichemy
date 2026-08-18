@@ -1,0 +1,24 @@
+{
+  "id": "4bd27d7d-d997-4e29-ac99-59629dc75c57",
+  "name": "Found Footage (Cell Phone)",
+  "timestamp": 1768954608875,
+  "data": {
+    "shotType": "Medium shot",
+    "viewingDirection": "",
+    "lighting": "Low Key Lighting",
+    "mood": "",
+    "camera": "early Android smartphone camera with aggressive noise reduction, soft detail, flattened contrast, and dull colors",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Underexposed",
+      "Motion Blur"
+    ],
+    "aspectRatio": "9:16",
+    "imageSize": "1K"
+  }
+}

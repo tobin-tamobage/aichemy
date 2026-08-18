@@ -1,0 +1,19 @@
+Implement a retractable Multi-Angle toggle for a specific provider/model.
+
+Target:
+- Provider ID: <provider-id>
+- Model ID: <model-id>
+- Provider file: <path-to-provider-file>
+
+Requirements:
+1. Add a provider-local constant in the provider file:
+   const ENABLE_<PROVIDER>_<MODEL>_MULTI_ANGLE = true;
+2. Add a short comment above it:
+   "Set to false to instantly disable Scene/Multi-Angle for this model."
+3. Wire that constant into the model’s metadata:
+   supportsMultiAngle: ENABLE_<PROVIDER>_<MODEL>_MULTI_ANGLE
+4. Keep all other providers/models unchanged.
+5. Keep default behavior ON (true).
+6. Do not add global feature-flag infrastructure unless explicitly requested.
+7. Run typecheck: npx tsc --noEmit --pretty false
+8. Return the exact files/lines changed and confirm how to disable in one line.

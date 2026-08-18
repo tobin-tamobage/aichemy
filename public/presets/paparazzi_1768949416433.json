@@ -1,0 +1,21 @@
+{
+  "id": "aa9455b1-0543-4346-924e-59a3311e81a2",
+  "name": "Paparazzi",
+  "timestamp": 1768949416433,
+  "data": {
+    "shotType": "Wide shot",
+    "viewingDirection": "",
+    "lighting": "direct on-camera flash, creating harsh shadows and a flat, artificial look",
+    "mood": "",
+    "camera": "Canon EOS 5D",
+    "focalLength": "24mm Wide Angle",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

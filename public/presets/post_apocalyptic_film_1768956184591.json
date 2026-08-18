@@ -1,0 +1,24 @@
+{
+  "id": "1f8f17c6-f8ef-4028-81a2-1c628a06b8cc",
+  "name": "Post-Apocalyptic Film",
+  "timestamp": 1768956184591,
+  "data": {
+    "shotType": "Establishing shot",
+    "viewingDirection": "",
+    "lighting": "Overcast Lighting",
+    "mood": "",
+    "camera": "Sony Venice",
+    "focalLength": "",
+    "lens": "Anamorphic Cinema Lens",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Cross Processed",
+      "Film Grain"
+    ],
+    "aspectRatio": "21:9",
+    "imageSize": "2K"
+  }
+}

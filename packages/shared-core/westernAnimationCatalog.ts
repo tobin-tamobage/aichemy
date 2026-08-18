@@ -1,0 +1,62 @@
+import type { AnimationStyleOption } from './types';
+
+const createStyle = (label: string, file: string, prePrompt = label, postPrompt = `${label} animation style.`): AnimationStyleOption => ({
+  label,
+  value: label,
+  image: `/images/western-animation/${file}`,
+  prePrompt,
+  postPrompt,
+});
+
+export const WESTERN_ANIMATION_STYLES: AnimationStyleOption[] = [
+  createStyle('2000s Action Animation', '2000s-action-animation.webp'),
+  createStyle('2D/3D Hybrid Animation', '2d-3d-hybrid-animation.webp'),
+  createStyle('3D Family Film', '3d-family-film.webp'),
+  createStyle('60s Puppetshow', '60s-puppetshow.webp'),
+  createStyle('80s Action Hero', '80s-action-hero.webp'),
+  createStyle('80s Feline Hero', '80s-feline-hero.webp'),
+  createStyle('90s Family Comedy', '90s-family-comedy.webp'),
+  createStyle('90s Renaissance Animation', '90s-renaissance-animation.webp'),
+  createStyle('Bento Box Style', 'bento-box-style.webp'),
+  createStyle('Blue Sky Style', 'blue-sky-style.webp'),
+  createStyle('Burtonesque Stop Motion', 'burtonesque-stop-motion.webp'),
+  createStyle('Classic Animated Movie', 'classic-animated-movie.webp'),
+  createStyle('Classic Fantasy Hero', 'classic-fantasy-hero.webp'),
+  createStyle('Classic Mystery Hero', 'classic-mystery-hero.webp'),
+  createStyle('Claymation', 'claymation.webp'),
+  createStyle('CN Gem Style Animation', 'cn-gem-style-animation.webp'),
+  createStyle('CN Mixed Media Animation', 'cn-mixed-media-animation.webp'),
+  createStyle('Cutout Style Comedy', 'cutout-style-comedy.webp'),
+  createStyle('Dark Knight Animation', 'dark-knight-animation.webp'),
+  createStyle('Don Bluth Style', 'don-bluth-style.webp'),
+  createStyle('DreamWorks Style', 'dreamworks-style.webp'),
+  createStyle('Flash Animation', 'flash-animation.webp'),
+  createStyle('Fleischer Rubber Hose Style', 'fleischer-rubber-hose-style.webp'),
+  createStyle('Gameplay Footage', 'gameplay-footage.webp'),
+  createStyle('Illumination Entertainment', 'illumination-entertainment.webp'),
+  createStyle('Klasky Csupo 90s Style', 'klasky-csupo-90s-style.webp'),
+  createStyle('Laika Stop Motion', 'laika-stop-motion.webp'),
+  createStyle('Ligne Claire Style', 'ligne-claire-style.webp'),
+  createStyle('Looney Animation', 'looney-animation.webp'),
+  createStyle('Manhwa Webtoon Style', 'manhwa-webtoon-style.webp'),
+  createStyle('Minimalist Cinematic Cartoon', 'minimalist-cinematic-cartoon.webp'),
+  createStyle('Modern CN Animation', 'modern-cn-animation.webp'),
+  createStyle('Modern Mystery Cartoon', 'modern-mystery-cartoon.webp'),
+  createStyle('Modern Sci-Fi Comedy', 'modern-sci-fi-comedy.webp'),
+  createStyle('Pixar Style', 'pixar-style.webp'),
+  createStyle('Pixel Art', 'pixel-art.webp'),
+  createStyle('Rankin/Bass Stop Motion', 'rankinbass-stop-motion.webp'),
+  createStyle('Retro Video Game Cinematic', 'retro-video-game-cinematic.webp'),
+  createStyle('Rubberhose Video Game Style', 'rubberhose-video-game-style.webp'),
+  createStyle('Soviet Animation Style', 'soviet-animation-style.webp'),
+  createStyle('Stop Motion Paper Collage Style', 'stop-motion-paper-collage-style.webp'),
+  createStyle('TMNT Classic', 'tmnt-classic.webp'),
+  createStyle('Transforming Robots Cartoon', 'transforming-robots-cartoon.webp'),
+  createStyle('Trnka Puppet Animation Style', 'trnka-puppet-animation-style.webp'),
+  createStyle('Underwater Comedy Animation', 'underwater-comedy-animation.webp'),
+  createStyle('UPA Hubley Style', 'upa-hubley-style.webp'),
+];
+
+export const getWesternAnimationStyleByValue = (value: string): AnimationStyleOption | undefined => (
+  WESTERN_ANIMATION_STYLES.find((style) => style.value === value || style.label === value)
+);

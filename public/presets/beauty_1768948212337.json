@@ -1,0 +1,23 @@
+{
+  "id": "63b3140d-650d-4f03-81e2-ca7332203501",
+  "name": "Beauty",
+  "timestamp": 1768948212337,
+  "data": {
+    "shotType": "Upper body shot",
+    "viewingDirection": "",
+    "lighting": "Paramount Lighting with a high centered key and a soft shadow under the nose",
+    "mood": "",
+    "camera": "Hasselblad X1D II",
+    "focalLength": "",
+    "lens": "Soft-Focus Portrait Lens",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Bloom Glow"
+    ],
+    "aspectRatio": "9:16",
+    "imageSize": "1K"
+  }
+}

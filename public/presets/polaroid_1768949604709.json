@@ -1,0 +1,23 @@
+{
+  "id": "d511de15-d919-45e6-a87f-d33c51ba32e9",
+  "name": "Polaroid",
+  "timestamp": 1768949604709,
+  "data": {
+    "shotType": "Close up shot",
+    "viewingDirection": "",
+    "lighting": "Practical Lighting from practical light sources visible in the scene",
+    "mood": "",
+    "camera": "Polaroid 600",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Light Leaks"
+    ],
+    "aspectRatio": "1:1",
+    "imageSize": "1K"
+  }
+}

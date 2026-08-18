@@ -1,0 +1,23 @@
+{
+  "id": "f5f503a1-9a3d-4d54-9aa9-67a85acd853a",
+  "name": "Technicolor Movie",
+  "timestamp": 1768957245143,
+  "data": {
+    "shotType": "Wide shot",
+    "viewingDirection": "",
+    "lighting": "High Key Lighting",
+    "mood": "",
+    "camera": "s16mm film camera",
+    "focalLength": "24mm Wide Angle",
+    "lens": "",
+    "filmStock": "Kodak Gold 200",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [
+      "Bloom Glow"
+    ],
+    "aspectRatio": "16:9",
+    "imageSize": "1K"
+  }
+}

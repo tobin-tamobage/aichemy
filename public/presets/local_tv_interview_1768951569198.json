@@ -1,0 +1,21 @@
+{
+  "id": "f078430e-df19-4ee8-8b3d-c03f635fc882",
+  "name": "Local TV Interview",
+  "timestamp": 1768951569198,
+  "data": {
+    "shotType": "Two-shot",
+    "viewingDirection": "",
+    "lighting": "three-point lighting with a soft key, gentle fill, and a clean rim light separation",
+    "mood": "",
+    "camera": "modern 1080p webcam",
+    "focalLength": "",
+    "lens": "",
+    "filmStock": "",
+    "genre": "",
+    "photographer": "",
+    "movieLook": "",
+    "filter": [],
+    "aspectRatio": "4:3",
+    "imageSize": "1K"
+  }
+}
