@@ -739,12 +739,10 @@ export default function App() {
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
           <div className="flex min-w-0 flex-col gap-3 lg:flex-row lg:items-center">
             <div>
-              <h1 className="brand-wordmark text-3xl tracking-tighter text-white">
-                RenderZero <span className="text-yellow-500">Studio</span>
+              <h1 className="brand-wordmark text-3xl tracking-tight">
+                Ai<span className="text-accent">chemy</span>
               </h1>
-              <p className="brand-tagline text-xs text-zinc-500 mt-1">
-                &gt; From Nothing
-              </p>
+              <p className="brand-tagline text-xs mt-1">Brew your perfect prompt</p>
             </div>
             {/* Project name + saved indicator */}
             {currentProjectName && (
@@ -1494,10 +1492,10 @@ export default function App() {
           )}
 
           {/* Hint footer */}
-          <div className="text-center text-zinc-600 text-xs max-w-md mx-auto mt-4">
+          <div className="text-center text-dim text-xs max-w-md mx-auto mt-4">
             <p>
               Copy the constructed prompt and paste it into your favorite image tool
-              (Gemini, ChatGPT, Midjourney, ...). RenderZero Web never calls any API.
+              (Gemini, ChatGPT, Midjourney, ...). Aichemy never calls any API.
             </p>
           </div>
           </div>

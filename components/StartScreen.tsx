@@ -62,12 +62,10 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
       <div className="border-b border-zinc-800 bg-black/90">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 flex items-center justify-between gap-4">
           <div>
-            <h1 className="brand-wordmark text-3xl tracking-tighter text-white">
-              RenderZero <span className="text-yellow-500">Studio</span>
+            <h1 className="brand-wordmark text-3xl tracking-tight">
+              Ai<span className="text-accent">chemy</span>
             </h1>
-            <p className="brand-tagline text-xs text-zinc-500 mt-1">
-              &gt; From Nothing
-            </p>
+            <p className="brand-tagline text-xs mt-1">Brew your perfect prompt</p>
           </div>
         </div>
       </div>

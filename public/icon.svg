@@ -1,48 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#08090b"/>
-      <stop offset="55%" stop-color="#111318"/>
-      <stop offset="100%" stop-color="#171a20"/>
+    <linearGradient id="brew" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff6b9d"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#fde047"/>
-      <stop offset="100%" stop-color="#eab308"/>
-    </linearGradient>
-    <pattern id="scan" width="8" height="8" patternUnits="userSpaceOnUse">
-      <rect width="8" height="8" fill="transparent"/>
-      <rect y="0" width="8" height="1" fill="#ffffff" opacity="0.05"/>
-    </pattern>
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
-
-  <rect width="1024" height="1024" rx="192" fill="url(#bg)"/>
-  <rect x="68" y="68" width="888" height="888" rx="148" fill="none" stroke="#2b3038" stroke-width="16"/>
-  <rect x="90" y="90" width="844" height="844" rx="128" fill="url(#scan)" opacity="0.25"/>
-
-  <g stroke="url(#accent)" stroke-width="16" fill="none" stroke-linecap="round">
-    <path d="M148 256 H260"/>
-    <path d="M148 768 H260"/>
-    <path d="M764 256 H876"/>
-    <path d="M764 768 H876"/>
-    <path d="M256 148 V260"/>
-    <path d="M768 148 V260"/>
-    <path d="M256 764 V876"/>
-    <path d="M768 764 V876"/>
-  </g>
-
-  <path d="M356 232 H668 L792 356 V668 L668 792 H356 L232 668 V356 Z" fill="none" stroke="#2c3139" stroke-width="24"/>
-  <path d="M384 264 H640 L760 384 V640 L640 760 H384 L264 640 V384 Z" fill="none" stroke="url(#accent)" stroke-width="12" opacity="0.9" filter="url(#glow)"/>
-
-  <text x="314" y="612" fill="#ffffff" font-family="Orbitron, Arial, sans-serif" font-size="300" font-weight="900" letter-spacing="-20">R</text>
-  <text x="534" y="612" fill="url(#accent)" font-family="Orbitron, Arial, sans-serif" font-size="300" font-weight="900" letter-spacing="-20">Z</text>
-
-  <rect x="360" y="676" width="304" height="16" rx="8" fill="#2c3139"/>
-  <rect x="386" y="676" width="252" height="16" rx="8" fill="url(#accent)"/>
+  <rect width="256" height="256" rx="56" fill="#fdf6ee"/>
+  <!-- Erlenmeyer flask -->
+  <path d="M104 48 h48 v14 h-12 v34 l46 96 c5 10 -3 22 -14 22 H84 c-11 0 -19 -12 -14 -22 l46 -96 V62 h-12 Z"
+        fill="none" stroke="#3b2f4a" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Liquid -->
+  <path d="M90 124 c10 -6 20 4 30 0 c10 -4 18 -8 28 -2 c5 3 9 3 14 1 l24 52 c4 8 -2 17 -11 17 H81 c-9 0 -15 -9 -11 -17 Z"
+        fill="url(#brew)" opacity="0.9"/>
+  <!-- Sparkles -->
+  <path d="M188 56 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z" fill="#8b5cf6"/>
+  <path d="M64 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z" fill="#ff6b9d"/>
+  <circle cx="204" cy="108" r="5" fill="#ff6b9d"/>
 </svg>
