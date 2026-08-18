@@ -32,7 +32,7 @@ import type { MentionOption } from './components/video/MentionTextarea';
 
 import {
   usePromptState, usePromptAutoBuilder, useReferenceImages,
-  useElements, useProjectIO, projectNameFromPath,
+  useElements, useProjectIO, projectNameFromPath, useTheme,
   createInitialPromptState, createInitialCharacter, createInitialScene, createInitialImageInput,
 } from './hooks';
 
@@ -67,7 +67,7 @@ import type {
 import {
   Camera, Aperture, Film, Video, Download, AlertCircle, Layers,
   X, Copy, Check, User, Shirt, Box, ImageIcon, Edit2, Bookmark,
-  RefreshCw, Upload, Plus, Home, FolderOpen, FileDown,
+  RefreshCw, Upload, Plus, Home, FolderOpen, FileDown, Moon, Sun,
 } from 'lucide-react';
 
 // ============================================
@@ -260,6 +260,7 @@ export default function App() {
   // --- Custom Hooks ---
   const prompt = usePromptState();
   const elements = useElements();
+  const { theme, toggle } = useTheme();
 
   // --- Local UI State ---
   const [showPresetLibrary, setShowPresetLibrary] = useState(false);
@@ -782,6 +783,10 @@ export default function App() {
               title="Export project as .nbproject file"
               className="h-9 px-4 py-2 border border-zinc-700 bg-zinc-900 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-green-500 hover:text-green-500 transition-all flex items-center gap-2">
               <Download className="w-4 h-4" /> Export
+            </button>
+            <button type="button" onClick={toggle} title="Toggle theme"
+              className="h-9 w-9 border-2 border-line bg-surface rounded-full text-xs font-bold uppercase text-accent2 hover:border-accent transition-all flex items-center justify-center">
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
         </div>
