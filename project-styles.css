@@ -1,53 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Orbitron:wght@900&family=Roboto:wght@400&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  RenderZero Studio - Reusable UI Styles
+/*
+  Aichemy - Reusable UI Styles
   Copy this file to your new project to maintain the same visual identity.
 */
 
-/* 1. Fonts */
-
-
+/* Aichemy — design tokens (RGB triplets for Tailwind alpha support) */
 :root {
-  /* Color Palette (Tailwind approximation) */
-  --color-bg-black: #000000;
-  --color-zinc-950: #09090b;
-  --color-zinc-900: #18181b;
-  --color-zinc-800: #27272a;
-  --color-zinc-600: #52525b;
-  --color-zinc-500: #71717a;
-  --color-zinc-400: #a1a1aa;
-  
-  --color-yellow-500: #eab308; /* The signature yellow */
-  
-  --font-main: 'Inter', sans-serif;
-  --font-brand: 'Orbitron', sans-serif;
-  --font-tagline: 'Roboto', sans-serif;
+  --bg: 253 246 238;          /* #fdf6ee cream */
+  --surface: 255 255 255;     /* #ffffff */
+  --surface-2: 250 245 255;   /* #faf5ff */
+  --border: 240 228 255;      /* #f0e4ff */
+  --accent: 255 107 157;      /* #ff6b9d candy pink */
+  --accent-2: 139 92 246;     /* #8b5cf6 violet */
+  --ink: 61 44 141;           /* #3d2c8d deep violet text */
+  --dim: 167 139 202;         /* #a78bca muted */
+  --danger: 244 63 94;        /* rose */
+  --ok: 77 157 120;           /* #4d9d78 pastel green */
+  --prompt-from: 243 232 255; /* #f3e8ff */
+  --prompt-to: 255 228 240;   /* #ffe4f0 */
+}
+
+html.dark {
+  --bg: 34 28 46;             /* #221c2e */
+  --surface: 44 36 64;        /* #2c2440 */
+  --surface-2: 36 30 51;      /* #241e33 */
+  --border: 69 58 94;         /* #453a5e */
+  --accent: 255 107 157;      /* sama */
+  --accent-2: 196 176 240;    /* #c4b0f0 lebih terang utk kontras */
+  --ink: 243 238 252;         /* #f3eefc */
+  --dim: 143 127 184;         /* #8f7fb8 */
+  --danger: 251 113 133;
+  --ok: 110 231 183;
+  --prompt-from: 44 36 64;    /* solid surface di dark */
+  --prompt-to: 44 36 64;
 }
 
 /* 2. Base Styles */
 body {
   margin: 0;
-  font-family: var(--font-main);
-  background-color: var(--color-bg-black);
-  color: #ffffff;
+  font-family: 'Nunito', ui-rounded, system-ui, sans-serif;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--ink));
   -webkit-font-smoothing: antialiased;
 }
 
 /* Brand lockup styles */
 .brand-wordmark {
-  font-family: var(--font-brand);
+  font-family: 'Nunito', ui-rounded, system-ui, sans-serif;
   font-weight: 900;
   letter-spacing: -0.02em;
   text-transform: none;
 }
 
 .brand-tagline {
-  font-family: var(--font-tagline);
+  color: rgb(var(--dim));
+  font-family: 'Nunito', ui-rounded, system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: none;
@@ -58,20 +68,29 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: rgb(var(--bg));
 }
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: rgb(var(--dim));
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(var(--accent-2));
 }
 
 /* Selection Color */
 ::selection {
-  background-color: var(--color-yellow-500);
-  color: #000;
+  background-color: rgb(var(--accent));
+  color: #fff;
+}
+
+/* panel prompt gradient */
+.prompt-panel {
+  background: linear-gradient(135deg, rgb(var(--prompt-from)), rgb(var(--prompt-to)));
+}
+html.dark .prompt-panel {
+  background: rgb(var(--surface-2));
+  border: 2px solid rgb(var(--border));
 }
 
 /* 3. Reusable UI Components */
@@ -84,22 +103,22 @@ body {
   gap: 0.75rem;
   width: 100%;
   padding: 1.25rem 1.5rem;
-  
-  background-color: #ffffff;
-  color: #000000;
-  
+
+  background-color: rgb(var(--accent));
+  color: #ffffff;
+
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 1.125rem; /* text-lg */
-  
+
   border: none;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .nano-btn-primary:hover {
-  background-color: var(--color-yellow-500);
+  filter: brightness(1.05);
   transform: scale(1.01);
 }
 
@@ -108,8 +127,8 @@ body {
 }
 
 .nano-btn-primary:disabled {
-  background-color: var(--color-zinc-800);
-  color: var(--color-zinc-500);
+  background-color: rgb(var(--surface-2));
+  color: rgb(var(--dim));
   cursor: not-allowed;
   transform: none;
 }
@@ -122,28 +141,28 @@ body {
   gap: 0.75rem;
   width: 100%;
   padding: 1rem 1.5rem; /* py-4 px-6 */
-  
+
   background-color: transparent;
-  border: 2px solid var(--color-yellow-500);
-  color: var(--color-yellow-500);
-  
+  border: 2px solid rgb(var(--accent));
+  color: rgb(var(--accent));
+
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.875rem; /* text-sm */
-  
+
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .nano-btn-secondary:hover {
-  background-color: var(--color-yellow-500);
-  color: #000000;
+  background-color: rgb(var(--accent));
+  color: #ffffff;
 }
 
 .nano-btn-secondary:disabled {
-  border-color: var(--color-zinc-800);
-  color: var(--color-zinc-600);
+  border-color: rgb(var(--border));
+  color: rgb(var(--dim));
   cursor: not-allowed;
   background-color: transparent;
 }
@@ -151,27 +170,27 @@ body {
 /* Standard Input Field */
 .nano-input {
   width: 100%;
-  background-color: var(--color-zinc-900);
-  border: 1px solid var(--color-zinc-800);
+  background-color: rgb(var(--surface));
+  border: 1px solid rgb(var(--border));
   padding: 0.75rem;
-  color: #ffffff;
+  color: rgb(var(--ink));
   font-size: 0.875rem;
 }
 
 .nano-input:focus {
   outline: none;
-  border-color: var(--color-yellow-500);
+  border-color: rgb(var(--accent));
 }
 
 /* Card / Container */
 .nano-card {
-  background-color: var(--color-zinc-950);
-  border: 1px solid var(--color-zinc-900);
+  background-color: rgb(var(--surface));
+  border: 1px solid rgb(var(--border));
   position: relative;
   overflow: hidden;
 }
 
-/* Section Header (Yellow Bar + Text) */
+/* Section Header (Accent Bar + Text) */
 .nano-section-title {
   display: flex;
   align-items: center;
@@ -180,7 +199,7 @@ body {
 }
 
 .nano-section-marker {
-  background-color: var(--color-yellow-500);
+  background-color: rgb(var(--accent));
   width: 0.25rem;
   height: 1rem;
 }
@@ -190,7 +209,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #ffffff;
+  color: rgb(var(--ink));
 }
 
 /* Grid Layout Helper */
