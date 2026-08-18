@@ -22,7 +22,7 @@ export function StudioAccordionSection({
   const panelId = `studio-section-panel-${id}`;
 
   return (
-    <section className="border border-zinc-800 bg-zinc-950/40">
+    <section className="border border-line bg-base/40 rounded-card overflow-hidden">
       <h2>
         <button
           id={buttonId}
@@ -30,16 +30,16 @@ export function StudioAccordionSection({
           aria-expanded={isOpen}
           aria-controls={panelId}
           onClick={onToggle}
-          className="w-full flex items-center justify-between gap-4 px-4 py-4 text-left hover:bg-zinc-900/60 transition-colors"
+          className="w-full flex items-center justify-between gap-4 px-4 py-4 text-left hover:bg-surface/60 transition-colors"
         >
-          <span className="flex items-center gap-3 text-white">
-            <span className="text-yellow-500">{icon}</span>
-            <span className="text-lg font-bold uppercase tracking-wider">{title}</span>
+          <span className="flex items-center gap-3 text-ink">
+            <span className="text-accent2">{icon}</span>
+            <span className="text-lg font-bold uppercase tracking-wider text-accent2">{title}</span>
           </span>
 
           <ChevronDown
-            className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${
-              isOpen ? 'rotate-180 text-yellow-500' : ''
+            className={`w-4 h-4 text-dim transition-transform duration-200 ${
+              isOpen ? 'rotate-180 text-accent' : ''
             }`}
           />
         </button>
@@ -50,7 +50,7 @@ export function StudioAccordionSection({
         role="region"
         aria-labelledby={buttonId}
         hidden={!isOpen}
-        className="border-t border-zinc-800 px-4 py-4"
+        className="border-t border-line px-4 py-4"
       >
         {children}
       </div>

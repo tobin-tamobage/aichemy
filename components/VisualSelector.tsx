@@ -60,7 +60,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-xs font-bold uppercase tracking-wider text-yellow-500">{label}</label>
+      <label className="text-xs font-bold uppercase tracking-wider text-accent2">{label}</label>
       
       {/* Trigger Button */}
       <button 
@@ -68,11 +68,11 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
         className="group relative w-full text-left"
       >
         <div className={`
-          w-full border-b-2 bg-zinc-900 px-4 py-3 text-sm font-medium text-white transition-colors 
-          hover:bg-zinc-800 flex items-center justify-between
-          ${hasSelection ? 'border-yellow-500' : 'border-zinc-800'}
+          w-full border-b-2 bg-surface px-4 py-3 text-sm font-medium text-ink transition-colors 
+          hover:bg-surface2 flex items-center justify-between
+          ${hasSelection ? 'border-accent' : 'border-line'}
         `}>
-          <span className={`${hasSelection ? 'text-white' : 'text-zinc-500'} block truncate`}>
+          <span className={`${hasSelection ? 'text-ink' : 'text-dim'} block truncate`}>
             {selectionLabel}
           </span>
           {primaryOption && (
@@ -81,10 +81,10 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                 src={primaryOption.image} 
                 alt={primaryOption.label} 
                 onError={handleImageError}
-                className="w-8 h-8 object-cover rounded-sm border border-zinc-700"
+                className="w-8 h-8 object-cover rounded-sm border border-line"
               />
               {isMultiSelect && selectedOptions.length > 1 && (
-                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-dim">
                   {selectedOptions.length} selected
                 </span>
               )}
@@ -98,18 +98,18 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/90 backdrop-blur-sm" 
+            className="absolute inset-0 bg-base/90 backdrop-blur-sm" 
             onClick={() => setIsOpen(false)}
           />
 
           {/* Modal Content */}
-          <div className="relative w-full max-w-5xl h-full max-h-[85vh] bg-zinc-950 border border-zinc-800 shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="relative w-full max-w-5xl h-full max-h-[85vh] bg-base border border-line rounded-card shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
             
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-zinc-800 bg-zinc-900/50">
+            <div className="flex items-center justify-between p-6 border-b border-line bg-surface/50">
               <div className="flex flex-col">
-                <h3 className="text-xl font-black uppercase tracking-wider text-white">Select {label}</h3>
-                <p className="text-xs text-zinc-500 font-mono mt-1">// {options.length} OPTIONS AVAILABLE</p>
+                <h3 className="text-xl font-black uppercase tracking-wider text-ink">Select {label}</h3>
+                <p className="text-xs text-dim font-mono mt-1">// {options.length} OPTIONS AVAILABLE</p>
               </div>
               <div className="flex items-center gap-3">
                 {hasSelection && (
@@ -122,7 +122,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                       }
                       setSearch("");
                     }}
-                    className="flex items-center gap-2 px-3 py-1.5 border border-zinc-700 text-[10px] font-bold uppercase tracking-widest text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors"
+                    className="flex items-center gap-2 px-3 py-1.5 border border-line text-[10px] font-bold uppercase tracking-widest text-ink hover:text-ink hover:border-dim transition-colors"
                   >
                     <X className="w-3 h-3" />
                     Clear Selection
@@ -130,7 +130,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                 )}
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="p-2 hover:bg-zinc-800 rounded-full transition-colors text-zinc-400 hover:text-white"
+                  className="p-2 hover:bg-surface2 rounded-full transition-colors text-dim hover:text-ink"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -138,16 +138,16 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
             </div>
 
             {/* Search Bar */}
-            <div className="p-4 border-b border-zinc-800 bg-zinc-950 sticky top-0 z-10">
+            <div className="p-4 border-b border-line bg-base sticky top-0 z-10">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dim" />
                 <input 
                   type="text" 
                   placeholder="Filter options..." 
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   autoFocus
-                  className="w-full bg-zinc-900 border border-zinc-800 rounded-none pl-10 pr-4 py-3 text-sm text-white focus:outline-none focus:border-yellow-500 transition-colors"
+                  className="w-full bg-surface border border-line rounded-none pl-10 pr-4 py-3 text-sm text-ink focus:outline-none focus:border-accent transition-colors"
                 />
               </div>
             </div>
@@ -182,10 +182,10 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                       ${previewRatio}
                       hover:scale-[1.75] hover:z-50 hover:shadow-2xl
                       border-2 
-                      ${isSelected ? 'border-yellow-500 ring-1 ring-yellow-500 z-10' : 'border-zinc-800 hover:border-zinc-500'}
+                      ${isSelected ? 'border-accent ring-1 ring-accent z-10' : 'border-line hover:border-dim'}
                     `}
                   >
-                    <div className="absolute inset-0 overflow-hidden bg-zinc-950">
+                    <div className="absolute inset-0 overflow-hidden bg-base">
                         <img 
                           src={opt.image} 
                           alt={opt.label}
@@ -197,7 +197,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                         <div className="absolute bottom-0 left-0 right-0 p-3">
                           <span className={`
                             text-xs font-bold uppercase tracking-wider block truncate
-                            ${isSelected ? 'text-yellow-500' : 'text-zinc-300 group-hover:text-white'}
+                            ${isSelected ? 'text-accent' : 'text-white group-hover:text-white'}
                             drop-shadow-md
                           `}>
                             {opt.label}
@@ -205,7 +205,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                         </div>
 
                         {isSelected && (
-                           <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.5)]" />
+                           <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent)_/_0.5)]" />
                         )}
                     </div>
                   </button>
@@ -213,7 +213,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                 })}
 
                 {filteredOptions.length === 0 && (
-                  <div className="col-span-full py-12 text-center text-zinc-500">
+                  <div className="col-span-full py-12 text-center text-dim">
                     <p>No matches found for "{search}"</p>
                   </div>
                 )}

@@ -16,14 +16,14 @@ interface SelectorProps {
 export const Selector: React.FC<SelectorProps> = ({ label, value, onChange, options, placeholder = "Select...", disabled = false, disabledReason, disabledOptions = [] }) => {
   return (
     <div className={`flex flex-col gap-2${disabled ? ' opacity-50 cursor-not-allowed' : ''}`} title={disabled ? disabledReason : undefined}>
-      <label className={`text-xs font-bold uppercase tracking-wider ${disabled ? 'text-zinc-600' : 'text-yellow-500'}`}>{label}</label>
+      <label className={`text-xs font-bold uppercase tracking-wider ${disabled ? 'text-dim' : 'text-accent2'}`}>{label}</label>
       <div className="relative">
         <select
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`w-full appearance-none rounded-none border-b-2 border-zinc-800 bg-zinc-900 px-4 py-3 text-sm font-medium transition-colors focus:outline-none ${
-            disabled ? 'text-zinc-600 cursor-not-allowed' : 'text-white focus:border-yellow-500 hover:bg-zinc-800'
+          className={`w-full appearance-none rounded-none border-b-2 border-line bg-surface px-4 py-3 text-sm font-medium transition-colors focus:outline-none ${
+            disabled ? 'text-dim cursor-not-allowed' : 'text-ink focus:border-accent hover:bg-surface2'
           }`}
         >
           <option value="">{placeholder}</option>
@@ -37,14 +37,14 @@ export const Selector: React.FC<SelectorProps> = ({ label, value, onChange, opti
         {value && !disabled && (
             <button
                 onClick={() => onChange("")}
-                className="absolute inset-y-0 right-8 flex items-center px-2 text-zinc-500 hover:text-white transition-colors"
+                className="absolute inset-y-0 right-8 flex items-center px-2 text-dim hover:text-ink transition-colors"
                 title="Clear selection"
             >
                 <X className="w-4 h-4" />
             </button>
         )}
 
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-zinc-500">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-dim">
           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
             <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
           </svg>

@@ -197,7 +197,7 @@ export function MentionTextarea({
   const kindColors: Record<string, string> = {
     element: 'text-purple-400',
     frame: 'text-cyan-400',
-    character: 'text-yellow-400',
+    character: 'text-accent2',
     image: 'text-cyan-400',
   };
 
@@ -232,7 +232,7 @@ export function MentionTextarea({
       {showDropdown && filteredMentions.length > 0 && (
         <div
           ref={dropdownRef}
-          className="absolute left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto border border-zinc-700 bg-zinc-900 shadow-xl"
+          className="absolute left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto border border-line bg-surface shadow-xl"
         >
           {filteredMentions.map((option, idx) => (
             <button
@@ -241,8 +241,8 @@ export function MentionTextarea({
               data-active={idx === activeIndex}
               className={`w-full flex items-center gap-2 px-3 py-2 text-left text-sm transition-colors ${
                 idx === activeIndex
-                  ? 'bg-yellow-500/20 text-yellow-400'
-                  : 'text-zinc-300 hover:bg-zinc-800'
+                  ? 'bg-accent/20 text-accent2'
+                  : 'text-ink hover:bg-surface2'
               }`}
               onMouseDown={(e) => {
                 e.preventDefault(); // prevent textarea blur
@@ -250,7 +250,7 @@ export function MentionTextarea({
               }}
               onMouseEnter={() => setActiveIndex(idx)}
             >
-              <span className="w-4 h-4 shrink-0 border border-zinc-700 bg-zinc-800 overflow-hidden flex items-center justify-center">
+              <span className="w-4 h-4 shrink-0 border border-line bg-surface2 overflow-hidden flex items-center justify-center">
                 {option.thumbnailUrl ? (
                   <img
                     src={option.thumbnailUrl}
@@ -258,13 +258,13 @@ export function MentionTextarea({
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <span className="w-2 h-2 bg-zinc-600" />
+                  <span className="w-2 h-2 bg-dim" />
                 )}
               </span>
               <span className="font-mono font-bold text-xs">{option.tag}</span>
-              <span className="text-zinc-500 text-xs truncate">{option.label}</span>
+              <span className="text-dim text-xs truncate">{option.label}</span>
               {option.kind && (
-                <span className={`ml-auto text-[10px] uppercase tracking-wider ${kindColors[option.kind] || 'text-zinc-500'}`}>
+                <span className={`ml-auto text-[10px] uppercase tracking-wider ${kindColors[option.kind] || 'text-dim'}`}>
                   {option.kind}
                 </span>
               )}

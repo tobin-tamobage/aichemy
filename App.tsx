@@ -83,20 +83,20 @@ const filterImageAspectRatioOptions = (aspectRatios: string[]): string[] =>
 /** Returns the icon component for an element type */
 const elementIcon = (id: ElementId) => {
   const icons: Record<string, React.ReactNode> = {
-    character: <User className="w-7 h-7 text-yellow-500" />,
-    outfit: <Shirt className="w-7 h-7 text-yellow-500" />,
-    object: <Box className="w-7 h-7 text-yellow-500" />,
-    scene: <ImageIcon className="w-7 h-7 text-yellow-500" />,
-    imageInput: <Upload className="w-7 h-7 text-yellow-500" />,
-    anonymousReference: <ImageIcon className="w-7 h-7 text-yellow-500" />,
+    character: <User className="w-7 h-7 text-accent" />,
+    outfit: <Shirt className="w-7 h-7 text-accent" />,
+    object: <Box className="w-7 h-7 text-accent" />,
+    scene: <ImageIcon className="w-7 h-7 text-accent" />,
+    imageInput: <Upload className="w-7 h-7 text-accent" />,
+    anonymousReference: <ImageIcon className="w-7 h-7 text-accent" />,
   };
-  return icons[id] || <ImageIcon className="w-7 h-7 text-yellow-500" />;
+  return icons[id] || <ImageIcon className="w-7 h-7 text-accent" />;
 };
 
 /** Drag-and-drop overlay shown when dragging an image over an element cell */
 const DropOverlay = () => (
-  <div className="absolute inset-0 bg-black/60 flex items-center justify-center z-10 pointer-events-none">
-    <span className="text-yellow-500 text-xs font-black uppercase tracking-widest">Drop image here</span>
+  <div className="absolute inset-0 bg-base/60 flex items-center justify-center z-10 pointer-events-none">
+    <span className="text-accent text-xs font-black uppercase tracking-widest">Drop image here</span>
   </div>
 );
 
@@ -733,9 +733,9 @@ export default function App() {
           onLoadRecentProject={handleLoadRecentProject}
         />
       ) : (
-    <div className="min-h-screen lg:h-screen bg-black text-zinc-300 font-sans selection:bg-yellow-500 selection:text-black flex flex-col lg:overflow-hidden">
+    <div className="min-h-screen lg:h-screen bg-base text-ink font-sans flex flex-col lg:overflow-hidden">
       {/* ========== HEADER ========== */}
-      <header className="shrink-0 border-b border-zinc-800 bg-black/90 sticky top-0 z-50 backdrop-blur-md">
+      <header className="shrink-0 border-b border-line bg-base/90 sticky top-0 z-50 backdrop-blur-md">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
           <div className="flex min-w-0 flex-col gap-3 lg:flex-row lg:items-center">
             <div>
@@ -746,10 +746,10 @@ export default function App() {
             </div>
             {/* Project name + saved indicator */}
             {currentProjectName && (
-              <div className="flex min-w-0 flex-wrap items-center gap-2 lg:ml-4 lg:border-l lg:border-zinc-800 lg:pl-4">
-                <span className="text-xs font-medium text-zinc-400 truncate max-w-full lg:max-w-[200px]">{currentProjectName}</span>
-                {hasUnsavedChanges && <span className="text-yellow-500 text-lg leading-none" title="Unsaved changes">●</span>}
-                {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-green-500 animate-in fade-in">Saved</span>}
+              <div className="flex min-w-0 flex-wrap items-center gap-2 lg:ml-4 lg:border-l lg:border-line lg:pl-4">
+                <span className="text-xs font-medium text-dim truncate max-w-full lg:max-w-[200px]">{currentProjectName}</span>
+                {hasUnsavedChanges && <span className="text-accent text-lg leading-none" title="Unsaved changes">●</span>}
+                {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-ok animate-in fade-in">Saved</span>}
               </div>
             )}
           </div>
@@ -757,29 +757,29 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-3 xl:justify-end">
             <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
               title="Back to start screen"
-              className="h-9 px-4 py-2 border border-zinc-700 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-zinc-500 transition-all flex items-center justify-center gap-2">
+              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
               <Home className="w-4 h-4" /> Home
             </button>
             <button type="button" onClick={() => requestNavigation(() => setShowNewProjectModal(true))}
-              className="h-9 px-4 py-2 border border-zinc-700 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-zinc-500 transition-all flex items-center justify-center gap-2">
+              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
               <Plus className="w-4 h-4" /> New
             </button>
             <button type="button" onClick={handleClearWorkspace}
-              className="h-9 px-4 py-2 border border-zinc-700 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-zinc-500 transition-all flex items-center justify-center">
+              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center">
               Clear All
             </button>
             <button type="button" onClick={() => setShowPresetLibrary(true)}
-              className="h-9 px-4 py-2 border border-zinc-700 bg-zinc-900 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-yellow-500 hover:text-yellow-500 transition-all flex items-center gap-2">
+              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-accent hover:text-accent transition-all flex items-center gap-2">
               <Bookmark className="w-4 h-4" /> Presets
             </button>
             <button type="button" onClick={() => requestNavigation(handleOpenProject)}
               title="Import a .nbproject file"
-              className="h-9 px-4 py-2 border border-zinc-700 bg-zinc-900 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-blue-500 hover:text-blue-500 transition-all flex items-center gap-2">
+              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-blue-500 hover:text-blue-500 transition-all flex items-center gap-2">
               <FolderOpen className="w-4 h-4" /> Import
             </button>
             <button type="button" onClick={handleExportProject}
               title="Export project as .nbproject file"
-              className="h-9 px-4 py-2 border border-zinc-700 bg-zinc-900 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-300 hover:text-white hover:border-green-500 hover:text-green-500 transition-all flex items-center gap-2">
+              className="h-9 px-4 py-2 bg-accent text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-accent/90 transition-all flex items-center gap-2">
               <Download className="w-4 h-4" /> Export
             </button>
             <button type="button" onClick={toggle} title="Toggle theme"
@@ -805,7 +805,7 @@ export default function App() {
           >
             <div className="grid gap-6">
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Subject & Action</label>
+                <label className="block text-[11px] font-bold uppercase tracking-widest text-dim mb-1">Subject & Action</label>
                 <MentionTextarea
                   value={prompt.promptState.subjectAction}
                   onChange={(val) => prompt.updateState('subjectAction', val)}
@@ -815,7 +815,7 @@ export default function App() {
                     ? 'E.g., @Character1 walks toward @Image1... (type @ to reference a character or image)'
                     : 'E.g., A woman in a trench coat checking her phone...'}
                   rows={3}
-                  className="w-full bg-zinc-900 border border-zinc-700 rounded-lg px-4 py-3 text-white text-sm focus:outline-none focus:border-yellow-500 transition-colors resize-y"
+                  className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink text-sm focus:outline-none focus:border-accent transition-colors resize-y"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -840,17 +840,17 @@ export default function App() {
                   onClick={() => prompt.setPromptState(prev => ({ ...prev, candidShot: !prev.candidShot }))}>
                   <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
                     prompt.promptState.candidShot
-                      ? 'bg-yellow-500 border-yellow-500'
-                      : 'border-zinc-600 bg-zinc-900 group-hover:border-zinc-400'
+                      ? 'bg-accent border-accent'
+                      : 'border-line bg-surface group-hover:border-dim'
                   }`}>
                     {prompt.promptState.candidShot && (
-                      <svg className="w-3 h-3 text-black" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                      <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M2 6l3 3 5-5" />
                       </svg>
                     )}
                   </div>
                   <span className={`text-xs font-medium tracking-wide ${
-                    prompt.promptState.candidShot ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-300'
+                    prompt.promptState.candidShot ? 'text-ink' : 'text-dim group-hover:text-ink'
                   }`}>Subject unaware of camera</span>
                 </label>
               )}
@@ -962,8 +962,8 @@ export default function App() {
                 <div key={char.id}
                   className={`flex items-center gap-2 px-3 py-1.5 border select-none cursor-pointer transition-colors ${
                     idx === elements.activeCharIndex
-                      ? "border-white bg-white/10 text-white"
-                      : "border-zinc-800 bg-zinc-900/50 text-zinc-500 hover:border-zinc-700"
+                      ? "border-ink bg-white/10 text-ink"
+                      : "border-line bg-surface/50 text-dim hover:border-line"
                   }`}
                   onClick={() => elements.setActiveCharIndex(idx)}>
                   <span className="text-xs font-bold uppercase tracking-wider">
@@ -971,7 +971,7 @@ export default function App() {
                   </span>
                   {elements.characters.length > 1 && (
                     <button onClick={(e) => { e.stopPropagation(); elements.handleRemoveCharacter(idx); }}
-                      className="hover:text-red-500 transition-colors">
+                      className="hover:text-danger transition-colors">
                       <X className="w-3 h-3" />
                     </button>
                   )}
@@ -979,13 +979,13 @@ export default function App() {
               ))}
               {elements.characters.length < 4 && (
                 <button type="button" onClick={elements.handleAddCharacter}
-                  className="px-3 py-1.5 border border-zinc-800 bg-zinc-900/50 text-zinc-500 hover:border-white hover:text-white transition-colors">
+                  className="px-3 py-1.5 border border-line bg-surface/50 text-dim hover:border-ink hover:text-ink transition-colors">
                   <span className="text-lg leading-none">+</span>
                 </button>
               )}
               {/* Character Library Button */}
               <button type="button" onClick={() => setShowCharacterLibrary(true)}
-                className="ml-auto px-3 py-1.5 border border-zinc-800 bg-zinc-900/50 text-zinc-500 hover:border-yellow-500/50 hover:text-yellow-500 transition-colors flex items-center gap-1.5"
+                className="ml-auto px-3 py-1.5 border border-line bg-surface/50 text-dim hover:border-accent/50 hover:text-accent transition-colors flex items-center gap-1.5"
                 title="Character Library — Save & load characters">
                 <Bookmark className="w-3.5 h-3.5" />
                 <span className="text-xs font-bold uppercase tracking-wider">Library</span>
@@ -1012,15 +1012,15 @@ export default function App() {
                     {...(isElementStitchMode
                       ? {}
                       : makeElementDragHandlers(el.id, elements.setDragOverElementId, elements.handleDropImage, setElementError))}
-                    className={`relative aspect-square bg-zinc-900 border overflow-hidden group text-left cursor-pointer transition-all ${
+                    className={`relative aspect-square bg-surface border overflow-hidden group text-left cursor-pointer transition-all ${
                       isDragOver
-                        ? 'border-yellow-500 ring-2 ring-yellow-500/50'
-                        : 'border-zinc-800 hover:border-yellow-500/50'
+                        ? 'border-accent ring-2 ring-accent/50'
+                        : 'border-line hover:border-accent/50'
                     }`}
                     title={isElementStitchMode
                       ? (el.previewDataUrl ? `Replace ${el.label} with 2-4 image stitch` : `Upload ${el.label} (Stitch: select 2-4 images)`)
                       : (el.previewDataUrl ? `Replace ${el.label}` : `Upload ${el.label}`)}>
-                    <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-white/20 bg-black/70">
+                    <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-ink/20 bg-base/70">
                       <button
                         type="button"
                         onClick={(ev) => {
@@ -1028,7 +1028,7 @@ export default function App() {
                           elements.setCharacterElementInputMode(elements.activeCharIndex, characterElementType, 'single');
                         }}
                         className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                          !isElementStitchMode ? 'bg-yellow-500 text-black' : 'text-zinc-300 hover:text-white'
+                          !isElementStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
                         }`}
                         title={`Single image upload mode for ${el.label}`}
                       >
@@ -1041,7 +1041,7 @@ export default function App() {
                           elements.setCharacterElementInputMode(elements.activeCharIndex, characterElementType, 'stitch');
                         }}
                         className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                          isElementStitchMode ? 'bg-yellow-500 text-black' : 'text-zinc-300 hover:text-white'
+                          isElementStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
                         }`}
                         title={`Stitch mode for ${el.label} (select 2-4 images)`}
                       >
@@ -1052,20 +1052,20 @@ export default function App() {
                     {el.previewDataUrl ? (
                       <>
                         <img src={el.previewDataUrl} alt={`${el.label} reference`} className="absolute inset-0 w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
                         <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
                           <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('character', el.previewDataUrl!, elements.activeCharIndex, characterElementType); }}
-                            className="bg-black/70 hover:bg-blue-500 hover:text-white text-white p-2 rounded-full transition-all" title="Edit Image">
+                            className="bg-base/70 hover:bg-blue-500 hover:text-white text-ink p-2 rounded-full transition-all" title="Edit Image">
                             <Edit2 className="w-4 h-4" />
                           </button>
                           <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(el.id); }}
-                            className="bg-black/70 hover:bg-yellow-500 hover:text-black text-white p-2 rounded-full transition-all" title="Remove">
+                            className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
                             <X className="w-4 h-4" />
                           </button>
                         </div>
                         {el.originalDataUrl && (
                           <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('character', elements.activeCharIndex, characterElementType); }}
-                            className="absolute bottom-14 left-2 bg-black/70 hover:bg-green-500 hover:text-white text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
+                            className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
                             <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
                           </button>
                         )}
@@ -1073,15 +1073,15 @@ export default function App() {
                     ) : (
                       <div className="w-full h-full flex flex-col items-center justify-center gap-3">
                         {elementIcon(el.id)}
-                        <div className="text-xs font-black uppercase tracking-widest text-zinc-200">{el.label}</div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                        <div className="text-xs font-black uppercase tracking-widest text-ink">{el.label}</div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider text-dim">
                           {isElementStitchMode ? 'Click to select 2-4 images' : 'Click or drop image'}
                         </div>
                       </div>
                     )}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm border-t border-white/10 px-3 py-2">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-white">{el.label}</div>
-                      <div className="text-[10px] font-bold tracking-wide text-zinc-400">
+                    <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2">
+                      <div className="text-[10px] font-black uppercase tracking-widest text-ink">{el.label}</div>
+                      <div className="text-[10px] font-bold tracking-wide text-dim">
                         {`Character ${elements.activeCharIndex + 1} ${el.label}`}
                       </div>
                     </div>
@@ -1097,15 +1097,15 @@ export default function App() {
                   {...(isSceneStitchMode
                     ? {}
                     : makeElementDragHandlers(elements.sceneElement.id, elements.setDragOverElementId, elements.handleDropImage, setElementError))}
-                  className={`relative aspect-square bg-zinc-900 border overflow-hidden group text-left cursor-pointer transition-all ${
+                  className={`relative aspect-square bg-surface border overflow-hidden group text-left cursor-pointer transition-all ${
                     !isSceneStitchMode && elements.dragOverElementId === elements.sceneElement.id
-                      ? 'border-yellow-500 ring-2 ring-yellow-500/50'
-                      : 'border-zinc-800 hover:border-yellow-500/50'
+                      ? 'border-accent ring-2 ring-accent/50'
+                      : 'border-line hover:border-accent/50'
                   }`}
                   title={isSceneStitchMode
                     ? (elements.sceneElement.previewDataUrl ? 'Replace Scene with 2-4 image stitch' : 'Upload Scene (Stitch: select 2-4 images)')
                     : (elements.sceneElement.previewDataUrl ? 'Replace Scene' : 'Upload Scene')}>
-                  <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-white/20 bg-black/70">
+                  <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-ink/20 bg-base/70">
                     <button
                       type="button"
                       onClick={(ev) => {
@@ -1113,7 +1113,7 @@ export default function App() {
                         elements.setSceneInputMode('single');
                       }}
                       className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                        !isSceneStitchMode ? 'bg-yellow-500 text-black' : 'text-zinc-300 hover:text-white'
+                        !isSceneStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
                       }`}
                       title="Single image upload mode for Scene"
                     >
@@ -1126,7 +1126,7 @@ export default function App() {
                         elements.setSceneInputMode('stitch');
                       }}
                       className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                        isSceneStitchMode ? 'bg-yellow-500 text-black' : 'text-zinc-300 hover:text-white'
+                        isSceneStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
                       }`}
                       title="Stitch mode for Scene (select 2-4 images)"
                     >
@@ -1137,20 +1137,20 @@ export default function App() {
                   {elements.sceneElement.previewDataUrl ? (
                     <>
                       <img src={elements.sceneElement.previewDataUrl} alt="Scene reference" className="absolute inset-0 w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
                       <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
                         <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('scene', elements.sceneElement.previewDataUrl!); }}
-                          className="bg-black/70 hover:bg-blue-500 hover:text-white text-white p-2 rounded-full transition-all" title="Edit Image">
+                          className="bg-base/70 hover:bg-blue-500 hover:text-ink text-ink p-2 rounded-full transition-all" title="Edit Image">
                           <Edit2 className="w-4 h-4" />
                         </button>
                         <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(elements.sceneElement.id); }}
-                          className="bg-black/70 hover:bg-yellow-500 hover:text-black text-white p-2 rounded-full transition-all" title="Remove">
+                          className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
                           <X className="w-4 h-4" />
                         </button>
                       </div>
                       {elements.sceneElement.originalDataUrl && (
                         <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('scene'); }}
-                          className="absolute bottom-14 left-2 bg-black/70 hover:bg-green-500 hover:text-white text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
+                          className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
                           <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
                         </button>
                       )}
@@ -1158,24 +1158,24 @@ export default function App() {
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center gap-3">
                       {elementIcon(elements.sceneElement.id)}
-                      <div className="text-xs font-black uppercase tracking-widest text-zinc-200">{elements.sceneElement.label}</div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
+                      <div className="text-xs font-black uppercase tracking-widest text-ink">{elements.sceneElement.label}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">
                         {isSceneStitchMode ? 'Click to select 2-4 images' : 'Click or drop image'}
                       </div>
                     </div>
                   )}
-                  <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm border-t border-white/10 px-3 py-2">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-white">{elements.sceneElement.label}</div>
-                    <div className="text-[10px] font-bold tracking-wide text-zinc-400">{elements.sceneElement.promptLabel}</div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">{elements.sceneElement.label}</div>
+                    <div className="text-[10px] font-bold tracking-wide text-dim">{elements.sceneElement.promptLabel}</div>
                   </div>
                 </div>
               ) : (
-                <div className="relative aspect-square bg-zinc-900/30 border border-zinc-800/50 flex flex-col items-center justify-center gap-3 opacity-50 cursor-not-allowed"
+                <div className="relative aspect-square bg-surface/30 border border-line/50 flex flex-col items-center justify-center gap-3 opacity-50 cursor-not-allowed"
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => { e.preventDefault(); e.stopPropagation(); }}>
-                  <ImageIcon className="w-7 h-7 text-zinc-600" />
-                  <div className="text-xs font-black uppercase tracking-widest text-zinc-600">Scene Reference</div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-700 text-center px-2">
+                  <ImageIcon className="w-7 h-7 text-dim" />
+                  <div className="text-xs font-black uppercase tracking-widest text-dim">Scene Reference</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-dim text-center px-2">
                     Set in Character 1
                   </div>
                 </div>
@@ -1187,30 +1187,30 @@ export default function App() {
                 onClick={() => elements.openElementFilePicker(elements.imageInput.id)}
                 onKeyDown={(e) => e.key === 'Enter' && elements.openElementFilePicker(elements.imageInput.id)}
                 {...makeElementDragHandlers(elements.imageInput.id, elements.setDragOverElementId, elements.handleDropImage, setElementError)}
-                className={`col-span-2 relative aspect-[3/1] bg-zinc-900/50 border overflow-hidden group text-left cursor-pointer transition-all ${
+                className={`col-span-2 relative aspect-[3/1] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
                   elements.dragOverElementId === elements.imageInput.id
-                    ? 'border-yellow-500 ring-2 ring-yellow-500/50'
-                    : 'border-zinc-800 hover:border-yellow-500/50'
+                    ? 'border-accent ring-2 ring-accent/50'
+                    : 'border-line hover:border-accent/50'
                 }`}
                 title={elements.imageInput.previewDataUrl ? `Replace Global Reference` : `Upload Global Reference`}>
                 {elements.dragOverElementId === elements.imageInput.id && <DropOverlay />}
                 {elements.imageInput.previewDataUrl ? (
                   <>
                     <img src={elements.imageInput.previewDataUrl} alt="Global reference" className="absolute inset-0 w-full h-full object-cover opacity-50" />
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
                       <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('global', elements.imageInput.previewDataUrl!); }}
-                        className="bg-black/70 hover:bg-blue-500 hover:text-white text-white p-2 rounded-full transition-all" title="Edit Image">
+                        className="bg-base/70 hover:bg-blue-500 hover:text-ink text-ink p-2 rounded-full transition-all" title="Edit Image">
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(elements.imageInput.id); }}
-                        className="bg-black/70 hover:bg-yellow-500 hover:text-black text-white p-2 rounded-full transition-all" title="Remove">
+                        className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
                         <X className="w-4 h-4" />
                       </button>
                     </div>
                     {elements.imageInput.originalDataUrl && (
                       <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('global'); }}
-                        className="absolute bottom-14 left-2 bg-black/70 hover:bg-green-500 hover:text-white text-white px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
+                        className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
                         <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
                       </button>
                     )}
@@ -1219,27 +1219,27 @@ export default function App() {
                   <div className="w-full h-full flex flex-row items-center justify-center gap-4">
                     {elementIcon(elements.imageInput.id)}
                     <div className="flex flex-col">
-                      <div className="text-xs font-black uppercase tracking-widest text-zinc-200">{elements.imageInput.label}</div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Drop image or click to upload</div>
+                      <div className="text-xs font-black uppercase tracking-widest text-ink">{elements.imageInput.label}</div>
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Drop image or click to upload</div>
                     </div>
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm border-t border-white/10 px-3 py-2 flex justify-between items-center">
+                <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2 flex justify-between items-center">
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-white">{elements.imageInput.label}</div>
-                    <div className="text-[10px] font-bold tracking-wide text-zinc-400">Switch the prompt to Edit mode</div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">{elements.imageInput.label}</div>
+                    <div className="text-[10px] font-bold tracking-wide text-dim">Switch the prompt to Edit mode</div>
                   </div>
-                  {elements.imageInput.previewDataUrl && <div className="text-[10px] text-yellow-500 font-bold">ACTIVE</div>}
+                  {elements.imageInput.previewDataUrl && <div className="text-[10px] text-accent font-bold">ACTIVE</div>}
                 </div>
               </div>
 
               <div className="col-span-2 space-y-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="space-y-1">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                    <div className="text-[10px] font-black uppercase tracking-widest text-dim">
                       {`Additional Reference Images (${activeAnonymousReferenceCount} active, ${currentReferenceDescriptors.length}/${MAX_REFERENCE_IMAGES} total)`}
                     </div>
-                    <div className="text-[10px] font-bold tracking-wide text-zinc-500">
+                    <div className="text-[10px] font-bold tracking-wide text-dim">
                       {`Generic uploads appear in the prompt as @Image# after character, scene, and global refs.${remainingAnonymousReferenceSlots > 0
                         ? ` ${remainingAnonymousReferenceSlots} slot${remainingAnonymousReferenceSlots === 1 ? '' : 's'} remaining.`
                         : ' No additional slots available at the current limit.'}`}
@@ -1251,8 +1251,8 @@ export default function App() {
                     disabled={!canAddAdditionalReference}
                     className={`inline-flex items-center gap-1 px-3 py-2 border text-[10px] font-bold uppercase tracking-wider transition-all ${
                       canAddAdditionalReference
-                        ? 'border-zinc-700 text-zinc-300 hover:border-yellow-500 hover:text-yellow-500'
-                        : 'border-zinc-800 text-zinc-600 cursor-not-allowed'
+                        ? 'border-line text-ink hover:border-accent hover:text-accent'
+                        : 'border-line text-dim cursor-not-allowed'
                     }`}
                   >
                     <Plus className="w-3 h-3" /> Add Image
@@ -1277,21 +1277,21 @@ export default function App() {
                       return (
                         <div key={referenceKey} className="space-y-1.5">
                           <div className="flex items-center justify-between gap-2 min-w-0">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-500 truncate min-w-0">
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-dim truncate min-w-0">
                               Reference {index + 1}
                             </span>
                             <div className="flex items-center gap-2 flex-shrink-0">
                               <button
                                 type="button"
                                 onClick={() => elements.openAdditionalReferenceFilePicker(index)}
-                                className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-zinc-700 text-zinc-300 hover:border-yellow-500 hover:text-yellow-500"
+                                className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-line text-ink hover:border-accent hover:text-accent"
                               >
                                 <span className="inline-flex items-center gap-1"><Upload className="w-3 h-3" /> Upload</span>
                               </button>
                               <button
                                 type="button"
                                 onClick={() => elements.removeAdditionalReferenceImage(index)}
-                                className="p-1.5 border border-zinc-800 text-zinc-500 hover:border-yellow-500 hover:text-yellow-500 transition-all"
+                                className="p-1.5 border border-line text-dim hover:border-accent hover:text-accent transition-all"
                                 title="Remove reference slot"
                               >
                                 <X className="w-3 h-3" />
@@ -1305,14 +1305,14 @@ export default function App() {
                             onClick={() => elements.openAdditionalReferenceFilePicker(index)}
                             onKeyDown={(e) => e.key === 'Enter' && elements.openAdditionalReferenceFilePicker(index)}
                             {...makeAdditionalReferenceDragHandlers(index, elements.setDragOverAdditionalReferenceIndex, elements.handleDropAdditionalReferenceImage, setElementError)}
-                            className={`relative aspect-[4/3] bg-zinc-950 border overflow-hidden group text-left cursor-pointer transition-all ${
+                            className={`relative aspect-[4/3] bg-base border overflow-hidden group text-left cursor-pointer transition-all ${
                               isDragOver
-                                ? 'border-yellow-500 ring-2 ring-yellow-500/50'
+                                ? 'border-accent ring-2 ring-accent/50'
                                 : activeNumber
-                                  ? 'border-yellow-500/60'
+                                  ? 'border-accent/60'
                                   : isOverflow
                                     ? 'border-orange-500/50'
-                                    : 'border-zinc-800 hover:border-yellow-500/50'
+                                    : 'border-line hover:border-accent/50'
                             }`}
                             title={reference.previewDataUrl ? `Replace Reference ${index + 1}` : `Upload Reference ${index + 1}`}
                           >
@@ -1320,31 +1320,31 @@ export default function App() {
                             {reference.previewDataUrl ? (
                               <>
                                 <img src={reference.previewDataUrl} alt={`Reference ${index + 1}`} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                                <div className="absolute inset-0 bg-black/35" />
+                                <div className="absolute inset-0 bg-base/35" />
                               </>
                             ) : (
                               <div className="w-full h-full flex flex-col items-center justify-center gap-3">
                                 {elementIcon('anonymousReference')}
-                                <div className="text-xs font-black uppercase tracking-widest text-zinc-200">Reference Image</div>
-                                <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">Drop image or click to upload</div>
+                                <div className="text-xs font-black uppercase tracking-widest text-ink">Reference Image</div>
+                                <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Drop image or click to upload</div>
                               </div>
                             )}
 
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/75 backdrop-blur-sm border-t border-white/10 px-3 py-2 flex items-center justify-between gap-3">
+                            <div className="absolute bottom-0 left-0 right-0 bg-base/75 backdrop-blur-sm border-t border-ink/10 px-3 py-2 flex items-center justify-between gap-3">
                               <div>
-                                <div className="text-[10px] font-black uppercase tracking-widest text-white">Reference {index + 1}</div>
+                                <div className="text-[10px] font-black uppercase tracking-widest text-ink">Reference {index + 1}</div>
                                 <div className={`text-[10px] font-bold tracking-wide ${
                                   activeNumber
-                                    ? 'text-yellow-400'
+                                    ? 'text-accent2'
                                     : isOverflow
                                       ? 'text-orange-400'
-                                      : 'text-zinc-400'
+                                      : 'text-dim'
                                 }`}>
                                   {statusText}
                                 </div>
                               </div>
                               {activeNumber && (
-                                <div className="text-[10px] font-black uppercase tracking-widest text-yellow-400">
+                                <div className="text-[10px] font-black uppercase tracking-widest text-accent2">
                                   {`image_${activeNumber}`}
                                 </div>
                               )}
@@ -1360,54 +1360,54 @@ export default function App() {
               {/* Prompt Mode Toggle */}
               {hasEditSource ? (
                 <div className="col-span-2 flex items-center gap-2 mt-2">
-                  <div className="flex bg-zinc-900 border border-zinc-700 rounded-full p-1 w-full">
+                  <div className="flex bg-surface border border-line rounded-full p-1 w-full">
                     <button type="button" onClick={() => setGenerationMode('generate')}
                       className={`flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                        generationMode === 'generate' ? 'bg-yellow-500 text-black' : 'text-zinc-400 hover:text-white'
+                        generationMode === 'generate' ? 'bg-accent text-white' : 'text-dim hover:text-ink'
                       }`}>Generate</button>
                     <button type="button" onClick={() => setGenerationMode('edit')}
                       className={`flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                        generationMode === 'edit' ? 'bg-yellow-500 text-black' : 'text-zinc-400 hover:text-white'
+                        generationMode === 'edit' ? 'bg-accent text-white' : 'text-dim hover:text-ink'
                       }`}>Edit (Inpaint)</button>
                   </div>
                 </div>
               ) : (
                 <div className="col-span-2 flex items-center gap-2 mt-2 relative group">
-                  <div className="flex bg-zinc-900/50 border border-zinc-800 rounded-full p-1 w-full opacity-50 cursor-not-allowed">
-                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-500 text-center">Generate</div>
-                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-zinc-500 text-center">Edit (Inpaint)</div>
+                  <div className="flex bg-surface/50 border border-line rounded-full p-1 w-full opacity-50 cursor-not-allowed">
+                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-dim text-center">Generate</div>
+                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-dim text-center">Edit (Inpaint)</div>
                   </div>
-                  <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 px-3 py-2 rounded-lg text-xs text-zinc-300 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
+                  <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-surface2 border border-line px-3 py-2 rounded-lg text-xs text-ink whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
                     <div className="flex items-center gap-2">
-                      <AlertCircle className="w-3 h-3 text-yellow-500" />
+                      <AlertCircle className="w-3 h-3 text-accent" />
                       <span>Add a Global Reference image to enable Edit mode</span>
                     </div>
-                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-800 border-l border-t border-zinc-700 rotate-45" />
+                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-surface2 border-l border-t border-line rotate-45" />
                   </div>
                 </div>
               )}
             </div>
 
             {/* Narrative Angle Toggle */}
-            <div className="mt-2 flex items-center justify-between bg-zinc-900/30 border border-zinc-800/50 p-3 hover:bg-zinc-900/50 transition-colors cursor-pointer group select-none"
+            <div className="mt-2 flex items-center justify-between bg-surface/30 border border-line/50 p-3 hover:bg-surface/50 transition-colors cursor-pointer group select-none"
               onClick={() => prompt.setPromptState(prev => ({ ...prev, showNewAnglePrompt: !prev.showNewAnglePrompt }))}>
               <div className="flex items-center gap-3">
-                <div className={`p-1.5 rounded-full ${prompt.promptState.showNewAnglePrompt ? 'bg-yellow-500/20 text-yellow-500' : 'bg-zinc-800 text-zinc-500'}`}>
+                <div className={`p-1.5 rounded-full ${prompt.promptState.showNewAnglePrompt ? 'bg-accent/20 text-accent' : 'bg-surface2 text-dim'}`}>
                   <Video className="w-4 h-4" />
                 </div>
                 <div className="flex flex-col">
-                  <span className={`text-xs font-bold uppercase tracking-widest ${prompt.promptState.showNewAnglePrompt ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-300'}`}>
+                  <span className={`text-xs font-bold uppercase tracking-widest ${prompt.promptState.showNewAnglePrompt ? 'text-ink' : 'text-dim group-hover:text-ink'}`}>
                     Narrative Angle Prompting
                   </span>
-                  <span className="text-[10px] text-zinc-500">"In this new angle what would the viewer see? Show us..."</span>
+                  <span className="text-[10px] text-dim">"In this new angle what would the viewer see? Show us..."</span>
                   {prompt.promptState.showNewAnglePrompt && !prompt.promptState.shotType && (
-                    <span className="text-[10px] text-yellow-500/80 mt-0.5 animate-in fade-in">
+                    <span className="text-[10px] text-accent/80 mt-0.5 animate-in fade-in">
                       Warning: Needs a <b>Shot Type</b> to activate.
                     </span>
                   )}
                 </div>
               </div>
-              <div className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${prompt.promptState.showNewAnglePrompt ? 'bg-yellow-500' : 'bg-zinc-700'}`}>
+              <div className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${prompt.promptState.showNewAnglePrompt ? 'bg-accent' : 'bg-surface2'}`}>
                 <div className={`absolute top-1 bottom-1 w-3 bg-white rounded-full transition-all duration-200 ${prompt.promptState.showNewAnglePrompt ? 'left-6' : 'left-1'}`} />
               </div>
             </div>
@@ -1423,47 +1423,47 @@ export default function App() {
           <div className="space-y-6 pb-12 lg:pb-8">
 
           {/* Prompt Preview Box */}
-          <div className={`bg-zinc-900 border border-zinc-800 p-6 relative transition-all group ${prompt.isEditingPrompt ? 'border-yellow-500/50' : 'hover:border-yellow-500/50'}`}>
-            <div className="absolute top-0 left-0 bg-yellow-500 text-black text-[10px] font-black uppercase px-2 py-1 tracking-widest flex items-center gap-2">
+          <div className={`prompt-panel rounded-card border border-line p-6 relative transition-all group ${prompt.isEditingPrompt ? 'border-accent/50' : 'hover:border-accent/50'}`}>
+            <div className="absolute -top-2.5 left-4 px-2 py-0.5 bg-base border border-line rounded-full text-accent2 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
               Constructed Prompt
             </div>
 
             <div className="absolute top-0 right-0 p-2 flex max-w-[calc(100%-7rem)] flex-wrap justify-end gap-2">
               <button onClick={() => setShowPresetLibrary(true)}
-                className="flex items-center gap-1 text-zinc-500 hover:text-yellow-500 text-[10px] font-bold uppercase transition-all px-2 py-1" title="Save current options as a preset">
+                className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5" title="Save current options as a preset">
                 <Bookmark className="w-3 h-3" /> SAVE PRESET
               </button>
               <button onClick={() => prompt.setIsEditingPrompt(!prompt.isEditingPrompt)}
                 className={`flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-1 border transition-all ${
-                  prompt.isEditingPrompt ? "bg-yellow-500 text-black border-yellow-500" : "bg-transparent text-zinc-500 border-transparent hover:text-yellow-500"
+                  prompt.isEditingPrompt ? "bg-accent text-white border-accent" : "bg-transparent text-dim border-transparent hover:text-accent"
                 }`}>
                 {prompt.isEditingPrompt ? <Check className="w-3 h-3" /> : <Edit2 className="w-3 h-3" />}
                 {prompt.isEditingPrompt ? "DONE" : "EDIT"}
               </button>
               {prompt.isManualPrompt && prompt.isEditingPrompt && (
                 <button onClick={() => prompt.resetPrompt()}
-                  className="flex items-center gap-1 text-red-500 hover:text-red-400 text-[10px] font-bold uppercase transition-all px-2 py-1 border border-red-500/30 hover:border-red-500/70" title="Revert to auto-generated prompt">
+                  className="flex items-center gap-1 text-danger hover:text-danger/80 text-[10px] font-bold uppercase transition-all px-2 py-1 border border-danger/30 hover:border-danger/70" title="Revert to auto-generated prompt">
                   <X className="w-3 h-3" /> RESET
                 </button>
               )}
               <button onClick={handleExportPrompt}
                 className={`flex items-center gap-1 font-bold uppercase transition-all px-2 py-1 text-[10px] ${
-                  showExportFeedback ? "text-green-500" : "text-zinc-500 hover:text-yellow-500"
+                  showExportFeedback ? "text-ok" : "text-dim hover:text-accent"
                 }`} title="Download prompt as .txt">
                 {showExportFeedback ? <Check className="w-3 h-3" /> : <FileDown className="w-3 h-3" />}
                 {showExportFeedback ? "EXPORTED" : "EXPORT"}
               </button>
               <button onClick={handleCopyPrompt}
-                className="flex items-center gap-1 text-zinc-500 hover:text-yellow-500 text-[10px] font-bold uppercase transition-all px-2 py-1">
-                {showCopyFeedback ? <span className="text-green-500 flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span> : <><Copy className="w-3 h-3" /> COPY</>}
+                className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5">
+                {showCopyFeedback ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span> : <><Copy className="w-3 h-3" /> COPY</>}
               </button>
             </div>
 
-            <div className="mt-8 font-mono text-sm leading-relaxed text-zinc-300 whitespace-pre-wrap selection:bg-yellow-500/30">
+            <div className="mt-8 font-mono text-sm leading-relaxed text-ink whitespace-pre-wrap">
               {prompt.isEditingPrompt ? (
                 <div className="flex flex-col gap-2">
                   {currentElementsInstructionDisplay && (
-                    <div className="p-3 bg-black/30 border border-zinc-800 text-zinc-500 italic text-xs select-none">
+                    <div className="p-3 bg-base/30 border border-line text-dim italic text-xs select-none">
                       {currentElementsInstructionDisplay}
                     </div>
                   )}
@@ -1471,7 +1471,7 @@ export default function App() {
                     onChange={(e) => { prompt.setFinalPrompt(e.target.value); prompt.setIsManualPrompt(true); }}
                     placeholder="Type your prompt here..."
                     spellCheck={true}
-                    className="w-full h-40 bg-zinc-950/50 border border-zinc-700 p-3 text-white focus:border-yellow-500 focus:outline-none resize-y" />
+                    className="w-full h-40 bg-base/50 border border-line p-3 text-ink focus:border-accent focus:outline-none resize-y" />
                 </div>
               ) : (
                 <p className="cursor-pointer" onClick={handleCopyPrompt}>
@@ -1483,9 +1483,9 @@ export default function App() {
           </div>
 
           {elementError && (
-            <div className="p-4 bg-red-900/20 border border-red-900/50 text-red-400 text-sm font-medium flex items-start justify-between gap-3">
+            <div className="p-4 bg-danger/20 border border-danger/50 text-danger text-sm font-medium flex items-start justify-between gap-3">
               <span>Error: {elementError}</span>
-              <button type="button" onClick={() => setElementError(null)} className="text-red-400 hover:text-white transition-colors" title="Dismiss">
+              <button type="button" onClick={() => setElementError(null)} className="text-danger hover:text-ink transition-colors" title="Dismiss">
                 <X className="w-4 h-4" />
               </button>
             </div>

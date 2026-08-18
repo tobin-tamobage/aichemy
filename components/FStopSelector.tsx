@@ -57,18 +57,18 @@ export const FStopSelector: React.FC<FStopSelectorProps> = ({
 
   return (
     <div ref={rootRef} className="relative flex flex-col gap-2">
-      <label className="text-xs font-bold uppercase tracking-wider text-yellow-500">{label}</label>
+      <label className="text-xs font-bold uppercase tracking-wider text-accent2">{label}</label>
 
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
-        className="relative w-full border-b-2 border-zinc-800 bg-zinc-900 px-4 py-3 pr-10 text-left text-sm font-medium text-white transition-colors hover:bg-zinc-800 focus:outline-none focus:border-yellow-500"
+        className="relative w-full border-b-2 border-line bg-surface px-4 py-3 pr-10 text-left text-sm font-medium text-ink transition-colors hover:bg-surface2 focus:outline-none focus:border-accent"
       >
-        <span className={value ? 'text-white' : 'text-zinc-500'}>
+        <span className={value ? 'text-ink' : 'text-dim'}>
           {displayValue}
         </span>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-zinc-500">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-dim">
           <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
             <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
           </svg>
@@ -76,13 +76,13 @@ export const FStopSelector: React.FC<FStopSelectorProps> = ({
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full z-30 mt-2 border border-zinc-800 bg-zinc-950 p-4 shadow-2xl md:left-auto md:w-[22rem] md:min-w-[22rem]">
-          <div className="mb-3 flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-wider text-zinc-400">
+        <div className="absolute left-0 right-0 top-full z-30 mt-2 border border-line bg-base p-4 shadow-2xl md:left-auto md:w-[22rem] md:min-w-[22rem]">
+          <div className="mb-3 flex items-center justify-between gap-4 text-[10px] font-bold uppercase tracking-wider text-dim">
             <span>Blurrier Background</span>
             <span>Sharper background</span>
           </div>
 
-          <div className="mb-3 rounded-md border border-zinc-800 bg-zinc-900/70 px-3 py-2 text-center text-sm font-bold text-white">
+          <div className="mb-3 rounded-md border border-line bg-surface/70 px-3 py-2 text-center text-sm font-bold text-ink">
             f/{F_STOP_VALUES[selectedIndex]}
           </div>
 
@@ -97,10 +97,10 @@ export const FStopSelector: React.FC<FStopSelectorProps> = ({
               const nextIndex = Number(event.target.value);
               onChange(F_STOP_VALUES[nextIndex] || F_STOP_VALUES[0]);
             }}
-            className="w-full cursor-pointer appearance-none rounded-lg border-b-2 border-zinc-800 bg-zinc-900 h-2 focus:outline-none focus:border-yellow-500 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer hover:[&::-webkit-slider-thumb]:bg-yellow-500 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer hover:[&::-moz-range-thumb]:bg-yellow-500"
+            className="w-full cursor-pointer appearance-none rounded-lg border-b-2 border-line bg-surface h-2 focus:outline-none focus:border-accent [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:cursor-pointer hover:[&::-webkit-slider-thumb]:bg-accent [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:cursor-pointer hover:[&::-moz-range-thumb]:bg-accent"
           />
 
-          <div className="mt-3 grid grid-cols-9 gap-1 text-center text-[10px] font-medium text-zinc-500">
+          <div className="mt-3 grid grid-cols-9 gap-1 text-center text-[10px] font-medium text-dim">
             {F_STOP_VALUES.map((fStop, index) => (
               <button
                 key={fStop}
@@ -108,8 +108,8 @@ export const FStopSelector: React.FC<FStopSelectorProps> = ({
                 onClick={() => onChange(fStop)}
                 className={`rounded px-1 py-1 transition-colors ${
                   index === selectedIndex
-                    ? 'bg-yellow-500/15 text-yellow-400'
-                    : 'hover:bg-zinc-800 hover:text-zinc-300'
+                    ? 'bg-accent/15 text-accent2'
+                    : 'hover:bg-surface2 hover:text-ink'
                 }`}
               >
                 {fStop}

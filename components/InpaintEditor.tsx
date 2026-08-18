@@ -713,26 +713,26 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
 
   const modal = (
     <div
-      className="fixed inset-0 z-[1000] isolate flex items-center justify-center bg-black bg-opacity-75"
+      className="fixed inset-0 z-[1000] isolate flex items-center justify-center bg-base/75"
       ref={containerRef}
     >
-      <div className="relative z-[1] bg-gray-900 rounded-lg shadow-xl max-w-7xl max-h-[95vh] overflow-auto">
+      <div className="relative z-[1] bg-surface rounded-card shadow-xl max-w-7xl max-h-[95vh] overflow-auto">
         <div className="p-6">
-          <h2 className="text-2xl font-bold text-white mb-2">Edit Reference Image</h2>
+          <h2 className="text-2xl font-bold text-ink mb-2">Edit Reference Image</h2>
           {cropGuidance && (
-            <p className="mb-4 max-w-4xl text-sm leading-5 text-amber-300">{cropGuidance}</p>
+            <p className="mb-4 max-w-4xl text-sm leading-5 text-accent2">{cropGuidance}</p>
           )}
 
           {/* Toolbar */}
-          <div className="mb-4 flex flex-wrap gap-4 items-center bg-gray-800 p-4 rounded-lg">
+          <div className="mb-4 flex flex-wrap gap-4 items-center bg-surface2 p-4 rounded-lg">
             {/* Tool Selection */}
             <div className="flex gap-2">
               <button
                 onClick={() => setActiveTool('brush')}
                 className={`px-4 py-2 rounded ${
                   activeTool === 'brush'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-accent text-white'
+                    : 'bg-surface2 text-ink hover:bg-line'
                 }`}
               >
                 Brush
@@ -741,8 +741,8 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                 onClick={() => setActiveTool('rectangle')}
                 className={`px-4 py-2 rounded ${
                   activeTool === 'rectangle'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-accent text-white'
+                    : 'bg-surface2 text-ink hover:bg-line'
                 }`}
               >
                 Rectangle
@@ -751,8 +751,8 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                 onClick={() => setActiveTool('text')}
                 className={`px-4 py-2 rounded ${
                   activeTool === 'text'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-accent text-white'
+                    : 'bg-surface2 text-ink hover:bg-line'
                 }`}
               >
                 Text
@@ -761,8 +761,8 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                 onClick={() => setActiveTool('crop')}
                 className={`px-4 py-2 rounded ${
                   activeTool === 'crop'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    ? 'bg-accent text-white'
+                    : 'bg-surface2 text-ink hover:bg-line'
                 }`}
               >
                 Crop
@@ -772,13 +772,13 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
             {/* Aspect Ratio Selector (visible when crop tool is active) */}
             {activeTool === 'crop' && (
               <div className="flex items-center gap-2">
-                <label className="text-white text-sm">Ratio:</label>
+                <label className="text-ink text-sm">Ratio:</label>
                 <button
                   onClick={() => setSelectedCropRatio(null)}
                   className={`px-3 py-1 rounded text-sm ${
                     selectedCropRatio === null
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                      ? 'bg-ok text-white'
+                      : 'bg-surface2 text-ink hover:bg-line'
                   }`}
                 >
                   Free
@@ -789,8 +789,8 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                     onClick={() => setSelectedCropRatio(ratio)}
                     className={`px-3 py-1 rounded text-sm ${
                       selectedCropRatio === ratio
-                        ? 'bg-green-600 text-white'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        ? 'bg-ok text-white'
+                        : 'bg-surface2 text-ink hover:bg-line'
                     }`}
                   >
                     {ratio}
@@ -801,7 +801,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
 
             {/* Brush Size */}
             <div className="flex items-center gap-2">
-              <label className="text-white text-sm">Size:</label>
+              <label className="text-ink text-sm">Size:</label>
               <input
                 type="range"
                 min="5"
@@ -810,12 +810,12 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                 onChange={(e) => setBrushSize(Number(e.target.value))}
                 className="w-32"
               />
-              <span className="text-white text-sm w-8">{brushSize}</span>
+              <span className="text-ink text-sm w-8">{brushSize}</span>
             </div>
 
             {/* Brush Opacity */}
             <div className="flex items-center gap-2">
-              <label className="text-white text-sm">Opacity:</label>
+              <label className="text-ink text-sm">Opacity:</label>
               <input
                 type="range"
                 min="5"
@@ -825,7 +825,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                 onChange={(e) => setBrushOpacity(Number(e.target.value) / 100)}
                 className="w-32"
               />
-              <span className="text-white text-sm w-10">{Math.round(brushOpacity * 100)}%</span>
+              <span className="text-ink text-sm w-10">{Math.round(brushOpacity * 100)}%</span>
             </div>
 
             {/* Color Selection */}
@@ -835,7 +835,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                   key={color.value}
                   onClick={() => setSelectedColor(color.value)}
                   className={`w-8 h-8 rounded border-2 ${
-                    selectedColor === color.value ? 'border-white' : 'border-gray-600'
+                    selectedColor === color.value ? 'border-ink' : 'border-line'
                   }`}
                   style={{ backgroundColor: color.value }}
                   title={color.name}
@@ -844,25 +844,25 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
             </div>
 
             {/* Zoom Controls */}
-            <div className="flex items-center gap-2 border-l border-gray-600 pl-4">
+            <div className="flex items-center gap-2 border-l border-line pl-4">
               <button
                 onClick={zoomOut}
-                className="px-2 py-1 rounded bg-gray-700 text-white hover:bg-gray-600 text-lg font-bold"
+                className="px-2 py-1 rounded bg-surface2 text-ink hover:bg-line text-lg font-bold"
                 title="Zoom Out"
               >
                 −
               </button>
-              <span className="text-white text-sm w-12 text-center">{Math.round(zoomLevel * 100)}%</span>
+              <span className="text-ink text-sm w-12 text-center">{Math.round(zoomLevel * 100)}%</span>
               <button
                 onClick={zoomIn}
-                className="px-2 py-1 rounded bg-gray-700 text-white hover:bg-gray-600 text-lg font-bold"
+                className="px-2 py-1 rounded bg-surface2 text-ink hover:bg-line text-lg font-bold"
                 title="Zoom In"
               >
                 +
               </button>
               <button
                 onClick={resetView}
-                className="px-3 py-1 rounded bg-gray-700 text-white hover:bg-gray-600 text-sm"
+                className="px-3 py-1 rounded bg-surface2 text-ink hover:bg-line text-sm"
                 title="Reset zoom and pan"
               >
                 Reset View
@@ -874,7 +874,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
               <button
                 onClick={undo}
                 disabled={historyIndex <= 0}
-                className="px-3 py-2 rounded bg-gray-700 text-white hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-2 rounded bg-surface2 text-ink hover:bg-line disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Undo (Ctrl+Z)"
               >
                 ↶ Undo
@@ -882,14 +882,14 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
               <button
                 onClick={redo}
                 disabled={historyIndex >= history.length - 1}
-                className="px-3 py-2 rounded bg-gray-700 text-white hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-2 rounded bg-surface2 text-ink hover:bg-line disabled:opacity-50 disabled:cursor-not-allowed"
                 title="Redo (Ctrl+Y)"
               >
                 ↷ Redo
               </button>
               <button
                 onClick={resetDrawing}
-                className="px-3 py-2 rounded bg-red-700 text-white hover:bg-red-600"
+                className="px-3 py-2 rounded bg-danger text-white hover:bg-danger/90"
               >
                 Reset
               </button>
@@ -904,7 +904,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
                       if (c) c.clearRect(0, 0, oc.width, oc.height);
                     }
                   }}
-                  className="px-3 py-2 rounded bg-gray-700 text-white hover:bg-gray-600"
+                  className="px-3 py-2 rounded bg-surface2 text-ink hover:bg-line"
                 >
                   Clear Crop
                 </button>
@@ -914,7 +914,7 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
 
           {/* Canvas Container */}
           <div
-            className="relative max-w-full max-h-[60vh] overflow-auto bg-gray-800 rounded-lg"
+            className="relative max-w-full max-h-[60vh] overflow-auto bg-surface2 rounded-lg"
             onWheel={handleWheel}
             onMouseDown={handlePanStart}
             onMouseMove={handlePanMove}
@@ -1027,20 +1027,20 @@ export const InpaintEditor: React.FC<InpaintEditorProps> = ({
           <div className="mt-4 flex justify-end gap-3">
             <button
               onClick={onCancel}
-              className="px-6 py-2 rounded bg-gray-700 text-white hover:bg-gray-600"
+              className="px-6 py-2 rounded bg-surface2 text-ink hover:bg-line"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
-              className="px-6 py-2 rounded bg-blue-600 text-white hover:bg-blue-500"
+              className="px-6 py-2 rounded bg-accent text-white hover:bg-accent/90"
             >
               Save
             </button>
           </div>
 
           {/* Keyboard Shortcuts Help */}
-          <div className="mt-4 text-gray-400 text-sm">
+          <div className="mt-4 text-dim text-sm">
             <p>
               <strong>Keyboard shortcuts:</strong> Ctrl+Z (Undo), Ctrl+Y (Redo), Escape (Cancel), Scroll to zoom, Middle-click drag to pan
             </p>

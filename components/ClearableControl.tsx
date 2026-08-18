@@ -26,7 +26,7 @@ export const ClearableControl: React.FC<ClearableControlProps> = ({ value, onCle
             e.stopPropagation();
             onClear();
           }}
-          className="absolute right-3 top-[2.25rem] text-zinc-500 hover:text-white transition-colors bg-zinc-900/90 hover:bg-zinc-700 rounded-sm p-1 z-10"
+          className="absolute right-3 top-[2.25rem] text-dim hover:text-ink transition-colors bg-surface/90 hover:bg-surface2 rounded-sm p-1 z-10"
           title="Clear selection"
         >
           <X className="w-3 h-3" />
