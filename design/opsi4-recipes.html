@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aichemy — Opsi 4: Recipes</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#fdf6ee; color:#3d2c8d; font-family:'Nunito',sans-serif; padding:32px; }
+  h1 { font-size:22px; margin-bottom:4px; }
+  .sub { color:#a78bca; font-size:13px; margin-bottom:26px; }
+  .frame { border:3px solid #f0e4ff; border-radius:22px; background:#fff; overflow:hidden; margin-bottom:28px; }
+  .flabel { background:#faf5ff; border-bottom:2px solid #f0e4ff; padding:9px 16px; font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:#8b5cf6; }
+  .pad { padding:22px; }
+  .logo { font-weight:900; font-size:26px; color:#3d2c8d; }
+  .logo em { font-style:normal; color:#ff6b9d; }
+  .tag { font-size:11px; color:#a78bca; font-weight:700; margin-top:2px; }
+  .recipes { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:18px; }
+  .recipe { border:2px solid #f0e4ff; border-radius:18px; padding:18px 14px; text-align:center; background:#fff; transition:.15s; }
+  .recipe:hover { border-color:#ff6b9d; transform:translateY(-2px); }
+  .recipe .ic { font-size:30px; }
+  .recipe h3 { font-size:14px; margin:8px 0 3px; }
+  .recipe p { font-size:10.5px; color:#a78bca; line-height:1.45; }
+  .recipe.hot { border-color:#ff6b9d; background:linear-gradient(135deg,#fdf0f6,#f3e8ff); }
+
+  .hdr { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; }
+  .switcher { display:flex; gap:6px; background:#faf5ff; border:2px solid #f0e4ff; border-radius:99px; padding:4px; }
+  .switcher span { font-size:10px; font-weight:800; padding:5px 12px; border-radius:99px; color:#8b5cf6; }
+  .switcher span.on { background:#ff6b9d; color:#fff; }
+  .navbtn { font-size:9px; font-weight:800; padding:5px 10px; border-radius:99px; border:2px solid #f0e4ff; color:#8b5cf6; background:#fff; }
+  .cols { display:grid; grid-template-columns:1.1fr 1fr; gap:14px; margin-top:14px; }
+  .acc { border:2px solid #f0e4ff; border-radius:16px; padding:11px 13px; margin-bottom:9px; }
+  .acc-title { font-size:11px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; color:#8b5cf6; display:flex; justify-content:space-between; }
+  .input { background:#faf5ff; border:2px solid #e9d5ff; border-radius:12px; padding:8px 10px; font-size:11px; color:#7c6a94; margin-top:8px; }
+  .chips { display:flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
+  .chip { font-size:9.5px; font-weight:700; padding:4px 10px; border-radius:99px; background:#fdf0f6; color:#c0518c; }
+  .chip.alt { background:#f3ecfc; color:#8b5cf6; }
+  .chip.alt2 { background:#e8f4ff; color:#4a6fa0; }
+  .prompt { background:linear-gradient(135deg,#f3e8ff,#ffe4f0); border-radius:16px; padding:13px; }
+  .prompt .plabel { font-size:9px; font-weight:900; letter-spacing:.08em; color:#a855f7; text-transform:uppercase; }
+  .prompt .ptext { font-size:11px; line-height:1.65; color:#4c1d95; margin-top:5px; }
+  .btn { display:inline-block; font-size:9px; font-weight:800; padding:6px 13px; border-radius:99px; background:#ff6b9d; color:#fff; margin-top:9px; }
+  .code { background:#221c2e; color:#e9e4ff; font-family:ui-monospace,monospace; font-size:10.5px; border-radius:14px; padding:14px 16px; line-height:1.7; }
+  .code .k { color:#ff8ab8; } .code .c { color:#8f7fb8; } .code .s { color:#c4b0f0; }
+  .flow { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:800; color:#8b5cf6; margin:14px 0; flex-wrap:wrap; }
+  .flow .arrow { color:#ff6b9d; }
+</style>
+</head>
+<body>
+<h1>Opsi 4 — "Recipes": seperti apa jadinya</h1>
+<p class="sub">Tiga tampilan: ① Start screen jadi "Pilih Ramuan" · ② Builder Wedding dengan seksi khusus · ③ Config di baliknya (satu file per domain)</p>
+
+<!-- ① START SCREEN -->
+<div class="frame">
+  <div class="flabel">① Start Screen — "Pilih Ramuan"</div>
+  <div class="pad">
+    <div class="logo">Ai<em>chemy</em></div>
+    <div class="tag">Brew your perfect prompt</div>
+    <div class="recipes">
+      <div class="recipe"><div class="ic">🎬</div><h3>Cinematic</h3><p>Prompt foto sinematik & editorial</p></div>
+      <div class="recipe hot"><div class="ic">💍</div><h3>Wedding</h3><p>Pose, venue, lighting pernikahan</p></div>
+      <div class="recipe"><div class="ic">🪪</div><h3>Pas Foto</h3><p>Latar resmi, ukuran 2×3 / 3×4 / 4×6</p></div>
+      <div class="recipe"><div class="ic">📦</div><h3>Produk</h3><p>Studio shot, flat lay, katalog</p></div>
+    </div>
+    <p style="font-size:10.5px;color:#a78bca;margin-top:14px">+ Recent projects tetap di bawah, tiap project ingat domainnya. Menambah domain baru nanti = satu kartu baru di sini.</p>
+  </div>
+</div>
+
+<!-- ② BUILDER WEDDING -->
+<div class="frame">
+  <div class="flabel">② Builder — Wedding (struktur sama, isi khusus domain)</div>
+  <div class="pad">
+    <div class="hdr">
+      <div class="logo" style="font-size:19px">Ai<em>chemy</em> <span style="color:#a78bca;font-size:12px;font-weight:700">· 💍 Wedding</span></div>
+      <div class="switcher"><span>Cinematic</span><span class="on">Wedding</span><span>Pas Foto</span><span>Produk</span></div>
+      <div><span class="navbtn">PRESETS</span> <span class="navbtn">EXPORT</span></div>
+    </div>
+    <div class="cols">
+      <div>
+        <div class="acc">
+          <div class="acc-title"><span>01 · Couple &amp; Pose</span><span>▲</span></div>
+          <div class="input">A bride and groom laughing during their first dance…</div>
+          <div class="chips"><span class="chip">First Dance</span><span class="chip alt">Candid</span><span class="chip alt2">Waist Up</span></div>
+        </div>
+        <div class="acc">
+          <div class="acc-title"><span>02 · Venue &amp; Setting</span><span>▼</span></div>
+        </div>
+        <div class="acc">
+          <div class="acc-title"><span>03 · Lighting &amp; Atmosphere</span><span>▼</span></div>
+        </div>
+        <div class="acc">
+          <div class="acc-title"><span>04 · Attire &amp; Details</span><span>▼</span></div>
+        </div>
+        <div class="acc">
+          <div class="acc-title"><span>05 · Photography Style</span><span>▼</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="prompt">
+          <div class="plabel">✦ Constructed Prompt</div>
+          <div class="ptext">A candid wedding photograph of a bride and groom laughing during their first dance, waist-up framing. Golden hour light through garden string lights, warm romantic atmosphere. Shot in editorial documentary style, soft film grain. 4:5 format.</div>
+          <span class="btn">COPY</span>
+        </div>
+        <p style="font-size:9.5px;color:#a78bca;margin-top:9px;text-align:center">Preset wedding terpisah dari preset cinematic — tiap domain punya library-nya sendiri.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ CONFIG -->
+<div class="frame">
+  <div class="flabel">③ Di balik layar — satu file config per domain</div>
+  <div class="pad">
+    <div class="flow">
+      domains/wedding.ts <span class="arrow">→</span> mesin builder (komponen yang sama) <span class="arrow">→</span> prompt khas wedding
+    </div>
+    <div class="code">
+<span class="k">export default</span> {<br>
+&nbsp;&nbsp;id: <span class="s">'wedding'</span>, label: <span class="s">'Wedding'</span>, icon: <span class="s">'💍'</span>,<br>
+&nbsp;&nbsp;sections: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ id: <span class="s">'couple'</span>, title: <span class="s">'Couple &amp; Pose'</span>, fields: [textarea, visualSelector(poseCatalog), …] },<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{ id: <span class="s">'venue'</span>, title: <span class="s">'Venue &amp; Setting'</span>, fields: […] },<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="c">// dst — deklaratif, tanpa komponen baru</span><br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;buildPrompt: (state) =&gt; <span class="c">// rakitan kalimat khas wedding</span><br>
+&nbsp;&nbsp;presets: [<span class="s">'golden-hour-editorial'</span>, <span class="s">'church-classic'</span>, …]<br>
+}
+    </div>
+    <p style="font-size:11px;color:#a78bca;margin-top:12px;line-height:1.6">
+    Komponen UI (accordion, VisualSelector, TextInput, chips) <b>tidak ditulis ulang</b> — mesin me-render mereka dari config.
+    Domain ke-5 nanti (food, fashion, real estate) = tambah satu file <b>domains/food.ts</b>, selesai.</p>
+  </div>
+</div>
+
+</body>
+</html>
