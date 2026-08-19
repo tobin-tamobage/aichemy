@@ -64,6 +64,46 @@ const suggestPrompt = (domainId, category, option, fieldLabel) => {
   }
 };
 
+// --- Resolve field options (dynamic catalogs) ---------------------------------
+/**
+ * Options bisa berupa array statis ATAU fungsi state → DomainOption[] (conditional
+ * catalog, mis. pose wedding mengikuti moment; props product mengikuti category).
+ * Fungsi di-probe secara generik: dipanggil dengan (a) empty state domain, dan
+ * (b) empty state + tiap nilai opsi statis dari SEMUA field select/visual statis
+ * di domain yang sama (driving field), lalu hasil di-union (dedupe per value).
+ * Probe yang melempar diabaikan (fall back []) — script tidak pernah crash.
+ */
+function resolveFieldOptions(domain, field) {
+  if (typeof field.options !== 'function') return field.options ?? [];
+  const empty = domain.createEmptyState();
+  const probeStates = [empty];
+  for (const section of domain.sections ?? []) {
+    for (const f of section.fields ?? []) {
+      if (typeof f.options !== 'function' && (f.kind === 'select' || f.kind === 'visual')) {
+        for (const opt of f.options ?? []) {
+          probeStates.push({ ...empty, [f.key]: opt.value });
+        }
+      }
+    }
+  }
+  const seen = new Set();
+  const out = [];
+  for (const state of probeStates) {
+    try {
+      for (const option of field.options(state) ?? []) {
+        const key = option?.value ?? JSON.stringify(option);
+        if (!seen.has(key)) {
+          seen.add(key);
+          out.push(option);
+        }
+      }
+    } catch {
+      /* probe gagal — lanjut state lain */
+    }
+  }
+  return out;
+}
+
 // --- Walk registry ------------------------------------------------------------
 const lines = [];
 const today = new Date().toISOString().slice(0, 10);
@@ -76,7 +116,7 @@ for (const domain of DOMAINS) {
   const categories = new Map();
   for (const section of domain.sections ?? []) {
     for (const field of section.fields ?? []) {
-      for (const option of field.options ?? []) {
+      for (const option of resolveFieldOptions(domain, field)) {
         if (typeof option.image !== 'string' || option.image.length === 0) continue;
         const image = option.image.replace(/^\/+/, '');
         const parts = image.split('/'); // images/<domain>/<category>/<slug>.webp

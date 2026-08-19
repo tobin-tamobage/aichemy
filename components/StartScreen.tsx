@@ -16,8 +16,6 @@ import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID } from '../domains';
 
 /** Recipe fase 2/3 — kartu disabled 'Soon' (belum tersedia). */
 const SOON_RECIPES: { icon: string; label: string; tagline: string }[] = [
-  { icon: '💍', label: 'Wedding', tagline: 'Couple portraits, ceremony, and reception moments.' },
-  { icon: '📦', label: 'Product', tagline: 'Studio product photography with surfaces and lighting.' },
   { icon: '📣', label: 'Marketing', tagline: 'Ads, flyers, and social media creative.' },
 ];
 

@@ -2241,5 +2241,391 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/id-photo/framings/half-body.webp` — **Half body** (Framing) — Common for 4×6 job applications
   - Suggested prompt: Clean flat thumbnail for "Half body" (Framing), soft pastel background, centered, minimal, no text.
 
+## 💍 Wedding (`wedding`) — 0/109 present
+
+### moments (7)
+
+- [ ] `public/images/wedding/moments/getting-ready.webp` — **Getting Ready** (Moment) — Bride prep, groom prep, detail flat-lay
+  - Suggested prompt: Clean flat thumbnail for "Getting Ready" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/first-look.webp` — **First Look** (Moment) — Private reveal before the ceremony
+  - Suggested prompt: Clean flat thumbnail for "First Look" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/ceremony.webp` — **Ceremony** (Moment) — Aisle walk, vows, ring exchange, the kiss, recessional
+  - Suggested prompt: Clean flat thumbnail for "Ceremony" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/couple-portraits.webp` — **Couple Portraits** (Moment) — Posed portraits after the ceremony
+  - Suggested prompt: Clean flat thumbnail for "Couple Portraits" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/first-dance.webp` — **First Dance** (Moment) — Reception first dance
+  - Suggested prompt: Clean flat thumbnail for "First Dance" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/reception.webp` — **Reception** (Moment) — Toast, cake cutting, dance floor, sparkler/confetti exit
+  - Suggested prompt: Clean flat thumbnail for "Reception" (Moment), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/moments/detail-shots.webp` — **Detail Shots** (Moment) — Rings, invitation suite, bouquet, shoes, dress hanging
+  - Suggested prompt: Clean flat thumbnail for "Detail Shots" (Moment), soft pastel background, centered, minimal, no text.
+
+### poses (42)
+
+- [ ] `public/images/wedding/poses/ceremony/walking-down-aisle.webp` — **Walking down the aisle** (Pose)
+  - Suggested prompt: Studio product photo of walking down the aisle, seen from behind, guests standing and turning to look on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/ceremony/exchange-of-vows.webp` — **Exchange of vows** (Pose)
+  - Suggested prompt: Studio product photo of exchange of vows close-up on hands on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/ceremony/ring-exchange.webp` — **Ring exchange macro** (Pose)
+  - Suggested prompt: Studio product photo of ring exchange macro on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/ceremony/ceremony-kiss.webp` — **The ceremony kiss** (Pose)
+  - Suggested prompt: Studio product photo of the ceremony kiss at the altar on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/ceremony/recessional-confetti.webp` — **Recessional with confetti** (Pose)
+  - Suggested prompt: Studio product photo of recessional walk with confetti and petals on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/ceremony/guests-wiping-tears.webp` — **Guests wiping tears** (Pose)
+  - Suggested prompt: Studio product photo of guests wiping tears, reaction shot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/buttoning-dress.webp` — **Buttoning the dress** (Pose)
+  - Suggested prompt: Studio product photo of buttoning the dress from behind on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/mother-adjusting-veil.webp` — **Mother adjusting the veil** (Pose)
+  - Suggested prompt: Studio product photo of mother adjusting the veil on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/bride-looking-out-window.webp` — **Bride looking out the window** (Pose)
+  - Suggested prompt: Studio product photo of bride looking out the window on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/makeup-touch-up.webp` — **Makeup touch-up candid** (Pose)
+  - Suggested prompt: Studio product photo of makeup touch-up candid on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/groom-adjusting-cufflinks.webp` — **Groom adjusting cufflinks** (Pose)
+  - Suggested prompt: Studio product photo of groom adjusting cufflinks on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/getting-ready/dress-hanging.webp` — **Dress hanging by the window** (Pose)
+  - Suggested prompt: Studio product photo of dress hanging by the window on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-look/shoulder-tap-reveal.webp` — **Bride tapping the groom's shoulder** (Pose)
+  - Suggested prompt: Studio product photo of groom's back to camera, bride approaching tapping his shoulder on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-look/embrace-after-reveal.webp` — **Embrace after the reveal** (Pose)
+  - Suggested prompt: Studio product photo of embrace after the reveal on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-look/foreheads-together.webp` — **Foreheads together** (Pose)
+  - Suggested prompt: Studio product photo of foreheads together eyes closed on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/walking-hand-in-hand.webp` — **Walking hand in hand** (Pose)
+  - Suggested prompt: Studio product photo of walking hand in hand looking at each other on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/the-dip.webp` — **The dip** (Pose)
+  - Suggested prompt: Studio product photo of the dip on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/forehead-kiss.webp` — **Forehead kiss** (Pose)
+  - Suggested prompt: Studio product photo of forehead kiss on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/nose-to-nose.webp` — **Nose to nose** (Pose)
+  - Suggested prompt: Studio product photo of nose to nose (eskimo kiss) on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/under-the-veil.webp` — **Under-the-veil portrait** (Pose)
+  - Suggested prompt: Studio product photo of veil lift, under-the-veil portrait on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/veil-flowing.webp` — **Veil flowing in the wind** (Pose)
+  - Suggested prompt: Studio product photo of veil flowing in the wind on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/lifting-spinning.webp` — **Groom lifting / spinning bride** (Pose)
+  - Suggested prompt: Studio product photo of groom lifting and spinning his bride on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/threshold-carry.webp` — **Carry over the threshold** (Pose)
+  - Suggested prompt: Studio product photo of just-married carry over threshold on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/back-to-back.webp` — **Back to back** (Pose)
+  - Suggested prompt: Studio product photo of back to back on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/hand-on-chest-ring.webp` — **Bride's hand on groom's chest** (Pose)
+  - Suggested prompt: Studio product photo of bride's hand on groom's chest showing the ring on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/silhouette-sunset.webp` — **Silhouette against sunset** (Pose)
+  - Suggested prompt: Studio product photo of silhouette against sunset on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/dancing-alone-outdoors.webp` — **Dancing alone outdoors** (Pose)
+  - Suggested prompt: Studio product photo of dancing alone outdoors on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/couple-portraits/whispering-laughing.webp` — **Whispering / laughing candid** (Pose)
+  - Suggested prompt: Studio product photo of whispering, laughing candid on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-dance/mid-dip.webp` — **Mid-dip** (Pose)
+  - Suggested prompt: Studio product photo of mid-dip on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-dance/slow-dance-embrace.webp` — **Slow dance close embrace** (Pose)
+  - Suggested prompt: Studio product photo of slow dance close embrace on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-dance/wide-guests-dance-floor.webp` — **Wide shot with guests** (Pose)
+  - Suggested prompt: Studio product photo of wide shot with guests around the dance floor on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/first-dance/the-lift.webp` — **The lift** (Pose)
+  - Suggested prompt: Studio product photo of the lift on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/reception/champagne-toast.webp` — **Champagne toast** (Pose)
+  - Suggested prompt: Studio product photo of champagne toast with raised glasses on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/reception/cake-cutting.webp` — **Cake cutting** (Pose)
+  - Suggested prompt: Studio product photo of cake cutting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/reception/sparkler-exit.webp` — **Sparkler exit send-off** (Pose)
+  - Suggested prompt: Studio product photo of sparkler exit send-off on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/reception/confetti-toss.webp` — **Confetti toss** (Pose)
+  - Suggested prompt: Studio product photo of confetti toss on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/reception/dance-floor-wide.webp` — **Dance floor party wide shot** (Pose)
+  - Suggested prompt: Studio product photo of dance floor party wide shot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/detail-shots/rings-macro-invitation.webp` — **Rings macro on invitation** (Pose)
+  - Suggested prompt: Studio product photo of wedding rings macro on the invitation on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/detail-shots/invitation-flat-lay.webp` — **Invitation suite flat lay** (Pose)
+  - Suggested prompt: Studio product photo of flat lay of the invitation suite with flowers on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/detail-shots/bouquet-close-up.webp` — **Bouquet close-up** (Pose)
+  - Suggested prompt: Studio product photo of bouquet close-up on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/detail-shots/heels-perfume-flat-lay.webp` — **Heels and perfume flat lay** (Pose)
+  - Suggested prompt: Studio product photo of heels and perfume flat lay on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/poses/detail-shots/groom-watch-cufflinks.webp` — **Groom's watch and cufflinks** (Pose)
+  - Suggested prompt: Studio product photo of groom's watch and cufflinks on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### framings (6)
+
+- [ ] `public/images/wedding/framings/close-up.webp` — **Close-up** (Framing)
+  - Suggested prompt: Studio product photo of close-up portrait on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/framings/full-length.webp` — **Full-length** (Framing)
+  - Suggested prompt: Studio product photo of full-length wide shot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/framings/over-the-shoulder.webp` — **Over the shoulder** (Framing)
+  - Suggested prompt: Studio product photo of over-the-shoulder on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/framings/from-behind.webp` — **From behind** (Framing)
+  - Suggested prompt: Studio product photo of shot from behind on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/framings/macro.webp` — **Macro detail** (Framing)
+  - Suggested prompt: Studio product photo of macro detail shot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/framings/silhouette.webp` — **Silhouette** (Framing)
+  - Suggested prompt: Studio product photo of silhouette on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### venues (11)
+
+- [ ] `public/images/wedding/venues/cathedral.webp` — **Church / Cathedral** (Venue)
+  - Suggested prompt: Studio product photo of inside a historic stone cathedral with stained glass windows on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/chapel.webp` — **Chapel** (Venue)
+  - Suggested prompt: Studio product photo of in an intimate chapel with wooden pews on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/garden-estate.webp` — **Garden Estate** (Venue)
+  - Suggested prompt: Studio product photo of in a sunlit garden estate on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/beach.webp` — **Beach / Seaside Cliff** (Venue)
+  - Suggested prompt: Studio product photo of on a beach by a seaside cliff on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/vineyard.webp` — **Vineyard / Winery** (Venue)
+  - Suggested prompt: Studio product photo of in a vineyard at a winery on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/barn.webp` — **Rustic Barn / Farm** (Venue)
+  - Suggested prompt: Studio product photo of in a rustic barn on a farm on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/ballroom.webp` — **Ballroom / Grand Hotel** (Venue)
+  - Suggested prompt: Studio product photo of in a grand hotel ballroom on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/rooftop.webp` — **Rooftop / City Skyline** (Venue)
+  - Suggested prompt: Studio product photo of on a modern rooftop with the city skyline on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/forest.webp` — **Forest / Woodland** (Venue)
+  - Suggested prompt: Studio product photo of in a forest woodland on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/mountain.webp` — **Mountain / Lakeside** (Venue)
+  - Suggested prompt: Studio product photo of in the mountains by a lakeside on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/venues/villa.webp` — **Villa / Tropical** (Venue)
+  - Suggested prompt: Studio product photo of at a tropical villa on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### lighting (9)
+
+- [ ] `public/images/wedding/lighting/golden-hour.webp` — **Golden Hour** (Lighting)
+  - Suggested prompt: Studio product photo of golden hour backlight, warm sun flare on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/blue-hour.webp` — **Blue Hour** (Lighting)
+  - Suggested prompt: Studio product photo of blue hour twilight, city lights bokeh on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/window-light.webp` — **Soft Window Light** (Lighting)
+  - Suggested prompt: Studio product photo of soft natural window light, diffused on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/candlelight.webp` — **Candlelight** (Lighting)
+  - Suggested prompt: Studio product photo of warm candlelight glow, intimate on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/string-lights.webp` — **String / Fairy Lights** (Lighting)
+  - Suggested prompt: Studio product photo of string lights bokeh background, warm ambient on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/stained-glass.webp` — **Stained Glass Rays** (Lighting)
+  - Suggested prompt: Studio product photo of dramatic light rays through stained glass windows on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/overcast.webp` — **Overcast / Soft Daylight** (Lighting)
+  - Suggested prompt: Studio product photo of soft overcast daylight, even flattering light on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/sparkler.webp` — **Sparkler Light** (Lighting)
+  - Suggested prompt: Studio product photo of sparkler send-off, warm spark trails, night on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/lighting/dj-lights.webp` — **DJ / Party Lights** (Lighting)
+  - Suggested prompt: Studio product photo of colorful DJ lights, motion energy on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### styles (9)
+
+- [ ] `public/images/wedding/styles/editorial.webp` — **Editorial** (Style) — Posed, fashion-magazine, strong composition
+  - Suggested prompt: Clean flat thumbnail for "Editorial" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/documentary.webp` — **Documentary** (Style) — Candid, unposed, storytelling — most requested 2025/26
+  - Suggested prompt: Clean flat thumbnail for "Documentary" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/fine-art.webp` — **Fine Art** (Style) — Soft, ethereal, film-like, delicate palette
+  - Suggested prompt: Clean flat thumbnail for "Fine Art" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/dark-moody.webp` — **Dark & Moody** (Style) — Deep shadows, high contrast — suits indoor/rustic venues
+  - Suggested prompt: Clean flat thumbnail for "Dark & Moody" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/light-airy.webp` — **Light & Airy** (Style) — Bright, pastel — suits daytime outdoor
+  - Suggested prompt: Clean flat thumbnail for "Light & Airy" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/classic.webp` — **Classic / Traditional** (Style) — Formal posed, true-to-color, timeless
+  - Suggested prompt: Clean flat thumbnail for "Classic / Traditional" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/vintage-film.webp` — **Vintage / Film** (Style) — Heavy grain, analog colors, sometimes faded
+  - Suggested prompt: Clean flat thumbnail for "Vintage / Film" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/black-white.webp` — **Black & White** (Style) — Monochrome, emotion-focused
+  - Suggested prompt: Clean flat thumbnail for "Black & White" (Style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/styles/cinematic.webp` — **Cinematic** (Style) — Widescreen movie-still look, teal/warm grade
+  - Suggested prompt: Clean flat thumbnail for "Cinematic" (Style), soft pastel background, centered, minimal, no text.
+
+### film (4)
+
+- [ ] `public/images/wedding/film/none.webp` — **None** (Film stock)
+  - Suggested prompt: Clean flat thumbnail for "None" (Film stock), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/film/portra-400.webp` — **Kodak Portra 400** (Film stock) — Warm soft skin tones — the wedding standard
+  - Suggested prompt: Clean flat thumbnail for "Kodak Portra 400" (Film stock), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/film/fuji-400h.webp` — **Fuji 400H** (Film stock) — Green-tinted pastel palette
+  - Suggested prompt: Clean flat thumbnail for "Fuji 400H" (Film stock), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/wedding/film/ilford-hp5.webp` — **Ilford HP5** (Film stock) — B&W grain
+  - Suggested prompt: Clean flat thumbnail for "Ilford HP5" (Film stock), soft pastel background, centered, minimal, no text.
+
+### attire (21)
+
+- [ ] `public/images/wedding/attire/a-line-gown.webp` — **A-line gown** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of an A-line wedding gown on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/ball-gown.webp` — **Ball gown** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a ball gown wedding dress on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/mermaid-gown.webp` — **Mermaid gown** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a mermaid silhouette wedding gown on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/sheath-gown.webp` — **Sheath gown** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a sheath wedding dress on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/lace.webp` — **Lace fabric** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of lace on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/satin.webp` — **Satin fabric** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of satin on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/tulle.webp` — **Tulle fabric** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of tulle on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/chiffon.webp` — **Chiffon fabric** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of chiffon on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/cathedral-veil.webp` — **Cathedral veil** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a cathedral veil on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/fingertip-veil.webp` — **Fingertip veil** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a fingertip veil on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/birdcage-veil.webp` — **Birdcage veil** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a birdcage veil on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/long-train.webp` — **Long train** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a long train on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/wildflower-bouquet.webp` — **Wildflower bouquet** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a wildflower bouquet on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/rose-bouquet.webp` — **Rose bouquet** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a rose bouquet on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/pampas-bouquet.webp` — **Pampas bouquet** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a pampas bouquet on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/black-tuxedo.webp` — **Black tuxedo** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a black tuxedo on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/navy-three-piece.webp` — **Navy three-piece suit** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a navy three-piece suit on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/charcoal-three-piece.webp` — **Charcoal three-piece suit** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a charcoal three-piece suit on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/bow-tie.webp` — **Bow tie** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a bow tie on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/necktie.webp` — **Necktie** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a necktie on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/wedding/attire/boutonniere.webp` — **Boutonniere** (Bride & groom attire)
+  - Suggested prompt: Studio product photo of a boutonniere on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+## 📦 Product (`product`) — 0/61 present
+
+### categories (6)
+
+- [ ] `public/images/product/categories/skincare.webp` — **Skincare & Beauty** (Category) — Serum, moisturizer, cleanser, perfume
+  - Suggested prompt: Clean flat thumbnail for "Skincare & Beauty" (Category), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/product/categories/food-beverage.webp` — **Food & Beverage** (Category) — Coffee, snacks, bottled drinks, packaging
+  - Suggested prompt: Clean flat thumbnail for "Food & Beverage" (Category), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/product/categories/fashion.webp` — **Fashion & Accessories** (Category) — Sneakers, bags, watches, apparel
+  - Suggested prompt: Clean flat thumbnail for "Fashion & Accessories" (Category), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/product/categories/electronics.webp` — **Electronics** (Category) — Headphones, smartwatch, gadgets
+  - Suggested prompt: Clean flat thumbnail for "Electronics" (Category), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/product/categories/jewelry.webp` — **Jewelry & Luxury** (Category) — Rings, necklaces, earrings
+  - Suggested prompt: Clean flat thumbnail for "Jewelry & Luxury" (Category), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/product/categories/home-goods.webp` — **Home Goods / Other** (Category) — No default props
+  - Suggested prompt: Clean flat thumbnail for "Home Goods / Other" (Category), soft pastel background, centered, minimal, no text.
+
+### shot-types (8)
+
+- [ ] `public/images/product/shot-types/hero.webp` — **Hero shot** (Shot type)
+  - Suggested prompt: Studio product photo of hero shot, slightly low angle, product as the dominant subject on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/eye-level.webp` — **Eye-level / straight-on** (Shot type)
+  - Suggested prompt: Studio product photo of straight-on eye-level packshot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/45-degree.webp` — **45-degree angle** (Shot type)
+  - Suggested prompt: Studio product photo of 45-degree angle three-quarter view on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/flat-lay.webp` — **Flat lay (top-down)** (Shot type)
+  - Suggested prompt: Studio product photo of top-down flat lay composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/macro.webp` — **Macro detail** (Shot type)
+  - Suggested prompt: Studio product photo of extreme macro close-up detail shot, 100mm macro lens on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/lifestyle.webp` — **Lifestyle / in-context** (Shot type)
+  - Suggested prompt: Studio product photo of lifestyle in-context scene, product in real environment on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/scale.webp` — **Scale shot** (Shot type)
+  - Suggested prompt: Studio product photo of scale reference shot next to a familiar object for size comparison on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/shot-types/floating.webp` — **Floating / levitation** (Shot type)
+  - Suggested prompt: Studio product photo of product levitating mid-air, dynamic hero composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### surfaces (9)
+
+- [ ] `public/images/product/surfaces/white-sweep.webp` — **White sweep (seamless)** (Surface / background) — Required for Amazon / marketplace listings
+  - Suggested prompt: Studio product photo of seamless white background, studio sweep, pure white infinity cove on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/marble.webp` — **Marble** (Surface / background)
+  - Suggested prompt: Studio product photo of white Carrara marble surface with subtle veining on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/wood.webp` — **Wood** (Surface / background)
+  - Suggested prompt: Studio product photo of rustic oak wooden table, warm natural grain on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/gradient.webp` — **Gradient studio** (Surface / background)
+  - Suggested prompt: Studio product photo of soft gradient studio backdrop from one color to another on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/colored-paper.webp` — **Colored paper / solid backdrop** (Surface / background)
+  - Suggested prompt: Studio product photo of matte pastel seamless paper backdrop on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/concrete.webp` — **Concrete / stone** (Surface / background)
+  - Suggested prompt: Studio product photo of raw concrete surface, industrial texture on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/linen.webp` — **Fabric / linen** (Surface / background)
+  - Suggested prompt: Studio product photo of draped beige linen fabric background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/dark-glossy.webp` — **Dark / black glossy** (Surface / background)
+  - Suggested prompt: Studio product photo of glossy black reflective surface, dark moody background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/surfaces/outdoor.webp` — **Outdoor lifestyle** (Surface / background) — Lifestyle / in-context shots only
+  - Suggested prompt: Studio product photo of café table by the window, natural outdoor setting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### lighting (8)
+
+- [ ] `public/images/product/lighting/softbox.webp` — **Softbox diffused** (Lighting)
+  - Suggested prompt: Studio product photo of large softbox lighting, soft diffused light, gentle even illumination on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/soft-shadow.webp` — **Soft shadow (catalog)** (Lighting)
+  - Suggested prompt: Studio product photo of soft natural drop shadow beneath the product on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/rim.webp` — **Rim light** (Lighting)
+  - Suggested prompt: Studio product photo of rim lighting outlining the product edges, separated from background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/dramatic-hard.webp` — **Dramatic hard shadow** (Lighting)
+  - Suggested prompt: Studio product photo of hard directional light, long dramatic shadows, high contrast on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/window.webp` — **Natural window light** (Lighting)
+  - Suggested prompt: Studio product photo of soft natural window light from the left, airy and bright on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/golden-hour.webp` — **Golden hour** (Lighting)
+  - Suggested prompt: Studio product photo of warm golden hour sunlight, soft glow on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/backlit.webp` — **Backlit / glow** (Lighting) — Works well for bottles, serums, beverages
+  - Suggested prompt: Studio product photo of backlit translucent glow on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/lighting/gel.webp` — **Colored gel light** (Lighting)
+  - Suggested prompt: Studio product photo of subtle colored gel accent lighting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### props (27)
+
+- [ ] `public/images/product/props/skincare/water-droplets.webp` — **Water droplets** (Props & styling)
+  - Suggested prompt: Studio product photo of fresh water droplets on surface on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/botanical-leaves.webp` — **Botanical leaves** (Props & styling)
+  - Suggested prompt: Studio product photo of eucalyptus leaves on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/ice-cubes.webp` — **Ice cubes** (Props & styling)
+  - Suggested prompt: Studio product photo of ice cubes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/silk-ribbon.webp` — **Silk ribbon** (Props & styling)
+  - Suggested prompt: Studio product photo of silk ribbon on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/stone-pedestal.webp` — **Stone pedestal** (Props & styling)
+  - Suggested prompt: Studio product photo of stone pedestal on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/bathroom-tiles.webp` — **Bathroom tiles** (Props & styling)
+  - Suggested prompt: Studio product photo of bathroom tiles on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/skincare/sliced-ingredients.webp` — **Sliced ingredients** (Props & styling)
+  - Suggested prompt: Studio product photo of sliced ingredients (aloe, citrus) on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/scattered-ingredients.webp` — **Scattered ingredients** (Props & styling)
+  - Suggested prompt: Studio product photo of scattered coffee beans, cocoa powder dusting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/steam.webp` — **Steam** (Props & styling)
+  - Suggested prompt: Studio product photo of rising steam wisps on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/linen-napkin.webp` — **Linen napkin** (Props & styling)
+  - Suggested prompt: Studio product photo of folded beige linen napkin on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/ceramic-mug.webp` — **Ceramic mug pairing** (Props & styling)
+  - Suggested prompt: Studio product photo of ceramic mug pairing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/wooden-board.webp` — **Wooden board** (Props & styling)
+  - Suggested prompt: Studio product photo of wooden board on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/food-beverage/splash-motion.webp` — **Splash / freeze motion** (Props & styling)
+  - Suggested prompt: Studio product photo of milk splash frozen in motion on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/fashion/worn-on-model.webp` — **Worn in-context** (Props & styling)
+  - Suggested prompt: Studio product photo of styled on model's wrist, on feet walking on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/fashion/complementary-items.webp` — **Complementary items** (Props & styling)
+  - Suggested prompt: Studio product photo of complementary styling items (sunglasses, watch) on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/fashion/textured-fabric.webp` — **Textured fabric** (Props & styling)
+  - Suggested prompt: Studio product photo of textured fabric on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/fashion/urban-street.webp` — **Urban / street background** (Props & styling)
+  - Suggested prompt: Studio product photo of urban street background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/electronics/desk-setup.webp` — **Minimal desk setup** (Props & styling)
+  - Suggested prompt: Studio product photo of minimal desk setup on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/electronics/charging-cable.webp` — **Charging cable** (Props & styling)
+  - Suggested prompt: Studio product photo of charging cable artfully arranged on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/electronics/screen-glow.webp` — **Screen glow** (Props & styling)
+  - Suggested prompt: Studio product photo of subtle screen glow on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/electronics/tech-backdrop.webp` — **Gradient tech backdrop** (Props & styling)
+  - Suggested prompt: Studio product photo of gradient tech backdrop on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/electronics/floating-cable.webp` — **Floating with cable loop** (Props & styling)
+  - Suggested prompt: Studio product photo of floating with cable loop on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/jewelry/velvet-surface.webp` — **Velvet surface** (Props & styling)
+  - Suggested prompt: Studio product photo of deep navy velvet surface on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/jewelry/macro-sparkle.webp` — **Macro sparkle** (Props & styling)
+  - Suggested prompt: Studio product photo of brilliant facet sparkle, macro on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/jewelry/silk-fabric.webp` — **Silk fabric** (Props & styling)
+  - Suggested prompt: Studio product photo of silk fabric on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/jewelry/water-reflection.webp` — **Water surface reflection** (Props & styling)
+  - Suggested prompt: Studio product photo of water surface reflection on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/props/jewelry/model-close-up.webp` — **Model's neck / hand close-up** (Props & styling)
+  - Suggested prompt: Studio product photo of model's neck or hand close-up on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### compositions (3)
+
+- [ ] `public/images/product/compositions/centered.webp` — **Centered** (Composition)
+  - Suggested prompt: Studio product photo of centered composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/compositions/rule-of-thirds.webp` — **Rule of thirds** (Composition)
+  - Suggested prompt: Studio product photo of placed on the right third of the frame on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/product/compositions/symmetric.webp` — **Symmetric** (Composition)
+  - Suggested prompt: Studio product photo of symmetrical composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
 ---
-Total: 468 referenced, 425 present, 43 missing.
+Total: 638 referenced, 425 present, 213 missing.

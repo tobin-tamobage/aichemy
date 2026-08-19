@@ -1,9 +1,11 @@
 import type { DomainRecipe, DomainState } from './types';
 import { cinematicDomain } from './cinematic';
 import { idPhotoDomain } from './id-photo';
+import { weddingDomain } from './wedding';
+import { productDomain } from './product';
 
 /** Registry domain aktif — StartScreen + domain switcher membaca daftar ini. */
-export const DOMAINS: DomainRecipe[] = [cinematicDomain, idPhotoDomain];
+export const DOMAINS: DomainRecipe[] = [cinematicDomain, idPhotoDomain, weddingDomain, productDomain];
 
 export const getDomain = (id: string): DomainRecipe =>
   DOMAINS.find(d => d.id === id) ?? cinematicDomain;

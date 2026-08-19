@@ -122,12 +122,22 @@ export const productDomain: DomainRecipe = {
     const blankLabel = state.blankLabel === true;
     const negativeSpace = state.negativeSpace === true;
 
-    // Props chips terpilih → frasa prompt (riset §2.5). Bila kosong, blok 6 di-skip.
+    // Props chips terpilih → frasa prompt (riset §2.5). Bila user TIDAK memilih props,
+    // kategori mengontrol default styling (riset §2.1, didokumentasikan di katalog):
+    // defaultProps kategori dipakai sebagai isi blok props. UI tidak berubah — hanya
+    // prompt yang memakai default. Warnings tetap berdasarkan state.props saja.
     const propsValues = Array.isArray(state.props) ? (state.props as string[]) : [];
+    const propsByCategory = PROPS_BY_CATEGORY[category] ?? [];
     const propsPhrases = propsValues
-      .map(v => (PROPS_BY_CATEGORY[category] ?? []).find(o => o.value === v))
+      .map(v => propsByCategory.find(o => o.value === v))
       .filter((o): o is NonNullable<typeof o> => Boolean(o))
       .map(o => o.promptPhrase);
+    const effectivePropsPhrases = propsPhrases.length > 0
+      ? propsPhrases
+      : (PRODUCT_CATEGORIES.find(o => o.value === category)?.defaultProps ?? [])
+          .map(v => propsByCategory.find(o => o.value === v))
+          .filter((o): o is NonNullable<typeof o> => Boolean(o))
+          .map(o => o.promptPhrase);
 
     // Quality chips → label adalah frasa prompt itu sendiri (riset §2.8).
     const qualityValues = Array.isArray(state.quality) ? (state.quality as string[]) : [];
@@ -163,8 +173,8 @@ export const productDomain: DomainRecipe = {
     blocks.push(lighting.promptPhrase);
 
     // [Riset §2.5] Props support product, product tetap focal point — skip bila kosong.
-    if (propsPhrases.length > 0) {
-      blocks.push(`${propsPhrases.join(', ')}, props support the product, product remains the focal point`);
+    if (effectivePropsPhrases.length > 0) {
+      blocks.push(`${effectivePropsPhrases.join(', ')}, props support the product, product remains the focal point`);
     }
 
     // [Riset §2.6 + spec §3.3] Komposisi + negative space via toggle.

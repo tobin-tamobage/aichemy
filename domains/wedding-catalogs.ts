@@ -193,16 +193,3 @@ export const ATTIRE: AttireOption[] = [
   { value: 'necktie', label: 'Necktie', image: img('attire', 'necktie'), group: 'groom', promptPhrase: 'a necktie' },
   { value: 'boutonniere', label: 'Boutonniere', image: img('attire', 'boutonniere'), group: 'groom', promptPhrase: 'a boutonniere' },
 ];
-
-// Riset §3.8 — aspect ratio khas wedding
-export interface RatioOption extends DomainOption {
-  ratio: string;
-}
-export const WEDDING_RATIOS: RatioOption[] = [
-  { value: '3:2', label: '3:2 — Standard', image: img('ratios', '3-2'), ratio: '3:2', hint: 'Standard DSLR, safest default (ceremony, candid)' },
-  { value: '4:5', label: '4:5 — IG Feed', image: img('ratios', '4-5'), ratio: '4:5', hint: 'Instagram portrait feed (couple portrait, detail)' },
-  { value: '2:3', label: '2:3 — Full-length', image: img('ratios', '2-3'), ratio: '2:3', hint: 'Full-length bridal portrait' },
-  { value: '16:9', label: '16:9 — Cinematic', image: img('ratios', '16-9'), ratio: '16:9', hint: 'Cinematic wide (venue establishing, first dance wide)' },
-  { value: '1:1', label: '1:1 — Square', image: img('ratios', '1-1'), ratio: '1:1', hint: 'Detail / flat lay, profile-style' },
-  { value: '9:16', label: '9:16 — Story/Reels', image: img('ratios', '9-16'), ratio: '9:16', hint: 'Story/Reels format (vertical veil shot, sparkler exit)' },
-];

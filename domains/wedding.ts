@@ -103,7 +103,6 @@ export const weddingDomain: DomainRecipe = {
   ],
 
   buildPrompt: (state: DomainState): string => {
-    const moment = MOMENTS.find(o => o.value === str(state.moment)) ?? MOMENTS[0];
     const poses = POSES_BY_MOMENT[str(state.moment)] ?? POSES_BY_MOMENT.ceremony;
     const pose = poses.find(o => o.value === str(state.pose)) ?? poses[0];
     const framing = FRAMINGS.find(o => o.value === str(state.framing)) ?? FRAMINGS[0];
