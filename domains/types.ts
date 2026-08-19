@@ -68,6 +68,12 @@ export interface DomainRecipe {
   /** Field yang TIDAK ditimpa preset (mis. subjectAction, teks bebas). */
   presetProtectedKeys: string[];
   sections: DomainSection[];
+  /**
+   * Section yang TIDAK dirender engine — App merender UI khusus domain di luar
+   * DomainFieldRenderer (mis. cinematic 'elements': Characters/Scene/Reference
+   * images + InpaintEditor). Opsional & backward-compatible.
+   */
+  customSections?: Array<'elements'>;
   buildPrompt: (state: DomainState) => string;
   /** Smart rules — dihitung dari state, dirender sebagai banner. */
   warnings?: (state: DomainState) => DomainWarning[];
