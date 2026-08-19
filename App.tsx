@@ -13,31 +13,29 @@
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { normalizePromptState } from './types';
-import { Selector } from './components/Selector';
-import { Slider } from './components/Slider';
-import { VisualSelector } from './components/VisualSelector';
-import { FStopSelector } from './components/FStopSelector';
-import { TextInput } from './components/TextInput';
 import { PresetLibraryModal } from './components/PresetLibraryModal';
 import { CharacterLibraryModal } from './components/CharacterLibraryModal';
 import { InpaintEditor } from './components/InpaintEditor';
-import { ClearableControl } from './components/ClearableControl';
 import { StartScreen } from './components/StartScreen';
 import { StudioAccordionSection } from './components/StudioAccordionSection';
 import { StudioWorkspaceShell } from './components/StudioWorkspaceShell';
 import { UnsavedChangesModal } from './components/UnsavedChangesModal';
 import { NewProjectModal } from './components/NewProjectModal';
 import { MentionTextarea } from './components/video/MentionTextarea';
+import { DomainFieldRenderer } from './components/DomainFieldRenderer';
 import type { MentionOption } from './components/video/MentionTextarea';
 
 import {
-  usePromptState, usePromptAutoBuilder, useReferenceImages,
+  useReferenceImages,
   useElements, useProjectIO, projectNameFromPath, useTheme,
-  createInitialPromptState, createInitialCharacter, createInitialScene, createInitialImageInput,
+  createInitialCharacter, createInitialScene, createInitialImageInput,
 } from './hooks';
+import { useDomainState } from './hooks/useDomainState';
+import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID, applyPreset } from './domains';
+import type { DomainRecipe, DomainState, DomainWarning } from './domains';
+import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
-import { mergePresetData } from './services/presetData';
 import {
   downloadTextFile,
   readFileAsText,
@@ -45,12 +43,6 @@ import {
   loadAutosave,
   touchRecentProject,
 } from './services/browserStorage';
-
-import {
-  SHOT_TYPES, LIGHTING_TYPES, CAMERAS, LENSES, FOCAL_LENGTHS,
-  FILM_STOCKS, PHOTOGRAPHERS, MOVIE_LOOKS, FILTERS, ASPECT_RATIOS,
-  VIEWING_DIRECTIONS,
-} from './constants';
 
 import type {
   CharacterData,
@@ -65,9 +57,10 @@ import type {
 } from './types';
 
 import {
-  Camera, Aperture, Film, Video, Download, AlertCircle, Layers,
+  Video, Download, AlertCircle, Layers,
   X, Copy, Check, User, Shirt, Box, ImageIcon, Edit2, Bookmark,
   RefreshCw, Upload, Plus, Home, FolderOpen, FileDown, Moon, Sun,
+  AlertTriangle,
 } from 'lucide-react';
 
 // ============================================
@@ -76,9 +69,6 @@ import {
 
 /** Total reference images folded into the constructed prompt. */
 const MAX_REFERENCE_IMAGES = 14;
-
-const filterImageAspectRatioOptions = (aspectRatios: string[]): string[] =>
-  aspectRatios.filter(aspectRatio => aspectRatio !== 'auto');
 
 /** Returns the icon component for an element type */
 const elementIcon = (id: ElementId) => {
@@ -196,8 +186,8 @@ const makeAdditionalReferenceDragHandlers = (
   },
 });
 
-type StudioSectionId = 'subjectFraming' | 'lightingMood' | 'cameraGear' | 'styleAesthetics' | 'elements';
-type StudioExpandedSections = Record<StudioSectionId, boolean>;
+/** Accordion state per section id — engine section ids + 'elements-tool' (cinematic). */
+type StudioExpandedSections = Record<string, boolean>;
 
 const isDesktopStudioViewport = () => {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
@@ -224,26 +214,26 @@ const createDefaultExpandedSections = (
 ): StudioExpandedSections => {
   if (!isDesktopStudioViewport()) {
     return {
-      subjectFraming: true,
-      lightingMood: true,
-      cameraGear: true,
-      styleAesthetics: true,
-      elements: true,
+      'subject-framing': true,
+      'lighting-mood': true,
+      'camera-gear': true,
+      'style-aesthetics': true,
+      'elements-tool': true,
     };
   }
 
   return {
-    subjectFraming: true,
-    lightingMood: hasNonEmptyValue(promptState.lighting) || hasNonEmptyValue(promptState.mood),
-    cameraGear: hasNonEmptyValue(promptState.camera)
+    'subject-framing': true,
+    'lighting-mood': hasNonEmptyValue(promptState.lighting) || hasNonEmptyValue(promptState.mood),
+    'camera-gear': hasNonEmptyValue(promptState.camera)
       || hasNonEmptyValue(promptState.focalLength)
       || hasNonEmptyValue(promptState.lens)
       || hasNonEmptyValue(promptState.fStop)
       || hasNonEmptyValue(promptState.filmStock),
-    styleAesthetics: hasNonEmptyValue(promptState.photographer)
+    'style-aesthetics': hasNonEmptyValue(promptState.photographer)
       || hasNonEmptyValue(promptState.movieLook)
       || promptState.filter.length > 0,
-    elements: !!promptState.showNewAnglePrompt
+    'elements-tool': !!promptState.showNewAnglePrompt
       || characters.length > 1
       || hasLoadedCharacterReferences(characters)
       || hasLoadedElement(sceneElement)
@@ -252,13 +242,65 @@ const createDefaultExpandedSections = (
   };
 };
 
+/** Buka semua section engine (domain non-cinematic, fresh project). */
+const expandAllSections = (domain: DomainRecipe): StudioExpandedSections => {
+  const expanded: StudioExpandedSections = {};
+  for (const section of domain.sections) expanded[section.id] = true;
+  return expanded;
+};
+
+/** Default accordion untuk sebuah domain (cinematic pakai logika lama; lainnya semua terbuka). */
+const defaultExpandedForDomain = (
+  domain: DomainRecipe,
+  state: DomainState,
+  characters: CharacterData[],
+  sceneElement: ElementState,
+  imageInput: ElementState,
+  additionalReferenceImages: ElementState[],
+): StudioExpandedSections => (
+  domain.id === 'cinematic'
+    ? createDefaultExpandedSections(
+        state as unknown as PromptState,
+        characters,
+        sceneElement,
+        imageInput,
+        additionalReferenceImages,
+      )
+    : expandAllSections(domain)
+);
+
+/** Banner smart-rule (domain.warnings) di bawah section terkait. */
+const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning }) => (
+  <div className={`flex items-start gap-2 px-3 py-2.5 border text-xs font-medium ${
+    warning.level === 'warn'
+      ? 'bg-danger/10 border-danger/30 text-danger'
+      : 'bg-accent/10 border-accent/30 text-accent2'
+  }`}>
+    {warning.level === 'warn'
+      ? <AlertTriangle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+      : <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />}
+    <span className="leading-relaxed">{warning.text}</span>
+  </div>
+);
+
+/**
+ * Project file dengan metadata domain (Task 6 merapikan format v3;
+ * untuk Task 5 cukup menambah domainId + domainState, backward compatible).
+ */
+type AppProjectFile = ProjectFile & {
+  domainId?: string;
+  domainState?: Record<string, unknown>;
+};
+
 // ============================================
 // MAIN APP COMPONENT
 // ============================================
 
 export default function App() {
   // --- Custom Hooks ---
-  const prompt = usePromptState();
+  const [domainId, setDomainId] = useState<string>(DEFAULT_DOMAIN_ID);
+  const activeDomain = useMemo(() => getDomain(domainId), [domainId]);
+  const domain = useDomainState(activeDomain);
   const elements = useElements();
   const { theme, toggle } = useTheme();
 
@@ -269,10 +311,12 @@ export default function App() {
   const [showExportFeedback, setShowExportFeedback] = useState(false);
   const [elementError, setElementError] = useState<string | null>(null);
   const [generationMode, setGenerationMode] = useState<'generate' | 'edit'>('generate');
+  const [isEditingPrompt, setIsEditingPrompt] = useState(false);
 
   const [expandedSections, setExpandedSections] = useState<StudioExpandedSections>(() => (
-    createDefaultExpandedSections(
-      prompt.promptState,
+    defaultExpandedForDomain(
+      activeDomain,
+      domain.state,
       elements.characters,
       elements.sceneElement,
       elements.imageInput,
@@ -293,27 +337,28 @@ export default function App() {
   const isRestoringProjectRef = useRef(false);
   const importFileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const toggleSection = useCallback((sectionId: StudioSectionId) => {
+  const toggleSection = useCallback((sectionId: string) => {
     setExpandedSections(prev => ({ ...prev, [sectionId]: !prev[sectionId] }));
   }, []);
 
   // --- Project IO ---
   const projectIO = useProjectIO({
-    promptState: prompt.promptState,
+    promptState: domain.state as unknown as PromptState,
     characters: elements.characters,
     sceneElement: elements.sceneElement,
     sceneInputMode: elements.sceneInputMode,
     imageInput: elements.imageInput,
     additionalReferenceImages: elements.additionalReferenceImages,
-    setPromptState: prompt.setPromptState,
+    // Domain state adalah satu-satunya sumber kebenaran — projectIO hanya reset lewat hook.
+    setPromptState: (state: PromptState) => domain.reset(state as unknown as DomainState),
     setCharacters: elements.setCharacters,
     setSceneElement: elements.setSceneElement,
     setSceneInputMode: elements.setSceneInputMode,
     setImageInput: elements.setImageInput,
     setAdditionalReferenceImages: elements.setAdditionalReferenceImages,
     setError: setElementError,
-    setIsManualPrompt: prompt.setIsManualPrompt,
-    setIsEditingPrompt: prompt.setIsEditingPrompt,
+    setIsManualPrompt: () => domain.clearManual(),
+    setIsEditingPrompt: setIsEditingPrompt,
     currentProjectId,
     setCurrentProjectId,
     currentProjectName,
@@ -323,17 +368,26 @@ export default function App() {
 
   // --- Track dirty state on prompt/setting changes ---
   const projectSnapshotRef = useRef<string | null>(null);
+  const [baselineEpoch, setBaselineEpoch] = useState(0);
   const currentProjectSnapshot = useMemo(
-    () => createStateComparisonKey({ promptState: prompt.promptState }),
-    [prompt.promptState],
+    () => createStateComparisonKey({ domainId, domainState: domain.state }),
+    [domainId, domain.state],
   );
 
-  // Capture a clean snapshot whenever a project is loaded/saved/created
+  /** Tetapkan baseline bersih — effect capture menangkap snapshot pada commit
+   *  berikutnya sebagai acuan compare. Dipanggil di titik save/load/create/switch
+   *  (epoch berubah → capture; typing TIDAK mengubah epoch → snapshot tetap acuan). */
+  const requestCleanBaseline = useCallback(() => {
+    setBaselineEpoch(epoch => epoch + 1);
+    setHasUnsavedChanges(false);
+  }, []);
+
+  // Capture baseline bersih (state sudah final di commit ini)
   useEffect(() => {
-    if (!hasUnsavedChanges && appView === 'editor') {
-      projectSnapshotRef.current = currentProjectSnapshot;
-    }
-  }, [hasUnsavedChanges, appView, currentProjectSnapshot]);
+    projectSnapshotRef.current = currentProjectSnapshot;
+    // deps sengaja hanya epoch: capture HANYA saat baseline diminta eksplisit
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [baselineEpoch]);
 
   // Compare current state to snapshot — mark dirty if changed
   useEffect(() => {
@@ -351,15 +405,17 @@ export default function App() {
     if (appView !== 'editor' || !currentProjectId) return;
     clearTimeout(autosaveTimeoutRef.current ?? undefined);
     autosaveTimeoutRef.current = window.setTimeout(() => {
-      const data = projectIO.buildProjectData();
+      const data = projectIO.buildProjectData() as AppProjectFile;
       data.id = currentProjectId;
       data.name = currentProjectName || data.name;
+      data.domainId = domainId;
+      data.domainState = domain.state;
       if (saveAutosave(currentProjectId, data)) {
-        touchRecentProject(currentProjectId, data.name);
+        touchRecentProject(currentProjectId, data.name, domainId);
       }
     }, 1000);
     return () => clearTimeout(autosaveTimeoutRef.current ?? undefined);
-  }, [appView, currentProjectId, currentProjectName, currentProjectSnapshot, projectIO]);
+  }, [appView, currentProjectId, currentProjectName, currentProjectSnapshot, projectIO, domainId, domain.state]);
 
   // --- Warn before leaving the page with unsaved changes ---
   useEffect(() => {
@@ -385,32 +441,52 @@ export default function App() {
 
   /** Export the current project as a .nbproject JSON download. */
   const handleExportProject = useCallback(() => {
-    const data = projectIO.buildProjectData();
+    const data = projectIO.buildProjectData() as AppProjectFile;
+    data.domainId = domainId;
+    data.domainState = domain.state;
     const safeName = (data.name || 'untitled').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
     downloadTextFile(`${safeName}.nbproject`, JSON.stringify(data, null, 2));
     if (currentProjectId) {
       saveAutosave(data.id, data);
-      touchRecentProject(data.id, data.name);
+      touchRecentProject(data.id, data.name, domainId);
     }
-    setHasUnsavedChanges(false);
+    requestCleanBaseline();
     setShowSavedFeedback(true);
     setTimeout(() => setShowSavedFeedback(false), 2000);
-  }, [projectIO, currentProjectId]);
+  }, [projectIO, currentProjectId, domainId, domain.state, requestCleanBaseline]);
+
+  /** Restore semua state dari ProjectFile — domain diambil dari file (fallback cinematic). */
+  const restoreProject = useCallback((project: AppProjectFile) => {
+    const nextDomainId = getDomain(project.domainId ?? DEFAULT_DOMAIN_ID).id;
+    setDomainId(nextDomainId);
+    // Elemen (characters/scene/global ref) + id/name via projectIO; state domain
+    // ditimpa eksplisit di bawah (projectIO me-reset via setPromptState adapter).
+    projectIO.restoreProjectState(project);
+    const targetDomain = getDomain(nextDomainId);
+    if (project.domainState && typeof project.domainState === 'object') {
+      domain.reset(project.domainState);
+    } else if (targetDomain.id === 'cinematic') {
+      domain.reset(normalizePromptState(project.promptState) as unknown as DomainState);
+    } else {
+      domain.reset(targetDomain.createEmptyState());
+    }
+    requestCleanBaseline();
+  }, [domain, projectIO, requestCleanBaseline]);
 
   /** Import a .nbproject file picked via the hidden file input. */
   const handleImportFile = useCallback(async (file: File) => {
     isRestoringProjectRef.current = true;
     try {
       const text = await readFileAsText(file);
-      const project = JSON.parse(text) as ProjectFile;
+      const project = JSON.parse(text) as AppProjectFile;
       if (!project || typeof project !== 'object' || !project.promptState) {
         throw new Error('Not a valid .nbproject file');
       }
       if (!project.id) project.id = globalThis.crypto.randomUUID();
       if (!project.name) project.name = projectNameFromPath(file.name);
-      projectIO.restoreProjectState(project);
+      restoreProject(project);
       saveAutosave(project.id, project);
-      touchRecentProject(project.id, project.name);
+      touchRecentProject(project.id, project.name, project.domainId ?? DEFAULT_DOMAIN_ID);
       studioLayoutResetRequestedRef.current = true;
       setTimeout(() => { isRestoringProjectRef.current = false; }, 100);
       setAppView('editor');
@@ -418,22 +494,22 @@ export default function App() {
       isRestoringProjectRef.current = false;
       setElementError(`Failed to import project: ${err instanceof Error ? err.message : String(err)}`);
     }
-  }, [projectIO]);
+  }, [restoreProject]);
 
   /** Load a project from the localStorage autosave of a recent entry. */
   const handleLoadRecentProject = useCallback((projectId: string) => {
-    const project = loadAutosave(projectId);
+    const project = loadAutosave(projectId) as AppProjectFile | null;
     if (!project) {
       setElementError('Saved state for this project is no longer available. Import the .nbproject file instead.');
       return;
     }
     isRestoringProjectRef.current = true;
-    projectIO.restoreProjectState(project);
-    touchRecentProject(projectId, project.name);
+    restoreProject(project);
+    touchRecentProject(projectId, project.name, project.domainId ?? DEFAULT_DOMAIN_ID);
     studioLayoutResetRequestedRef.current = true;
     setTimeout(() => { isRestoringProjectRef.current = false; }, 100);
     setAppView('editor');
-  }, [projectIO]);
+  }, [restoreProject]);
 
   /** Handle the unsaved changes modal result */
   const handleUnsavedAction = useCallback((action: UnsavedChangesAction) => {
@@ -455,10 +531,15 @@ export default function App() {
   }, [pendingNavAction, handleExportProject]);
 
   /** New Project: clear state, enter editor, autosave initial state */
-  const handleNewProject = useCallback((name?: string) => {
+  const handleNewProject = useCallback((recipeId?: string, name?: string) => {
+    const nextDomain = getDomain(recipeId ?? domainId);
     projectIO.handleClearAll();
-    setExpandedSections(createDefaultExpandedSections(
-      createInitialPromptState(),
+    const emptyState = nextDomain.createEmptyState();
+    domain.reset(emptyState);
+    setDomainId(nextDomain.id);
+    setExpandedSections(defaultExpandedForDomain(
+      nextDomain,
+      emptyState,
       [createInitialCharacter(0)],
       createInitialScene(),
       createInitialImageInput(),
@@ -468,9 +549,9 @@ export default function App() {
     const projectName = name?.trim() || 'Untitled';
     setCurrentProjectId(id);
     setCurrentProjectName(projectName);
-    setHasUnsavedChanges(false);
+    requestCleanBaseline();
     setAppView('editor');
-  }, [projectIO]);
+  }, [domain, domainId, projectIO, requestCleanBaseline]);
 
   /** Open Project: trigger the hidden file input */
   const handleOpenProject = useCallback(() => {
@@ -479,14 +560,44 @@ export default function App() {
 
   const handleClearWorkspace = useCallback(() => {
     projectIO.handleClearAll();
-    setExpandedSections(createDefaultExpandedSections(
-      createInitialPromptState(),
+    const emptyState = activeDomain.createEmptyState();
+    domain.reset(emptyState);
+    setExpandedSections(defaultExpandedForDomain(
+      activeDomain,
+      emptyState,
       [createInitialCharacter(0)],
       createInitialScene(),
       createInitialImageInput(),
       [],
     ));
-  }, [projectIO]);
+    requestCleanBaseline();
+  }, [activeDomain, domain, projectIO, requestCleanBaseline]);
+
+  /** Ganti domain aktif (header switcher) — reset state hook + project baru,
+   *  dengan unsaved-warning bila ada perubahan yang belum disimpan. */
+  const switchDomain = useCallback((nextId: string) => {
+    if (nextId === domainId) return;
+    const targetDomain = getDomain(nextId);
+    const apply = () => {
+      setDomainId(nextId);
+      const emptyState = targetDomain.createEmptyState();
+      domain.reset(emptyState);
+      setExpandedSections(defaultExpandedForDomain(
+        targetDomain,
+        emptyState,
+        [createInitialCharacter(0)],
+        createInitialScene(),
+        createInitialImageInput(),
+        [],
+      ));
+      const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
+      setCurrentProjectId(id);
+      setCurrentProjectName('Untitled');
+      requestCleanBaseline();
+      setShowSavedFeedback(false);
+    };
+    requestNavigation(apply);
+  }, [domainId, domain, requestNavigation, requestCleanBaseline]);
 
   // --- Auto-switch generation mode based on global reference image ---
   useEffect(() => {
@@ -500,8 +611,9 @@ export default function App() {
     }
 
     studioLayoutResetRequestedRef.current = false;
-    setExpandedSections(createDefaultExpandedSections(
-      prompt.promptState,
+    setExpandedSections(defaultExpandedForDomain(
+      activeDomain,
+      domain.state,
       elements.characters,
       elements.sceneElement,
       elements.imageInput,
@@ -509,7 +621,8 @@ export default function App() {
     ));
   }, [
     appView,
-    prompt.promptState,
+    activeDomain,
+    domain.state,
     elements.characters,
     elements.sceneElement,
     elements.imageInput,
@@ -518,19 +631,22 @@ export default function App() {
 
   useEffect(() => {
     if (elementError) {
-      setExpandedSections(prev => (prev.elements ? prev : { ...prev, elements: true }));
+      setExpandedSections(prev => (prev['elements-tool'] ? prev : { ...prev, 'elements-tool': true }));
     }
   }, [elementError]);
 
-  // --- Auto-build prompt when state changes ---
-  usePromptAutoBuilder(
-    prompt.promptState,
-    prompt.isManualPrompt,
-    prompt.prevPromptStateRef,
-    elements.imageInput,
-    generationMode,
-    prompt.setFinalPrompt,
-  );
+  // --- Final prompt: auto-build dari domain hook; cinematic pakai prompt singkat
+  // saat mode Edit (Inpaint) dengan Global Reference aktif (perilaku lama).
+  const isEditWithSourceImage = domainId === 'cinematic'
+    && !!elements.imageInput.base64Data
+    && generationMode === 'edit';
+  const editModePrompt = useMemo(() => {
+    if (!isEditWithSourceImage) return '';
+    const subject = getSubjectPhrase(domain.state as unknown as PromptState);
+    const ar = getAspectRatioSentence(domain.state as unknown as PromptState);
+    return [`Modify the source image to: ${subject}.`, 'Don\'t blur faces randomly.', ar].filter(Boolean).join(' ');
+  }, [isEditWithSourceImage, domain.state]);
+  const finalPrompt = isEditWithSourceImage && !domain.isManualPrompt ? editModePrompt : domain.finalPrompt;
 
   // --- Reference image descriptors folded into the prompt ---
   const refs = useReferenceImages(
@@ -623,19 +739,26 @@ export default function App() {
     [subjectCharacterMentions, subjectImageMentions],
   );
 
-  const aspectRatioOptions = useMemo(() => filterImageAspectRatioOptions(ASPECT_RATIOS), []);
-
-  /** Load visual settings and only fill prompt fields that are currently empty. */
+  /** Load visual settings — merge preset ke state saat ini (engine). */
   const handleLoadPreset = (preset: PresetWithPrompts) => {
-    const nextPromptState = normalizePromptState(
-      mergePresetData(prompt.promptState, preset.data),
+    const nextState = applyPreset(
+      activeDomain,
+      domain.state,
+      (preset.data ?? {}) as unknown as Record<string, unknown>,
     );
-
-    prompt.setPromptState(nextPromptState);
+    // Perilaku preset existing: teks prompt yang sudah terisi tidak pernah ditimpa.
+    for (const key of ['subjectAction', 'environment', 'mood'] as const) {
+      const currentValue = domain.state[key];
+      if (typeof currentValue === 'string' && currentValue.trim().length > 0) {
+        nextState[key] = currentValue;
+      }
+    }
+    domain.reset(nextState);
     setExpandedSections(prev => ({
       ...prev,
-      ...createDefaultExpandedSections(
-        nextPromptState,
+      ...defaultExpandedForDomain(
+        activeDomain,
+        nextState,
         elements.characters,
         elements.sceneElement,
         elements.imageInput,
@@ -646,16 +769,14 @@ export default function App() {
 
   /** Full prompt text (reference instruction + constructed prompt). */
   const primaryPromptToSend = useMemo(() => {
-    const modifiedFinal = prompt.finalPrompt;
-    if (!currentElementsInstructionFull) return modifiedFinal;
-    return `${currentElementsInstructionFull} ${modifiedFinal}`.trim();
-  }, [currentElementsInstructionFull, prompt.finalPrompt]);
+    if (!currentElementsInstructionFull) return finalPrompt;
+    return `${currentElementsInstructionFull} ${finalPrompt}`.trim();
+  }, [currentElementsInstructionFull, finalPrompt]);
 
   const primaryPromptForDisplay = useMemo(() => {
-    const modifiedFinal = prompt.finalPrompt;
-    if (!currentElementsInstructionDisplay) return modifiedFinal;
-    return `${currentElementsInstructionDisplay} ${modifiedFinal}`.trim();
-  }, [currentElementsInstructionDisplay, prompt.finalPrompt]);
+    if (!currentElementsInstructionDisplay) return finalPrompt;
+    return `${currentElementsInstructionDisplay} ${finalPrompt}`.trim();
+  }, [currentElementsInstructionDisplay, finalPrompt]);
 
   /** Copy prompt text to clipboard */
   const handleCopyPrompt = () => {
@@ -708,7 +829,7 @@ export default function App() {
         isOpen={showNewProjectModal}
         onConfirm={(name) => {
           setShowNewProjectModal(false);
-          handleNewProject(name);
+          handleNewProject(domainId, name);
         }}
         onCancel={() => setShowNewProjectModal(false)}
       />
@@ -755,6 +876,25 @@ export default function App() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 xl:justify-end">
+            {/* Domain switcher */}
+            <div className="flex items-center gap-1.5" role="group" aria-label="Recipe domain">
+              {DOMAINS.map(d => (
+                <button
+                  key={d.id}
+                  type="button"
+                  onClick={() => switchDomain(d.id)}
+                  title={d.tagline}
+                  className={`h-9 px-3 rounded-full border text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
+                    d.id === domainId
+                      ? 'bg-accent text-white border-accent'
+                      : 'border-line text-dim hover:text-ink hover:border-dim'
+                  }`}
+                >
+                  <span aria-hidden="true">{d.icon}</span>
+                  <span className="hidden sm:inline">{d.label}</span>
+                </button>
+              ))}
+            </div>
             <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
               title="Back to start screen"
               className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
@@ -795,165 +935,65 @@ export default function App() {
         leftPane={(
           <div className="space-y-4 pb-12 lg:pb-8">
 
-          {/* Section 1: Subject & Framing */}
-          <StudioAccordionSection
-            id="subject-framing"
-            icon={<Camera className="w-5 h-5" />}
-            isOpen={expandedSections.subjectFraming}
-            onToggle={() => toggleSection('subjectFraming')}
-            title="01. Subject & Framing"
-          >
-            <div className="grid gap-6">
-              <div>
-                <label className="block text-[11px] font-bold uppercase tracking-widest text-dim mb-1">Subject & Action</label>
-                <MentionTextarea
-                  value={prompt.promptState.subjectAction}
-                  onChange={(val) => prompt.updateState('subjectAction', val)}
-                  mentions={subjectMentions}
-                  spellCheck={true}
-                  placeholder={subjectMentions.length > 0
-                    ? 'E.g., @Character1 walks toward @Image1... (type @ to reference a character or image)'
-                    : 'E.g., A woman in a trench coat checking her phone...'}
-                  rows={3}
-                  className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink text-sm focus:outline-none focus:border-accent transition-colors resize-y"
-                />
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ClearableControl value={prompt.promptState.shotType} onClear={() => prompt.updateState('shotType', "")}>
-                  <VisualSelector label="Shot Type / Angle" value={prompt.promptState.shotType}
-                    onChange={(val) => prompt.updateState('shotType', val)} options={SHOT_TYPES} previewRatio="aspect-video" />
-                </ClearableControl>
-                {prompt.promptState.shotType && (
-                  <ClearableControl value={prompt.promptState.viewingDirection} onClear={() => prompt.updateState('viewingDirection', "")}>
-                    <VisualSelector label="Viewing Direction (Optional)" value={prompt.promptState.viewingDirection}
-                      onChange={(val) => prompt.updateState('viewingDirection', val)} options={VIEWING_DIRECTIONS} previewRatio="aspect-video" />
-                  </ClearableControl>
-                )}
-              </div>
-              <div>
-                <Selector label="Aspect Ratio" value={prompt.promptState.aspectRatio}
-                  onChange={(val) => prompt.updateState('aspectRatio', val)}
-                  options={aspectRatioOptions} />
-              </div>
-              {prompt.promptState.shotType && (
-                <label className="flex items-center gap-2.5 cursor-pointer group select-none px-1"
-                  onClick={() => prompt.setPromptState(prev => ({ ...prev, candidShot: !prev.candidShot }))}>
-                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
-                    prompt.promptState.candidShot
-                      ? 'bg-accent border-accent'
-                      : 'border-line bg-surface group-hover:border-dim'
-                  }`}>
-                    {prompt.promptState.candidShot && (
-                      <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M2 6l3 3 5-5" />
-                      </svg>
-                    )}
+          {/* Engine sections — domain.sections via DomainFieldRenderer (customSections dirender khusus di bawah) */}
+          {activeDomain.sections.map(section => {
+            const sectionWarnings = domain.warnings.filter(w => w.sectionId === section.id);
+            return (
+              <StudioAccordionSection
+                key={section.id}
+                id={section.id}
+                icon={section.icon}
+                isOpen={expandedSections[section.id] ?? false}
+                onToggle={() => toggleSection(section.id)}
+                title={section.title}
+              >
+                <div className="grid gap-6">
+                  {section.fields.map(field => (
+                    <div key={field.key}>
+                      {domainId === 'cinematic' && field.key === 'subjectAction' ? (
+                        <div className="flex flex-col gap-2">
+                          <label className="text-xs font-bold uppercase tracking-wider text-accent2">Subject & Action</label>
+                          <MentionTextarea
+                            value={typeof domain.state.subjectAction === 'string' ? domain.state.subjectAction : ''}
+                            onChange={(val) => domain.updateField('subjectAction', val)}
+                            mentions={subjectMentions}
+                            spellCheck={true}
+                            placeholder={subjectMentions.length > 0
+                              ? 'E.g., @Character1 walks toward @Image1... (type @ to reference a character or image)'
+                              : 'E.g., A woman in a trench coat checking her phone...'}
+                            rows={3}
+                            className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink text-sm focus:outline-none focus:border-accent transition-colors resize-y"
+                          />
+                        </div>
+                      ) : (
+                        <DomainFieldRenderer
+                          field={field}
+                          value={domain.state[field.key]}
+                          onChange={(value) => domain.updateField(field.key, value)}
+                          state={domain.state}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {sectionWarnings.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    {sectionWarnings.map((warning, idx) => (
+                      <SectionWarningBanner key={`${warning.sectionId}-${idx}`} warning={warning} />
+                    ))}
                   </div>
-                  <span className={`text-xs font-medium tracking-wide ${
-                    prompt.promptState.candidShot ? 'text-ink' : 'text-dim group-hover:text-ink'
-                  }`}>Subject unaware of camera</span>
-                </label>
-              )}
-              <TextInput label="Environment" value={prompt.promptState.environment}
-                onChange={(val) => prompt.updateState('environment', val)}
-                spellCheck={true}
-                placeholder="E.g., at a rainy London bus stop at night..." />
-            </div>
-          </StudioAccordionSection>
+                )}
+              </StudioAccordionSection>
+            );
+          })}
 
-          {/* Section 2: Lighting & Mood */}
-          <StudioAccordionSection
-            id="lighting-mood"
-            icon={<Aperture className="w-5 h-5" />}
-            isOpen={expandedSections.lightingMood}
-            onToggle={() => toggleSection('lightingMood')}
-            title="02. Lighting & Mood"
-          >
-            <div className="grid gap-6">
-              <ClearableControl value={prompt.promptState.lighting} onClear={() => prompt.updateState('lighting', "")}>
-                <VisualSelector label="Lighting Source" value={prompt.promptState.lighting}
-                  onChange={(val) => prompt.updateState('lighting', val)} options={LIGHTING_TYPES} previewRatio="aspect-[3/4]" />
-              </ClearableControl>
-              <TextInput label="Atmosphere / Mood" value={prompt.promptState.mood}
-                onChange={(val) => prompt.updateState('mood', val)}
-                spellCheck={true}
-                placeholder="E.g., moody, cinematic, lonely, melancholic..." />
-            </div>
-          </StudioAccordionSection>
-
-          {/* Section 3: Gear & Tech */}
-          <StudioAccordionSection
-            id="camera-gear"
-            icon={<Film className="w-5 h-5" />}
-            isOpen={expandedSections.cameraGear}
-            onToggle={() => toggleSection('cameraGear')}
-            title="03. Camera Gear"
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ClearableControl value={prompt.promptState.camera} onClear={() => prompt.updateState('camera', "")}>
-                <VisualSelector label="Camera Body" value={prompt.promptState.camera}
-                  onChange={(val) => prompt.updateState('camera', val)} options={CAMERAS} previewRatio="aspect-video" />
-              </ClearableControl>
-              <ClearableControl value={prompt.promptState.focalLength} onClear={() => prompt.updateState('focalLength', "")}>
-                <VisualSelector label="Focal Length" value={prompt.promptState.focalLength}
-                  onChange={(val) => prompt.updateState('focalLength', val)} options={FOCAL_LENGTHS} previewRatio="aspect-video" />
-              </ClearableControl>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:col-span-2">
-                <ClearableControl value={prompt.promptState.lens} onClear={() => prompt.updateState('lens', "")}>
-                  <VisualSelector label="Lens Type" value={prompt.promptState.lens}
-                    onChange={(val) => prompt.updateState('lens', val)} options={LENSES} previewRatio="aspect-video" />
-                </ClearableControl>
-                <ClearableControl value={prompt.promptState.fStop} onClear={() => prompt.updateState('fStop', "")}>
-                  <FStopSelector
-                    label="F-Stop"
-                    value={prompt.promptState.fStop}
-                    onChange={(val) => prompt.updateState('fStop', val)}
-                  />
-                </ClearableControl>
-              </div>
-              <ClearableControl value={prompt.promptState.filmStock} onClear={() => prompt.updateState('filmStock', "")}>
-                <VisualSelector label="Film Stock" value={prompt.promptState.filmStock}
-                  onChange={(val) => prompt.updateState('filmStock', val)} options={FILM_STOCKS} previewRatio="aspect-video" />
-              </ClearableControl>
-            </div>
-          </StudioAccordionSection>
-
-          {/* Section 4: Style */}
-          <StudioAccordionSection
-            id="style-aesthetics"
-            icon={<Video className="w-5 h-5" />}
-            isOpen={expandedSections.styleAesthetics}
-            onToggle={() => toggleSection('styleAesthetics')}
-            title="04. Style & Aesthetics"
-          >
-            <div className="grid gap-6">
-              <Slider label="Temperature (Creativity)" value={prompt.promptState.temperature}
-                onChange={(val) => prompt.updateState('temperature', val)} min={0} max={2} step={0.1}
-                labels={['Focused', 'Balanced', 'Creative']} />
-              <ClearableControl value={prompt.promptState.photographer} onClear={() => prompt.updateState('photographer', "")}>
-                <VisualSelector label="Photographer Style" value={prompt.promptState.photographer}
-                  onChange={(val) => prompt.updateState('photographer', val)} options={PHOTOGRAPHERS}
-                  placeholder="Choose a photographer..." previewRatio="aspect-square" />
-              </ClearableControl>
-              <ClearableControl value={prompt.promptState.movieLook} onClear={() => prompt.updateState('movieLook', "")}>
-                <VisualSelector label="Movie Look / Aesthetic" value={prompt.promptState.movieLook}
-                  onChange={(val) => prompt.updateState('movieLook', val)} options={MOVIE_LOOKS}
-                  placeholder="Choose a movie style..." previewRatio="aspect-video" />
-              </ClearableControl>
-              <ClearableControl value={prompt.promptState.filter} onClear={() => prompt.handleFilterChange([])}>
-                <VisualSelector label="Filter / Effect" value={prompt.promptState.filter}
-                  onChange={prompt.handleFilterChange} options={FILTERS}
-                  placeholder="Choose a filter..." previewRatio="aspect-video" multiSelect />
-              </ClearableControl>
-            </div>
-          </StudioAccordionSection>
-
-          {/* Section 5: Elements Tool */}
+          {/* Section 5: Elements Tool — fitur khusus cinematic (customSections) */}
+          {domainId === 'cinematic' && (
           <StudioAccordionSection
             id="elements-tool"
             icon={<Layers className="w-5 h-5" />}
-            isOpen={expandedSections.elements}
-            onToggle={() => toggleSection('elements')}
+            isOpen={expandedSections['elements-tool'] ?? false}
+            onToggle={() => toggleSection('elements-tool')}
             title="05. Elements Tool (Images)"
           >
             {/* Character Tabs */}
@@ -1390,25 +1430,25 @@ export default function App() {
 
             {/* Narrative Angle Toggle */}
             <div className="mt-2 flex items-center justify-between bg-surface/30 border border-line/50 p-3 hover:bg-surface/50 transition-colors cursor-pointer group select-none"
-              onClick={() => prompt.setPromptState(prev => ({ ...prev, showNewAnglePrompt: !prev.showNewAnglePrompt }))}>
+              onClick={() => domain.updateField('showNewAnglePrompt', domain.state.showNewAnglePrompt !== true)}>
               <div className="flex items-center gap-3">
-                <div className={`p-1.5 rounded-full ${prompt.promptState.showNewAnglePrompt ? 'bg-accent/20 text-accent' : 'bg-surface2 text-dim'}`}>
+                <div className={`p-1.5 rounded-full ${domain.state.showNewAnglePrompt === true ? 'bg-accent/20 text-accent' : 'bg-surface2 text-dim'}`}>
                   <Video className="w-4 h-4" />
                 </div>
                 <div className="flex flex-col">
-                  <span className={`text-xs font-bold uppercase tracking-widest ${prompt.promptState.showNewAnglePrompt ? 'text-ink' : 'text-dim group-hover:text-ink'}`}>
+                  <span className={`text-xs font-bold uppercase tracking-widest ${domain.state.showNewAnglePrompt === true ? 'text-ink' : 'text-dim group-hover:text-ink'}`}>
                     Narrative Angle Prompting
                   </span>
                   <span className="text-[10px] text-dim">"In this new angle what would the viewer see? Show us..."</span>
-                  {prompt.promptState.showNewAnglePrompt && !prompt.promptState.shotType && (
+                  {domain.state.showNewAnglePrompt === true && !domain.state.shotType && (
                     <span className="text-[10px] text-accent/80 mt-0.5 animate-in fade-in">
                       Warning: Needs a <b>Shot Type</b> to activate.
                     </span>
                   )}
                 </div>
               </div>
-              <div className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${prompt.promptState.showNewAnglePrompt ? 'bg-accent' : 'bg-surface2'}`}>
-                <div className={`absolute top-1 bottom-1 w-3 bg-white rounded-full transition-all duration-200 ${prompt.promptState.showNewAnglePrompt ? 'left-6' : 'left-1'}`} />
+              <div className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${domain.state.showNewAnglePrompt === true ? 'bg-accent' : 'bg-surface2'}`}>
+                <div className={`absolute top-1 bottom-1 w-3 bg-white rounded-full transition-all duration-200 ${domain.state.showNewAnglePrompt === true ? 'left-6' : 'left-1'}`} />
               </div>
             </div>
 
@@ -1417,13 +1457,14 @@ export default function App() {
               onChange={(e) => elements.handleElementFileSelected(e, setElementError)} />
             <canvas ref={elements.transcodeCanvasRef} className="hidden" />
           </StudioAccordionSection>
+          )}
           </div>
         )}
         rightPane={(
           <div className="space-y-6 pb-12 lg:pb-8">
 
           {/* Prompt Preview Box */}
-          <div className={`prompt-panel rounded-card border border-line p-6 relative transition-all group ${prompt.isEditingPrompt ? 'border-accent/50' : 'hover:border-accent/50'}`}>
+          <div className={`prompt-panel rounded-card border border-line p-6 relative transition-all group ${isEditingPrompt ? 'border-accent/50' : 'hover:border-accent/50'}`}>
             <div className="absolute -top-2.5 left-4 px-2 py-0.5 bg-base border border-line rounded-full text-accent2 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
               Constructed Prompt
             </div>
@@ -1433,15 +1474,15 @@ export default function App() {
                 className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5" title="Save current options as a preset">
                 <Bookmark className="w-3 h-3" /> SAVE PRESET
               </button>
-              <button onClick={() => prompt.setIsEditingPrompt(!prompt.isEditingPrompt)}
+              <button onClick={() => setIsEditingPrompt(!isEditingPrompt)}
                 className={`flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-1 border transition-all ${
-                  prompt.isEditingPrompt ? "bg-accent text-white border-accent" : "bg-transparent text-dim border-transparent hover:text-accent"
+                  isEditingPrompt ? "bg-accent text-white border-accent" : "bg-transparent text-dim border-transparent hover:text-accent"
                 }`}>
-                {prompt.isEditingPrompt ? <Check className="w-3 h-3" /> : <Edit2 className="w-3 h-3" />}
-                {prompt.isEditingPrompt ? "DONE" : "EDIT"}
+                {isEditingPrompt ? <Check className="w-3 h-3" /> : <Edit2 className="w-3 h-3" />}
+                {isEditingPrompt ? "DONE" : "EDIT"}
               </button>
-              {prompt.isManualPrompt && prompt.isEditingPrompt && (
-                <button onClick={() => prompt.resetPrompt()}
+              {domain.isManualPrompt && isEditingPrompt && (
+                <button onClick={() => domain.clearManual()}
                   className="flex items-center gap-1 text-danger hover:text-danger/80 text-[10px] font-bold uppercase transition-all px-2 py-1 border border-danger/30 hover:border-danger/70" title="Revert to auto-generated prompt">
                   <X className="w-3 h-3" /> RESET
                 </button>
@@ -1460,15 +1501,15 @@ export default function App() {
             </div>
 
             <div className="mt-8 font-mono text-sm leading-relaxed text-ink whitespace-pre-wrap">
-              {prompt.isEditingPrompt ? (
+              {isEditingPrompt ? (
                 <div className="flex flex-col gap-2">
                   {currentElementsInstructionDisplay && (
                     <div className="p-3 bg-base/30 border border-line text-dim italic text-xs select-none">
                       {currentElementsInstructionDisplay}
                     </div>
                   )}
-                  <textarea value={prompt.finalPrompt}
-                    onChange={(e) => { prompt.setFinalPrompt(e.target.value); prompt.setIsManualPrompt(true); }}
+                  <textarea value={finalPrompt}
+                    onChange={(e) => domain.setManual(e.target.value)}
                     placeholder="Type your prompt here..."
                     spellCheck={true}
                     className="w-full h-40 bg-base/50 border border-line p-3 text-ink focus:border-accent focus:outline-none resize-y" />
@@ -1508,7 +1549,9 @@ export default function App() {
         isOpen={showPresetLibrary}
         onClose={() => setShowPresetLibrary(false)}
         onApply={handleLoadPreset}
-        currentPromptState={prompt.promptState}
+        domainId={domainId}
+        currentDomainState={domain.state}
+        presetProtectedKeys={activeDomain.presetProtectedKeys}
       />
 
       <CharacterLibraryModal

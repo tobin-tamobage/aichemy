@@ -3,23 +3,29 @@ import { X, Save, Trash2, Play, Search, AlertCircle, Check, RotateCw } from 'luc
 import type {
   Preset,
   PresetWithPrompts,
-  PromptState,
 } from '../types';
-import { createPresetData } from '../services/presetData';
 import { loadAllPresets, saveUserPreset, deleteUserPreset } from '../services/browserStorage';
+import { getDomain } from '../domains';
 
 interface PresetLibraryModalProps {
   isOpen: boolean;
   onClose: () => void;
   onApply: (preset: PresetWithPrompts) => void;
-  currentPromptState: PromptState;
+  /** Domain aktif — semua call storage scoped per domain. */
+  domainId: string;
+  /** State domain generik saat ini untuk SAVE PRESET. */
+  currentDomainState: Record<string, unknown>;
+  /** Field yang TIDAK ikut disimpan (mis. subjectAction/environment cinematic). */
+  presetProtectedKeys: string[];
 }
 
 export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
   isOpen,
   onClose,
   onApply,
-  currentPromptState,
+  domainId,
+  currentDomainState,
+  presetProtectedKeys,
 }) => {
   const [presets, setPresets] = useState<PresetWithPrompts[]>([]);
   const [loading, setLoading] = useState(false);
@@ -41,7 +47,7 @@ export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
   const loadPresets = async () => {
     setLoading(true);
     try {
-      const all = await loadAllPresets();
+      const all = await loadAllPresets(domainId);
       // Normalize presets to allow both wrapped ({data}) and raw JSON shapes
       const validPresets = all.map((p) => {
         if (!p || typeof p !== 'object') return null;
@@ -88,15 +94,26 @@ export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
   const handleSave_Preset = async () => {
     if (!newPresetName.trim()) return;
 
+    // Simpan domainState minus presetProtectedKeys; teks prompt (subjectAction/
+    // environment/mood) hanya ikut bila non-kosong — perilaku preset existing
+    // ("hanya mengisi field kosong saat dimuat").
+    const data: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(currentDomainState)) {
+      if (presetProtectedKeys.includes(key)) continue;
+      if ((key === 'subjectAction' || key === 'environment' || key === 'mood')
+        && typeof value === 'string' && value.trim().length === 0) continue;
+      data[key] = value;
+    }
+
     const newPreset: PresetWithPrompts = {
       id: crypto.randomUUID(),
       name: newPresetName.trim(),
       timestamp: Date.now(),
-      data: createPresetData(currentPromptState),
+      data: data as PresetWithPrompts['data'],
     };
 
     try {
-      saveUserPreset(newPreset as Preset);
+      saveUserPreset(newPreset as unknown as Preset, domainId);
       setSuccessMsg('Preset saved!');
       setNewPresetName('');
       loadPresets();
@@ -111,7 +128,7 @@ export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
     if (!confirm(`Delete preset "${preset.name}"?`)) return;
 
     try {
-      deleteUserPreset(preset as Preset);
+      deleteUserPreset(preset as Preset, domainId);
       loadPresets();
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -128,6 +145,9 @@ export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
           <div className="flex items-center gap-2 text-accent2">
             <Search className="w-5 h-5" />
             <h2 className="text-lg font-black tracking-widest uppercase">Preset Library</h2>
+            <span className="px-2 py-0.5 border border-line rounded-full text-[9px] font-bold uppercase tracking-wider text-dim">
+              {getDomain(domainId).icon} {getDomain(domainId).label}
+            </span>
           </div>
           <button 
             onClick={onClose}

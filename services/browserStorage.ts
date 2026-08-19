@@ -9,12 +9,16 @@
 import type { Preset, ProjectFile, SavedCharacter } from '../types';
 
 const KEYS = {
+  /** Legacy user-preset key (cinematic) — dibaca + dimigrasi ke aichemy-presets-cinematic. */
   userPresets: 'renderzero_user_presets_v1',
   characters: 'renderzero_characters_v1',
   recentProjects: 'renderzero_recent_projects_v1',
   settings: 'renderzero_settings_v1',
   autosavePrefix: 'renderzero_autosave:',
 } as const;
+
+/** Key preset user per domain (spec: aichemy-presets-<domainId>). */
+const userPresetKey = (domainId: string): string => `aichemy-presets-${domainId}`;
 
 const MAX_RECENT_PROJECTS = 10;
 
@@ -82,18 +86,38 @@ function writeJson(key: string, value: unknown): boolean {
   }
 }
 
-function presetUrl(filename: string): string {
+function presetUrl(filename: string, domainId?: string): string {
   const base: string = import.meta.env?.BASE_URL || './';
-  return `${base}presets/${filename}`;
+  // Kompatibilitas: cinematic tetap public/presets/; domain lain public/presets/<domainId>/
+  const folder = domainId && domainId !== 'cinematic' ? `presets/${domainId}/` : 'presets/';
+  return `${base}${folder}${filename}`;
 }
 
 // ---------- presets ----------
 
-export async function loadBuiltinPresets(): Promise<Preset[]> {
+/** Builtin presets per domain. Cinematic memakai daftar statis di public/presets/ (path lama).
+ *  Domain lain: folder public/presets/<domainId>/ berisi index.json (array filename) — folder
+ *  boleh belum ada → return []. */
+export async function loadBuiltinPresets(domainId: string): Promise<Preset[]> {
+  let filenames: string[];
+  if (domainId === 'cinematic') {
+    filenames = BUILTIN_PRESET_FILES;
+  } else {
+    try {
+      const res = await fetch(presetUrl('index.json', domainId));
+      if (!res.ok) return [];
+      const manifest = (await res.json()) as unknown;
+      if (!Array.isArray(manifest)) return [];
+      filenames = manifest.filter((f): f is string => typeof f === 'string');
+    } catch {
+      return [];
+    }
+  }
+
   const results = await Promise.all(
-    BUILTIN_PRESET_FILES.map(async (filename): Promise<Preset | null> => {
+    filenames.map(async (filename): Promise<Preset | null> => {
       try {
-        const res = await fetch(presetUrl(filename));
+        const res = await fetch(presetUrl(filename, domainId));
         if (!res.ok) return null;
         const preset = (await res.json()) as Preset;
         return { ...preset, filename, type: 'bundled' };
@@ -105,34 +129,41 @@ export async function loadBuiltinPresets(): Promise<Preset[]> {
   return results.filter((p): p is Preset => p !== null);
 }
 
-export function loadUserPresets(): Preset[] {
-  const presets = readJson<Preset[]>(KEYS.userPresets, []);
+export function loadUserPresets(domainId: string): Preset[] {
+  const key = userPresetKey(domainId);
+  let presets = readJson<Preset[]>(key, []);
+  // Migrasi sekali: preset user cinematic lama tersimpan di renderzero_user_presets_v1.
+  if (presets.length === 0 && domainId === 'cinematic') {
+    presets = readJson<Preset[]>(KEYS.userPresets, []);
+    if (presets.length > 0) writeJson(key, presets);
+  }
   return presets.map(p => ({ ...p, type: 'user' as const }));
 }
 
-/** Built-in first, then user presets. */
-export async function loadAllPresets(): Promise<Preset[]> {
-  const [builtin, user] = await Promise.all([loadBuiltinPresets(), Promise.resolve(loadUserPresets())]);
+/** Builtin first, then user presets — keduanya scoped per domain. */
+export async function loadAllPresets(domainId: string): Promise<Preset[]> {
+  const [builtin, user] = await Promise.all([loadBuiltinPresets(domainId), Promise.resolve(loadUserPresets(domainId))]);
   return [...user, ...builtin];
 }
 
-export function saveUserPreset(preset: Preset): Preset[] {
-  const presets = loadUserPresets();
-  const entry: Preset = {
+export function saveUserPreset(preset: Preset, domainId: string): Preset[] {
+  const presets = loadUserPresets(domainId);
+  const entry: Preset & { domainId: string } = {
     ...preset,
+    domainId,
     filename: preset.filename || `${preset.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}_${preset.timestamp}.json`,
     type: 'user',
   };
   const index = presets.findIndex(p => p.id === entry.id || p.filename === entry.filename);
   if (index >= 0) presets[index] = entry; else presets.push(entry);
-  writeJson(KEYS.userPresets, presets);
+  writeJson(userPresetKey(domainId), presets);
   return presets;
 }
 
-/** Only user presets can be deleted; returns updated full user list. */
-export function deleteUserPreset(preset: Preset): Preset[] {
-  const presets = loadUserPresets().filter(p => p.id !== preset.id && p.filename !== preset.filename);
-  writeJson(KEYS.userPresets, presets);
+/** Only user presets can be deleted; returns updated full user list for the domain. */
+export function deleteUserPreset(preset: Preset, domainId: string): Preset[] {
+  const presets = loadUserPresets(domainId).filter(p => p.id !== preset.id && p.filename !== preset.filename);
+  writeJson(userPresetKey(domainId), presets);
   return presets;
 }
 
@@ -166,15 +197,17 @@ export interface RecentProjectEntry {
   projectId: string;
   name: string;
   lastOpened: number;
+  /** Domain recipe id — opsional, backward compatible dengan entry lama (default 'cinematic'). */
+  domainId?: string;
 }
 
 export function loadRecentProjects(): RecentProjectEntry[] {
   return readJson<RecentProjectEntry[]>(KEYS.recentProjects, []);
 }
 
-export function touchRecentProject(projectId: string, name: string): RecentProjectEntry[] {
+export function touchRecentProject(projectId: string, name: string, domainId?: string): RecentProjectEntry[] {
   const recents = loadRecentProjects().filter(r => r.projectId !== projectId);
-  recents.unshift({ projectId, name, lastOpened: Date.now() });
+  recents.unshift({ projectId, name, lastOpened: Date.now(), ...(domainId ? { domainId } : {}) });
   const trimmed = recents.slice(0, MAX_RECENT_PROJECTS);
   writeJson(KEYS.recentProjects, trimmed);
   return trimmed;

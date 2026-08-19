@@ -115,7 +115,7 @@ export const DomainFieldRenderer: React.FC<DomainFieldRendererProps> = ({ field,
           label={field.label}
           value={typeof value === 'string' ? value : ''}
           onChange={onChange}
-          options={field.options.map(o => o.value)}
+          options={field.options.map(o => ({ value: o.value, label: o.label }))}
           placeholder={field.placeholder}
         />
       );

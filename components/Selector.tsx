@@ -5,7 +5,8 @@ interface SelectorProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  options: string[];
+  /** string[] (label == value, backward compatible) atau pasangan {value, label}. */
+  options: string[] | Array<{ value: string; label: string }>;
   placeholder?: string;
   disabled?: boolean;
   disabledReason?: string;
@@ -27,11 +28,15 @@ export const Selector: React.FC<SelectorProps> = ({ label, value, onChange, opti
           }`}
         >
           <option value="">{placeholder}</option>
-          {options.map((opt) => (
-            <option key={opt} value={opt} disabled={disabledOptions.includes(opt)}>
-              {opt}{disabledOptions.includes(opt) ? ' (N/A)' : ''}
-            </option>
-          ))}
+          {options.map((opt) => {
+            const optValue = typeof opt === 'string' ? opt : opt.value;
+            const optLabel = typeof opt === 'string' ? opt : opt.label;
+            return (
+              <option key={optValue} value={optValue} disabled={disabledOptions.includes(optValue)}>
+                {optLabel}{disabledOptions.includes(optValue) ? ' (N/A)' : ''}
+              </option>
+            );
+          })}
         </select>
 
         {value && !disabled && (

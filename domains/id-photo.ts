@@ -63,7 +63,7 @@ export const idPhotoDomain: DomainRecipe = {
     {
       id: 'background',
       title: '03 · Background',
-      fields: [{ kind: 'visual', key: 'background', label: 'Background color', options: BACKGROUNDS, previewRatio: '4:3' }],
+      fields: [{ kind: 'visual', key: 'background', label: 'Background color', options: BACKGROUNDS, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'outfit',

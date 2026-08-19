@@ -1,20 +1,28 @@
 /**
- * StartScreen - Project selection and creation landing page
+ * StartScreen - Recipe picker + project selection landing page
  *
  * Web version: recent projects are stored in localStorage (autosaved state),
  * Open Project imports a .nbproject JSON file via a file picker.
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import { Plus, FolderOpen, Clock, Folder, AlertCircle, Check, X, Trash2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Plus, FolderOpen, Clock, Folder, AlertCircle, Trash2 } from 'lucide-react';
 import {
   loadRecentProjects,
   removeRecentProject,
   type RecentProjectEntry,
 } from '../services/browserStorage';
+import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID } from '../domains';
+
+/** Recipe fase 2/3 — kartu disabled 'Soon' (belum tersedia). */
+const SOON_RECIPES: { icon: string; label: string; tagline: string }[] = [
+  { icon: '💍', label: 'Wedding', tagline: 'Couple portraits, ceremony, and reception moments.' },
+  { icon: '📦', label: 'Product', tagline: 'Studio product photography with surfaces and lighting.' },
+  { icon: '📣', label: 'Marketing', tagline: 'Ads, flyers, and social media creative.' },
+];
 
 interface StartScreenProps {
-  onNewProject: (name?: string) => void;
+  onNewProject: (domainId: string, name?: string) => void;
   onOpenProject: () => void;
   onLoadRecentProject: (projectId: string) => void;
 }
@@ -22,15 +30,6 @@ interface StartScreenProps {
 export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }: StartScreenProps) {
   const [recentProjects, setRecentProjects] = useState<RecentProjectEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showNameInput, setShowNameInput] = useState(false);
-  const [newProjectName, setNewProjectName] = useState('');
-  const nameInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (showNameInput) {
-      nameInputRef.current?.focus();
-    }
-  }, [showNameInput]);
 
   useEffect(() => {
     try {
@@ -71,80 +70,58 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex items-start justify-center pt-12 sm:pt-16 pb-12 px-4 sm:px-8">
+      <div className="flex-1 flex items-start justify-center pt-10 sm:pt-14 pb-12 px-4 sm:px-8">
         <div className="w-full max-w-4xl space-y-10">
 
-          {/* Action Buttons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {showNameInput ? (
-              <div className="flex flex-col items-center justify-center gap-3 p-8 border-2 border-accent bg-accent/5 rounded-card">
-                <Plus className="w-10 h-10 text-accent" />
-                <div className="text-sm font-black uppercase tracking-wider text-accent2 mb-1">Name Your Project</div>
-                <div className="flex items-center gap-2 w-full max-w-xs">
-                  <input
-                    ref={nameInputRef}
-                    type="text"
-                    value={newProjectName}
-                    onChange={e => setNewProjectName(e.target.value)}
-                    onKeyDown={e => {
-                      if (e.key === 'Enter' && newProjectName.trim()) {
-                        onNewProject(newProjectName.trim());
-                        setShowNameInput(false);
-                        setNewProjectName('');
-                      }
-                      if (e.key === 'Escape') {
-                        setShowNameInput(false);
-                        setNewProjectName('');
-                      }
-                    }}
-                    placeholder="Project name..."
-                    className="flex-1 bg-surface border border-line text-ink text-sm px-3 py-2 focus:outline-none focus:border-accent placeholder-dim"
-                  />
-                  <button
-                    onClick={() => {
-                      if (newProjectName.trim()) {
-                        onNewProject(newProjectName.trim());
-                        setShowNameInput(false);
-                        setNewProjectName('');
-                      }
-                    }}
-                    disabled={!newProjectName.trim()}
-                    className="p-2 bg-accent text-white disabled:opacity-30 hover:bg-accent/90 transition-colors"
-                  >
-                    <Check className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => { setShowNameInput(false); setNewProjectName(''); }}
-                    className="p-2 text-dim hover:text-ink border border-line hover:border-dim transition-colors"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            ) : (
-            <button
-              onClick={() => { setShowNameInput(true); setNewProjectName(''); }}
-              className="group flex flex-col items-center justify-center gap-3 p-8 border-2 border-dashed border-line hover:border-accent bg-base hover:bg-accent/5 rounded-card transition-all duration-200"
-            >
-              <Plus className="w-10 h-10 text-dim group-hover:text-accent transition-colors" />
-              <div>
-                <div className="text-sm font-black uppercase tracking-wider text-ink group-hover:text-accent transition-colors">New Project</div>
-                <div className="text-[10px] text-dim mt-1 uppercase tracking-wider">Start fresh with a blank canvas</div>
-              </div>
-            </button>
-            )}
+          {/* Choose your Recipe */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2 border-b border-line pb-2">
+              <Plus className="w-4 h-4 text-accent" />
+              <h2 className="text-xs font-bold uppercase tracking-widest text-dim">Choose your Recipe</h2>
+            </div>
 
-            <button
-              onClick={onOpenProject}
-              className="group flex flex-col items-center justify-center gap-3 p-8 border border-line hover:border-accent bg-base hover:bg-surface rounded-card transition-all duration-200"
-            >
-              <FolderOpen className="w-10 h-10 text-dim group-hover:text-blue-400 transition-colors" />
-              <div>
-                <div className="text-sm font-black uppercase tracking-wider text-ink group-hover:text-blue-400 transition-colors">Open Project</div>
-                <div className="text-[10px] text-dim mt-1 uppercase tracking-wider">Import a .nbproject file</div>
-              </div>
-            </button>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {DOMAINS.map((domain) => (
+                <button
+                  key={domain.id}
+                  type="button"
+                  onClick={() => onNewProject(domain.id)}
+                  className="group flex flex-col items-start justify-center gap-2 p-6 border-2 border-dashed border-line hover:border-accent bg-base hover:bg-accent/5 rounded-card transition-all duration-200 text-left"
+                >
+                  <span className="text-3xl" aria-hidden="true">{domain.icon}</span>
+                  <span className="text-sm font-black uppercase tracking-wider text-ink group-hover:text-accent transition-colors">
+                    {domain.label}
+                  </span>
+                  <span className="text-[11px] text-dim leading-relaxed">{domain.tagline}</span>
+                </button>
+              ))}
+
+              {SOON_RECIPES.map((recipe) => (
+                <div
+                  key={recipe.label}
+                  className="relative flex flex-col items-start justify-center gap-2 p-6 border border-line/60 bg-surface/40 rounded-card opacity-55 cursor-not-allowed select-none"
+                  title="Coming soon"
+                >
+                  <span className="absolute top-3 right-3 px-2 py-0.5 border border-line rounded-full text-[9px] font-black uppercase tracking-widest text-dim">
+                    Soon
+                  </span>
+                  <span className="text-3xl grayscale" aria-hidden="true">{recipe.icon}</span>
+                  <span className="text-sm font-black uppercase tracking-wider text-dim">{recipe.label}</span>
+                  <span className="text-[11px] text-dim leading-relaxed">{recipe.tagline}</span>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Open Project */}
+          <button
+            onClick={onOpenProject}
+            className="w-full group flex flex-col items-center justify-center gap-2 p-8 border border-line hover:border-accent bg-base hover:bg-surface rounded-card transition-all duration-200"
+          >
+            <FolderOpen className="w-8 h-8 text-dim group-hover:text-blue-400 transition-colors" />
+            <div className="text-sm font-black uppercase tracking-wider text-ink group-hover:text-blue-400 transition-colors">Open Project</div>
+            <div className="text-[10px] text-dim mt-0.5 uppercase tracking-wider">Import a .nbproject file</div>
+          </button>
 
           {/* Projects List */}
           <div className="space-y-4">
@@ -159,41 +136,51 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
               <div className="text-center py-10 text-dim text-sm">Loading projects...</div>
             ) : recentProjects.length > 0 ? (
               <div className="space-y-1">
-                {recentProjects.map((project) => (
-                  <div
-                    key={project.projectId}
-                    className="w-full flex items-center gap-4 px-4 py-3 bg-base border border-line hover:border-line hover:bg-surface transition-all group"
-                  >
-                    <button
-                      onClick={() => onLoadRecentProject(project.projectId)}
-                      className="flex-1 flex items-center gap-4 text-left min-w-0"
+                {recentProjects.map((project) => {
+                  const recipe = getDomain(project.domainId ?? DEFAULT_DOMAIN_ID);
+                  return (
+                    <div
+                      key={project.projectId}
+                      className="w-full flex items-center gap-4 px-4 py-3 bg-base border border-line hover:border-line hover:bg-surface transition-all group"
                     >
-                      <Folder className="w-5 h-5 text-dim group-hover:text-accent transition-colors flex-shrink-0" />
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-ink group-hover:text-ink truncate">
-                          {project.name || 'Untitled'}
+                      <button
+                        onClick={() => onLoadRecentProject(project.projectId)}
+                        className="flex-1 flex items-center gap-4 text-left min-w-0"
+                      >
+                        <Folder className="w-5 h-5 text-dim group-hover:text-accent transition-colors flex-shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-ink group-hover:text-ink truncate">
+                            {project.name || 'Untitled'}
+                          </div>
                         </div>
-                      </div>
-                      <span className="text-[10px] text-dim whitespace-nowrap flex-shrink-0">
-                        {formatDate(project.lastOpened)}
-                      </span>
-                    </button>
-                    <button
-                      onClick={() => setRecentProjects(removeRecentProject(project.projectId))}
-                      className="p-1.5 text-dim hover:text-danger transition-colors flex-shrink-0"
-                      title="Remove from recent projects"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                ))}
+                        <span
+                          className="inline-flex items-center gap-1 px-2 py-0.5 border border-line rounded-full text-[9px] font-bold uppercase tracking-wider text-dim flex-shrink-0"
+                          title={`${recipe.label} recipe`}
+                        >
+                          <span aria-hidden="true">{recipe.icon}</span>
+                          <span>{recipe.label}</span>
+                        </span>
+                        <span className="text-[10px] text-dim whitespace-nowrap flex-shrink-0">
+                          {formatDate(project.lastOpened)}
+                        </span>
+                      </button>
+                      <button
+                        onClick={() => setRecentProjects(removeRecentProject(project.projectId))}
+                        className="p-1.5 text-dim hover:text-danger transition-colors flex-shrink-0"
+                        title="Remove from recent projects"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  );
+                })}
               </div>
             ) : (
               <div className="text-center py-16 space-y-3">
                 <AlertCircle className="w-10 h-10 text-dim mx-auto" />
                 <p className="text-sm text-dim">No projects found.</p>
                 <p className="text-xs text-dim">
-                  Create a new project or import an existing .nbproject file to get started.
+                  Pick a recipe above or import an existing .nbproject file to get started.
                 </p>
               </div>
             )}

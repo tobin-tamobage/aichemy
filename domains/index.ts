@@ -1,15 +1,12 @@
 import type { DomainRecipe, DomainState } from './types';
+import { cinematicDomain } from './cinematic';
+import { idPhotoDomain } from './id-photo';
 
-// populated in Tasks 3-5
-export const DOMAINS: DomainRecipe[] = [];
+/** Registry domain aktif — StartScreen + domain switcher membaca daftar ini. */
+export const DOMAINS: DomainRecipe[] = [cinematicDomain, idPhotoDomain];
 
-export const getDomain = (id: string): DomainRecipe => {
-  const domain = DOMAINS.find(d => d.id === id);
-  if (!domain) {
-    throw new Error(`[recipes] Unknown domain "${id}". Registered: ${DOMAINS.map(d => d.id).join(', ') || '(none)'}`);
-  }
-  return domain;
-};
+export const getDomain = (id: string): DomainRecipe =>
+  DOMAINS.find(d => d.id === id) ?? cinematicDomain;
 
 export const DEFAULT_DOMAIN_ID = 'cinematic';
 
