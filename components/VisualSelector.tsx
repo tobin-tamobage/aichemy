@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import { X, Search } from 'lucide-react';
-import { VisualOption } from '../types';
+
+/** Minimal option shape — `image` may be undefined → placeholder tile. */
+export interface VisualSelectorOption {
+  label: string;
+  value: string;
+  image?: string;
+}
+
+const getInitials = (label: string): string => {
+  const words = label.trim().split(/\s+/).filter(Boolean);
+  if (words.length === 0) return '?';
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (words[0][0] + words[1][0]).toUpperCase();
+};
 
 type VisualSelectorProps =
   | {
       label: string;
       value: string;
       onChange: (value: string) => void;
-      options: VisualOption[];
+      options: VisualSelectorOption[];
       placeholder?: string;
       previewRatio?: string;
       multiSelect?: false;
@@ -16,7 +29,7 @@ type VisualSelectorProps =
       label: string;
       value: string[];
       onChange: (value: string[]) => void;
-      options: VisualOption[];
+      options: VisualSelectorOption[];
       placeholder?: string;
       previewRatio?: string;
       multiSelect: true;
@@ -33,6 +46,8 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
+  // Placeholder mode: image failed to load (or was never provided) per option value.
+  const [imgFailed, setImgFailed] = useState<Record<string, boolean>>({});
 
   const isMultiSelect = multiSelect === true;
   const selectedValues = Array.isArray(value) ? value : value ? [value] : [];
@@ -51,11 +66,10 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
     opt.label.toLowerCase().includes(search.toLowerCase())
   );
 
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    const img = e.currentTarget;
-    if (img.dataset.fallbackUsed === "true") return;
-    img.dataset.fallbackUsed = "true";
-    img.src = img.src.replace(/\.jpg(\?.*)?$/i, '.png$1');
+  const hasImage = (opt: VisualSelectorOption): boolean => !!opt.image && !imgFailed[opt.value];
+
+  const handleImageError = (opt: VisualSelectorOption) => {
+    setImgFailed(prev => (prev[opt.value] ? prev : { ...prev, [opt.value]: true }));
   };
 
   return (
@@ -77,12 +91,18 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
           </span>
           {primaryOption && (
             <div className="flex items-center gap-2">
-              <img 
-                src={primaryOption.image} 
-                alt={primaryOption.label} 
-                onError={handleImageError}
-                className="w-8 h-8 object-cover rounded-sm border border-line"
-              />
+              {hasImage(primaryOption) ? (
+                <img 
+                  src={primaryOption.image} 
+                  alt={primaryOption.label} 
+                  onError={() => handleImageError(primaryOption)}
+                  className="w-8 h-8 object-cover rounded-sm border border-line"
+                />
+              ) : (
+                <span className="w-8 h-8 flex items-center justify-center bg-surface2 border border-line rounded-sm text-[10px] font-black tracking-wider text-dim">
+                  {getInitials(primaryOption.label)}
+                </span>
+              )}
               {isMultiSelect && selectedOptions.length > 1 && (
                 <span className="text-[10px] font-bold uppercase tracking-wider text-dim">
                   {selectedOptions.length} selected
@@ -158,6 +178,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredOptions.map((opt) => {
                   const isSelected = selectedValues.includes(opt.value);
+                  const showImage = hasImage(opt);
                   return (
                   <button
                     key={opt.value}
@@ -186,23 +207,39 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                     `}
                   >
                     <div className="absolute inset-0 overflow-hidden bg-base">
-                        <img 
-                          src={opt.image} 
-                          alt={opt.label}
-                          onError={handleImageError}
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-40 transition-opacity" />
-                        
-                        <div className="absolute bottom-0 left-0 right-0 p-3">
-                          <span className={`
-                            text-xs font-bold uppercase tracking-wider block truncate
-                            ${isSelected ? 'text-accent' : 'text-white group-hover:text-white'}
-                            drop-shadow-md
-                          `}>
-                            {opt.label}
-                          </span>
-                        </div>
+                        {showImage ? (
+                          <>
+                            <img 
+                              src={opt.image} 
+                              alt={opt.label}
+                              onError={() => handleImageError(opt)}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-40 transition-opacity" />
+                            
+                            <div className="absolute bottom-0 left-0 right-0 p-3">
+                              <span className={`
+                                text-xs font-bold uppercase tracking-wider block truncate
+                                ${isSelected ? 'text-accent' : 'text-white group-hover:text-white'}
+                                drop-shadow-md
+                              `}>
+                                {opt.label}
+                              </span>
+                            </div>
+                          </>
+                        ) : (
+                          <div className="absolute inset-0 bg-surface2 flex flex-col items-center justify-center gap-2 p-3">
+                            <span className="text-3xl font-black tracking-wider text-dim">
+                              {getInitials(opt.label)}
+                            </span>
+                            <span className={`
+                              text-xs font-bold uppercase tracking-wider text-center leading-tight
+                              ${isSelected ? 'text-accent' : 'text-dim group-hover:text-ink'}
+                            `}>
+                              {opt.label}
+                            </span>
+                          </div>
+                        )}
 
                         {isSelected && (
                            <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent)_/_0.5)]" />
