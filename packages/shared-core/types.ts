@@ -417,16 +417,30 @@ export interface SceneHistoryEntry {
   warningDismissed?: boolean;
 }
 
+/**
+ * Project file format v3 — generic, domain-driven.
+ *   { id, name, version: '3.0.0', timestamp, domainId, domainState, referencePhotoDataUrl? }
+ * `domainState` carries the domain's generic state (`Record<string, unknown>`); the
+ * cinematic domain folds its Elements Tool state into a reserved key inside it.
+ * Legacy v2 fields (promptState / characters / …) remain only as optional, import-time
+ * reads for old .nbproject files.
+ */
 export interface ProjectFile {
   id: string;
   name: string;
-  version: string; // Format version for migration support
+  version: string; // '3.0.0' (v3); older saves carry '2.2.0' etc.
   timestamp: number;
-  promptState: PromptState;
-  characters: CharacterData[];
-  sceneElement: ElementState;
-  sceneInputMode?: ElementInputMode; // Optional for backward compatibility with older saves
-  imageInput: ElementState;
+  // --- v3 core (generic) ---
+  domainId: string;
+  domainState: Record<string, unknown>;
+  /** Reference photo (e.g. ID photo) as a data URL; persisted when small enough. */
+  referencePhotoDataUrl?: string;
+  // --- Legacy v2 cinematic fields — read at import for old .nbproject files only ---
+  promptState?: PromptState;
+  characters?: CharacterData[];
+  sceneElement?: ElementState;
+  sceneInputMode?: ElementInputMode;
+  imageInput?: ElementState;
   additionalReferenceImages?: ElementState[];
   generatedImage?: string | null; // Selected primary render (legacy-compatible)
   generatedImages?: string[]; // Full primary render batch, if the provider returned multiple images
@@ -439,6 +453,21 @@ export interface ProjectFile {
   videoState?: SavedVideoProjectState;
   costSnapshot?: ProjectCostSnapshot; // Embedded cost tracking data
   filePath?: string; // Transient — set by load handler, not persisted
+}
+
+/**
+ * Reserved key inside `domainState` where the cinematic domain stores its
+ * Elements Tool state (characters / scene / reference images).
+ */
+export const CINEMATIC_ELEMENTS_STATE_KEY = '__cinematicElements';
+
+/** Elements Tool state folded into the cinematic domain's domainState. */
+export interface CinematicElementsState {
+  characters?: CharacterData[];
+  sceneElement?: ElementState;
+  sceneInputMode?: ElementInputMode;
+  imageInput?: ElementState;
+  additionalReferenceImages?: ElementState[];
 }
 
 export interface RecentProject {

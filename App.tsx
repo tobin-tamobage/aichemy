@@ -12,7 +12,6 @@
  */
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import { normalizePromptState } from './types';
 import { PresetLibraryModal } from './components/PresetLibraryModal';
 import { CharacterLibraryModal } from './components/CharacterLibraryModal';
 import { InpaintEditor } from './components/InpaintEditor';
@@ -27,7 +26,7 @@ import type { MentionOption } from './components/video/MentionTextarea';
 
 import {
   useReferenceImages,
-  useElements, useProjectIO, projectNameFromPath, useTheme,
+  useElements, useProjectIO, projectNameFromPath, normalizeProjectFile, useTheme,
   createInitialCharacter, createInitialScene, createInitialImageInput,
 } from './hooks';
 import { useDomainState } from './hooks/useDomainState';
@@ -284,13 +283,10 @@ const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning })
 );
 
 /**
- * Project file dengan metadata domain (Task 6 merapikan format v3;
- * untuk Task 5 cukup menambah domainId + domainState, backward compatible).
+ * Project file format v3 — generic, domain-driven
+ * { id, name, version: '3.0.0', timestamp, domainId, domainState, referencePhotoDataUrl? }.
+ * Legacy v2 files are migrated on import via normalizeProjectFile.
  */
-type AppProjectFile = ProjectFile & {
-  domainId?: string;
-  domainState?: Record<string, unknown>;
-};
 
 // ============================================
 // MAIN APP COMPONENT
@@ -343,14 +339,13 @@ export default function App() {
 
   // --- Project IO ---
   const projectIO = useProjectIO({
-    promptState: domain.state as unknown as PromptState,
+    domainId,
+    domainState: domain.state,
     characters: elements.characters,
     sceneElement: elements.sceneElement,
     sceneInputMode: elements.sceneInputMode,
     imageInput: elements.imageInput,
     additionalReferenceImages: elements.additionalReferenceImages,
-    // Domain state adalah satu-satunya sumber kebenaran — projectIO hanya reset lewat hook.
-    setPromptState: (state: PromptState) => domain.reset(state as unknown as DomainState),
     setCharacters: elements.setCharacters,
     setSceneElement: elements.setSceneElement,
     setSceneInputMode: elements.setSceneInputMode,
@@ -405,11 +400,7 @@ export default function App() {
     if (appView !== 'editor' || !currentProjectId) return;
     clearTimeout(autosaveTimeoutRef.current ?? undefined);
     autosaveTimeoutRef.current = window.setTimeout(() => {
-      const data = projectIO.buildProjectData() as AppProjectFile;
-      data.id = currentProjectId;
-      data.name = currentProjectName || data.name;
-      data.domainId = domainId;
-      data.domainState = domain.state;
+      const data = projectIO.buildProjectData();
       if (saveAutosave(currentProjectId, data)) {
         touchRecentProject(currentProjectId, data.name, domainId);
       }
@@ -441,9 +432,7 @@ export default function App() {
 
   /** Export the current project as a .nbproject JSON download. */
   const handleExportProject = useCallback(() => {
-    const data = projectIO.buildProjectData() as AppProjectFile;
-    data.domainId = domainId;
-    data.domainState = domain.state;
+    const data = projectIO.buildProjectData();
     const safeName = (data.name || 'untitled').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
     downloadTextFile(`${safeName}.nbproject`, JSON.stringify(data, null, 2));
     if (currentProjectId) {
@@ -455,21 +444,15 @@ export default function App() {
     setTimeout(() => setShowSavedFeedback(false), 2000);
   }, [projectIO, currentProjectId, domainId, domain.state, requestCleanBaseline]);
 
-  /** Restore semua state dari ProjectFile — domain diambil dari file (fallback cinematic). */
-  const restoreProject = useCallback((project: AppProjectFile) => {
-    const nextDomainId = getDomain(project.domainId ?? DEFAULT_DOMAIN_ID).id;
+  /** Restore semua state dari ProjectFile v2/v3 — normalize → set domainId + reset domainState. */
+  const restoreProject = useCallback((project: ProjectFile) => {
+    const normalized = normalizeProjectFile(project);
+    const nextDomainId = getDomain(normalized.domainId).id;
     setDomainId(nextDomainId);
-    // Elemen (characters/scene/global ref) + id/name via projectIO; state domain
-    // ditimpa eksplisit di bawah (projectIO me-reset via setPromptState adapter).
-    projectIO.restoreProjectState(project);
-    const targetDomain = getDomain(nextDomainId);
-    if (project.domainState && typeof project.domainState === 'object') {
-      domain.reset(project.domainState);
-    } else if (targetDomain.id === 'cinematic') {
-      domain.reset(normalizePromptState(project.promptState) as unknown as DomainState);
-    } else {
-      domain.reset(targetDomain.createEmptyState());
-    }
+    // Elemen cinematic (characters/scene/ref) + id/name via projectIO; state domain
+    // ditimpa eksplisit di bawah (restore = reset(domainState) + set domainId).
+    projectIO.restoreProjectState(normalized);
+    domain.reset(normalized.domainState);
     requestCleanBaseline();
   }, [domain, projectIO, requestCleanBaseline]);
 
@@ -478,8 +461,10 @@ export default function App() {
     isRestoringProjectRef.current = true;
     try {
       const text = await readFileAsText(file);
-      const project = JSON.parse(text) as AppProjectFile;
-      if (!project || typeof project !== 'object' || !project.promptState) {
+      const project = JSON.parse(text) as ProjectFile;
+      const hasDomainState = !!project.domainState && typeof project.domainState === 'object';
+      const hasPromptState = !!project.promptState && typeof project.promptState === 'object';
+      if (!project || typeof project !== 'object' || (!hasDomainState && !hasPromptState)) {
         throw new Error('Not a valid .nbproject file');
       }
       if (!project.id) project.id = globalThis.crypto.randomUUID();
@@ -498,7 +483,7 @@ export default function App() {
 
   /** Load a project from the localStorage autosave of a recent entry. */
   const handleLoadRecentProject = useCallback((projectId: string) => {
-    const project = loadAutosave(projectId) as AppProjectFile | null;
+    const project = loadAutosave(projectId) as ProjectFile | null;
     if (!project) {
       setElementError('Saved state for this project is no longer available. Import the .nbproject file instead.');
       return;

@@ -15,4 +15,5 @@ export {
   createInitialAdditionalReference,
 } from './usePromptState';
 export { useElements } from './useElements';
-export { useProjectIO, projectNameFromPath } from './useProjectIO';
+export { useProjectIO, projectNameFromPath, normalizeProjectFile, LEGACY_CINEMATIC_DOMAIN_ID } from './useProjectIO';
+export type { NormalizedProject } from './useProjectIO';
