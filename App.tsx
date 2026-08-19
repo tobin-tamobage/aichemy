@@ -22,6 +22,7 @@ import { UnsavedChangesModal } from './components/UnsavedChangesModal';
 import { NewProjectModal } from './components/NewProjectModal';
 import { MentionTextarea } from './components/video/MentionTextarea';
 import { DomainFieldRenderer } from './components/DomainFieldRenderer';
+import { ReferencePhotoField } from './components/ReferencePhotoField';
 import type { MentionOption } from './components/video/MentionTextarea';
 
 import {
@@ -282,6 +283,18 @@ const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning })
   </div>
 );
 
+/** Convert a `data:image/...;base64,...` URL into a Blob for clipboard image+text copy. */
+function dataURLToBlob(dataUrl: string): Blob {
+  const comma = dataUrl.indexOf(',');
+  const header = comma >= 0 ? dataUrl.slice(0, comma) : '';
+  const base64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
+  const mime = /^data:([^;]+);/.exec(header)?.[1] ?? 'image/png';
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mime });
+}
+
 /**
  * Project file format v3 — generic, domain-driven
  * { id, name, version: '3.0.0', timestamp, domainId, domainState, referencePhotoDataUrl? }.
@@ -304,7 +317,10 @@ export default function App() {
   const [showPresetLibrary, setShowPresetLibrary] = useState(false);
   const [showCharacterLibrary, setShowCharacterLibrary] = useState(false);
   const [showCopyFeedback, setShowCopyFeedback] = useState(false);
+  const [showCopyHint, setShowCopyHint] = useState(false);
   const [showExportFeedback, setShowExportFeedback] = useState(false);
+  /** Reference photo data URL — session-only; persisted to the project when <500KB. */
+  const [referenceDataUrl, setReferenceDataUrl] = useState<string | null>(null);
   const [elementError, setElementError] = useState<string | null>(null);
   const [generationMode, setGenerationMode] = useState<'generate' | 'edit'>('generate');
   const [isEditingPrompt, setIsEditingPrompt] = useState(false);
@@ -338,9 +354,16 @@ export default function App() {
   }, []);
 
   // --- Project IO ---
+  /** Only persist the reference photo to the project file when it is small enough. */
+  const exportedReferenceDataUrl = useMemo(
+    () => (referenceDataUrl && referenceDataUrl.length < 500 * 1024 ? referenceDataUrl : undefined),
+    [referenceDataUrl],
+  );
+
   const projectIO = useProjectIO({
     domainId,
     domainState: domain.state,
+    referencePhotoDataUrl: exportedReferenceDataUrl,
     characters: elements.characters,
     sceneElement: elements.sceneElement,
     sceneInputMode: elements.sceneInputMode,
@@ -453,6 +476,7 @@ export default function App() {
     // ditimpa eksplisit di bawah (restore = reset(domainState) + set domainId).
     projectIO.restoreProjectState(normalized);
     domain.reset(normalized.domainState);
+    setReferenceDataUrl(normalized.referencePhotoDataUrl ?? null);
     requestCleanBaseline();
   }, [domain, projectIO, requestCleanBaseline]);
 
@@ -534,6 +558,7 @@ export default function App() {
     const projectName = name?.trim() || 'Untitled';
     setCurrentProjectId(id);
     setCurrentProjectName(projectName);
+    setReferenceDataUrl(null);
     requestCleanBaseline();
     setAppView('editor');
   }, [domain, domainId, projectIO, requestCleanBaseline]);
@@ -555,6 +580,7 @@ export default function App() {
       createInitialImageInput(),
       [],
     ));
+    setReferenceDataUrl(null);
     requestCleanBaseline();
   }, [activeDomain, domain, projectIO, requestCleanBaseline]);
 
@@ -578,6 +604,7 @@ export default function App() {
       const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
       setCurrentProjectId(id);
       setCurrentProjectName('Untitled');
+      setReferenceDataUrl(null);
       requestCleanBaseline();
       setShowSavedFeedback(false);
     };
@@ -763,13 +790,48 @@ export default function App() {
     return `${currentElementsInstructionDisplay} ${finalPrompt}`.trim();
   }, [currentElementsInstructionDisplay, finalPrompt]);
 
-  /** Copy prompt text to clipboard */
-  const handleCopyPrompt = () => {
+  /** Copy the constructed prompt (and the reference photo, when available). */
+  const handleCopyPrompt = async () => {
     if (!primaryPromptToSend) return;
-    navigator.clipboard.writeText(primaryPromptToSend).then(() => {
+    const showFeedback = () => {
       setShowCopyFeedback(true);
       setTimeout(() => setShowCopyFeedback(false), 2000);
-    }).catch(console.error);
+    };
+
+    // Prefer image+text clipboard (Chrome/Edge) when a reference photo is attached.
+    const supportsImageClipboard = referenceDataUrl
+      && typeof ClipboardItem !== 'undefined'
+      && !!navigator.clipboard
+      && typeof navigator.clipboard.write === 'function';
+
+    if (supportsImageClipboard) {
+      try {
+        const blob = dataURLToBlob(referenceDataUrl);
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            [blob.type || 'image/png']: blob,
+            'text/plain': new Blob([primaryPromptToSend], { type: 'text/plain' }),
+          }),
+        ]);
+        showFeedback();
+        setShowCopyHint(false);
+        return;
+      } catch (err) {
+        console.error('Clipboard image+text copy failed, falling back to text-only', err);
+      }
+    }
+
+    // Text-only fallback.
+    try {
+      await navigator.clipboard.writeText(primaryPromptToSend);
+      showFeedback();
+      if (referenceDataUrl) {
+        setShowCopyHint(true);
+        setTimeout(() => setShowCopyHint(false), 3000);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   /** Export the constructed prompt as a .txt download */
@@ -1448,6 +1510,16 @@ export default function App() {
         rightPane={(
           <div className="space-y-6 pb-12 lg:pb-8">
 
+          {/* Reference Photo Field (only when the domain uses one) */}
+          {activeDomain.referencePhoto && (
+            <ReferencePhotoField
+              value={referenceDataUrl}
+              onChange={setReferenceDataUrl}
+              label={activeDomain.referenceLabel}
+              hint="Used as the identity reference — your AI app receives it alongside the prompt."
+            />
+          )}
+
           {/* Prompt Preview Box */}
           <div className={`prompt-panel rounded-card border border-line p-6 relative transition-all group ${isEditingPrompt ? 'border-accent/50' : 'hover:border-accent/50'}`}>
             <div className="absolute -top-2.5 left-4 px-2 py-0.5 bg-base border border-line rounded-full text-accent2 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
@@ -1507,6 +1579,12 @@ export default function App() {
             </div>
 
           </div>
+
+          {showCopyHint && (
+            <div className="p-3 bg-accent/10 border border-accent/30 text-accent2 text-xs font-medium rounded-card">
+              Prompt copied — attach your photo in the AI app
+            </div>
+          )}
 
           {elementError && (
             <div className="p-4 bg-danger/20 border border-danger/50 text-danger text-sm font-medium flex items-start justify-between gap-3">
