@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ChipsField, DomainField, DomainState, ToggleField } from '../domains/types';
+import type { ChipsField, DomainField, DomainOption, DomainState, SelectField, ToggleField, VisualField } from '../domains/types';
 import { TextInput } from './TextInput';
 import { Selector } from './Selector';
 import { VisualSelector } from './VisualSelector';
@@ -15,7 +15,8 @@ const ChipsFieldControl: React.FC<{
   field: ChipsField;
   value: unknown;
   onChange: (value: unknown) => void;
-}> = ({ field, value, onChange }) => {
+  options: DomainOption[];
+}> = ({ field, value, onChange, options }) => {
   const selected = Array.isArray(value) ? (value as string[]) : [];
 
   const toggle = (optionValue: string) => {
@@ -38,7 +39,7 @@ const ChipsFieldControl: React.FC<{
         )}
       </label>
       <div className="flex flex-wrap gap-2">
-        {field.options.map(opt => {
+        {options.map(opt => {
           const isSelected = selected.includes(opt.value);
           const isFull = !isSelected && field.max !== undefined && selected.length >= field.max;
           return (
@@ -98,6 +99,11 @@ const ToggleFieldControl: React.FC<{
 export const DomainFieldRenderer: React.FC<DomainFieldRendererProps> = ({ field, value, onChange, state }) => {
   if (field.visibleWhen && field.visibleWhen(state) === false) return null;
 
+  // Resolver katalog kondisional — fungsi options dievaluasi terhadap state saat ini;
+  // array statis diteruskan apa adanya (perilaku tidak berubah).
+  const resolveOptions = (f: SelectField | VisualField | ChipsField): DomainOption[] =>
+    typeof f.options === 'function' ? f.options(state) : f.options;
+
   switch (field.kind) {
     case 'textarea':
       return (
@@ -115,7 +121,7 @@ export const DomainFieldRenderer: React.FC<DomainFieldRendererProps> = ({ field,
           label={field.label}
           value={typeof value === 'string' ? value : ''}
           onChange={onChange}
-          options={field.options.map(o => ({ value: o.value, label: o.label }))}
+          options={resolveOptions(field).map(o => ({ value: o.value, label: o.label }))}
           placeholder={field.placeholder}
         />
       );
@@ -125,12 +131,12 @@ export const DomainFieldRenderer: React.FC<DomainFieldRendererProps> = ({ field,
           label={field.label}
           value={typeof value === 'string' ? value : ''}
           onChange={onChange}
-          options={field.options}
+          options={resolveOptions(field)}
           previewRatio={field.previewRatio}
         />
       );
     case 'chips':
-      return <ChipsFieldControl field={field} value={value} onChange={onChange} />;
+      return <ChipsFieldControl field={field} value={value} onChange={onChange} options={resolveOptions(field)} />;
     case 'toggle':
       return <ToggleFieldControl field={field} value={value} onChange={onChange} />;
     default:

@@ -20,14 +20,17 @@ export interface DomainFieldBase {
 export interface TextareaField extends DomainFieldBase {
   kind: 'textarea'; placeholder: string; rows?: number;
 }
+/** Katalog kondisional — fungsi dihitung dari state (mis. pose wedding mengikuti moment; props product mengikuti category). */
+export type FieldOptions = DomainOption[] | ((state: DomainState) => DomainOption[]);
+
 export interface SelectField extends DomainFieldBase {
-  kind: 'select'; options: DomainOption[]; placeholder?: string;
+  kind: 'select'; options: FieldOptions; placeholder?: string;
 }
 export interface VisualField extends DomainFieldBase {
-  kind: 'visual'; options: DomainOption[]; previewRatio?: string; multi?: false;
+  kind: 'visual'; options: FieldOptions; previewRatio?: string; multi?: false;
 }
 export interface ChipsField extends DomainFieldBase {
-  kind: 'chips'; options: DomainOption[]; max?: number; // multi-select
+  kind: 'chips'; options: FieldOptions; max?: number; // multi-select
 }
 export interface ToggleField extends DomainFieldBase {
   kind: 'toggle'; hint?: string;
