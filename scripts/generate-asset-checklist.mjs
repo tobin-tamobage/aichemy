@@ -65,6 +65,8 @@ const suggestPrompt = (domainId, category, option, fieldLabel) => {
       return `Minimal frame outline diagram of a ${option.ratio ?? ''} format, empty inside, pastel background, no text.`;
     case 'purposes':
       return `Minimal flat icon-style thumbnail representing "${label}", pastel palette, centered composition, no text.`;
+    case 'dishes':
+      return `Overhead food photography of ${label} on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.`;
     default:
       return domainId === 'cinematic'
         ? `Cinematic film-still thumbnail for "${label}" (${fieldLabel}), moody directional lighting, shallow depth of field, 16:9 crop.`
