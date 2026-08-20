@@ -1,6 +1,6 @@
 # Asset Checklist — reference images
 
-Generated 2026-08-19 by `scripts/generate-asset-checklist.mjs` from the DOMAINS registry.
+Generated 2026-08-20 by `scripts/generate-asset-checklist.mjs` from the DOMAINS registry.
 Regenerate: `node scripts/generate-asset-checklist.mjs`.
 
 Files live under `public/`; missing files render as placeholder tiles in VisualSelector until generated.
@@ -2627,5 +2627,122 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/product/compositions/symmetric.webp` — **Symmetric** (Composition)
   - Suggested prompt: Studio product photo of symmetrical composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
+## 📣 Marketing (`marketing`) — 0/47 present
+
+### content-types (8)
+
+- [ ] `public/images/marketing/content-types/sale-promo-flyer.webp` — **Sale / Promo Flyer** (Content type)
+  - Suggested prompt: Studio product photo of a sale flyer on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/social-media-post.webp` — **Social Media Post** (Content type)
+  - Suggested prompt: Studio product photo of a social media post on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/ig-tiktok-story.webp` — **IG / TikTok Story** (Content type)
+  - Suggested prompt: Studio product photo of a vertical IG / TikTok story graphic on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/web-banner.webp` — **Web Banner** (Content type)
+  - Suggested prompt: Studio product photo of a web banner on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/poster.webp` — **Poster** (Content type)
+  - Suggested prompt: Studio product photo of a poster on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/product-announcement.webp` — **Product Announcement** (Content type)
+  - Suggested prompt: Studio product photo of a product announcement graphic on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/event-flyer.webp` — **Event Flyer** (Content type)
+  - Suggested prompt: Studio product photo of an event flyer on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/content-types/coupon-voucher.webp` — **Coupon / Voucher** (Content type)
+  - Suggested prompt: Studio product photo of a coupon voucher graphic on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### formats (6)
+
+- [ ] `public/images/marketing/formats/1x1.webp` — **1:1 post** (Format)
+  - Suggested prompt: Clean flat thumbnail for "1:1 post" (Format), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/formats/9x16.webp` — **9:16 story** (Format) — Story UI overlays cover top/bottom — safe zone handled by clause
+  - Suggested prompt: Clean flat thumbnail for "9:16 story" (Format), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/formats/16x9.webp` — **16:9 banner** (Format)
+  - Suggested prompt: Clean flat thumbnail for "16:9 banner" (Format), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/formats/2x3.webp` — **2:3 poster** (Format)
+  - Suggested prompt: Clean flat thumbnail for "2:3 poster" (Format), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/formats/a4.webp` — **A4 flyer** (Format)
+  - Suggested prompt: Clean flat thumbnail for "A4 flyer" (Format), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/formats/4x5.webp` — **4:5 feed** (Format)
+  - Suggested prompt: Clean flat thumbnail for "4:5 feed" (Format), soft pastel background, centered, minimal, no text.
+
+### styles (9)
+
+- [ ] `public/images/marketing/styles/minimalist.webp` — **Minimalist / Clean** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Minimalist / Clean" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/bold-brutalist.webp` — **Bold Brutalist** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Bold Brutalist" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/modern-gradient.webp` — **Modern Gradient** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Modern Gradient" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/retro-vintage.webp` — **Retro / Vintage** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Retro / Vintage" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/luxury-elegant.webp` — **Luxury / Elegant** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Luxury / Elegant" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/playful-fun.webp` — **Playful / Fun** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Playful / Fun" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/corporate-clean.webp` — **Corporate Clean** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Corporate Clean" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/streetwear-urban.webp` — **Streetwear / Urban** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Streetwear / Urban" (Design style), soft pastel background, centered, minimal, no text.
+- [ ] `public/images/marketing/styles/organic-natural.webp` — **Organic / Natural** (Design style)
+  - Suggested prompt: Clean flat thumbnail for "Organic / Natural" (Design style), soft pastel background, centered, minimal, no text.
+
+### color-presets (8)
+
+- [ ] `public/images/marketing/color-presets/red-yellow.webp` — **Red & Yellow (Sale)** (Color scheme) — #E63946/#FFD166
+  - Suggested prompt: Studio product photo of warm mustard yellow background with black text and red accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/black-gold.webp` — **Black & Gold (Luxury)** (Color scheme) — #111111/#D4AF37
+  - Suggested prompt: Studio product photo of black background with elegant gold accents and white text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/pastel-pink-cream.webp` — **Pastel Pink & Cream (Beauty)** (Color scheme) — #F8D7E3/#FFF6EC
+  - Suggested prompt: Studio product photo of soft pastel pink and cream background with muted warm text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/blue-white.webp` — **Blue & White (Corporate)** (Color scheme) — #1D4ED8/#F5F7FA
+  - Suggested prompt: Studio product photo of clean light background with corporate blue accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/green-cream.webp` — **Green & Cream (Natural)** (Color scheme) — #3A7D44/#F3F7E8
+  - Suggested prompt: Studio product photo of cream background with sage green accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/purple-blue.webp` — **Purple & Blue (Tech)** (Color scheme) — #6D28D9/#2563EB
+  - Suggested prompt: Studio product photo of purple to blue gradient background with white text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/black-white.webp` — **Black & White (Brutalist)** (Color scheme) — #111111/#FFFFFF
+  - Suggested prompt: Studio product photo of high-contrast black and white background with bold text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/color-presets/orange-black.webp` — **Orange & Black (Energetic)** (Color scheme) — #F97316/#1A1A1A
+  - Suggested prompt: Studio product photo of deep black background with bright orange accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### typography (7)
+
+- [ ] `public/images/marketing/typography/bold-condensed.webp` — **Bold condensed sans-serif** (Typography)
+  - Suggested prompt: Studio product photo of bold condensed sans-serif on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/elegant-serif.webp` — **Elegant serif** (Typography)
+  - Suggested prompt: Studio product photo of elegant serif on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/rounded-playful.webp` — **Rounded playful** (Typography)
+  - Suggested prompt: Studio product photo of rounded playful font on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/retro-groovy.webp` — **Retro display / groovy** (Typography)
+  - Suggested prompt: Studio product photo of retro groovy display font on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/monospace-tech.webp` — **Monospace tech** (Typography)
+  - Suggested prompt: Studio product photo of monospace tech font on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/handwritten-accent.webp` — **Handwritten accent** (Typography) — Sub-copy only — keep the headline in a readable font
+  - Suggested prompt: Studio product photo of handwritten accent font, sub-copy only on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/typography/chunky-3d.webp` — **Chunky 3D type** (Typography)
+  - Suggested prompt: Studio product photo of chunky 3D type on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### text-strategies (3)
+
+- [ ] `public/images/marketing/text-strategies/render-exact.webp` — **Render text exactly** (Text strategy) — Most accurate in GPT Image / Imagen
+  - Suggested prompt: Studio product photo of render the headline text exactly as written, wrapped in quotes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/text-strategies/placeholder.webp` — **Placeholder "[HEADLINE]"** (Text strategy) — Swap the placeholder yourself — recommended for Midjourney
+  - Suggested prompt: Studio product photo of "[HEADLINE]" on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/text-strategies/empty-area.webp` — **Empty area (add copy in Canva)** (Text strategy) — Safest for important brands — add copy manually
+  - Suggested prompt: Studio product photo of leave clean empty space at the top for the headline text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### promo-elements (6)
+
+- [ ] `public/images/marketing/promo-elements/discount-badge.webp` — **Discount badge** (Promo elements)
+  - Suggested prompt: Studio product photo of circular discount badge in the top-right corner on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/promo-elements/cta-button.webp` — **CTA button** (Promo elements)
+  - Suggested prompt: Studio product photo of rounded pill CTA button at the bottom on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/promo-elements/price-tag.webp` — **Price tag** (Promo elements)
+  - Suggested prompt: Studio product photo of strikethrough price tag on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/promo-elements/countdown.webp` — **Countdown / urgency tag** (Promo elements)
+  - Suggested prompt: Studio product photo of countdown urgency tag on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/promo-elements/star-rating.webp` — **Star rating** (Promo elements)
+  - Suggested prompt: Studio product photo of star rating strip on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/marketing/promo-elements/logo-placeholder.webp` — **Logo placeholder circle** (Promo elements) — AI hallucinates fake logos — paste the real one manually
+  - Suggested prompt: Studio product photo of clean placeholder circle at the top-left for the logo on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
 ---
-Total: 638 referenced, 425 present, 213 missing.
+Total: 685 referenced, 425 present, 260 missing.

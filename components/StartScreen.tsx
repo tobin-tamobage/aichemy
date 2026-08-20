@@ -14,11 +14,6 @@ import {
 } from '../services/browserStorage';
 import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID } from '../domains';
 
-/** Recipe fase 2/3 — kartu disabled 'Soon' (belum tersedia). */
-const SOON_RECIPES: { icon: string; label: string; tagline: string }[] = [
-  { icon: '📣', label: 'Marketing', tagline: 'Ads, flyers, and social media creative.' },
-];
-
 interface StartScreenProps {
   onNewProject: (domainId: string, name?: string) => void;
   onOpenProject: () => void;
@@ -92,21 +87,6 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
                   </span>
                   <span className="text-[11px] text-dim leading-relaxed">{domain.tagline}</span>
                 </button>
-              ))}
-
-              {SOON_RECIPES.map((recipe) => (
-                <div
-                  key={recipe.label}
-                  className="relative flex flex-col items-start justify-center gap-2 p-6 border border-line/60 bg-surface/40 rounded-card opacity-55 cursor-not-allowed select-none"
-                  title="Coming soon"
-                >
-                  <span className="absolute top-3 right-3 px-2 py-0.5 border border-line rounded-full text-[9px] font-black uppercase tracking-widest text-dim">
-                    Soon
-                  </span>
-                  <span className="text-3xl grayscale" aria-hidden="true">{recipe.icon}</span>
-                  <span className="text-sm font-black uppercase tracking-wider text-dim">{recipe.label}</span>
-                  <span className="text-[11px] text-dim leading-relaxed">{recipe.tagline}</span>
-                </div>
               ))}
             </div>
           </div>
