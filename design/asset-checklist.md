@@ -2894,33 +2894,33 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 ### dishes (14)
 
 - [ ] `public/images/food/dishes/rendang.webp` — **Rendang** (Dish)
-  - Suggested prompt: Studio product photo of beef rendang with dark glossy caramelized coconut sauce, tender shredded beef, garnished with fried shallots and red chili on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Rendang on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/sate-ayam.webp` — **Sate Ayam** (Dish)
-  - Suggested prompt: Studio product photo of chicken satay skewers with charred edges, peanut sauce on the side, lime wedges and ketupat rice cakes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Sate Ayam on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/nasi-goreng.webp` — **Nasi Goreng** (Dish)
-  - Suggested prompt: Studio product photo of nasi goreng, Indonesian fried rice topped with a fried egg, shrimp crackers, cucumber slices and fried shallots on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Nasi Goreng on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/gado-gado.webp` — **Gado-Gado** (Dish)
-  - Suggested prompt: Studio product photo of gado-gado, Indonesian vegetable salad with creamy peanut dressing, boiled egg, tofu and lontong rice cakes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Gado-Gado on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/soto-ayam.webp` — **Soto Ayam** (Dish)
-  - Suggested prompt: Studio product photo of soto ayam, golden turmeric chicken soup with rice noodles, bean sprouts, lime and fried shallots on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Soto Ayam on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/rawon.webp` — **Rawon** (Dish)
-  - Suggested prompt: Studio product photo of rawon, dark black beef soup with keluak broth, bean sprouts and sambal on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Rawon on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/ayam-bakar.webp` — **Ayam Bakar** (Dish)
-  - Suggested prompt: Studio product photo of ayam bakar, grilled chicken with a smoky sweet glaze, sambal and fresh vegetables on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Ayam Bakar on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/mie-goreng.webp` — **Mie Goreng** (Dish)
-  - Suggested prompt: Studio product photo of mie goreng, stir-fried noodles with vegetables, egg and kecap manis glaze on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Mie Goreng on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/sushi.webp` — **Sushi platter** (Dish)
-  - Suggested prompt: Studio product photo of an elegant sushi platter with glistening fresh nigiri and maki rolls on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Sushi platter on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/ramen.webp` — **Ramen** (Dish)
-  - Suggested prompt: Studio product photo of a steaming bowl of ramen with rich broth, soft-boiled egg, chashu pork and spring onions on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Ramen on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/pasta.webp` — **Pasta** (Dish)
-  - Suggested prompt: Studio product photo of a plated pasta dish, al dente, with fresh herbs and shaved parmesan on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Pasta on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/burger.webp` — **Gourmet burger** (Dish)
-  - Suggested prompt: Studio product photo of a juicy gourmet burger with melted cheese, crisp lettuce and a toasted bun on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Gourmet burger on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/dessert.webp` — **Plated dessert** (Dish)
-  - Suggested prompt: Studio product photo of a delicate plated dessert with a glossy sauce swirl and a light garnish on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Plated dessert on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 - [ ] `public/images/food/dishes/drink.webp` — **Iced drink** (Dish)
-  - Suggested prompt: Studio product photo of a refreshing iced drink in a tall glass with condensation droplets on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+  - Suggested prompt: Overhead food photography of Iced drink on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.
 
 ### presentations (3)
 

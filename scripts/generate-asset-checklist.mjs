@@ -42,6 +42,11 @@ const { DOMAINS } = await import(pathToFileURL(BUNDLE).href);
 // --- Suggested generation prompts -------------------------------------------
 const suggestPrompt = (domainId, category, option, fieldLabel) => {
   const label = option.label ?? option.value;
+  // Kategori thumbnail dengan prompt khusus dievaluasi SEBELUM guard promptPhrase
+  // (semua opsi katalog bawa promptPhrase → guard meng-intercept switch).
+  if (category === 'dishes') {
+    return `Overhead food photography of ${label} on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.`;
+  }
   if (option.promptColor) {
     return `Solid seamless studio backdrop, ${option.promptColor}, evenly lit, no gradient, no shadows, no texture. Flat empty background plate, landscape crop.`;
   }
@@ -65,8 +70,6 @@ const suggestPrompt = (domainId, category, option, fieldLabel) => {
       return `Minimal frame outline diagram of a ${option.ratio ?? ''} format, empty inside, pastel background, no text.`;
     case 'purposes':
       return `Minimal flat icon-style thumbnail representing "${label}", pastel palette, centered composition, no text.`;
-    case 'dishes':
-      return `Overhead food photography of ${label} on a rustic wood table, natural window light, steam rising, fresh garnish, no hands.`;
     default:
       return domainId === 'cinematic'
         ? `Cinematic film-still thumbnail for "${label}" (${fieldLabel}), moody directional lighting, shallow depth of field, 16:9 crop.`
