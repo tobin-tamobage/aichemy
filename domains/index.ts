@@ -4,9 +4,21 @@ import { idPhotoDomain } from './id-photo';
 import { weddingDomain } from './wedding';
 import { productDomain } from './product';
 import { marketingDomain } from './marketing';
+import { portraitDomain } from './portrait';
+import { realEstateDomain } from './real-estate';
+import { foodDomain } from './food';
 
 /** Registry domain aktif — StartScreen + domain switcher membaca daftar ini. */
-export const DOMAINS: DomainRecipe[] = [cinematicDomain, idPhotoDomain, weddingDomain, productDomain, marketingDomain];
+export const DOMAINS: DomainRecipe[] = [
+  cinematicDomain,
+  idPhotoDomain,
+  weddingDomain,
+  productDomain,
+  marketingDomain,
+  portraitDomain,
+  realEstateDomain,
+  foodDomain,
+];
 
 export const getDomain = (id: string): DomainRecipe =>
   DOMAINS.find(d => d.id === id) ?? cinematicDomain;

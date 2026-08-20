@@ -2744,5 +2744,229 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/marketing/promo-elements/logo-placeholder.webp` — **Logo placeholder circle** (Promo elements) — AI hallucinates fake logos — paste the real one manually
   - Suggested prompt: Studio product photo of clean placeholder circle at the top-left for the logo on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
+## 📸 Portrait (`portrait`) — 0/28 present
+
+### portrait-types (5)
+
+- [ ] `public/images/portrait/portrait-types/corporate-headshot.webp` — **Corporate headshot** (Portrait type)
+  - Suggested prompt: Studio product photo of a corporate headshot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/portrait-types/linkedin-headshot.webp` — **LinkedIn headshot** (Portrait type)
+  - Suggested prompt: Studio product photo of a professional LinkedIn headshot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/portrait-types/actor-headshot.webp` — **Actor headshot** (Portrait type)
+  - Suggested prompt: Studio product photo of an actor headshot on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/portrait-types/editorial-portrait.webp` — **Editorial portrait** (Portrait type)
+  - Suggested prompt: Studio product photo of an editorial portrait on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/portrait-types/stylized-avatar.webp` — **Stylized avatar** (Portrait type)
+  - Suggested prompt: Studio product photo of a stylized digital avatar on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### lighting (6)
+
+- [ ] `public/images/portrait/lighting/rembrandt.webp` — **Rembrandt** (Lighting)
+  - Suggested prompt: Studio product photo of Rembrandt lighting with a soft triangle of light on the shadowed cheek on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lighting/butterfly.webp` — **Butterfly** (Lighting)
+  - Suggested prompt: Studio product photo of butterfly lighting with a symmetrical shadow under the nose on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lighting/loop.webp` — **Loop** (Lighting)
+  - Suggested prompt: Studio product photo of loop lighting with a small nose shadow toward the cheek on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lighting/split.webp` — **Split** (Lighting)
+  - Suggested prompt: Studio product photo of split lighting, half the face lit, half in shadow on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lighting/softbox-flat.webp` — **Softbox (flat)** (Lighting)
+  - Suggested prompt: Studio product photo of even, shadowless softbox lighting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lighting/window-natural.webp` — **Window (natural)** (Lighting)
+  - Suggested prompt: Studio product photo of soft natural window light from the side on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### backgrounds (5)
+
+- [ ] `public/images/portrait/backgrounds/seamless-studio.webp` — **Seamless studio** (Background)
+  - Suggested prompt: Studio product photo of a clean seamless studio backdrop on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/backgrounds/neutral-office.webp` — **Blurred office** (Background)
+  - Suggested prompt: Studio product photo of a softly blurred modern office background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/backgrounds/city-bokeh.webp` — **City bokeh** (Background)
+  - Suggested prompt: Studio product photo of a blurred city bokeh background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/backgrounds/outdoor-park.webp` — **Outdoor park** (Background)
+  - Suggested prompt: Studio product photo of a softly blurred outdoor park background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/backgrounds/plain-color.webp` — **Plain color** (Background)
+  - Suggested prompt: Studio product photo of a plain solid color backdrop on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### wardrobe (4)
+
+- [ ] `public/images/portrait/wardrobe/formal-suit.webp` — **Formal suit** (Wardrobe)
+  - Suggested prompt: Studio product photo of a formal suit on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/wardrobe/business-casual.webp` — **Business casual** (Wardrobe)
+  - Suggested prompt: Studio product photo of business casual attire on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/wardrobe/smart-casual.webp` — **Smart casual** (Wardrobe)
+  - Suggested prompt: Studio product photo of a smart casual outfit on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/wardrobe/casual.webp` — **Casual** (Wardrobe)
+  - Suggested prompt: Studio product photo of casual everyday clothing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### expressions (4)
+
+- [ ] `public/images/portrait/expressions/confident-smile.webp` — **Confident smile** (Expression)
+  - Suggested prompt: Studio product photo of a confident smile on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/expressions/subtle-smile.webp` — **Subtle smile** (Expression)
+  - Suggested prompt: Studio product photo of a subtle, natural smile on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/expressions/neutral.webp` — **Neutral** (Expression)
+  - Suggested prompt: Studio product photo of a neutral, relaxed expression on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/expressions/intense.webp` — **Intense** (Expression)
+  - Suggested prompt: Studio product photo of an intense, dramatic expression on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### lenses (4)
+
+- [ ] `public/images/portrait/lenses/85mm-closeup.webp` — **85mm close-up** (Lens)
+  - Suggested prompt: Studio product photo of an 85mm lens, head-and-shoulders framing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lenses/50mm-half.webp` — **50mm half-body** (Lens)
+  - Suggested prompt: Studio product photo of a 50mm lens, half-body framing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lenses/35mm-environmental.webp` — **35mm environmental** (Lens)
+  - Suggested prompt: Studio product photo of a 35mm lens, environmental framing with context around the subject on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/portrait/lenses/200mm-tight.webp` — **200mm tight** (Lens)
+  - Suggested prompt: Studio product photo of a 200mm telephoto lens, tight face framing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+## 🏠 Real Estate (`real-estate`) — 0/26 present
+
+### scenes (7)
+
+- [ ] `public/images/real-estate/scenes/living-room.webp` — **Living room** (Scene)
+  - Suggested prompt: Studio product photo of a spacious living room on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/bedroom.webp` — **Bedroom** (Scene)
+  - Suggested prompt: Studio product photo of a cozy bedroom on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/kitchen.webp` — **Kitchen** (Scene)
+  - Suggested prompt: Studio product photo of a modern kitchen on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/dining-room.webp` — **Dining room** (Scene)
+  - Suggested prompt: Studio product photo of an inviting dining room on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/bathroom.webp` — **Bathroom** (Scene)
+  - Suggested prompt: Studio product photo of a clean bathroom on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/exterior-front.webp` — **Exterior — front** (Scene)
+  - Suggested prompt: Studio product photo of the front exterior of a house on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/scenes/exterior-garden.webp` — **Exterior — garden** (Scene)
+  - Suggested prompt: Studio product photo of a house with a landscaped garden on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### styles (6)
+
+- [ ] `public/images/real-estate/styles/scandinavian.webp` — **Scandinavian** (Design style)
+  - Suggested prompt: Studio product photo of Scandinavian minimalism, light woods, clean lines on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/styles/japandi.webp` — **Japandi** (Design style)
+  - Suggested prompt: Studio product photo of Japandi style, warm minimalism, natural textures, low furniture on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/styles/industrial.webp` — **Industrial** (Design style)
+  - Suggested prompt: Studio product photo of industrial style, exposed brick, metal accents, raw materials on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/styles/mid-century.webp` — **Mid-century** (Design style)
+  - Suggested prompt: Studio product photo of mid-century modern, walnut tones, tapered legs, retro curves on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/styles/coastal.webp` — **Coastal** (Design style)
+  - Suggested prompt: Studio product photo of coastal style, white and blue palette, linen textures, airy on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/styles/modern-farmhouse.webp` — **Modern farmhouse** (Design style)
+  - Suggested prompt: Studio product photo of modern farmhouse, shiplap, rustic wood, neutral tones on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### times-of-day (4)
+
+- [ ] `public/images/real-estate/times-of-day/morning-natural.webp` — **Morning (natural)** (Time of day)
+  - Suggested prompt: Studio product photo of bright natural morning light on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/times-of-day/golden-hour.webp` — **Golden hour** (Time of day)
+  - Suggested prompt: Studio product photo of warm golden-hour sunlight on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/times-of-day/evening-warm.webp` — **Evening (warm)** (Time of day)
+  - Suggested prompt: Studio product photo of warm interior lighting in the evening on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/times-of-day/twilight.webp` — **Twilight** (Time of day)
+  - Suggested prompt: Studio product photo of twilight with interior lights glowing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### stagings (4)
+
+- [ ] `public/images/real-estate/stagings/furnished-styled.webp` — **Furnished & styled** (Staging)
+  - Suggested prompt: Studio product photo of professionally staged with tasteful furniture and decor on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/stagings/virtual-staging.webp` — **Virtual staging** (Staging)
+  - Suggested prompt: Studio product photo of virtually staged with realistic, properly scaled furniture on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/stagings/partial-staging.webp` — **Minimal staging** (Staging)
+  - Suggested prompt: Studio product photo of minimal staging with a few key furniture pieces on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/stagings/empty.webp` — **Empty** (Staging)
+  - Suggested prompt: Studio product photo of completely empty, clean, ready for inspection on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### angles (5)
+
+- [ ] `public/images/real-estate/angles/wide-16mm.webp` — **16mm ultra-wide** (Angle & lens)
+  - Suggested prompt: Studio product photo of a 16mm wide-angle lens, full-room view on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/angles/wide-24mm.webp` — **24mm wide** (Angle & lens)
+  - Suggested prompt: Studio product photo of a 24mm wide-angle lens, natural perspective on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/angles/eye-level.webp` — **Eye level** (Angle & lens)
+  - Suggested prompt: Studio product photo of eye-level composition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/angles/low-angle.webp` — **Low angle** (Angle & lens)
+  - Suggested prompt: Studio product photo of a low angle looking slightly upward on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/angles/corner-view.webp` — **Corner view** (Angle & lens)
+  - Suggested prompt: Studio product photo of a corner view showing two walls on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+## 🍜 Food (`food`) — 0/31 present
+
+### dishes (14)
+
+- [ ] `public/images/food/dishes/rendang.webp` — **Rendang** (Dish)
+  - Suggested prompt: Studio product photo of beef rendang with dark glossy caramelized coconut sauce, tender shredded beef, garnished with fried shallots and red chili on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/sate-ayam.webp` — **Sate Ayam** (Dish)
+  - Suggested prompt: Studio product photo of chicken satay skewers with charred edges, peanut sauce on the side, lime wedges and ketupat rice cakes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/nasi-goreng.webp` — **Nasi Goreng** (Dish)
+  - Suggested prompt: Studio product photo of nasi goreng, Indonesian fried rice topped with a fried egg, shrimp crackers, cucumber slices and fried shallots on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/gado-gado.webp` — **Gado-Gado** (Dish)
+  - Suggested prompt: Studio product photo of gado-gado, Indonesian vegetable salad with creamy peanut dressing, boiled egg, tofu and lontong rice cakes on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/soto-ayam.webp` — **Soto Ayam** (Dish)
+  - Suggested prompt: Studio product photo of soto ayam, golden turmeric chicken soup with rice noodles, bean sprouts, lime and fried shallots on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/rawon.webp` — **Rawon** (Dish)
+  - Suggested prompt: Studio product photo of rawon, dark black beef soup with keluak broth, bean sprouts and sambal on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/ayam-bakar.webp` — **Ayam Bakar** (Dish)
+  - Suggested prompt: Studio product photo of ayam bakar, grilled chicken with a smoky sweet glaze, sambal and fresh vegetables on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/mie-goreng.webp` — **Mie Goreng** (Dish)
+  - Suggested prompt: Studio product photo of mie goreng, stir-fried noodles with vegetables, egg and kecap manis glaze on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/sushi.webp` — **Sushi platter** (Dish)
+  - Suggested prompt: Studio product photo of an elegant sushi platter with glistening fresh nigiri and maki rolls on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/ramen.webp` — **Ramen** (Dish)
+  - Suggested prompt: Studio product photo of a steaming bowl of ramen with rich broth, soft-boiled egg, chashu pork and spring onions on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/pasta.webp` — **Pasta** (Dish)
+  - Suggested prompt: Studio product photo of a plated pasta dish, al dente, with fresh herbs and shaved parmesan on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/burger.webp` — **Gourmet burger** (Dish)
+  - Suggested prompt: Studio product photo of a juicy gourmet burger with melted cheese, crisp lettuce and a toasted bun on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/dessert.webp` — **Plated dessert** (Dish)
+  - Suggested prompt: Studio product photo of a delicate plated dessert with a glossy sauce swirl and a light garnish on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/dishes/drink.webp` — **Iced drink** (Dish)
+  - Suggested prompt: Studio product photo of a refreshing iced drink in a tall glass with condensation droplets on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### presentations (3)
+
+- [ ] `public/images/food/presentations/fine-dining.webp` — **Fine dining** (Presentation)
+  - Suggested prompt: Studio product photo of fine-dining plating, precise and minimal on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/presentations/rustic-family.webp` — **Rustic family style** (Presentation)
+  - Suggested prompt: Studio product photo of rustic family-style serving, generous and casual on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/presentations/flat-lay.webp` — **Flat lay** (Presentation)
+  - Suggested prompt: Studio product photo of a flat lay with ingredients arranged around the dish on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### light-moods (4)
+
+- [ ] `public/images/food/light-moods/bright-airy.webp` — **Bright & airy** (Light mood)
+  - Suggested prompt: Studio product photo of bright and airy, soft diffused daylight, clean white balance on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/light-moods/dark-moody.webp` — **Dark & moody** (Light mood)
+  - Suggested prompt: Studio product photo of dark and moody, deep shadows, dramatic contrast on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/light-moods/natural-window.webp` — **Window light** (Light mood)
+  - Suggested prompt: Studio product photo of soft natural window light from the side on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/light-moods/warm-cozy.webp` — **Warm & cozy** (Light mood)
+  - Suggested prompt: Studio product photo of warm cozy evening light with golden tones on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### angles (4)
+
+- [ ] `public/images/food/angles/45-degree.webp` — **45° angle** (Angle)
+  - Suggested prompt: Studio product photo of a 45-degree angle, the classic food photography view on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/angles/overhead.webp` — **Overhead** (Angle)
+  - Suggested prompt: Studio product photo of a top-down overhead view on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/angles/side-profile.webp` — **Side profile** (Angle)
+  - Suggested prompt: Studio product photo of a side profile view showing height and layers on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/angles/close-up.webp` — **Close-up** (Angle)
+  - Suggested prompt: Studio product photo of a close-up macro view of texture and detail on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### backdrops (6)
+
+- [ ] `public/images/food/backdrops/marble.webp` — **White marble** (Backdrop)
+  - Suggested prompt: Studio product photo of a white marble surface on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/backdrops/wood-table.webp` — **Wood table** (Backdrop)
+  - Suggested prompt: Studio product photo of a rustic wood table on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/backdrops/banana-leaf.webp` — **Banana leaf** (Backdrop)
+  - Suggested prompt: Studio product photo of a fresh banana leaf lining on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/backdrops/linen.webp` — **Linen** (Backdrop)
+  - Suggested prompt: Studio product photo of a natural linen cloth on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/backdrops/dark-slate.webp` — **Dark slate** (Backdrop)
+  - Suggested prompt: Studio product photo of a dark slate surface on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/food/backdrops/ceramic.webp` — **Ceramic** (Backdrop)
+  - Suggested prompt: Studio product photo of handmade ceramic tableware on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
 ---
-Total: 685 referenced, 425 present, 260 missing.
+Total: 770 referenced, 425 present, 345 missing.
