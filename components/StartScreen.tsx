@@ -73,7 +73,7 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
               <h2 className="text-xs font-bold uppercase tracking-widest text-dim">Choose your Recipe</h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
               {DOMAINS.map((domain) => (
                 <button
                   key={domain.id}

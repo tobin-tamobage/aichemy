@@ -265,7 +265,9 @@ export const PresetLibraryModal: React.FC<PresetLibraryModalProps> = ({
         {/* Footer */}
         <div className="p-4 border-t border-line bg-surface/50 text-center">
             <p className="text-[10px] text-dim">
-               Non-empty Subject, Environment, and Atmosphere/Mood prompts are saved, but only fill empty fields when loaded. Existing prompt text is never replaced.
+               {domainId === 'cinematic'
+                 ? 'Non-empty Subject, Environment, and Atmosphere/Mood prompts are saved, but only fill empty fields when loaded. Existing prompt text is never replaced.'
+                 : 'Presets fill fields on load; free-text prompts are never overwritten by a preset.'}
             </p>
         </div>
       </div>

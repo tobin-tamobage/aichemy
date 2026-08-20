@@ -55,6 +55,14 @@ const suggestPrompt = (domainId, category, option, fieldLabel) => {
       return `Flat minimal diagram of a ${label} portrait photo print (${option.ratio ?? ''} ratio), soft pastel background, subtle border showing print dimensions, no text.`;
     case 'hijab':
       return `Studio photo of a neatly draped ${label.toLowerCase()} hijab on a mannequin head, face area left blank, soft even lighting, pastel neutral background.`;
+    case 'color-presets':
+      return `Flat two-color palette swatch (${option.hex ?? ''}) side by side, matte, evenly lit, no gradients beyond the pair, no text.`;
+    case 'typography':
+      return `Minimal type specimen tile for "${label}" typography style, large sample letters on a neutral background, no words.`;
+    case 'design-styles':
+      return `Abstract mood tile representing the "${label}" design style, no text, no logos.`;
+    case 'formats':
+      return `Minimal frame outline diagram of a ${option.ratio ?? ''} format, empty inside, pastel background, no text.`;
     case 'purposes':
       return `Minimal flat icon-style thumbnail representing "${label}", pastel palette, centered composition, no text.`;
     default:

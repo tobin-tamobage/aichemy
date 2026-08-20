@@ -2651,17 +2651,17 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 ### formats (6)
 
 - [ ] `public/images/marketing/formats/1x1.webp` — **1:1 post** (Format)
-  - Suggested prompt: Clean flat thumbnail for "1:1 post" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a 1:1 format, empty inside, pastel background, no text.
 - [ ] `public/images/marketing/formats/9x16.webp` — **9:16 story** (Format) — Story UI overlays cover top/bottom — safe zone handled by clause
-  - Suggested prompt: Clean flat thumbnail for "9:16 story" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a 9:16 format, empty inside, pastel background, no text.
 - [ ] `public/images/marketing/formats/16x9.webp` — **16:9 banner** (Format)
-  - Suggested prompt: Clean flat thumbnail for "16:9 banner" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a 16:9 format, empty inside, pastel background, no text.
 - [ ] `public/images/marketing/formats/2x3.webp` — **2:3 poster** (Format)
-  - Suggested prompt: Clean flat thumbnail for "2:3 poster" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a 2:3 format, empty inside, pastel background, no text.
 - [ ] `public/images/marketing/formats/a4.webp` — **A4 flyer** (Format)
-  - Suggested prompt: Clean flat thumbnail for "A4 flyer" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a A4 format, empty inside, pastel background, no text.
 - [ ] `public/images/marketing/formats/4x5.webp` — **4:5 feed** (Format)
-  - Suggested prompt: Clean flat thumbnail for "4:5 feed" (Format), soft pastel background, centered, minimal, no text.
+  - Suggested prompt: Minimal frame outline diagram of a 4:5 format, empty inside, pastel background, no text.
 
 ### styles (9)
 

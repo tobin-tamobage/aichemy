@@ -150,7 +150,7 @@ export const marketingDomain: DomainRecipe = {
     if (hasCta) {
       layoutParts.push(isStory ? 'CTA just above the bottom 250px' : 'CTA at the bottom');
     }
-    blocks.push(isStory ? `${layoutParts.join(', ')}.` : layoutParts.join(', '));
+    blocks.push(`${layoutParts.join(', ')}.`);
 
     // [Riset §1 blok 4 + jebakan #1] Headline & copy — frasa strategi dari katalog;
     // render-exact menambahkan baris headline dengan teks persis dalam kutip
@@ -171,8 +171,11 @@ export const marketingDomain: DomainRecipe = {
       blocks.push(`${selectedPromos.map(o => o.promptPhrase).join(', ')}, only these elements`);
     }
 
-    // [Riset §1 blok 8] Visual hierarchy — headline > produk > CTA (jebakan #5).
-    blocks.push('Clear visual hierarchy: headline biggest and highest contrast, product second, CTA third.');
+    // [Riset §1 blok 8] Visual hierarchy — headline > produk > CTA (jebakan #5);
+    // CTA hanya disebut bila chip cta-button terpilih (konsisten dengan layout).
+    blocks.push(hasCta
+      ? 'Clear visual hierarchy: headline biggest and highest contrast, product second, CTA third.'
+      : 'Clear visual hierarchy: headline biggest and highest contrast, product second.');
 
     // [Riset §1 blok 10/11 + jebakan #2] Guardrail/negative — turunan langsung
     // MARKETING_GUARDRAILS (kapitalisasi awal + titik; single source of truth).
