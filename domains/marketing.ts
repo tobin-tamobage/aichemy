@@ -56,12 +56,12 @@ export const marketingDomain: DomainRecipe = {
     {
       id: 'content-type',
       title: '01 · Content Type',
-      fields: [{ kind: 'select', key: 'contentType', label: 'Content type', options: CONTENT_TYPES }],
+      fields: [{ kind: 'visual', key: 'contentType', label: 'Content type', options: CONTENT_TYPES, previewRatio: 'aspect-video' }],
     },
     {
       id: 'format-size',
       title: '02 · Format & Size',
-      fields: [{ kind: 'select', key: 'format', label: 'Format', options: MARKETING_FORMATS }],
+      fields: [{ kind: 'visual', key: 'format', label: 'Format', options: MARKETING_FORMATS, previewRatio: 'aspect-square' }],
     },
     {
       id: 'design-style',
@@ -75,7 +75,7 @@ export const marketingDomain: DomainRecipe = {
       title: '04 · Color & Typography',
       fields: [
         { kind: 'visual', key: 'colorScheme', label: 'Color scheme', options: COLOR_PRESETS, previewRatio: 'aspect-[4/3]' },
-        { kind: 'select', key: 'typography', label: 'Typography', options: TYPOGRAPHY_STYLES },
+        { kind: 'visual', key: 'typography', label: 'Typography', options: TYPOGRAPHY_STYLES, previewRatio: 'aspect-square' },
       ],
     },
     {
@@ -89,7 +89,7 @@ export const marketingDomain: DomainRecipe = {
           placeholder: 'E.g., FLASH SALE 50% OFF',
           rows: 3,
         },
-        { kind: 'select', key: 'textStrategy', label: 'Text strategy', options: TEXT_STRATEGIES },
+        { kind: 'visual', key: 'textStrategy', label: 'Text strategy', options: TEXT_STRATEGIES, previewRatio: 'aspect-video' },
         {
           kind: 'chips',
           key: 'promoElements',

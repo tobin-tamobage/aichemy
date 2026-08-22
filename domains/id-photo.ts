@@ -50,14 +50,14 @@ export const idPhotoDomain: DomainRecipe = {
     {
       id: 'purpose',
       title: '01 · Purpose & Document',
-      fields: [{ kind: 'select', key: 'purpose', label: 'Purpose', options: PURPOSES }],
+      fields: [{ kind: 'visual', key: 'purpose', label: 'Purpose', options: PURPOSES, previewRatio: 'aspect-square' }],
     },
     {
       id: 'size',
       title: '02 · Country & Print Size',
       fields: [
-        { kind: 'select', key: 'country', label: 'Country standard', options: COUNTRIES },
-        { kind: 'select', key: 'printSize', label: 'Print size', options: PRINT_SIZES },
+        { kind: 'visual', key: 'country', label: 'Country standard', options: COUNTRIES, previewRatio: 'aspect-square' },
+        { kind: 'visual', key: 'printSize', label: 'Print size', options: PRINT_SIZES, previewRatio: 'aspect-square' },
       ],
     },
     {
@@ -69,10 +69,10 @@ export const idPhotoDomain: DomainRecipe = {
       id: 'outfit',
       title: '04 · Outfit & Appearance',
       fields: [
-        { kind: 'select', key: 'outfit', label: 'Outfit', options: OUTFITS },
+        { kind: 'visual', key: 'outfit', label: 'Outfit', options: OUTFITS, previewRatio: 'aspect-square' },
         { kind: 'toggle', key: 'hijab', label: 'Hijab', hint: 'Neatly draped, forehead-to-chin fully visible' },
         {
-          kind: 'select', key: 'hijabColor', label: 'Hijab color', options: HIJAB_COLORS,
+          kind: 'visual', key: 'hijabColor', label: 'Hijab color', options: HIJAB_COLORS, previewRatio: 'aspect-square',
           visibleWhen: (s) => s.hijab === true,
         },
       ],
@@ -81,8 +81,8 @@ export const idPhotoDomain: DomainRecipe = {
       id: 'expression',
       title: '05 · Expression & Framing',
       fields: [
-        { kind: 'select', key: 'expression', label: 'Expression', options: EXPRESSIONS },
-        { kind: 'select', key: 'framing', label: 'Framing', options: FRAMINGS },
+        { kind: 'visual', key: 'expression', label: 'Expression', options: EXPRESSIONS, previewRatio: 'aspect-square' },
+        { kind: 'visual', key: 'framing', label: 'Framing', options: FRAMINGS, previewRatio: 'aspect-square' },
       ],
     },
   ],
