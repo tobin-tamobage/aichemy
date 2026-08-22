@@ -28,6 +28,8 @@ const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 const TEXT_TYPES = ['wordmark', 'lettermark', 'emblem', 'combination'];
 // Tipe dengan kata "wordmark" di lockup → typography section tampil (plan §2).
 const LETTERING_TYPES = ['wordmark', 'lettermark', 'combination'];
+// Tipe dengan ikon → icon motif tampil; wordmark/lettermark murni huruf ("no icon").
+const ICON_TYPES = ['pictorial', 'abstract', 'emblem', 'mascot', 'combination'];
 
 export const logoDomain: DomainRecipe = {
   id: 'logo',
@@ -103,7 +105,7 @@ export const logoDomain: DomainRecipe = {
       id: 'motif',
       title: '07 · Icon & Technique',
       fields: [
-        { kind: 'textarea', key: 'iconMotif', label: 'Icon motif', placeholder: 'What should the icon depict?…', rows: 2 },
+        { kind: 'textarea', key: 'iconMotif', label: 'Icon motif', placeholder: 'What should the icon depict?…', rows: 2, visibleWhen: (s: DomainState) => ICON_TYPES.includes(str(s.logoType)) },
         { kind: 'chips', key: 'techniques', label: 'Construction techniques', options: LOGO_TECHNIQUES, max: 3 },
       ],
     },
@@ -124,8 +126,10 @@ export const logoDomain: DomainRecipe = {
     const typography = LOGO_TYPESTYLES.find(o => o.value === str(state.typography)) ?? LOGO_TYPESTYLES[0];
     const designer = LOGO_DESIGNERS.find(o => o.value === str(state.designer)) ?? LOGO_DESIGNERS[0];
 
-    const brandBrief = str(state.brandBrief);
-    const motif = str(state.iconMotif);
+    // Input bebas: buang titik di ujung agar tak ada ".."; motif hanya untuk tipe ber-ikon
+    // (wordmark/lettermark menyatakan "no icon" — jangan kontradiksi, riset §2).
+    const brandBrief = str(state.brandBrief).replace(/\.+$/, '');
+    const motif = ICON_TYPES.includes(str(state.logoType)) ? str(state.iconMotif).replace(/\.+$/, '') : '';
     const techniqueValues = Array.isArray(state.techniques) ? (state.techniques as string[]) : [];
     const selected = techniqueValues
       .map(v => LOGO_TECHNIQUES.find(o => o.value === v))
