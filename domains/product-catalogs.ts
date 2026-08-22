@@ -149,7 +149,7 @@ export const QUALITY_MODIFIERS: DomainOption[] = [
 export const NEGATIVES =
   'distorted label, misspelled text, warped packaging, extra objects, cluttered background, harsh reflections, deformed product, low resolution, watermark, blurry';
 
-// Phase 6 Task 2 — lens (select). qualityPhrase replaces the hardcoded '85mm f/8 product shot'.
+// Phase 6 Task 2 — lens (visual). qualityPhrase replaces the hardcoded '85mm f/8 product shot'.
 export interface ProductLensOption extends DomainOption {
   qualityPhrase: string;     // physical-constraint tail (replaces '85mm f/8 product shot')
 }
@@ -161,7 +161,7 @@ export const PRODUCT_LENSES: ProductLensOption[] = [
   { value: '90mm-ts', label: '90mm tilt-shift', image: '/images/lenses/tilt-shift-lens.webp', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
 ];
 
-// Phase 6 Task 2 — camera body (select). Sentence clause.
+// Phase 6 Task 2 — camera body (visual). Sentence clause.
 export interface ProductCameraOption extends DomainOption { promptPhrase: string; }
 export const PRODUCT_CAMERAS: ProductCameraOption[] = [
   { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4, 150MP medium format' },

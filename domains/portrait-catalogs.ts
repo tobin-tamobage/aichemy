@@ -9,7 +9,7 @@ import type { DomainOption } from './types';
 
 const img = (category: string, slug: string) => `images/portrait/${category}/${slug}.webp`;
 
-// Plan Task 1 Step 1 Field 1 — jenis potret/deliverable (select).
+// Plan Task 1 Step 1 Field 1 — jenis potret/deliverable (visual).
 export interface PortraitTypeOption extends DomainOption {
   promptPhrase: string;
 }
@@ -21,7 +21,7 @@ export const PORTRAIT_TYPES: PortraitTypeOption[] = [
   { value: 'stylized-avatar', label: 'Stylized avatar', image: img('portrait-types', 'stylized-avatar'), promptPhrase: 'a stylized digital avatar' },
 ];
 
-// Plan Task 1 Step 1 Field 2 — skema pencahayaan (select).
+// Plan Task 1 Step 1 Field 2 — skema pencahayaan (visual).
 export interface LightingOption extends DomainOption {
   promptPhrase: string;
 }
@@ -34,7 +34,7 @@ export const PORTRAIT_LIGHTING: LightingOption[] = [
   { value: 'window-natural', label: 'Window (natural)', image: img('lighting', 'window-natural'), promptPhrase: 'soft natural window light from the side' },
 ];
 
-// Plan Task 1 Step 1 Field 3 — latar belakang (select).
+// Plan Task 1 Step 1 Field 3 — latar belakang (visual).
 export interface BackgroundOption extends DomainOption {
   promptPhrase: string;
 }
@@ -46,7 +46,7 @@ export const PORTRAIT_BACKGROUNDS: BackgroundOption[] = [
   { value: 'plain-color', label: 'Plain color', image: img('backgrounds', 'plain-color'), promptPhrase: 'a plain solid color backdrop' },
 ];
 
-// Plan Task 1 Step 1 Field 4 — wardrobe (select).
+// Plan Task 1 Step 1 Field 4 — wardrobe (visual).
 export interface WardrobeOption extends DomainOption {
   promptPhrase: string;
 }
@@ -57,7 +57,7 @@ export const PORTRAIT_WARDROBE: WardrobeOption[] = [
   { value: 'casual', label: 'Casual', image: img('wardrobe', 'casual'), promptPhrase: 'casual everyday clothing' },
 ];
 
-// Plan Task 1 Step 1 Field 5 — ekspresi (select).
+// Plan Task 1 Step 1 Field 5 — ekspresi (visual).
 export interface ExpressionOption extends DomainOption {
   promptPhrase: string;
 }
@@ -68,7 +68,7 @@ export const PORTRAIT_EXPRESSIONS: ExpressionOption[] = [
   { value: 'intense', label: 'Intense', image: img('expressions', 'intense'), promptPhrase: 'an intense, dramatic expression' },
 ];
 
-// Plan Task 1 Step 1 Field 6 — lens & framing (select).
+// Plan Task 1 Step 1 Field 6 — lens & framing (visual).
 export interface LensOption extends DomainOption {
   promptPhrase: string;
 }
@@ -79,7 +79,7 @@ export const PORTRAIT_LENSES: LensOption[] = [
   { value: '200mm-tight', label: '200mm tight', image: '/images/focal-length/200mm-super-telephoto.webp', promptPhrase: 'a 200mm telephoto lens, tight face framing' },
 ];
 
-// Phase 6 Task 1 — camera body (select).
+// Phase 6 Task 1 — camera body (visual).
 export interface CameraOption extends DomainOption { promptPhrase: string; }
 export const PORTRAIT_CAMERAS: CameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
@@ -89,7 +89,7 @@ export const PORTRAIT_CAMERAS: CameraOption[] = [
   { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4, 150MP medium format' },
 ];
 
-// Phase 6 Task 1 — photographer style (select). 'auto' = no clause.
+// Phase 6 Task 1 — photographer style (visual). 'auto' = no clause.
 export interface PhotographerOption extends DomainOption { promptPhrase: string; }
 export const PORTRAIT_PHOTOGRAPHERS: PhotographerOption[] = [
   { value: 'auto', label: 'No specific style', promptPhrase: '' },

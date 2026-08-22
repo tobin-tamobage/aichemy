@@ -194,7 +194,7 @@ export const ATTIRE: AttireOption[] = [
   { value: 'boutonniere', label: 'Boutonniere', image: img('attire', 'boutonniere'), group: 'groom', promptPhrase: 'a boutonniere' },
 ];
 
-// Phase 6 Task 1 — camera body (select). Clause appended after lens part.
+// Phase 6 Task 1 — camera body (visual). Clause appended after lens part.
 export interface WeddingCameraOption extends DomainOption { promptPhrase: string; }
 export const WEDDING_CAMERAS: WeddingCameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
@@ -203,7 +203,7 @@ export const WEDDING_CAMERAS: WeddingCameraOption[] = [
   { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
 ];
 
-// Phase 6 Task 1 — lens override (select). 'auto' = keep derived-from-framing (LENS_BY_FRAMING).
+// Phase 6 Task 1 — lens override (visual). 'auto' = keep derived-from-framing (LENS_BY_FRAMING).
 export interface WeddingLensOption extends DomainOption { promptPhrase: string; }
 export const WEDDING_LENSES: WeddingLensOption[] = [
   { value: 'auto', label: 'Auto (match framing)', promptPhrase: '' },

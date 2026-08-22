@@ -81,7 +81,7 @@ export const COLOR_PRESETS: ColorPresetOption[] = [
   { value: 'orange-black', label: 'Orange & Black (Energetic)', hex: '#F97316/#1A1A1A', image: img('color-presets', 'orange-black'), promptPhrase: 'deep black background with bright orange accents' },
 ];
 
-// Riset §2 Field 5 — typography style (select).
+// Riset §2 Field 5 — typography style (visual).
 // Handwritten hanya untuk sub-copy (riset §2 Field 5); jangan minta font brand (jebakan #3/#8).
 export interface TypographyOption extends DomainOption {
   promptPhrase: string;

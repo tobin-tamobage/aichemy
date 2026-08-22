@@ -34,7 +34,7 @@ export const FOOD_DISHES: DishOption[] = [
   { value: 'drink', label: 'Iced drink', image: img('dishes', 'drink'), promptPhrase: 'a refreshing iced drink in a tall glass with condensation droplets' },
 ];
 
-// Plan Task 1 Step 3 Field 2 — presentasi/penyajian (select).
+// Plan Task 1 Step 3 Field 2 — presentasi/penyajian (visual).
 export interface PresentationOption extends DomainOption {
   promptPhrase: string;
 }
@@ -44,7 +44,7 @@ export const FOOD_PRESENTATIONS: PresentationOption[] = [
   { value: 'flat-lay', label: 'Flat lay', image: img('presentations', 'flat-lay'), promptPhrase: 'a flat lay with ingredients arranged around the dish' },
 ];
 
-// Plan Task 1 Step 3 Field 3 — mood cahaya (select).
+// Plan Task 1 Step 3 Field 3 — mood cahaya (visual).
 export interface LightMoodOption extends DomainOption {
   promptPhrase: string;
 }
@@ -55,7 +55,7 @@ export const FOOD_LIGHT_MOODS: LightMoodOption[] = [
   { value: 'warm-cozy', label: 'Warm & cozy', image: img('light-moods', 'warm-cozy'), promptPhrase: 'warm cozy evening light with golden tones' },
 ];
 
-// Plan Task 1 Step 3 Field 4 — angle (select).
+// Plan Task 1 Step 3 Field 4 — angle (visual).
 export interface FoodAngleOption extends DomainOption {
   promptPhrase: string;
 }
@@ -66,7 +66,7 @@ export const FOOD_ANGLES: FoodAngleOption[] = [
   { value: 'close-up', label: 'Close-up', image: img('angles', 'close-up'), promptPhrase: 'a close-up macro view of texture and detail' },
 ];
 
-// Plan Task 1 Step 3 Field 5 — backdrop/permukaan (select).
+// Plan Task 1 Step 3 Field 5 — backdrop/permukaan (visual).
 export interface BackdropOption extends DomainOption {
   promptPhrase: string;
 }
@@ -79,7 +79,7 @@ export const FOOD_BACKDROPS: BackdropOption[] = [
   { value: 'ceramic', label: 'Ceramic', image: img('backdrops', 'ceramic'), promptPhrase: 'handmade ceramic tableware' },
 ];
 
-// Phase 6 Task 2 — lens (select). 'auto' derives from angle.
+// Phase 6 Task 2 — lens (visual). 'auto' derives from angle.
 export interface FoodLensOption extends DomainOption { promptPhrase: string; }
 export const FOOD_LENSES: FoodLensOption[] = [
   { value: 'auto', label: 'Auto (match angle)', promptPhrase: '' },
@@ -89,7 +89,7 @@ export const FOOD_LENSES: FoodLensOption[] = [
   { value: '24-70mm', label: '24-70mm zoom', image: '/images/focal-length/24mm-wide-angle.webp', promptPhrase: 'a 24-70mm zoom lens' },
 ];
 
-// Phase 6 Task 2 — camera body (select).
+// Phase 6 Task 2 — camera body (visual).
 export interface FoodCameraOption extends DomainOption { promptPhrase: string; }
 export const FOOD_CAMERAS: FoodCameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
@@ -98,7 +98,7 @@ export const FOOD_CAMERAS: FoodCameraOption[] = [
   { value: 'iphone-pro', label: 'iPhone Pro', image: '/images/cameras/iphone-pro.webp', promptPhrase: 'modern iPhone Pro camera, computational photography' },
 ];
 
-// Phase 6 Task 2 — publication style (select). 'auto' = no clause.
+// Phase 6 Task 2 — publication style (visual). 'auto' = no clause.
 export interface FoodStyleOption extends DomainOption { promptPhrase: string; }
 export const FOOD_STYLES: FoodStyleOption[] = [
   { value: 'auto', label: 'No specific style', promptPhrase: '' },
