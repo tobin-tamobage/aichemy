@@ -36,16 +36,19 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  /** Berapa foto sumber yang sudah digabung ke `value` (komposit dihitung per tambahan). */
-  const [sourceCount, setSourceCount] = useState(0);
+  /** Foto-foto sumber asli — komposit selalu dihitung ulang dari SEMUA sumber,
+   *  bukan menumpuk komposit lama (foto ke-3 menghasilkan grid rapi, bukan tergencet). */
+  const [sources, setSources] = useState<string[]>([]);
   const [isComposing, setIsComposing] = useState(false);
 
-  // Value jadi null (remove ATAU restore project tanpa foto) → hitungan sumber reset.
-  // Perubahan non-null tidak disentuh — compose flow yang mengaturnya; komposit hasil
-  // import tak diketahui jumlahnya dan diperlakukan sebagai 1 sumber (spec).
+  // Value jadi null (remove ATAU restore project tanpa foto) → sumber ikut dibuang.
+  // Komposit hasil import tak diketahui sumbernya → diperlakukan 1 sumber (spec).
   useEffect(() => {
-    if (value === null) setSourceCount(0);
+    if (value === null) setSources([]);
   }, [value]);
+
+  // Derived: import-restore menghasilkan value tanpa sources → hitung 1.
+  const sourceCount = sources.length === 0 && value ? 1 : sources.length;
 
   const handleFile = (file: File | null | undefined) => {
     if (!file || isComposing) return;
@@ -67,20 +70,21 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
       const newDataUrl = reader.result as string;
       if (!value) {
         onChange(newDataUrl);
-        setSourceCount(1);
+        setSources([newDataUrl]);
         return;
       }
-      // Tambahan foto → gabung dengan komposit yang ada jadi satu gambar baru.
+      // Tambahan foto → compose ulang dari SEMUA sumber asli (bukan komposit lama).
       setIsComposing(true);
       try {
-        const composite = await composeReferenceImages([value, newDataUrl]);
+        const next = [...(sources.length > 0 ? sources : [value]), newDataUrl];
+        const composite = await composeReferenceImages(next);
         onChange(composite);
-        setSourceCount((c) => c + 1);
+        setSources(next);
       } catch (err) {
         // Komposit gagal (gambar korup) → jangan lempar ke UI; pakai foto terbaru saja.
         console.error('Failed to combine reference photos — using the newest photo only', err);
         onChange(newDataUrl);
-        setSourceCount(1);
+        setSources([newDataUrl]);
       } finally {
         setIsComposing(false);
         if (fileInputRef.current) fileInputRef.current.value = '';
