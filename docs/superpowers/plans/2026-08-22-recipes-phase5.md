@@ -196,7 +196,7 @@ The portrait must clearly depict the pet from the reference photo - same breed, 
 - [ ] **Step 6**: `npm run build`, commit `feat(recipes): studio builder UI + .nbrecipe import/export`.
 
 ### Task 4 — e2e verification
-- [ ] **Step 1**: build + dev server + browser automation. Assertions:
+- [x] **Step 1**: build + dev server + browser automation. Assertions:
   1. Start screen shows 8 builtin cards + Create/Import Studio buttons.
   2. Create Studio → build the golden Pet Portraits recipe exactly per §1 (all fields, blocks, rule, protected key) → live preview prompt equals expected default paragraphs → Save.
   3. Start screen now shows Pet Portraits card with CUSTOM badge; header pills include 🐾.
@@ -208,7 +208,7 @@ The portrait must clearly depict the pet from the reference photo - same breed, 
   9. Import invalid JSON (e.g. `{ "foo": 1 }`) → alert lists validation errors, nothing saved.
   10. Switch back to Cinematic → prompt parity unaffected; all 8 builtins still build prompts.
   11. `node scripts/generate-asset-checklist.mjs` → byte-identical `design/asset-checklist.md`.
-- [ ] **Step 2**: fix any failures; `npm run build`; commit `feat(recipes): studio builder live, e2e verified`.
+- [x] **Step 2**: fix any failures; `npm run build`; commit `feat(recipes): studio builder live, e2e verified`.
 
 ---
 
