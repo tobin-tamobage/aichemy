@@ -31,7 +31,7 @@ import {
   createInitialCharacter, createInitialScene, createInitialImageInput,
 } from './hooks';
 import { useDomainState } from './hooks/useDomainState';
-import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID, applyPreset } from './domains';
+import { getAllDomains, getDomain, DEFAULT_DOMAIN_ID, applyPreset } from './domains';
 import type { DomainRecipe, DomainState, DomainWarning } from './domains';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
@@ -925,7 +925,7 @@ export default function App() {
           <div className="flex flex-wrap items-center gap-3 xl:justify-end">
             {/* Domain switcher */}
             <div className="flex items-center gap-1.5" role="group" aria-label="Recipe domain">
-              {DOMAINS.map(d => (
+              {getAllDomains().map(d => (
                 <button
                   key={d.id}
                   type="button"

@@ -12,7 +12,7 @@ import {
   removeRecentProject,
   type RecentProjectEntry,
 } from '../services/browserStorage';
-import { DOMAINS, getDomain, DEFAULT_DOMAIN_ID } from '../domains';
+import { getAllDomains, getDomain, deleteCustomStudio, DEFAULT_DOMAIN_ID } from '../domains';
 
 interface StartScreenProps {
   onNewProject: (domainId: string, name?: string) => void;
@@ -23,6 +23,9 @@ interface StartScreenProps {
 export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }: StartScreenProps) {
   const [recentProjects, setRecentProjects] = useState<RecentProjectEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  // Bump untuk memaksa re-render setelah delete custom studio (registry cache
+  // sudah di-invalidate oleh deleteCustomStudio, jadi getAllDomains() membaca ulang).
+  const [, setCustomsVersion] = useState(0);
 
   useEffect(() => {
     try {
@@ -74,20 +77,46 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
-              {DOMAINS.map((domain) => (
-                <button
-                  key={domain.id}
-                  type="button"
-                  onClick={() => onNewProject(domain.id)}
-                  className="group flex flex-col items-start justify-center gap-2 p-6 border-2 border-dashed border-line hover:border-accent bg-base hover:bg-accent/5 rounded-card transition-all duration-200 text-left"
-                >
-                  <span className="text-3xl" aria-hidden="true">{domain.icon}</span>
-                  <span className="text-sm font-black uppercase tracking-wider text-ink group-hover:text-accent transition-colors">
-                    {domain.label}
-                  </span>
-                  <span className="text-[11px] text-dim leading-relaxed">{domain.tagline}</span>
-                </button>
-              ))}
+              {getAllDomains().map((domain) => {
+                const isCustom = domain.id.startsWith('x-');
+                return (
+                  <div key={domain.id} className="relative">
+                    <button
+                      type="button"
+                      onClick={() => onNewProject(domain.id)}
+                      className="group flex flex-col items-start justify-center gap-2 p-6 w-full h-full border-2 border-dashed border-line hover:border-accent bg-base hover:bg-accent/5 rounded-card transition-all duration-200 text-left"
+                    >
+                      <span className="text-3xl" aria-hidden="true">{domain.icon}</span>
+                      <span className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-ink group-hover:text-accent transition-colors">
+                        {domain.label}
+                        {isCustom && (
+                          <span className="rounded-sm bg-accent/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-accent">
+                            Custom
+                          </span>
+                        )}
+                      </span>
+                      <span className="text-[11px] text-dim leading-relaxed">{domain.tagline}</span>
+                    </button>
+                    {isCustom && (
+                      <button
+                        type="button"
+                        title={`Delete studio "${domain.label}"`}
+                        aria-label={`Delete studio "${domain.label}"`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (window.confirm(`Delete studio "${domain.label}"?`)) {
+                            deleteCustomStudio(domain.id);
+                            setCustomsVersion(v => v + 1);
+                          }
+                        }}
+                        className="absolute top-2 right-2 p-1.5 rounded-sm text-dim hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                      </button>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

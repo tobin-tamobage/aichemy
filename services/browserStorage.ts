@@ -7,6 +7,7 @@
  */
 
 import type { Preset, ProjectFile, SavedCharacter } from '../types';
+import type { CustomRecipe } from '../domains/custom/types';
 
 const KEYS = {
   /** Legacy user-preset key (cinematic) — dibaca + dimigrasi ke aichemy-presets-cinematic. */
@@ -226,6 +227,48 @@ export function saveAutosave(projectId: string, project: ProjectFile): boolean {
 
 export function loadAutosave(projectId: string): ProjectFile | null {
   return readJson<ProjectFile | null>(KEYS.autosavePrefix + projectId, null);
+}
+
+// ---------- custom studios (phase 5) ----------
+
+const CUSTOM_STUDIOS_KEY = 'aichemy-custom-studios';
+
+/**
+ * Semua fungsi di section ini WAJIB aman di Node (tanpa localStorage) —
+ * scripts/generate-asset-checklist.mjs membundel domains/index.ts yang
+ * mengimpor modul ini secara transitif.
+ */
+export function loadCustomRecipes(): CustomRecipe[] {
+  if (typeof localStorage === 'undefined') return [];
+  const raw = readJson<unknown>(CUSTOM_STUDIOS_KEY, []);
+  if (!Array.isArray(raw)) return [];
+  // Validasi penuh ada di validate.ts saat save/import; di sini hanya
+  // filter shape minimal supaya cache adapter tidak crash pada data korup.
+  return raw.filter(
+    (r): r is CustomRecipe =>
+      !!r && typeof r === 'object' &&
+      typeof (r as CustomRecipe).id === 'string' &&
+      Array.isArray((r as CustomRecipe).sections) &&
+      Array.isArray((r as CustomRecipe).template),
+  );
+}
+
+/** Upsert by id. Returns false pada kegagalan tulis / environment Node. */
+export function saveCustomRecipe(recipe: CustomRecipe): boolean {
+  if (typeof localStorage === 'undefined') return false;
+  const all = loadCustomRecipes();
+  const idx = all.findIndex(r => r.id === recipe.id);
+  if (idx >= 0) all[idx] = recipe; else all.push(recipe);
+  return writeJson(CUSTOM_STUDIOS_KEY, all);
+}
+
+/** Returns false saat id tidak ditemukan atau environment Node. */
+export function deleteCustomRecipe(id: string): boolean {
+  if (typeof localStorage === 'undefined') return false;
+  const all = loadCustomRecipes();
+  const next = all.filter(r => r.id !== id);
+  if (next.length === all.length) return false;
+  return writeJson(CUSTOM_STUDIOS_KEY, next);
 }
 
 // ---------- generic UI settings ----------
