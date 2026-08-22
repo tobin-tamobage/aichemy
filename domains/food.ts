@@ -5,6 +5,9 @@ import {
   FOOD_LIGHT_MOODS,
   FOOD_ANGLES,
   FOOD_BACKDROPS,
+  FOOD_LENSES,
+  FOOD_CAMERAS,
+  FOOD_STYLES,
 } from './food-catalogs';
 
 /**
@@ -38,6 +41,9 @@ export const foodDomain: DomainRecipe = {
     lightMood: 'natural-window',
     angle: '45-degree',
     backdrop: 'wood-table',
+    lens: 'auto',
+    camera: 'sony-a7rv',
+    publicationStyle: 'auto',
   }),
 
   sections: [
@@ -66,6 +72,15 @@ export const foodDomain: DomainRecipe = {
       title: '05 · Backdrop & Props',
       fields: [{ kind: 'select', key: 'backdrop', label: 'Backdrop', options: FOOD_BACKDROPS }],
     },
+    {
+      id: 'camera-style',
+      title: '06 · Camera & Style',
+      fields: [
+        { kind: 'select', key: 'lens', label: 'Lens', options: FOOD_LENSES },
+        { kind: 'select', key: 'camera', label: 'Camera body', options: FOOD_CAMERAS },
+        { kind: 'select', key: 'publicationStyle', label: 'Publication style', options: FOOD_STYLES },
+      ],
+    },
   ],
 
   buildPrompt: (state: DomainState): string => {
@@ -74,6 +89,18 @@ export const foodDomain: DomainRecipe = {
     const lightMood = FOOD_LIGHT_MOODS.find(o => o.value === str(state.lightMood)) ?? FOOD_LIGHT_MOODS[0];
     const angle = FOOD_ANGLES.find(o => o.value === str(state.angle)) ?? FOOD_ANGLES[0];
     const backdrop = FOOD_BACKDROPS.find(o => o.value === str(state.backdrop)) ?? FOOD_BACKDROPS[0];
+    const lens = FOOD_LENSES.find(o => o.value === str(state.lens)) ?? FOOD_LENSES[0];
+    const camera = FOOD_CAMERAS.find(o => o.value === str(state.camera)) ?? FOOD_CAMERAS[0];
+    const publicationStyle = FOOD_STYLES.find(o => o.value === str(state.publicationStyle)) ?? FOOD_STYLES[0];
+
+    // [Phase 6] Lens 'auto' derives from angle (macro close-up -> 100mm; overhead -> 50mm; 45° -> 85mm).
+    const LENS_BY_ANGLE: Record<string, string> = {
+      'close-up': 'a 100mm macro lens, texture and detail',
+      overhead: 'a 50mm lens, natural table perspective',
+      '45-degree': 'an 85mm lens, gentle compression',
+      'side-profile': 'an 85mm lens, gentle compression',
+    };
+    const lensPhrase = lens.promptPhrase !== '' ? lens.promptPhrase : (LENS_BY_ANGLE[angle.value] ?? 'a 50mm lens, natural table perspective');
 
     const blocks: string[] = [];
 
@@ -94,10 +121,15 @@ export const foodDomain: DomainRecipe = {
 
     // [Riset §2 Field 4] Angle — 45° klasik, overhead untuk flat lay, side profile
     // untuk lapisan (ramen, burger).
-    blocks.push(`Shot from ${angle.promptPhrase}.`);
+    blocks.push(`Shot from ${angle.promptPhrase} on ${lensPhrase}, ${camera.promptPhrase}.`);
 
     // [Riset §2 Field 5] Backdrop/permukaan + props.
     blocks.push(`Served on ${backdrop.promptPhrase}.`);
+
+    // [Phase 6] Publication style — klausa opsional (phrases sudah capital, no transform).
+    if (publicationStyle.promptPhrase !== '') {
+      blocks.push(`${publicationStyle.promptPhrase}.`);
+    }
 
     // [Riset §4] Guardrail/negative — warna natural, DOF dangkal, tanpa tangan/orang/teks.
     blocks.push('Vibrant natural colors, shallow depth of field, fresh garnish, no hands, no people, no text, no watermark.');
@@ -110,6 +142,7 @@ export const foodDomain: DomainRecipe = {
     const dish = str(state.dish);
     const presentation = str(state.presentation);
     const angle = str(state.angle);
+    const lens = str(state.lens);
 
     // (a) [Riset §4 jebakan #1] Hidangan panas — prompt menambah klausa steam.
     if (HOT_DISHES.includes(dish)) {
@@ -137,6 +170,15 @@ export const foodDomain: DomainRecipe = {
         sectionId: 'angle',
         level: 'warn',
         text: 'Flat lay and close-up conflict — pick one: ingredients spread out, or a macro detail.',
+      });
+    }
+
+    // (d) [Phase 6] Close-up butuh lensa makro — lens eksplisit non-macro bertentangan.
+    if (angle === 'close-up' && lens !== '' && lens !== 'auto' && lens !== '100mm-macro') {
+      out.push({
+        sectionId: 'camera-style',
+        level: 'warn',
+        text: 'Close-up food shots need the 100mm macro lens — switch the lens or widen the angle.',
       });
     }
 

@@ -5,6 +5,7 @@ import {
   RE_TIMES,
   RE_STAGING,
   RE_ANGLES,
+  RE_CAMERAS,
 } from './real-estate-catalogs';
 
 /**
@@ -34,6 +35,7 @@ export const realEstateDomain: DomainRecipe = {
     timeOfDay: 'morning-natural',
     staging: 'furnished-styled',
     angleLens: 'wide-24mm',
+    cameraTechnique: 'full-frame',
   }),
 
   sections: [
@@ -60,7 +62,10 @@ export const realEstateDomain: DomainRecipe = {
     {
       id: 'angle-lens',
       title: '05 · Angle & Lens',
-      fields: [{ kind: 'select', key: 'angleLens', label: 'Angle & lens', options: RE_ANGLES }],
+      fields: [
+        { kind: 'select', key: 'angleLens', label: 'Angle & lens', options: RE_ANGLES },
+        { kind: 'select', key: 'cameraTechnique', label: 'Camera & technique', options: RE_CAMERAS },
+      ],
     },
   ],
 
@@ -70,6 +75,7 @@ export const realEstateDomain: DomainRecipe = {
     const timeOfDay = RE_TIMES.find(o => o.value === str(state.timeOfDay)) ?? RE_TIMES[0];
     const staging = RE_STAGING.find(o => o.value === str(state.staging)) ?? RE_STAGING[0];
     const angleLens = RE_ANGLES.find(o => o.value === str(state.angleLens)) ?? RE_ANGLES[0];
+    const cameraTechnique = RE_CAMERAS.find(o => o.value === str(state.cameraTechnique)) ?? RE_CAMERAS[0];
 
     // [Riset §2 Field 1] Prefix 'exterior-' di value scene → blok exterior (vs interior).
     const isExterior = scene.value.startsWith('exterior-');
@@ -92,6 +98,9 @@ export const realEstateDomain: DomainRecipe = {
     // [Riset §2 Field 5] Angle & lens — 16mm ultra-wide untuk interior, bukan eksterior.
     blocks.push(`Shot with ${angleLens.promptPhrase}.`);
 
+    // [Phase 6] Camera/technique sentence — capitalise first letter of the phrase.
+    blocks.push(`${cameraTechnique.promptPhrase.charAt(0).toUpperCase()}${cameraTechnique.promptPhrase.slice(1)}.`);
+
     // [Riset §4 jebakan #1/#2] Guardrail/negative — vertikal lurus, orang/hewan/teks dihapus.
     blocks.push('Straight verticals, natural colors, realistic materials, no people, no pets, no watermarks, no text overlays.');
 
@@ -104,6 +113,7 @@ export const realEstateDomain: DomainRecipe = {
     const designStyle = str(state.designStyle);
     const staging = str(state.staging);
     const angleLens = str(state.angleLens);
+    const cameraTechnique = str(state.cameraTechnique);
 
     // (a) [Riset §4 jebakan #3] Virtual staging menambah klausa prompt — info.
     if (staging === 'virtual-staging') {
@@ -129,6 +139,15 @@ export const realEstateDomain: DomainRecipe = {
         sectionId: 'design-style',
         level: 'info',
         text: 'Industrial style in a bathroom can feel cold — add warm wood or brass accents.',
+      });
+    }
+
+    // (d) [Phase 6] Drone aerial hanya cocok untuk scene eksterior.
+    if (cameraTechnique === 'drone' && !scene.startsWith('exterior-')) {
+      out.push({
+        sectionId: 'angle-lens',
+        level: 'warn',
+        text: 'Drone aerial only suits exterior scenes — interior drone shots look wrong.',
       });
     }
 

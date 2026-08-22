@@ -141,7 +141,6 @@ export const QUALITY_MODIFIERS: DomainOption[] = [
   { value: 'ultra-sharp', label: 'ultra sharp focus' },
   { value: 'high-detail', label: 'high detail' },
   { value: 'studio', label: 'professional studio photography' },
-  { value: '85mm-f8', label: 'shot on 85mm lens, f/8' },
   { value: 'packshot', label: 'packshot' },
   { value: 'award-winning', label: 'award-winning product photography' },
 ];
@@ -149,3 +148,26 @@ export const QUALITY_MODIFIERS: DomainOption[] = [
 // Riset §2.9 — negative/avoid verbatim (untuk platform yang mendukung negative prompt)
 export const NEGATIVES =
   'distorted label, misspelled text, warped packaging, extra objects, cluttered background, harsh reflections, deformed product, low resolution, watermark, blurry';
+
+// Phase 6 Task 2 — lens (select). qualityPhrase replaces the hardcoded '85mm f/8 product shot'.
+export interface ProductLensOption extends DomainOption {
+  promptPhrase: string;      // sentence clause
+  qualityPhrase: string;     // physical-constraint tail (replaces '85mm f/8 product shot')
+}
+export const PRODUCT_LENSES: ProductLensOption[] = [
+  { value: '85mm-f8', label: '85mm f/8 packshot', promptPhrase: 'an 85mm lens at f/8, edge-to-edge sharpness', qualityPhrase: '85mm f/8 product shot' },
+  { value: '50mm', label: '50mm standard', promptPhrase: 'a 50mm lens', qualityPhrase: '50mm product shot' },
+  { value: '100mm-macro', label: '100mm macro', promptPhrase: 'a 100mm macro lens, 1:1 detail reproduction', qualityPhrase: '100mm macro product shot, 1:1 detail reproduction' },
+  { value: '24-70mm', label: '24-70mm zoom', promptPhrase: 'a 24-70mm zoom lens', qualityPhrase: '24-70mm zoom product shot' },
+  { value: '90mm-ts', label: '90mm tilt-shift', promptPhrase: 'a 90mm tilt-shift lens, full focal plane sharpness', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
+];
+
+// Phase 6 Task 2 — camera body (select). Sentence clause.
+export interface ProductCameraOption extends DomainOption { promptPhrase: string; }
+export const PRODUCT_CAMERAS: ProductCameraOption[] = [
+  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, 102MP medium format' },
+  { value: 'sony-a7rv', label: 'Sony A7R V', promptPhrase: 'Sony A7R V, 61MP full-frame' },
+  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5, 45MP full-frame' },
+  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8, 45MP full-frame' },
+  { value: 'phase-one', label: 'Phase One IQ4', promptPhrase: 'Phase One IQ4 150MP medium format' },
+];

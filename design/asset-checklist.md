@@ -1,6 +1,6 @@
 # Asset Checklist — reference images
 
-Generated 2026-08-20 by `scripts/generate-asset-checklist.mjs` from the DOMAINS registry.
+Generated 2026-08-22 by `scripts/generate-asset-checklist.mjs` from the DOMAINS registry.
 Regenerate: `node scripts/generate-asset-checklist.mjs`.
 
 Files live under `public/`; missing files render as placeholder tiles in VisualSelector until generated.
@@ -2820,7 +2820,7 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/portrait/lenses/200mm-tight.webp` — **200mm tight** (Lens)
   - Suggested prompt: Studio product photo of a 200mm telephoto lens, tight face framing on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
-## 🏠 Real Estate (`real-estate`) — 0/26 present
+## 🏠 Real Estate (`real-estate`) — 0/27 present
 
 ### scenes (7)
 
@@ -2876,7 +2876,7 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/real-estate/stagings/empty.webp` — **Empty** (Staging)
   - Suggested prompt: Studio product photo of completely empty, clean, ready for inspection on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
-### angles (5)
+### angles (6)
 
 - [ ] `public/images/real-estate/angles/wide-16mm.webp` — **16mm ultra-wide** (Angle & lens)
   - Suggested prompt: Studio product photo of a 16mm wide-angle lens, full-room view on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
@@ -2888,6 +2888,8 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
   - Suggested prompt: Studio product photo of a low angle looking slightly upward on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 - [ ] `public/images/real-estate/angles/corner-view.webp` — **Corner view** (Angle & lens)
   - Suggested prompt: Studio product photo of a corner view showing two walls on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/real-estate/angles/tilt-shift-24mm.webp` — **24mm tilt-shift** (Angle & lens)
+  - Suggested prompt: Studio product photo of a 24mm tilt-shift lens, perspective-corrected, verticals perfectly straight on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
 ## 🍜 Food (`food`) — 0/31 present
 
@@ -2969,4 +2971,4 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
   - Suggested prompt: Studio product photo of handmade ceramic tableware on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
 ---
-Total: 770 referenced, 425 present, 345 missing.
+Total: 771 referenced, 425 present, 346 missing.

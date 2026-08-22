@@ -78,3 +78,31 @@ export const FOOD_BACKDROPS: BackdropOption[] = [
   { value: 'dark-slate', label: 'Dark slate', image: img('backdrops', 'dark-slate'), promptPhrase: 'a dark slate surface' },
   { value: 'ceramic', label: 'Ceramic', image: img('backdrops', 'ceramic'), promptPhrase: 'handmade ceramic tableware' },
 ];
+
+// Phase 6 Task 2 — lens (select). 'auto' derives from angle.
+export interface FoodLensOption extends DomainOption { promptPhrase: string; }
+export const FOOD_LENSES: FoodLensOption[] = [
+  { value: 'auto', label: 'Auto (match angle)', promptPhrase: '' },
+  { value: '50mm', label: '50mm standard', promptPhrase: 'a 50mm lens, natural table perspective' },
+  { value: '85mm', label: '85mm portrait', promptPhrase: 'an 85mm lens, gentle compression' },
+  { value: '100mm-macro', label: '100mm macro', promptPhrase: 'a 100mm macro lens, texture and detail' },
+  { value: '24-70mm', label: '24-70mm zoom', promptPhrase: 'a 24-70mm zoom lens' },
+];
+
+// Phase 6 Task 2 — camera body (select).
+export interface FoodCameraOption extends DomainOption { promptPhrase: string; }
+export const FOOD_CAMERAS: FoodCameraOption[] = [
+  { value: 'sony-a7rv', label: 'Sony A7R V', promptPhrase: 'Sony A7R V, 61MP full-frame mirrorless' },
+  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5, 45MP full-frame mirrorless' },
+  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8, 45MP full-frame' },
+  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, 102MP medium format' },
+];
+
+// Phase 6 Task 2 — publication style (select). 'auto' = no clause.
+export interface FoodStyleOption extends DomainOption { promptPhrase: string; }
+export const FOOD_STYLES: FoodStyleOption[] = [
+  { value: 'auto', label: 'No specific style', promptPhrase: '' },
+  { value: 'kinfolk-editorial', label: 'Kinfolk editorial', promptPhrase: 'Kinfolk magazine editorial style, muted earthy tones, quiet natural storytelling' },
+  { value: 'bon-appetit', label: 'Bon Appétit commercial', promptPhrase: 'Bon Appétit commercial style, bright, crisp, vibrant color pop' },
+  { value: 'clean-cookbook', label: 'Clean cookbook', promptPhrase: 'clean cookbook style, even lighting, minimal styling' },
+];

@@ -68,4 +68,13 @@ export const RE_ANGLES: ReAngleOption[] = [
   { value: 'eye-level', label: 'Eye level', image: img('angles', 'eye-level'), promptPhrase: 'eye-level composition' },
   { value: 'low-angle', label: 'Low angle', image: img('angles', 'low-angle'), promptPhrase: 'a low angle looking slightly upward' },
   { value: 'corner-view', label: 'Corner view', image: img('angles', 'corner-view'), promptPhrase: 'a corner view showing two walls' },
+  { value: 'tilt-shift-24mm', label: '24mm tilt-shift', image: img('angles', 'tilt-shift-24mm'), promptPhrase: 'a 24mm tilt-shift lens, perspective-corrected, verticals perfectly straight' },
+];
+
+// Phase 6 Task 2 — camera & technique (select). Sentence clause.
+export interface ReCameraOption extends DomainOption { promptPhrase: string; }
+export const RE_CAMERAS: ReCameraOption[] = [
+  { value: 'full-frame', label: 'Full-frame mirrorless', promptPhrase: 'shot on a full-frame mirrorless camera, high resolution' },
+  { value: 'hdr-blend', label: 'HDR exposure blend', promptPhrase: 'HDR exposure blend, balanced interior and window light' },
+  { value: 'drone', label: 'Drone aerial', promptPhrase: 'aerial drone photograph, elevated perspective' },
 ];

@@ -7,6 +7,8 @@ import {
   PROPS_BY_CATEGORY,
   COMPOSITIONS,
   QUALITY_MODIFIERS,
+  PRODUCT_LENSES,
+  PRODUCT_CAMERAS,
   NEGATIVES,
 } from './product-catalogs';
 
@@ -47,6 +49,8 @@ export const productDomain: DomainRecipe = {
     blankLabel: false,
     quality: ['commercial', '8k', 'ultra-sharp'],
     productName: '',
+    lens: '85mm-f8',
+    camera: 'fuji-gfx100ii',
   }),
 
   // Teks bebas (productName) tidak ditimpa preset — pola cinematic subjectAction.
@@ -110,6 +114,14 @@ export const productDomain: DomainRecipe = {
         { kind: 'chips', key: 'quality', label: 'Quality', options: QUALITY_MODIFIERS },
       ],
     },
+    {
+      id: 'camera-lens',
+      title: '06 · Camera & Lens',
+      fields: [
+        { kind: 'select', key: 'lens', label: 'Lens', options: PRODUCT_LENSES },
+        { kind: 'select', key: 'camera', label: 'Camera body', options: PRODUCT_CAMERAS },
+      ],
+    },
   ],
 
   buildPrompt: (state: DomainState): string => {
@@ -118,6 +130,8 @@ export const productDomain: DomainRecipe = {
     const surface = SURFACES.find(o => o.value === str(state.surface)) ?? SURFACES[0];
     const lighting = PRODUCT_LIGHTING.find(o => o.value === str(state.lighting)) ?? PRODUCT_LIGHTING[0];
     const composition = COMPOSITIONS.find(o => o.value === str(state.composition)) ?? COMPOSITIONS[0];
+    const lens = PRODUCT_LENSES.find(o => o.value === str(state.lens)) ?? PRODUCT_LENSES[0];
+    const camera = PRODUCT_CAMERAS.find(o => o.value === str(state.camera)) ?? PRODUCT_CAMERAS[0];
     const productName = str(state.productName).trim();
     const blankLabel = state.blankLabel === true;
     const negativeSpace = state.negativeSpace === true;
@@ -184,10 +198,9 @@ export const productDomain: DomainRecipe = {
     }
     blocks.push(compPhrase);
 
-    // [Riset §1 prinsip 3 + spec §3.3] Quality chips + constraint fisik `85mm f/8 product shot`
-    // sebagai ganti kata "realistic" — realisme dari fisik, bukan label.
+    // [Phase 6] Physical constraint now comes from the lens field (was hardcoded '85mm f/8 product shot').
     const qualityTail = qualityLabels.length > 0 ? `${qualityLabels.join(', ')}, ` : '';
-    blocks.push(`${qualityTail}85mm f/8 product shot`);
+    blocks.push(`${qualityTail}${lens.qualityPhrase}, ${camera.promptPhrase}`);
 
     // [Riset §2.9] Daftar negatif — selalu di akhir.
     blocks.push(`Negative: ${NEGATIVES}.`);
@@ -201,6 +214,7 @@ export const productDomain: DomainRecipe = {
     const shotType = str(state.shotType);
     const surface = str(state.surface);
     const lighting = str(state.lighting);
+    const lens = str(state.lens);
     const blankLabel = state.blankLabel === true;
     const propsValues = Array.isArray(state.props) ? (state.props as string[]) : [];
 
@@ -231,6 +245,15 @@ export const productDomain: DomainRecipe = {
         sectionId: 'shot-type',
         level: 'warn',
         text: "Extreme angles risk deformed geometry — keep 'accurate product proportions' in mind.",
+      });
+    }
+
+    // [Phase 6] Macro shot type needs the 100mm macro lens.
+    if (shotType === 'macro' && lens !== '100mm-macro') {
+      out.push({
+        sectionId: 'camera-lens',
+        level: 'warn',
+        text: 'Macro detail shots need the 100mm macro lens — switch the lens or choose a wider shot type.',
       });
     }
 
