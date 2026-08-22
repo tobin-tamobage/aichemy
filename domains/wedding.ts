@@ -7,6 +7,8 @@ import {
   POSES_BY_MOMENT,
   STYLES,
   VENUES,
+  WEDDING_CAMERAS,
+  WEDDING_LENSES,
   WEDDING_LIGHTING,
 } from './wedding-catalogs';
 
@@ -47,6 +49,8 @@ export const weddingDomain: DomainRecipe = {
     lighting: 'window-light',
     style: 'documentary',
     filmStock: 'none',
+    camera: 'canon-r5',
+    lensOverride: 'auto',
     attire: [],
   }),
 
@@ -91,6 +95,8 @@ export const weddingDomain: DomainRecipe = {
         // select = single-select paksa — mencegah style blend (riset §5 #11, spec §3.2).
         { kind: 'select', key: 'style', label: 'Style', options: STYLES },
         { kind: 'select', key: 'filmStock', label: 'Film stock', options: FILM_STOCK_KEYWORDS },
+        { kind: 'select', key: 'camera', label: 'Camera body', options: WEDDING_CAMERAS },
+        { kind: 'select', key: 'lensOverride', label: 'Lens (optional)', options: WEDDING_LENSES },
       ],
     },
     {
@@ -110,6 +116,8 @@ export const weddingDomain: DomainRecipe = {
     const lighting = WEDDING_LIGHTING.find(o => o.value === str(state.lighting)) ?? WEDDING_LIGHTING[0];
     const style = STYLES.find(o => o.value === str(state.style)) ?? STYLES[0];
     const film = FILM_STOCK_KEYWORDS.find(o => o.value === str(state.filmStock)) ?? FILM_STOCK_KEYWORDS[0];
+    const camera = WEDDING_CAMERAS.find(o => o.value === str(state.camera)) ?? WEDDING_CAMERAS[0];
+    const lensOverride = WEDDING_LENSES.find(o => o.value === str(state.lensOverride)) ?? WEDDING_LENSES[0];
 
     // [Riset §1 blok 2] Subject + attire — hanya disisipkan bila ada chips terpilih.
     const attireValues = Array.isArray(state.attire) ? (state.attire as string[]) : [];
@@ -128,8 +136,10 @@ export const weddingDomain: DomainRecipe = {
     }
 
     // [Riset §1 blok 1 + §5 #4] Shot type/framing di awal (token paling berpengaruh);
-    // lensa derived dari framing, bukan field user (spec §3.2 smart rule, riset §3.7).
-    const lens = LENS_BY_FRAMING[framing.value] ?? LENS_BY_FRAMING['close-up'];
+    // lensa default derived dari framing (spec §3.2 smart rule, riset §3.7).
+    // Phase 6 Task 1 — lensOverride 'auto' keeps the derived lens; explicit overrides it.
+    const derivedLens = LENS_BY_FRAMING[framing.value] ?? LENS_BY_FRAMING['close-up'];
+    const lens = lensOverride.promptPhrase !== '' ? lensOverride.promptPhrase : derivedLens;
 
     // [Riset §1] Satu kalimat ringkas: shot type → subject → pose → venue →
     // lighting → mood+style (promptModifier) → kamera → film stock (bila dipilih).
@@ -140,7 +150,7 @@ export const weddingDomain: DomainRecipe = {
       venue.promptPhrase,
       lighting.promptPhrase,
       style.promptModifier,
-      `shot on ${lens}`,
+      `shot on ${lens}, ${camera.promptPhrase}`,
     ];
     if (film.keyword) parts.push(film.keyword);
 
@@ -155,6 +165,7 @@ export const weddingDomain: DomainRecipe = {
     const venue = str(state.venue);
     const style = str(state.style);
     const pose = str(state.pose);
+    const lensOverride = str(state.lensOverride);
 
     // [Riset §5 #5] Detail shots butuh framing makro/close-up (lensa 100mm).
     if (moment === 'detail-shots' && framing !== 'macro' && framing !== 'close-up') {
@@ -200,6 +211,24 @@ export const weddingDomain: DomainRecipe = {
         sectionId: 'pose-framing',
         level: 'info',
         text: 'Extreme close-ups of hands risk extra fingers — consider a slightly wider shot.',
+      });
+    }
+
+    // [Phase 6 Task 1 b2] 24mm wide override bentrok dengan framing close-up/macro.
+    if (lensOverride === '24mm' && (framing === 'macro' || framing === 'close-up')) {
+      out.push({
+        sectionId: 'style-film',
+        level: 'warn',
+        text: '24mm wide on close-up framing distorts faces — use 85mm f/1.4 or Auto.',
+      });
+    }
+
+    // [Phase 6 Task 1 b3] 100mm macro override cocok hanya untuk framing macro/close-up.
+    if (lensOverride === '100mm-macro' && framing !== 'macro' && framing !== 'close-up') {
+      out.push({
+        sectionId: 'style-film',
+        level: 'warn',
+        text: '100mm macro suits detail shots — pair with macro framing or switch the lens back to Auto.',
       });
     }
 

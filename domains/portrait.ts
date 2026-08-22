@@ -6,6 +6,8 @@ import {
   PORTRAIT_WARDROBE,
   PORTRAIT_EXPRESSIONS,
   PORTRAIT_LENSES,
+  PORTRAIT_CAMERAS,
+  PORTRAIT_PHOTOGRAPHERS,
 } from './portrait-catalogs';
 
 /**
@@ -36,6 +38,8 @@ export const portraitDomain: DomainRecipe = {
     wardrobe: 'formal-suit',
     expression: 'confident-smile',
     lens: '85mm-closeup',
+    camera: 'sony-a7rv',
+    photographer: 'auto',
   }),
 
   sections: [
@@ -65,7 +69,15 @@ export const portraitDomain: DomainRecipe = {
     {
       id: 'lens',
       title: '05 · Lens & Framing',
-      fields: [{ kind: 'select', key: 'lens', label: 'Lens', options: PORTRAIT_LENSES }],
+      fields: [
+        { kind: 'select', key: 'lens', label: 'Lens', options: PORTRAIT_LENSES },
+        { kind: 'select', key: 'camera', label: 'Camera body', options: PORTRAIT_CAMERAS },
+      ],
+    },
+    {
+      id: 'photographer',
+      title: '06 · Photographer Style',
+      fields: [{ kind: 'select', key: 'photographer', label: 'Photographer style', options: PORTRAIT_PHOTOGRAPHERS }],
     },
   ],
 
@@ -76,6 +88,8 @@ export const portraitDomain: DomainRecipe = {
     const wardrobe = PORTRAIT_WARDROBE.find(o => o.value === str(state.wardrobe)) ?? PORTRAIT_WARDROBE[0];
     const expression = PORTRAIT_EXPRESSIONS.find(o => o.value === str(state.expression)) ?? PORTRAIT_EXPRESSIONS[0];
     const lens = PORTRAIT_LENSES.find(o => o.value === str(state.lens)) ?? PORTRAIT_LENSES[0];
+    const camera = PORTRAIT_CAMERAS.find(o => o.value === str(state.camera)) ?? PORTRAIT_CAMERAS[0];
+    const photographer = PORTRAIT_PHOTOGRAPHERS.find(o => o.value === str(state.photographer)) ?? PORTRAIT_PHOTOGRAPHERS[0];
 
     const blocks: string[] = [];
 
@@ -91,9 +105,15 @@ export const portraitDomain: DomainRecipe = {
       // promptPhrase katalog diawali artikel 'a ' — kapitalisasi huruf pertama, bukan
       // prefix 'A ' (hindari "A a corporate headshot…").
       blocks.push(`${type.promptPhrase.charAt(0).toUpperCase()}${type.promptPhrase.slice(1)} of a person, shot on ${lens.promptPhrase}.`);
+      // [Phase 6] Camera body — klausa kamera setelah blok shot type/lens.
+      blocks.push(`Camera: ${camera.promptPhrase}.`);
       blocks.push(`Lighting: ${lighting.promptPhrase}.`);
       blocks.push(`Background: ${background.promptPhrase}.`);
       blocks.push(`The subject wears ${wardrobe.promptPhrase} with ${expression.promptPhrase}.`);
+      // [Phase 6] Photographer style — klausa opsional sebelum guardrail ('auto' = tanpa klausa).
+      if (photographer.promptPhrase) {
+        blocks.push(`${photographer.promptPhrase.charAt(0).toUpperCase()}${photographer.promptPhrase.slice(1)}.`);
+      }
       blocks.push('Sharp focus on the eyes, natural skin texture, photorealistic, no heavy retouching, no text, no watermark.');
     }
 
@@ -113,7 +133,7 @@ export const portraitDomain: DomainRecipe = {
       out.push({
         sectionId: 'portrait-type',
         level: 'info',
-        text: 'Avatar mode switches to a stylized illustration — camera lens and lighting clauses are skipped.',
+        text: 'Avatar mode switches to a stylized illustration — camera, lens, lighting, and photographer-style clauses are skipped.',
       });
     }
 

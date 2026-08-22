@@ -78,3 +78,26 @@ export const PORTRAIT_LENSES: LensOption[] = [
   { value: '35mm-environmental', label: '35mm environmental', image: img('lenses', '35mm-environmental'), promptPhrase: 'a 35mm lens, environmental framing with context around the subject' },
   { value: '200mm-tight', label: '200mm tight', image: img('lenses', '200mm-tight'), promptPhrase: 'a 200mm telephoto lens, tight face framing' },
 ];
+
+// Phase 6 Task 1 — camera body (select).
+export interface CameraOption extends DomainOption { promptPhrase: string; }
+export const PORTRAIT_CAMERAS: CameraOption[] = [
+  { value: 'sony-a7rv', label: 'Sony A7R V', promptPhrase: 'Sony A7R V, 61MP full-frame mirrorless' },
+  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5, 45MP full-frame mirrorless' },
+  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8, 45MP stacked full-frame' },
+  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, 102MP medium format' },
+  { value: 'hasselblad-x2d', label: 'Hasselblad X2D 100C', promptPhrase: 'Hasselblad X2D 100C, 100MP medium format' },
+  { value: 'leica-sl3', label: 'Leica SL3', promptPhrase: 'Leica SL3, 60MP full-frame' },
+];
+
+// Phase 6 Task 1 — photographer style (select). 'auto' = no clause.
+export interface PhotographerOption extends DomainOption { promptPhrase: string; }
+export const PORTRAIT_PHOTOGRAPHERS: PhotographerOption[] = [
+  { value: 'auto', label: 'No specific style', promptPhrase: '' },
+  { value: 'annie-leibovitz', label: 'Annie Leibovitz', promptPhrase: 'in the style of Annie Leibovitz, dramatic painterly lighting, conceptual editorial portrait' },
+  { value: 'peter-lindbergh', label: 'Peter Lindbergh', promptPhrase: 'in the style of Peter Lindbergh, raw black-and-white realism, natural unretouched beauty' },
+  { value: 'platon', label: 'Platon', promptPhrase: 'in the style of Platon, tight framing, intense direct gaze, powerful simplicity' },
+  { value: 'richard-avedon', label: 'Richard Avedon', promptPhrase: 'in the style of Richard Avedon, stark white background, psychological intensity, sharp detail' },
+  { value: 'steve-mccurry', label: 'Steve McCurry', promptPhrase: 'in the style of Steve McCurry, vivid color, soulful environmental storytelling' },
+  { value: 'rankin', label: 'Rankin', promptPhrase: 'in the style of Rankin, bold glossy fashion lighting, high-contrast beauty' },
+];
