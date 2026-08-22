@@ -144,8 +144,10 @@ Default prompt hasil (probe harus assert EXACT):
 
 ## §4 Task 2 — checklist regen + e2e
 
-- [ ] `node scripts/generate-asset-checklist.mjs` → 8 kategori logo baru (~54 aset, semua missing → initials tiles); commit checklist.
-- [ ] e2e browser: kartu Logo muncul di start screen + switcher; semua 8 section render; tiap picker adalah tile grid (0 `<select>`); typography picker hanya tampil untuk wordmark/lettermark/combination (cek hilang saat pictorial); default prompt EXACT §2; isi brandBrief+iconMotif → masuk blok 1; pilih wordmark → warning ejaan + Lettering section muncul; mascot+minimalist → warning; charcoal+monochrome-black → warning; upload sketsa → reference clause; save preset (brandBrief TIDAK ikut preset — presetProtectedKeys) → reload → ada; export/import round-trip; preset lama domain lain tak terpengaruh; build+tsc hijau; commit `feat(recipes): logo maker live, e2e verified`.
+- [x] `node scripts/generate-asset-checklist.mjs` → 8 kategori logo baru (57 aset, semua missing → initials tiles); commit checklist.
+- [x] e2e browser: kartu Logo muncul di start screen + switcher; semua 8 section render; tiap picker adalah tile grid (0 `<select>`); typography picker hanya tampil untuk wordmark/lettermark/combination (cek hilang saat pictorial); default prompt EXACT §2; isi brandBrief+iconMotif → masuk blok 1; pilih wordmark → warning ejaan + Lettering section muncul; mascot+minimalist → warning; charcoal+monochrome-black → warning; upload sketsa → reference clause; save preset (brandBrief TIDAK ikut preset — presetProtectedKeys) → reload → ada; export/import round-trip; preset lama domain lain tak terpengaruh; build+tsc hijau; commit `feat(recipes): logo maker live, e2e verified`.
+
+> **Amendemen (Task 2, disetujui plan owner):** klausa referensi logo digate pada upload aktual — arsitektur lama tidak punya plumbing dari `ReferencePhotoField` ke domain state (sibling menyertakan klausa di default via `hasReferencePhoto: true`, bertabrakan dengan default EXACT §2). Fix d779adc: `App.tsx` onChange ikut `domain.updateField('hasReferencePhoto', url !== null)`; `logo.ts` prepend `REFERENCE_CLAUSE` hanya bila `state.hasReferencePhoto === true`. Default prompt 8 domain lama byte-identical vs 4b9b912 (esbuild probe).
 
 ## §5 Anti-Patterns
 
