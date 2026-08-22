@@ -16,6 +16,7 @@ import { PresetLibraryModal } from './components/PresetLibraryModal';
 import { CharacterLibraryModal } from './components/CharacterLibraryModal';
 import { InpaintEditor } from './components/InpaintEditor';
 import { StartScreen } from './components/StartScreen';
+import { StudioBuilder } from './components/StudioBuilder';
 import { StudioAccordionSection } from './components/StudioAccordionSection';
 import { StudioWorkspaceShell } from './components/StudioWorkspaceShell';
 import { UnsavedChangesModal } from './components/UnsavedChangesModal';
@@ -31,8 +32,13 @@ import {
   createInitialCharacter, createInitialScene, createInitialImageInput,
 } from './hooks';
 import { useDomainState } from './hooks/useDomainState';
-import { getAllDomains, getDomain, DEFAULT_DOMAIN_ID, applyPreset } from './domains';
+import {
+  getAllDomains, getDomain, DEFAULT_DOMAIN_ID, applyPreset,
+  DOMAINS, listCustomRecipes, saveCustomStudio,
+} from './domains';
 import type { DomainRecipe, DomainState, DomainWarning } from './domains';
+import { validateRecipe } from './domains/custom/validate';
+import type { CustomRecipe } from './domains/custom/types';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
@@ -349,6 +355,15 @@ export default function App() {
   const isRestoringProjectRef = useRef(false);
   const importFileInputRef = useRef<HTMLInputElement | null>(null);
 
+  // --- Studio Builder (custom domains, phase 5) ---
+  const [showStudioBuilder, setShowStudioBuilder] = useState(false);
+  /** Edit mode target; null = create mode. */
+  const [editingRecipe, setEditingRecipe] = useState<CustomRecipe | null>(null);
+  /** Bump forces re-render → pills + StartScreen re-read getAllDomains()
+   *  (registry cache already invalidated by saveCustomStudio/deleteCustomStudio). */
+  const [customsVersion, setCustomsVersion] = useState(0);
+  const studioImportInputRef = useRef<HTMLInputElement | null>(null);
+
   const toggleSection = useCallback((sectionId: string) => {
     setExpandedSections(prev => ({ ...prev, [sectionId]: !prev[sectionId] }));
   }, []);
@@ -566,6 +581,50 @@ export default function App() {
   /** Open Project: trigger the hidden file input */
   const handleOpenProject = useCallback(() => {
     importFileInputRef.current?.click();
+  }, []);
+
+  // --- Studio Builder handlers (phase 5) ---
+
+  /** Create Studio: open the builder empty. */
+  const openBuilder = useCallback(() => {
+    setEditingRecipe(null);
+    setShowStudioBuilder(true);
+  }, []);
+
+  /** Edit Studio: open the builder pre-filled; Save overwrites the same id. */
+  const openBuilderWith = useCallback((recipe: CustomRecipe) => {
+    setEditingRecipe(recipe);
+    setShowStudioBuilder(true);
+  }, []);
+
+  /** Import Studio: trigger the hidden .nbrecipe file input. */
+  const handleImportStudio = useCallback(() => {
+    studioImportInputRef.current?.click();
+  }, []);
+
+  /** Import a .nbrecipe file: parse → validate (builtin + existing custom id
+   *  collisions rejected, v1 per plan) → save + bump. Errors alert, nothing saved. */
+  const handleStudioImportFile = useCallback(async (file: File) => {
+    try {
+      const text = await readFileAsText(file);
+      const json: unknown = JSON.parse(text);
+      const collisionIds = [...DOMAINS.map(d => d.id), ...listCustomRecipes().map(r => r.id)];
+      const result = validateRecipe(json, collisionIds);
+      if (!result.ok) {
+        window.alert(`Invalid studio recipe:\n${result.errors.join('\n')}`);
+        return;
+      }
+      if (saveCustomStudio(result.recipe)) setCustomsVersion(v => v + 1);
+    } catch (err) {
+      window.alert(`Failed to import studio: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }, []);
+
+  /** Builder saved: refresh pills/cards and close. */
+  const handleStudioSaved = useCallback(() => {
+    setCustomsVersion(v => v + 1);
+    setShowStudioBuilder(false);
+    setEditingRecipe(null);
   }, []);
 
   const handleClearWorkspace = useCallback(() => {
@@ -894,11 +953,35 @@ export default function App() {
         }}
       />
 
+      {/* Hidden studio recipe import input */}
+      <input
+        ref={studioImportInputRef}
+        type="file"
+        accept=".json,.nbrecipe,application/json"
+        className="hidden"
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) void handleStudioImportFile(file);
+          e.target.value = '';
+        }}
+      />
+
+      {/* Studio Builder modal (create/edit custom studios) */}
+      <StudioBuilder
+        isOpen={showStudioBuilder}
+        initialRecipe={editingRecipe}
+        onClose={() => { setShowStudioBuilder(false); setEditingRecipe(null); }}
+        onSaved={handleStudioSaved}
+      />
+
       {appView === 'start' ? (
         <StartScreen
           onNewProject={handleNewProject}
           onOpenProject={handleOpenProject}
           onLoadRecentProject={handleLoadRecentProject}
+          onCreateStudio={openBuilder}
+          onImportStudio={handleImportStudio}
+          onEditStudio={openBuilderWith}
         />
       ) : (
     <div className="min-h-screen lg:h-screen bg-base text-ink font-sans flex flex-col lg:overflow-hidden">
@@ -923,8 +1006,8 @@ export default function App() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 xl:justify-end">
-            {/* Domain switcher */}
-            <div className="flex items-center gap-1.5" role="group" aria-label="Recipe domain">
+            {/* Domain switcher — key on customsVersion forces a fresh getAllDomains() read after studio save/import/delete */}
+            <div key={customsVersion} className="flex items-center gap-1.5" role="group" aria-label="Recipe domain">
               {getAllDomains().map(d => (
                 <button
                   key={d.id}

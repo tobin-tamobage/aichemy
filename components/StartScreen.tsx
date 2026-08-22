@@ -6,21 +6,28 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { Plus, FolderOpen, Clock, Folder, AlertCircle, Trash2 } from 'lucide-react';
+import { Plus, FolderOpen, Clock, Folder, AlertCircle, Trash2, Upload, Pencil } from 'lucide-react';
 import {
   loadRecentProjects,
   removeRecentProject,
   type RecentProjectEntry,
 } from '../services/browserStorage';
-import { getAllDomains, getDomain, deleteCustomStudio, DEFAULT_DOMAIN_ID } from '../domains';
+import { getAllDomains, getDomain, deleteCustomStudio, listCustomRecipes, DEFAULT_DOMAIN_ID } from '../domains';
+import type { CustomRecipe } from '../domains/custom/types';
 
 interface StartScreenProps {
   onNewProject: (domainId: string, name?: string) => void;
   onOpenProject: () => void;
   onLoadRecentProject: (projectId: string) => void;
+  /** Studio Builder (create mode) — modal state lives in App. */
+  onCreateStudio: () => void;
+  /** .nbrecipe import — hidden file input lives in App. */
+  onImportStudio: () => void;
+  /** Studio Builder (edit mode) — receives the raw CustomRecipe (not the adapted DomainRecipe). */
+  onEditStudio: (recipe: CustomRecipe) => void;
 }
 
-export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }: StartScreenProps) {
+export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject, onCreateStudio, onImportStudio, onEditStudio }: StartScreenProps) {
   const [recentProjects, setRecentProjects] = useState<RecentProjectEntry[]>([]);
   const [loading, setLoading] = useState(true);
   // Bump untuk memaksa re-render setelah delete custom studio (registry cache
@@ -71,9 +78,27 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
 
           {/* Choose your Recipe */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2 border-b border-line pb-2">
-              <Plus className="w-4 h-4 text-accent" />
-              <h2 className="text-xs font-bold uppercase tracking-widest text-dim">Choose your Recipe</h2>
+            <div className="flex items-center justify-between gap-2 border-b border-line pb-2">
+              <div className="flex items-center gap-2">
+                <Plus className="w-4 h-4 text-accent" />
+                <h2 className="text-xs font-bold uppercase tracking-widest text-dim">Choose your Recipe</h2>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={onCreateStudio}
+                  className="flex items-center gap-1 px-2.5 py-1 border border-line rounded-full text-[10px] font-bold uppercase tracking-wider text-dim hover:text-accent hover:border-accent transition-colors"
+                >
+                  <Plus className="w-3 h-3" /> Create Studio
+                </button>
+                <button
+                  type="button"
+                  onClick={onImportStudio}
+                  className="flex items-center gap-1 px-2.5 py-1 border border-line rounded-full text-[10px] font-bold uppercase tracking-wider text-dim hover:text-accent hover:border-accent transition-colors"
+                >
+                  <Upload className="w-3 h-3" /> Import Studio
+                </button>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-4">
@@ -98,21 +123,36 @@ export function StartScreen({ onNewProject, onOpenProject, onLoadRecentProject }
                       <span className="text-[11px] text-dim leading-relaxed">{domain.tagline}</span>
                     </button>
                     {isCustom && (
-                      <button
-                        type="button"
-                        title={`Delete studio "${domain.label}"`}
-                        aria-label={`Delete studio "${domain.label}"`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (window.confirm(`Delete studio "${domain.label}"?`)) {
-                            deleteCustomStudio(domain.id);
-                            setCustomsVersion(v => v + 1);
-                          }
-                        }}
-                        className="absolute top-2 right-2 p-1.5 rounded-sm text-dim hover:text-red-400 hover:bg-red-400/10 transition-colors"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
+                      <div className="absolute top-2 right-2 flex items-center gap-1">
+                        <button
+                          type="button"
+                          title={`Edit studio "${domain.label}"`}
+                          aria-label={`Edit studio "${domain.label}"`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const recipe = listCustomRecipes().find(r => r.id === domain.id);
+                            if (recipe) onEditStudio(recipe);
+                          }}
+                          className="p-1.5 rounded-sm text-dim hover:text-accent hover:bg-accent/10 transition-colors"
+                        >
+                          <Pencil className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          title={`Delete studio "${domain.label}"`}
+                          aria-label={`Delete studio "${domain.label}"`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            if (window.confirm(`Delete studio "${domain.label}"?`)) {
+                              deleteCustomStudio(domain.id);
+                              setCustomsVersion(v => v + 1);
+                            }
+                          }}
+                          className="p-1.5 rounded-sm text-dim hover:text-red-400 hover:bg-red-400/10 transition-colors"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
