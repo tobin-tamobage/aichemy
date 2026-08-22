@@ -18,8 +18,8 @@ import {
  *
  * Spec §3.3: referencePhoto: true — ada reference clause (produk di-attach user,
  * scene dibangun di sekelilingnya, produk TIDAK diubah). Lighting single-select
- * (smart rule "one scene, one light"). Template menambah constraint fisik
- * `85mm f/8 product shot` sebagai ganti kata "realistic".
+ * (smart rule "one scene, one light"). Constraint fisik kamera/lensa kini berasal
+ * dari field Camera & Lens (Phase 6) — dulu hardcoded `85mm f/8 product shot`.
  */
 
 // Klausa referensi PERSIS spec §3.3 — produk di-attach user; jangan redraw/ubah produk.

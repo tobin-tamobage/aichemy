@@ -151,15 +151,14 @@ export const NEGATIVES =
 
 // Phase 6 Task 2 — lens (select). qualityPhrase replaces the hardcoded '85mm f/8 product shot'.
 export interface ProductLensOption extends DomainOption {
-  promptPhrase: string;      // sentence clause
   qualityPhrase: string;     // physical-constraint tail (replaces '85mm f/8 product shot')
 }
 export const PRODUCT_LENSES: ProductLensOption[] = [
-  { value: '85mm-f8', label: '85mm f/8 packshot', promptPhrase: 'an 85mm lens at f/8, edge-to-edge sharpness', qualityPhrase: '85mm f/8 product shot' },
-  { value: '50mm', label: '50mm standard', promptPhrase: 'a 50mm lens', qualityPhrase: '50mm product shot' },
-  { value: '100mm-macro', label: '100mm macro', promptPhrase: 'a 100mm macro lens, 1:1 detail reproduction', qualityPhrase: '100mm macro product shot, 1:1 detail reproduction' },
-  { value: '24-70mm', label: '24-70mm zoom', promptPhrase: 'a 24-70mm zoom lens', qualityPhrase: '24-70mm zoom product shot' },
-  { value: '90mm-ts', label: '90mm tilt-shift', promptPhrase: 'a 90mm tilt-shift lens, full focal plane sharpness', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
+  { value: '85mm-f8', label: '85mm f/8 packshot', qualityPhrase: '85mm f/8 product shot' },
+  { value: '50mm', label: '50mm standard', qualityPhrase: '50mm product shot' },
+  { value: '100mm-macro', label: '100mm macro', qualityPhrase: '100mm macro product shot, 1:1 detail reproduction' },
+  { value: '24-70mm', label: '24-70mm zoom', qualityPhrase: '24-70mm zoom product shot' },
+  { value: '90mm-ts', label: '90mm tilt-shift', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
 ];
 
 // Phase 6 Task 2 — camera body (select). Sentence clause.
