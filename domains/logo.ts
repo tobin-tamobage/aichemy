@@ -31,6 +31,9 @@ const LETTERING_TYPES = ['wordmark', 'lettermark', 'combination'];
 // Tipe dengan ikon → icon motif tampil; wordmark/lettermark murni huruf ("no icon").
 const ICON_TYPES = ['pictorial', 'abstract', 'emblem', 'mascot', 'combination'];
 
+// Klausa reference — disisipkan saat sketsa ter-attach (pola id-photo/product).
+const REFERENCE_CLAUSE = 'Use the attached sketch as the structural basis — keep its layout and proportions, redraw it as a clean vector logo.';
+
 export const logoDomain: DomainRecipe = {
   id: 'logo',
   label: 'Logo',
@@ -38,7 +41,7 @@ export const logoDomain: DomainRecipe = {
   tagline: 'Wordmarks, emblems, and mascots — flat vector, production-minded prompts.',
   referencePhoto: true,
   referenceLabel: 'Sketch / reference',
-  referenceClause: 'Use the attached sketch as the structural basis — keep its layout and proportions, redraw it as a clean vector logo.',
+  referenceClause: REFERENCE_CLAUSE,
   presetProtectedKeys: ['brandBrief', 'iconMotif'],
 
   createEmptyState: () => ({
@@ -138,6 +141,14 @@ export const logoDomain: DomainRecipe = {
     const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
 
     const blocks: string[] = [];
+
+    // [Riset §1 blok 2 — img2img, pola id-photo/product] Klausa sketsa di posisi awal
+    // (paling dipatuhi). Berbeda dari sibling: default createEmptyState TIDAK men-set
+    // hasReferencePhoto — klausa hanya muncul saat sketsa benar-benar ter-attach
+    // (App meng-update hasReferencePhoto saat upload/hapus), sehingga default prompt bersih.
+    if (state.hasReferencePhoto === true) {
+      blocks.push(REFERENCE_CLAUSE);
+    }
 
     // [Riset §1 blok 1] Kata "logo" + tipe di kalimat pertama mengunci genre; industri
     // memberi kosakata asosiasi; brand brief + motif ikon jadi subjek konkret.

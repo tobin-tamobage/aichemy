@@ -1597,7 +1597,13 @@ export default function App() {
           {activeDomain.referencePhoto && (
             <ReferencePhotoField
               value={referenceDataUrl}
-              onChange={setReferenceDataUrl}
+              onChange={(url) => {
+                setReferenceDataUrl(url);
+                // Mirror upload state into domain state so domains whose reference clause
+                // is gated on actual upload (logo) can react; siblings keep their default
+                // hasReferencePhoto: true, so their default prompts are unchanged.
+                domain.updateField('hasReferencePhoto', url !== null);
+              }}
               label={activeDomain.referenceLabel}
               hint="Used as the identity reference — your AI app receives it alongside the prompt."
             />
