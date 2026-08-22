@@ -7,6 +7,7 @@ import { marketingDomain } from './marketing';
 import { portraitDomain } from './portrait';
 import { realEstateDomain } from './real-estate';
 import { foodDomain } from './food';
+import { logoDomain } from './logo';
 import { toDomainRecipe } from './custom/toDomainRecipe';
 import {
   loadCustomRecipes,
@@ -24,6 +25,7 @@ export const DOMAINS: DomainRecipe[] = [
   portraitDomain,
   realEstateDomain,
   foodDomain,
+  logoDomain,
 ];
 
 export const getDomain = (id: string): DomainRecipe =>
