@@ -77,9 +77,12 @@ function toDomainField(field: CustomField): DomainField {
   }
 }
 
-/** Default createEmptyState per kind (plan §1). */
+/** Default createEmptyState per kind (plan §1). Array defaults are cloned —
+ *  kalau tidak, semua empty state berbagi referensi array milik recipe. */
 function fieldDefault(field: CustomField): unknown {
-  if (field.default !== undefined) return field.default;
+  if (field.default !== undefined) {
+    return Array.isArray(field.default) ? [...field.default] : field.default;
+  }
   switch (field.kind) {
     case 'select':
       return field.options?.[0]?.value ?? '';

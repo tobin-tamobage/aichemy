@@ -267,6 +267,10 @@ export function validateRecipe(json: unknown, builtinIds: string[]): ValidateRes
   if (json.referenceClause !== undefined && typeof json.referenceClause !== 'string') {
     errors.push(`referenceClause: must be a string`);
   }
+  if (json.referencePhoto === true
+    && (typeof json.referenceClause !== 'string' || json.referenceClause.trim() === '')) {
+    errors.push(`referenceClause: required when referencePhoto is true`);
+  }
 
   // --- Sections & fields (kumpulkan id/key untuk cek referensi) ---
   const sectionIds = new Set<string>();
