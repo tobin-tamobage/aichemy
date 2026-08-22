@@ -133,7 +133,7 @@ for (const domain of DOMAINS) {
         if (typeof option.image !== 'string' || option.image.length === 0) continue;
         const image = option.image.replace(/^\/+/, '');
         const parts = image.split('/'); // images/<domain>/<category>/<slug>.webp
-        const category = parts.length >= 3 ? parts[2] : 'misc';
+        const category = parts.length >= 4 ? parts[2] : `shared/${parts[1]}`;
         if (!categories.has(category)) categories.set(category, []);
         categories.get(category).push({ option, fieldLabel: field.label, image });
       }
