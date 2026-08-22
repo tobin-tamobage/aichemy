@@ -277,7 +277,7 @@ Expected default angle block (45-degree): `Shot from a 45-degree angle, the clas
 
 ## 4. Task 3 — e2e verification
 
-- [ ] **Step 1**: build + dev server + browser. Assertions:
+- [x] **Step 1**: build + dev server + browser. Assertions:
   1. All 8 studios still render; Cinematic untouched (prompt parity spot-check: one cinematic combo prompt identical to pre-phase).
   2. **Portrait**: new fields Camera body + Photographer style render; default prompt contains `Camera: Sony A7R V, 61MP full-frame mirrorless.`; choosing Annie Leibovitz appends the style clause before the guardrail; avatar mode skips both clauses and shows the extended info warning; corporate-headshot + 35mm warning still fires.
   3. **Wedding**: Camera body + Lens (optional) render; default prompt contains `shot on 85mm f/1.4, shallow depth of field, Canon EOS R5`; lens override to 24mm + close-up framing → new warning; override to 100mm macro + full-length framing → new warning; lens Auto + framing change still derives correctly.
@@ -287,7 +287,7 @@ Expected default angle block (45-degree): `Shot from a 45-degree angle, the clas
   7. Existing user presets on all 5 domains load and apply (new fields take defaults).
   8. `node scripts/generate-asset-checklist.mjs` → exactly ONE new line (`angles/tilt-shift-24mm`); 771 referenced / 346 missing; commit the regenerated checklist.
   9. `npm run build` green; `npx tsc --noEmit` exit 0.
-- [ ] **Step 2**: fix failures; commit `feat(recipes): studio depth parity live, e2e verified`.
+- [x] **Step 2**: fix failures; commit `feat(recipes): studio depth parity live, e2e verified`.
 
 ---
 
