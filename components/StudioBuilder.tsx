@@ -43,6 +43,8 @@ interface DraftOption {
   value: string;
   label: string;
   promptPhrase: string;
+  image?: string; // preserved from import; no editor UI (opaque passthrough)
+  hint?: string;  // preserved from import; no editor UI (opaque passthrough)
 }
 
 interface DraftField {
@@ -55,9 +57,11 @@ interface DraftField {
   maxText: string; // chips, '' = unset
   text: string; // toggle clause
   hint: string; // preserved from import; no editor UI (plan step 3)
+  visibleWhen?: When; // compiled form, preserved verbatim; no editor UI (opaque passthrough)
   defaultSelect: string; // '' = fall back to first option
   defaultChips: string[];
   defaultToggle: boolean;
+  defaultText: string; // textarea default
 }
 
 interface DraftSection {
@@ -122,6 +126,7 @@ const newField = (kind: CustomFieldKind): DraftField => ({
   defaultSelect: '',
   defaultChips: [],
   defaultToggle: false,
+  defaultText: '',
 });
 
 const newSection = (): DraftSection => ({ uid: uid(), id: '', title: '', fields: [] });
@@ -176,16 +181,20 @@ function draftFromRecipe(recipe: CustomRecipe): Draft {
           value: o.value,
           label: o.label,
           promptPhrase: o.promptPhrase ?? '',
+          ...(o.image !== undefined ? { image: o.image } : {}),
+          ...(o.hint !== undefined ? { hint: o.hint } : {}),
         })),
         placeholder: f.placeholder ?? '',
         maxText: f.max !== undefined ? String(f.max) : '',
         text: f.text ?? '',
         hint: f.hint ?? '',
+        ...(f.visibleWhen !== undefined ? { visibleWhen: f.visibleWhen } : {}),
         defaultSelect: f.kind === 'select' && typeof f.default === 'string' ? f.default : '',
         defaultChips: f.kind === 'chips' && Array.isArray(f.default)
           ? (f.default as unknown[]).filter((v): v is string => typeof v === 'string')
           : [],
         defaultToggle: f.default === true,
+        defaultText: f.kind === 'textarea' && typeof f.default === 'string' ? f.default : '',
       })),
     })),
     blocks: recipe.template.map((b): DraftBlock => {
@@ -242,6 +251,8 @@ function buildRecipe(draft: Draft): CustomRecipe {
         field.options = f.options.map(o => {
           const opt: CatalogOption = { value: o.value.trim(), label: o.label };
           if (o.promptPhrase.trim()) opt.promptPhrase = o.promptPhrase;
+          if (o.image !== undefined) opt.image = o.image;
+          if (o.hint !== undefined) opt.hint = o.hint;
           return opt;
         });
         if (f.kind === 'select' && f.defaultSelect) field.default = f.defaultSelect;
@@ -253,12 +264,16 @@ function buildRecipe(draft: Draft): CustomRecipe {
           if (f.defaultChips.length > 0) field.default = [...f.defaultChips];
         }
       }
-      if (f.kind === 'textarea' && f.placeholder.trim()) field.placeholder = f.placeholder;
+      if (f.kind === 'textarea') {
+        if (f.placeholder.trim()) field.placeholder = f.placeholder;
+        if (f.defaultText) field.default = f.defaultText;
+      }
       if (f.kind === 'toggle') {
         field.text = f.text;
         if (f.defaultToggle) field.default = true;
       }
       if (f.hint.trim()) field.hint = f.hint;
+      if (f.visibleWhen !== undefined) field.visibleWhen = f.visibleWhen;
       return field;
     }),
   }));
@@ -363,8 +378,18 @@ const CheckRow: React.FC<{
   disabled?: boolean;
 }> = ({ checked, onChange, label, disabled }) => (
   <label
+    role="checkbox"
+    aria-checked={checked}
+    aria-disabled={disabled || undefined}
+    tabIndex={disabled ? undefined : 0}
     className={`flex items-center gap-2 select-none px-1 ${disabled ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer group'}`}
     onClick={disabled ? undefined : () => onChange(!checked)}
+    onKeyDown={disabled ? undefined : (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        onChange(!checked);
+      }
+    }}
   >
     <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors flex-shrink-0 ${
       checked ? 'bg-accent border-accent' : 'border-line bg-surface group-hover:border-dim'
@@ -781,7 +806,9 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
                   type="text"
                   value={draft.id}
                   onChange={e => setDraft(d => ({ ...d, id: e.target.value }))}
-                  className={`${inputCls} font-mono text-xs ${idFormatOk ? '' : 'border-danger'}`}
+                  disabled={isEdit}
+                  title={isEdit ? 'Studio id is fixed after creation' : undefined}
+                  className={`${inputCls} font-mono text-xs ${idFormatOk ? '' : 'border-danger'} ${isEdit ? 'opacity-50 cursor-not-allowed' : ''}`}
                   aria-invalid={!idFormatOk}
                 />
                 {!idFormatOk && (
