@@ -1855,5 +1855,145 @@ Files live under `public/`; missing files render as placeholder tiles in VisualS
 - [ ] `public/images/food/styles/clean-cookbook.webp` — **Clean cookbook** (Publication style)
   - Suggested prompt: Studio product photo of clean cookbook style, even lighting, minimal styling on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
 
+## ✒️ Logo (`logo`) — 0/57 present
+
+### types (7)
+
+- [ ] `public/images/logo/types/wordmark.webp` — **Wordmark** (Logo type)
+  - Suggested prompt: Studio product photo of a wordmark logo built entirely from custom lettering of the brand name, no icon on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/lettermark.webp` — **Lettermark** (Logo type)
+  - Suggested prompt: Studio product photo of a lettermark monogram logo built from the brand initials, interlocking letterforms on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/pictorial.webp` — **Pictorial mark** (Logo type)
+  - Suggested prompt: Studio product photo of a pictorial mark logo with a single, instantly recognizable icon, no text on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/abstract.webp` — **Abstract mark** (Logo type)
+  - Suggested prompt: Studio product photo of an abstract mark logo built from interlocking geometric shapes forming a distinctive symbol on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/emblem.webp` — **Emblem / badge** (Logo type)
+  - Suggested prompt: Studio product photo of an emblem badge logo with the brand name and icon integrated inside a contained crest shape on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/mascot.webp` — **Mascot** (Logo type)
+  - Suggested prompt: Studio product photo of a mascot logo with a friendly character illustration representing the brand on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/types/combination.webp` — **Combination mark** (Logo type)
+  - Suggested prompt: Studio product photo of a combination mark logo with the icon on the left and the wordmark beside it, balanced lockup on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### industries (10)
+
+- [ ] `public/images/logo/industries/tech-saas.webp` — **Tech / SaaS** (Industry)
+  - Suggested prompt: Studio product photo of for a technology startup on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/food-beverage.webp` — **Food & beverage** (Industry)
+  - Suggested prompt: Studio product photo of for a food and beverage brand on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/fashion-beauty.webp` — **Fashion & beauty** (Industry)
+  - Suggested prompt: Studio product photo of for a fashion and beauty label on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/finance-legal.webp` — **Finance & legal** (Industry)
+  - Suggested prompt: Studio product photo of for a finance or legal firm on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/health-wellness.webp` — **Health & wellness** (Industry)
+  - Suggested prompt: Studio product photo of for a health and wellness brand on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/sports-fitness.webp` — **Sports & fitness** (Industry)
+  - Suggested prompt: Studio product photo of for a sports and fitness team on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/creative-studio.webp` — **Creative studio** (Industry)
+  - Suggested prompt: Studio product photo of for a creative studio on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/realestate-construction.webp` — **Real estate & construction** (Industry)
+  - Suggested prompt: Studio product photo of for a real estate or construction company on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/education.webp` — **Education** (Industry)
+  - Suggested prompt: Studio product photo of for an education institution on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/industries/eco-nature.webp` — **Eco & nature** (Industry)
+  - Suggested prompt: Studio product photo of for an eco-friendly nature brand on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### styles (10)
+
+- [ ] `public/images/logo/styles/minimalist.webp` — **Minimalist** (Style)
+  - Suggested prompt: Studio product photo of minimalist, maximum simplicity, generous negative space on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/geometric.webp` — **Geometric** (Style)
+  - Suggested prompt: Studio product photo of geometric, constructed from precise circles, squares and triangles on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/monoline.webp` — **Monoline** (Style)
+  - Suggested prompt: Studio product photo of monoline, single-weight continuous line work, even stroke on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/vintage-badge.webp` — **Vintage badge** (Style)
+  - Suggested prompt: Studio product photo of vintage badge style, retro americana, hand-drawn ornament details on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/hand-drawn.webp` — **Hand-drawn** (Style)
+  - Suggested prompt: Studio product photo of hand-drawn, organic imperfect strokes, human warmth on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/gradient-modern.webp` — **Modern gradient** (Style)
+  - Suggested prompt: Studio product photo of modern gradient mark, smooth vibrant color transitions on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/negative-space.webp` — **Negative space** (Style)
+  - Suggested prompt: Studio product photo of clever negative space, dual-read imagery hidden in the counterforms on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/bold-flat.webp` — **Bold & flat** (Style)
+  - Suggested prompt: Studio product photo of bold flat geometric shapes, high-impact, brutalist confidence on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/luxury.webp` — **Luxury** (Style)
+  - Suggested prompt: Studio product photo of luxury monoline, thin elegant strokes, high-end boutique feel on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/styles/playful.webp` — **Playful** (Style)
+  - Suggested prompt: Studio product photo of playful, rounded friendly forms, approachable energy on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### shapes (6)
+
+- [ ] `public/images/logo/shapes/circular-badge.webp` — **Circular badge** (Shape & lockup)
+  - Suggested prompt: Studio product photo of composed inside a circular badge on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/shapes/shield.webp` — **Shield / crest** (Shape & lockup)
+  - Suggested prompt: Studio product photo of composed inside a shield crest on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/shapes/square-tile.webp` — **Square tile** (Shape & lockup)
+  - Suggested prompt: Studio product photo of composed as a square app-icon tile on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/shapes/horizontal-lockup.webp` — **Horizontal lockup** (Shape & lockup)
+  - Suggested prompt: Studio product photo of arranged as a horizontal lockup on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/shapes/stacked.webp` — **Stacked** (Shape & lockup)
+  - Suggested prompt: Studio product photo of stacked composition with the icon above the wordmark on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/shapes/freeform.webp` — **Freeform** (Shape & lockup)
+  - Suggested prompt: Studio product photo of freeform composition, no enclosing shape on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### palettes (8)
+
+- [ ] `public/images/logo/palettes/monochrome-black.webp` — **Monochrome black** (Palette) — #1A1A1A
+  - Suggested prompt: Studio product photo of strictly #1A1A1A black on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/navy-gold.webp` — **Navy & gold** (Palette) — #1F2A44
+  - Suggested prompt: Studio product photo of a palette of #1F2A44 navy with #C9A227 gold accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/forest-green.webp` — **Forest green** (Palette) — #1F4D2E
+  - Suggested prompt: Studio product photo of a palette of #1F4D2E forest green with cream accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/earth-tones.webp` — **Earth tones** (Palette) — #6B4F2E
+  - Suggested prompt: Studio product photo of warm earth tones of #6B4F2E and #D9C7A7 on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/pastel.webp` — **Pastel** (Palette) — #F4B6C2
+  - Suggested prompt: Studio product photo of a soft pastel palette, muted and gentle on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/vibrant-bold.webp` — **Vibrant bold** (Palette) — #E63946
+  - Suggested prompt: Studio product photo of a vibrant bold palette of #E63946 and #1D3557 on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/sunset-gradient.webp` — **Sunset gradient** (Palette) — #FF7E5F
+  - Suggested prompt: Studio product photo of a warm sunset gradient from #FF7E5F to #FEB47B on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/palettes/electric-neon.webp` — **Electric neon** (Palette) — #00F5D4
+  - Suggested prompt: Studio product photo of electric neon #00F5D4 accents on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### backgrounds (3)
+
+- [ ] `public/images/logo/backgrounds/white.webp` — **Clean white** (Background)
+  - Suggested prompt: Studio product photo of on a clean white background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/backgrounds/flat-neutral.webp` — **Flat neutral** (Background)
+  - Suggested prompt: Studio product photo of on a flat light neutral background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/backgrounds/charcoal.webp` — **Dark charcoal** (Background)
+  - Suggested prompt: Studio product photo of on a dark charcoal #111111 background on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### typestyles (6)
+
+- [ ] `public/images/logo/typestyles/modern-sans.webp` — **Modern sans-serif** (Lettering style)
+  - Suggested prompt: Studio product photo of clean geometric sans-serif lettering on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/typestyles/serif-classic.webp` — **Classic serif** (Lettering style)
+  - Suggested prompt: Studio product photo of classic serif lettering, heritage and trustworthy on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/typestyles/script.webp` — **Script / hand-lettered** (Lettering style)
+  - Suggested prompt: Studio product photo of flowing hand-lettered script, personal and inviting on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/typestyles/bold-display.webp` — **Bold display** (Lettering style)
+  - Suggested prompt: Studio product photo of bold condensed display lettering, high impact on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/typestyles/monospace.webp` — **Monospace / tech** (Lettering style)
+  - Suggested prompt: Studio product photo of monospace technical lettering on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/typestyles/vintage-slab.webp` — **Vintage slab serif** (Lettering style)
+  - Suggested prompt: Studio product photo of vintage slab-serif lettering, americana badge style on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
+### designers (7)
+
+- [ ] `public/images/logo/designers/paul-rand.webp` — **Paul Rand** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Paul Rand: playful modernist simplicity, bold flat shapes, wit on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/saul-bass.webp` — **Saul Bass** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Saul Bass: jagged expressive cut-paper shapes, hand-cut energy on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/massimo-vignelli.webp` — **Massimo Vignelli** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Massimo Vignelli: rigorous grid discipline, timeless restraint on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/chermayeff-geismar.webp` — **Chermayeff & Geismar** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Chermayeff & Geismar: clean geometric abstraction, instant recognition on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/pentagram.webp` — **Pentagram** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Pentagram: contemporary systematic identity design, confident simplicity on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/paula-scher.webp` — **Paula Scher** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Paula Scher: bold expressive typography-driven identity on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+- [ ] `public/images/logo/designers/milton-glaser.webp` — **Milton Glaser** (Designer style)
+  - Suggested prompt: Studio product photo of in the style of Milton Glaser: illustrative warmth, psychedelic line work on an invisible mannequin, front view, neutral light grey background, soft even lighting, no person, no text.
+
 ---
-Total: 815 referenced, 473 present, 342 missing.
+Total: 872 referenced, 473 present, 399 missing.
