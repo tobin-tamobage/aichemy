@@ -49,7 +49,7 @@ export const weddingDomain: DomainRecipe = {
     lighting: 'window-light',
     style: 'documentary',
     filmStock: 'none',
-    camera: 'canon-r5',
+    camera: 'canon-eos-5d',
     lensOverride: 'auto',
     attire: [],
   }),
@@ -60,7 +60,7 @@ export const weddingDomain: DomainRecipe = {
     {
       id: 'moment-scene',
       title: '01 · Moment & Scene',
-      fields: [{ kind: 'select', key: 'moment', label: 'Moment', options: MOMENTS }],
+      fields: [{ kind: 'visual', key: 'moment', label: 'Moment', options: MOMENTS, previewRatio: 'aspect-video' }],
     },
     {
       id: 'pose-framing',
@@ -75,7 +75,7 @@ export const weddingDomain: DomainRecipe = {
             POSES_BY_MOMENT[str(state.moment)] ?? POSES_BY_MOMENT.ceremony,
           previewRatio: 'aspect-[4/3]',
         },
-        { kind: 'select', key: 'framing', label: 'Framing', options: FRAMINGS },
+        { kind: 'visual', key: 'framing', label: 'Framing', options: FRAMINGS, previewRatio: 'aspect-square' },
       ],
     },
     {
@@ -92,11 +92,11 @@ export const weddingDomain: DomainRecipe = {
       id: 'style-film',
       title: '05 · Photography Style & Film',
       fields: [
-        // select = single-select paksa — mencegah style blend (riset §5 #11, spec §3.2).
-        { kind: 'select', key: 'style', label: 'Style', options: STYLES },
-        { kind: 'select', key: 'filmStock', label: 'Film stock', options: FILM_STOCK_KEYWORDS },
-        { kind: 'select', key: 'camera', label: 'Camera body', options: WEDDING_CAMERAS },
-        { kind: 'select', key: 'lensOverride', label: 'Lens (optional)', options: WEDDING_LENSES },
+        // visual = single-select paksa — mencegah style blend (riset §5 #11, spec §3.2).
+        { kind: 'visual', key: 'style', label: 'Style', options: STYLES, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'filmStock', label: 'Film stock', options: FILM_STOCK_KEYWORDS, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'camera', label: 'Camera body', options: WEDDING_CAMERAS, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'lensOverride', label: 'Lens (optional)', options: WEDDING_LENSES, previewRatio: 'aspect-video' },
       ],
     },
     {

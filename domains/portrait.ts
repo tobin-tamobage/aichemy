@@ -38,7 +38,7 @@ export const portraitDomain: DomainRecipe = {
     wardrobe: 'formal-suit',
     expression: 'confident-smile',
     lens: '85mm-closeup',
-    camera: 'sony-a7rv',
+    camera: 'canon-eos-5d',
     photographer: 'auto',
   }),
 
@@ -46,38 +46,38 @@ export const portraitDomain: DomainRecipe = {
     {
       id: 'portrait-type',
       title: '01 · Portrait Type',
-      fields: [{ kind: 'select', key: 'portraitType', label: 'Portrait type', options: PORTRAIT_TYPES }],
+      fields: [{ kind: 'visual', key: 'portraitType', label: 'Portrait type', options: PORTRAIT_TYPES, previewRatio: 'aspect-square' }],
     },
     {
       id: 'lighting',
       title: '02 · Lighting Setup',
-      fields: [{ kind: 'select', key: 'lighting', label: 'Lighting', options: PORTRAIT_LIGHTING }],
+      fields: [{ kind: 'visual', key: 'lighting', label: 'Lighting', options: PORTRAIT_LIGHTING, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'background',
       title: '03 · Background & Setting',
-      fields: [{ kind: 'select', key: 'background', label: 'Background', options: PORTRAIT_BACKGROUNDS }],
+      fields: [{ kind: 'visual', key: 'background', label: 'Background', options: PORTRAIT_BACKGROUNDS, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'wardrobe',
       title: '04 · Wardrobe & Expression',
       fields: [
-        { kind: 'select', key: 'wardrobe', label: 'Wardrobe', options: PORTRAIT_WARDROBE },
-        { kind: 'select', key: 'expression', label: 'Expression', options: PORTRAIT_EXPRESSIONS },
+        { kind: 'visual', key: 'wardrobe', label: 'Wardrobe', options: PORTRAIT_WARDROBE, previewRatio: 'aspect-square' },
+        { kind: 'visual', key: 'expression', label: 'Expression', options: PORTRAIT_EXPRESSIONS, previewRatio: 'aspect-square' },
       ],
     },
     {
       id: 'lens',
       title: '05 · Lens & Framing',
       fields: [
-        { kind: 'select', key: 'lens', label: 'Lens', options: PORTRAIT_LENSES },
-        { kind: 'select', key: 'camera', label: 'Camera body', options: PORTRAIT_CAMERAS },
+        { kind: 'visual', key: 'lens', label: 'Lens', options: PORTRAIT_LENSES, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'camera', label: 'Camera body', options: PORTRAIT_CAMERAS, previewRatio: 'aspect-video' },
       ],
     },
     {
       id: 'photographer',
       title: '06 · Photographer Style',
-      fields: [{ kind: 'select', key: 'photographer', label: 'Photographer style', options: PORTRAIT_PHOTOGRAPHERS }],
+      fields: [{ kind: 'visual', key: 'photographer', label: 'Photographer style', options: PORTRAIT_PHOTOGRAPHERS, previewRatio: 'aspect-square' }],
     },
   ],
 

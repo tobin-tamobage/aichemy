@@ -152,10 +152,10 @@ export interface FilmStockOption extends DomainOption {
   keyword: string; // '' = tidak menyisipkan apa pun ke prompt
 }
 export const FILM_STOCK_KEYWORDS: FilmStockOption[] = [
-  { value: 'none', label: 'None', image: img('film', 'none'), keyword: '' },
-  { value: 'portra-400', label: 'Kodak Portra 400', image: img('film', 'portra-400'), keyword: 'Kodak Portra 400 film tones', hint: 'Warm soft skin tones — the wedding standard' },
-  { value: 'fuji-400h', label: 'Fuji 400H', image: img('film', 'fuji-400h'), keyword: 'Fuji 400H pastel tones', hint: 'Green-tinted pastel palette' },
-  { value: 'ilford-hp5', label: 'Ilford HP5', image: img('film', 'ilford-hp5'), keyword: 'Ilford HP5 black and white film grain', hint: 'B&W grain' },
+  { value: 'none', label: 'None', keyword: '' },
+  { value: 'portra-400', label: 'Kodak Portra 400', image: '/images/films/portra-400.webp', keyword: 'Kodak Portra 400 film tones', hint: 'Warm soft skin tones — the wedding standard' },
+  { value: 'fuji-400h', label: 'Fuji 400H', image: '/images/films/fuji-pro-400h.webp', keyword: 'Fuji 400H pastel tones', hint: 'Green-tinted pastel palette' },
+  { value: 'ilford-hp5', label: 'Ilford HP5', image: '/images/films/ilford-hp5-plus.webp', keyword: 'Ilford HP5 black and white film grain', hint: 'B&W grain' },
 ];
 
 // Riset §3.5 — chips subject detail; group memisahkan sub-opsi bride/groom.
@@ -197,21 +197,20 @@ export const ATTIRE: AttireOption[] = [
 // Phase 6 Task 1 — camera body (select). Clause appended after lens part.
 export interface WeddingCameraOption extends DomainOption { promptPhrase: string; }
 export const WEDDING_CAMERAS: WeddingCameraOption[] = [
-  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5' },
-  { value: 'sony-a7iv', label: 'Sony A7 IV', promptPhrase: 'Sony A7 IV' },
-  { value: 'sony-a9iii', label: 'Sony A9 III', promptPhrase: 'Sony A9 III, global shutter' },
-  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8' },
-  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, medium format' },
+  { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
+  { value: 'lumix-gh5', label: 'Lumix GH5', image: '/images/cameras/lumix-gh5.webp', promptPhrase: 'Lumix GH5, micro four thirds mirrorless' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
 ];
 
 // Phase 6 Task 1 — lens override (select). 'auto' = keep derived-from-framing (LENS_BY_FRAMING).
 export interface WeddingLensOption extends DomainOption { promptPhrase: string; }
 export const WEDDING_LENSES: WeddingLensOption[] = [
   { value: 'auto', label: 'Auto (match framing)', promptPhrase: '' },
-  { value: '24mm', label: '24mm f/1.4 wide', promptPhrase: '24mm wide angle, deep depth of field' },
-  { value: '35mm', label: '35mm f/1.4', promptPhrase: '35mm, natural documentary perspective' },
-  { value: '50mm', label: '50mm f/1.2', promptPhrase: '50mm f/1.2, creamy bokeh' },
-  { value: '85mm', label: '85mm f/1.4 portrait', promptPhrase: '85mm f/1.4, shallow depth of field' },
-  { value: '70-200mm', label: '70-200mm f/2.8 telephoto', promptPhrase: '70-200mm f/2.8 telephoto zoom, compressed background' },
-  { value: '100mm-macro', label: '100mm macro', promptPhrase: '100mm macro lens' },
+  { value: '24mm', label: '24mm f/1.4 wide', image: '/images/focal-length/24mm-wide-angle.webp', promptPhrase: '24mm wide angle, deep depth of field' },
+  { value: '35mm', label: '35mm f/1.4', image: '/images/focal-length/35mm-wide.webp', promptPhrase: '35mm, natural documentary perspective' },
+  { value: '50mm', label: '50mm f/1.2', image: '/images/focal-length/50mm-standard.webp', promptPhrase: '50mm f/1.2, creamy bokeh' },
+  { value: '85mm', label: '85mm f/1.4 portrait', image: '/images/focal-length/85mm-portrait.webp', promptPhrase: '85mm f/1.4, shallow depth of field' },
+  { value: '70-200mm', label: '70-200mm f/2.8 telephoto', image: '/images/focal-length/200mm-super-telephoto.webp', promptPhrase: '70-200mm f/2.8 telephoto zoom, compressed background' },
+  { value: '100mm-macro', label: '100mm macro', image: '/images/focal-length/100mm-macro.webp', promptPhrase: '100mm macro lens' },
 ];
