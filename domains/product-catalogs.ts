@@ -154,19 +154,19 @@ export interface ProductLensOption extends DomainOption {
   qualityPhrase: string;     // physical-constraint tail (replaces '85mm f/8 product shot')
 }
 export const PRODUCT_LENSES: ProductLensOption[] = [
-  { value: '85mm-f8', label: '85mm f/8 packshot', qualityPhrase: '85mm f/8 product shot' },
-  { value: '50mm', label: '50mm standard', qualityPhrase: '50mm product shot' },
-  { value: '100mm-macro', label: '100mm macro', qualityPhrase: '100mm macro product shot, 1:1 detail reproduction' },
-  { value: '24-70mm', label: '24-70mm zoom', qualityPhrase: '24-70mm zoom product shot' },
-  { value: '90mm-ts', label: '90mm tilt-shift', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
+  { value: '85mm-f8', label: '85mm f/8 packshot', image: '/images/focal-length/85mm-portrait.webp', qualityPhrase: '85mm f/8 product shot' },
+  { value: '50mm', label: '50mm standard', image: '/images/focal-length/50mm-standard.webp', qualityPhrase: '50mm product shot' },
+  { value: '100mm-macro', label: '100mm macro', image: '/images/focal-length/100mm-macro.webp', qualityPhrase: '100mm macro product shot, 1:1 detail reproduction' },
+  { value: '24-70mm', label: '24-70mm zoom', image: '/images/focal-length/24mm-wide-angle.webp', qualityPhrase: '24-70mm zoom product shot' },
+  { value: '90mm-ts', label: '90mm tilt-shift', image: '/images/lenses/tilt-shift-lens.webp', qualityPhrase: '90mm tilt-shift product shot, full focal plane sharpness' },
 ];
 
 // Phase 6 Task 2 — camera body (select). Sentence clause.
 export interface ProductCameraOption extends DomainOption { promptPhrase: string; }
 export const PRODUCT_CAMERAS: ProductCameraOption[] = [
-  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, 102MP medium format' },
-  { value: 'sony-a7rv', label: 'Sony A7R V', promptPhrase: 'Sony A7R V, 61MP full-frame' },
-  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5, 45MP full-frame' },
-  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8, 45MP full-frame' },
-  { value: 'phase-one', label: 'Phase One IQ4', promptPhrase: 'Phase One IQ4 150MP medium format' },
+  { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4, 150MP medium format' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
+  { value: 'pentax-645z', label: 'Pentax 645Z', image: '/images/cameras/pentax-645z.webp', promptPhrase: 'Pentax 645Z, 51MP medium format' },
+  { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
 ];

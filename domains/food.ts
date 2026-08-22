@@ -42,7 +42,7 @@ export const foodDomain: DomainRecipe = {
     angle: '45-degree',
     backdrop: 'wood-table',
     lens: 'auto',
-    camera: 'sony-a7rv',
+    camera: 'canon-eos-5d',
     publicationStyle: 'auto',
   }),
 
@@ -50,35 +50,35 @@ export const foodDomain: DomainRecipe = {
     {
       id: 'dish',
       title: '01 · Dish',
-      fields: [{ kind: 'select', key: 'dish', label: 'Dish', options: FOOD_DISHES }],
+      fields: [{ kind: 'visual', key: 'dish', label: 'Dish', options: FOOD_DISHES, previewRatio: 'aspect-video' }],
     },
     {
       id: 'presentation',
       title: '02 · Presentation',
-      fields: [{ kind: 'select', key: 'presentation', label: 'Presentation', options: FOOD_PRESENTATIONS }],
+      fields: [{ kind: 'visual', key: 'presentation', label: 'Presentation', options: FOOD_PRESENTATIONS, previewRatio: 'aspect-video' }],
     },
     {
       id: 'light-mood',
       title: '03 · Light Mood',
-      fields: [{ kind: 'select', key: 'lightMood', label: 'Light mood', options: FOOD_LIGHT_MOODS }],
+      fields: [{ kind: 'visual', key: 'lightMood', label: 'Light mood', options: FOOD_LIGHT_MOODS, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'angle',
       title: '04 · Angle',
-      fields: [{ kind: 'select', key: 'angle', label: 'Angle', options: FOOD_ANGLES }],
+      fields: [{ kind: 'visual', key: 'angle', label: 'Angle', options: FOOD_ANGLES, previewRatio: 'aspect-video' }],
     },
     {
       id: 'backdrop',
       title: '05 · Backdrop & Props',
-      fields: [{ kind: 'select', key: 'backdrop', label: 'Backdrop', options: FOOD_BACKDROPS }],
+      fields: [{ kind: 'visual', key: 'backdrop', label: 'Backdrop', options: FOOD_BACKDROPS, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'camera-style',
       title: '06 · Camera & Style',
       fields: [
-        { kind: 'select', key: 'lens', label: 'Lens', options: FOOD_LENSES },
-        { kind: 'select', key: 'camera', label: 'Camera body', options: FOOD_CAMERAS },
-        { kind: 'select', key: 'publicationStyle', label: 'Publication style', options: FOOD_STYLES },
+        { kind: 'visual', key: 'lens', label: 'Lens', options: FOOD_LENSES, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'camera', label: 'Camera body', options: FOOD_CAMERAS, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'publicationStyle', label: 'Publication style', options: FOOD_STYLES, previewRatio: 'aspect-video' },
       ],
     },
   ],

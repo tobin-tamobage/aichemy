@@ -42,29 +42,29 @@ export const realEstateDomain: DomainRecipe = {
     {
       id: 'scene',
       title: '01 · Scene',
-      fields: [{ kind: 'select', key: 'scene', label: 'Scene', options: RE_SCENES }],
+      fields: [{ kind: 'visual', key: 'scene', label: 'Scene', options: RE_SCENES, previewRatio: 'aspect-video' }],
     },
     {
       id: 'design-style',
       title: '02 · Design Style',
-      fields: [{ kind: 'select', key: 'designStyle', label: 'Design style', options: RE_STYLES }],
+      fields: [{ kind: 'visual', key: 'designStyle', label: 'Design style', options: RE_STYLES, previewRatio: 'aspect-video' }],
     },
     {
       id: 'time-of-day',
       title: '03 · Time of Day',
-      fields: [{ kind: 'select', key: 'timeOfDay', label: 'Time of day', options: RE_TIMES }],
+      fields: [{ kind: 'visual', key: 'timeOfDay', label: 'Time of day', options: RE_TIMES, previewRatio: 'aspect-[4/3]' }],
     },
     {
       id: 'staging',
       title: '04 · Staging',
-      fields: [{ kind: 'select', key: 'staging', label: 'Staging', options: RE_STAGING }],
+      fields: [{ kind: 'visual', key: 'staging', label: 'Staging', options: RE_STAGING, previewRatio: 'aspect-video' }],
     },
     {
       id: 'angle-lens',
       title: '05 · Angle & Lens',
       fields: [
-        { kind: 'select', key: 'angleLens', label: 'Angle & lens', options: RE_ANGLES },
-        { kind: 'select', key: 'cameraTechnique', label: 'Camera & technique', options: RE_CAMERAS },
+        { kind: 'visual', key: 'angleLens', label: 'Angle & lens', options: RE_ANGLES, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'cameraTechnique', label: 'Camera & technique', options: RE_CAMERAS, previewRatio: 'aspect-video' },
       ],
     },
   ],

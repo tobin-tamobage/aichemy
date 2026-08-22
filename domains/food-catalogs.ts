@@ -83,26 +83,26 @@ export const FOOD_BACKDROPS: BackdropOption[] = [
 export interface FoodLensOption extends DomainOption { promptPhrase: string; }
 export const FOOD_LENSES: FoodLensOption[] = [
   { value: 'auto', label: 'Auto (match angle)', promptPhrase: '' },
-  { value: '50mm', label: '50mm standard', promptPhrase: 'a 50mm lens, natural table perspective' },
-  { value: '85mm', label: '85mm portrait', promptPhrase: 'an 85mm lens, gentle compression' },
-  { value: '100mm-macro', label: '100mm macro', promptPhrase: 'a 100mm macro lens, texture and detail' },
-  { value: '24-70mm', label: '24-70mm zoom', promptPhrase: 'a 24-70mm zoom lens' },
+  { value: '50mm', label: '50mm standard', image: '/images/focal-length/50mm-standard.webp', promptPhrase: 'a 50mm lens, natural table perspective' },
+  { value: '85mm', label: '85mm portrait', image: '/images/focal-length/85mm-portrait.webp', promptPhrase: 'an 85mm lens, gentle compression' },
+  { value: '100mm-macro', label: '100mm macro', image: '/images/focal-length/100mm-macro.webp', promptPhrase: 'a 100mm macro lens, texture and detail' },
+  { value: '24-70mm', label: '24-70mm zoom', image: '/images/focal-length/24mm-wide-angle.webp', promptPhrase: 'a 24-70mm zoom lens' },
 ];
 
 // Phase 6 Task 2 — camera body (select).
 export interface FoodCameraOption extends DomainOption { promptPhrase: string; }
 export const FOOD_CAMERAS: FoodCameraOption[] = [
-  { value: 'sony-a7rv', label: 'Sony A7R V', promptPhrase: 'Sony A7R V, 61MP full-frame mirrorless' },
-  { value: 'canon-r5', label: 'Canon EOS R5', promptPhrase: 'Canon EOS R5, 45MP full-frame mirrorless' },
-  { value: 'nikon-z8', label: 'Nikon Z8', promptPhrase: 'Nikon Z8, 45MP full-frame' },
-  { value: 'fuji-gfx100ii', label: 'Fujifilm GFX 100 II', promptPhrase: 'Fujifilm GFX 100 II, 102MP medium format' },
+  { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
+  { value: 'iphone-pro', label: 'iPhone Pro', image: '/images/cameras/iphone-pro.webp', promptPhrase: 'modern iPhone Pro camera, computational photography' },
 ];
 
 // Phase 6 Task 2 — publication style (select). 'auto' = no clause.
 export interface FoodStyleOption extends DomainOption { promptPhrase: string; }
 export const FOOD_STYLES: FoodStyleOption[] = [
   { value: 'auto', label: 'No specific style', promptPhrase: '' },
-  { value: 'kinfolk-editorial', label: 'Kinfolk editorial', promptPhrase: 'Kinfolk magazine editorial style, muted earthy tones, quiet natural storytelling' },
-  { value: 'bon-appetit', label: 'Bon Appétit commercial', promptPhrase: 'Bon Appétit commercial style, bright, crisp, vibrant color pop' },
-  { value: 'clean-cookbook', label: 'Clean cookbook', promptPhrase: 'clean cookbook style, even lighting, minimal styling' },
+  { value: 'kinfolk-editorial', label: 'Kinfolk editorial', image: img('styles', 'kinfolk-editorial'), promptPhrase: 'Kinfolk magazine editorial style, muted earthy tones, quiet natural storytelling' },
+  { value: 'bon-appetit', label: 'Bon Appétit commercial', image: img('styles', 'bon-appetit'), promptPhrase: 'Bon Appétit commercial style, bright, crisp, vibrant color pop' },
+  { value: 'clean-cookbook', label: 'Clean cookbook', image: img('styles', 'clean-cookbook'), promptPhrase: 'clean cookbook style, even lighting, minimal styling' },
 ];

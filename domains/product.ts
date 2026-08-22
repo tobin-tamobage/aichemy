@@ -50,7 +50,7 @@ export const productDomain: DomainRecipe = {
     quality: ['commercial', '8k', 'ultra-sharp'],
     productName: '',
     lens: '85mm-f8',
-    camera: 'fuji-gfx100ii',
+    camera: 'phase-one-xf-iq4',
   }),
 
   // Teks bebas (productName) tidak ditimpa preset — pola cinematic subjectAction.
@@ -68,7 +68,7 @@ export const productDomain: DomainRecipe = {
           placeholder: 'E.g., minimalist frosted glass serum bottle with white dropper cap…',
           rows: 3,
         },
-        { kind: 'select', key: 'category', label: 'Category', options: PRODUCT_CATEGORIES },
+        { kind: 'visual', key: 'category', label: 'Category', options: PRODUCT_CATEGORIES, previewRatio: 'aspect-square' },
       ],
     },
     {
@@ -110,7 +110,7 @@ export const productDomain: DomainRecipe = {
         },
         { kind: 'toggle', key: 'negativeSpace', label: 'Negative space for ad copy' },
         { kind: 'toggle', key: 'blankLabel', label: 'Blank label (no text)' },
-        { kind: 'select', key: 'composition', label: 'Composition', options: COMPOSITIONS },
+        { kind: 'visual', key: 'composition', label: 'Composition', options: COMPOSITIONS, previewRatio: 'aspect-video' },
         { kind: 'chips', key: 'quality', label: 'Quality', options: QUALITY_MODIFIERS },
       ],
     },
@@ -118,8 +118,8 @@ export const productDomain: DomainRecipe = {
       id: 'camera-lens',
       title: '06 · Camera & Lens',
       fields: [
-        { kind: 'select', key: 'lens', label: 'Lens', options: PRODUCT_LENSES },
-        { kind: 'select', key: 'camera', label: 'Camera body', options: PRODUCT_CAMERAS },
+        { kind: 'visual', key: 'lens', label: 'Lens', options: PRODUCT_LENSES, previewRatio: 'aspect-video' },
+        { kind: 'visual', key: 'camera', label: 'Camera body', options: PRODUCT_CAMERAS, previewRatio: 'aspect-video' },
       ],
     },
   ],
