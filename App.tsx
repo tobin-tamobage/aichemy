@@ -670,13 +670,13 @@ export default function App() {
   // --- Composite reference image (face/outfit/object/scene → 1 image for copy) ---
   useEffect(() => {
     const sources: Array<{ dataUrl: string; label: string }> = [];
-    elements.characters.forEach((c, idx) => {
-      const n = idx + 1;
-      if (c.face.previewDataUrl) sources.push({ dataUrl: c.face.previewDataUrl, label: `Character ${n} — Face` });
-      if (c.outfit.previewDataUrl) sources.push({ dataUrl: c.outfit.previewDataUrl, label: `Character ${n} — Outfit` });
-      if (c.object.previewDataUrl) sources.push({ dataUrl: c.object.previewDataUrl, label: `Character ${n} — Object` });
+    let imgIdx = 1;
+    elements.characters.forEach((c) => {
+      if (c.face.previewDataUrl) sources.push({ dataUrl: c.face.previewDataUrl, label: `Image_${imgIdx++} - Face` });
+      if (c.outfit.previewDataUrl) sources.push({ dataUrl: c.outfit.previewDataUrl, label: `Image_${imgIdx++} - Outfit` });
+      if (c.object.previewDataUrl) sources.push({ dataUrl: c.object.previewDataUrl, label: `Image_${imgIdx++} - Object` });
     });
-    if (elements.sceneElement.previewDataUrl) sources.push({ dataUrl: elements.sceneElement.previewDataUrl, label: 'Scene' });
+    if (elements.sceneElement.previewDataUrl) sources.push({ dataUrl: elements.sceneElement.previewDataUrl, label: `Image_${imgIdx} - Scene` });
     if (sources.length === 0) {
       setCompositeReferenceDataUrl(null);
       return;
