@@ -17,15 +17,14 @@ export function dataURLToBlob(dataUrl: string): Blob {
 }
 
 /** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
-const CELL_HEIGHT = 1280;
+const CELL_HEIGHT = 1920;
 /** Jarak antar cell. */
 const GAP = 16;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 3840;
-/** Output — WebP 0.88 target ≤2MB (optimal untuk paste Gemini/ChatGPT). */
-const OUTPUT_MIME = 'image/webp' as const;
-const OUTPUT_QUALITY = 0.88;
-const MAX_BYTES = 2 * 1024 * 1024;
+const MAX_WIDTH = 5760;
+/** Output — PNG lossless, efficient max ~8MB untuk paste Gemini/ChatGPT (limit 20MB, tapi 8MB paling cepat & detail penuh). */
+const OUTPUT_MIME = 'image/png' as const;
+const MAX_BYTES = 8 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -37,8 +36,9 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 
 /**
  * Gabungkan 1-4 foto referensi jadi SATU dataUrl.
- * 1 input → single cell 1280px. 2 → side-by-side. 3 → grid 2+1. 4 → grid 2x2. Cell height 1280, gap 16,
- * latar putih, lebar total <= 3840 (scale proporsional). Output WebP 0.88 adaptive ≤2MB.
+ * 1 input → single cell 1920px. 2 → side-by-side. 3 → grid 2+1. 4 → grid 2x2. Cell height 1920, gap 16,
+ * latar putih, lebar total <= 5760 (scale proporsional). Output PNG lossless efficient max ~8MB (≤20MB limit, optimal untuk paste).
+ * Jika hasil >8MB, otomatis scale down proporsional agar tetap ≤8MB.
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export async function composeReferenceImages(dataUrls: string[]): Promise<string> {
@@ -128,15 +128,19 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
       x += cellWidths[i] + GAP;
     }
   }
-  // Adaptive WebP quality agar hasil ≤2MB (paste limit user). Turunkan quality step 0.08 jika masih >2MB.
-  let quality = OUTPUT_QUALITY;
-  let dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
+  // PNG 1920 biasanya ~6-8MB untuk 4 gambar. Jika >8MB (foto sangat detail), scale down proporsional agar tetap ≤8MB (efficient max).
+  let dataUrl = canvas.toDataURL(OUTPUT_MIME);
   let blob = dataURLToBlob(dataUrl);
-  while (blob.size > MAX_BYTES && quality > 0.6) {
-    quality = Math.max(0.6, quality - 0.08);
-    dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
-    blob = dataURLToBlob(dataUrl);
-    if (quality <= 0.6) break;
+  if (blob.size > MAX_BYTES) {
+    const ratio = Math.sqrt(MAX_BYTES / blob.size) * 0.97;
+    const tmp = document.createElement('canvas');
+    tmp.width = Math.max(1, Math.round(canvas.width * ratio));
+    tmp.height = Math.max(1, Math.round(canvas.height * ratio));
+    const tCtx = tmp.getContext('2d');
+    if (tCtx) {
+      tCtx.drawImage(canvas, 0, 0, tmp.width, tmp.height);
+      dataUrl = tmp.toDataURL(OUTPUT_MIME);
+    }
   }
   return dataUrl;
 }
