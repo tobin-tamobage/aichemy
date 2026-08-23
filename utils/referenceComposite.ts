@@ -17,13 +17,15 @@ export function dataURLToBlob(dataUrl: string): Blob {
 }
 
 /** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
-const CELL_HEIGHT = 2560;
+const CELL_HEIGHT = 1280;
 /** Jarak antar cell. */
 const GAP = 16;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 7680;
-/** Output format — PNG lossless, detail maksimal (≤20MB limit ChatGPT/Gemini). */
-const OUTPUT_MIME = 'image/png' as const;
+const MAX_WIDTH = 3840;
+/** Output — WebP 0.88 target ≤2MB (optimal untuk paste Gemini/ChatGPT). */
+const OUTPUT_MIME = 'image/webp' as const;
+const OUTPUT_QUALITY = 0.88;
+const MAX_BYTES = 2 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -35,9 +37,8 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 
 /**
  * Gabungkan 1-4 foto referensi jadi SATU dataUrl.
- * 1 input → dikembalikan apa adanya (tanpa re-encode). 2 → side-by-side.
- * 3 → grid 2 atas + 1 bawah (bawah centered). 4 → grid 2x2. Cell height 2560, gap 16,
- * latar putih, lebar total <= 7680 (scale proporsional). Output PNG lossless (~10-18MB, ≤20MB limit).
+ * 1 input → single cell 1280px. 2 → side-by-side. 3 → grid 2+1. 4 → grid 2x2. Cell height 1280, gap 16,
+ * latar putih, lebar total <= 3840 (scale proporsional). Output WebP 0.88 adaptive ≤2MB.
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export async function composeReferenceImages(dataUrls: string[]): Promise<string> {
@@ -90,6 +91,10 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, layoutW, layoutH);
 
+  const drawCell = (index: number, x: number, y: number) => {
+    ctx.drawImage(images[index], x, y, cellWidths[index], CELL_HEIGHT);
+  };
+
   if (images.length === 1) {
     drawCell(0, 0, 0);
   } else if (images.length === 2) {
@@ -123,8 +128,17 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
       x += cellWidths[i] + GAP;
     }
   }
-
-  return canvas.toDataURL(OUTPUT_MIME);
+  // Adaptive WebP quality agar hasil ≤2MB (paste limit user). Turunkan quality step 0.08 jika masih >2MB.
+  let quality = OUTPUT_QUALITY;
+  let dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
+  let blob = dataURLToBlob(dataUrl);
+  while (blob.size > MAX_BYTES && quality > 0.6) {
+    quality = Math.max(0.6, quality - 0.08);
+    dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
+    blob = dataURLToBlob(dataUrl);
+    if (quality <= 0.6) break;
+  }
+  return dataUrl;
 }
 
 /**

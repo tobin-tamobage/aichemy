@@ -680,10 +680,6 @@ export default function App() {
       setCompositeReferenceDataUrl(null);
       return;
     }
-    if (sources.length === 1) {
-      setCompositeReferenceDataUrl(sources[0]);
-      return;
-    }
     let cancelled = false;
     composeReferenceImages(sources).then((url) => {
       if (!cancelled) setCompositeReferenceDataUrl(url);
@@ -697,7 +693,6 @@ export default function App() {
     const options: MentionOption[] = [];
     elements.characters.forEach((c, i) => {
       const hasImages = !!(c.face.base64Data || c.outfit.base64Data || c.object.base64Data);
-      if (!hasImages) return;
       const parts: string[] = [];
       if (c.face.base64Data) parts.push('face');
       if (c.outfit.base64Data) parts.push('outfit');
