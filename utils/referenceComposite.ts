@@ -18,11 +18,11 @@ export function dataURLToBlob(dataUrl: string): Blob {
 
 /** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
 const CELL_HEIGHT = 1920;
-/** Jarak antar cell. */
-const GAP = 16;
+/** Jarak antar cell — 0 = tanpa celah putih, full 1xN. */
+const GAP = 0;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 5760;
-/** Output — PNG lossless, efficient max ~8MB untuk paste Gemini/ChatGPT (limit 20MB, tapi 8MB paling cepat & detail penuh). */
+const MAX_WIDTH = 7680;
+/** Output — PNG lossless, efficient max ~8MB untuk paste Gemini/ChatGPT. */
 const OUTPUT_MIME = 'image/png' as const;
 const MAX_BYTES = 8 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
@@ -35,10 +35,10 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 };
 
 /**
- * Gabungkan 1-4 foto referensi jadi SATU dataUrl dengan label agar AI paham.
- * 1 input → single cell 1920px. 2 → side-by-side. 3 → grid 2+1. 4 → grid 2x2. Cell height 1920, gap 16,
- * latar putih, lebar total <= 5760 (scale proporsional). Output PNG lossless efficient max ~8MB (≤20MB limit, optimal untuk paste).
- * Jika hasil >8MB, otomatis scale down proporsional agar tetap ≤8MB. Label digambar di bawah tiap cell (bar hitam + teks putih).
+ * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah putih.
+ * 1→1 cell, 2→1×2, 3→1×3, 4→1×4. Cell height 1920, tanpa gap (full), lebar total <=7680.
+ * Output PNG lossless efficient max ~8MB. Jika >8MB, scale down proporsional.
+ * Label digambar di bawah tiap cell (bar hitam + teks putih) agar AI paham face/outfit/scene.
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export type CompositeSource = { dataUrl: string; label: string };
@@ -54,35 +54,26 @@ export async function composeReferenceImages(sources: Array<string | CompositeSo
     Math.round((img.naturalWidth * CELL_HEIGHT) / img.naturalHeight),
   );
 
-  // Layout: 2 → satu baris; 3 → baris atas 2 cell + baris bawah 1 cell centered; 4 → grid 2x2.
+  // Layout: 1×N horizontal tanpa celah putih — full strip, AI pisah via label.
   let layoutW: number;
   let layoutH: number;
-  // Layout: 1 → single cell; 2 → satu baris; 3 → baris atas 2 + bawah 1 centered; 4 → grid 2x2.
   if (images.length === 1) {
     layoutW = cellWidths[0];
     layoutH = CELL_HEIGHT;
   } else if (images.length === 2) {
-    layoutW = cellWidths[0] + GAP + cellWidths[1];
+    layoutW = cellWidths[0] + cellWidths[1];
     layoutH = CELL_HEIGHT;
   } else if (images.length === 3) {
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    layoutW = Math.max(topW, cellWidths[2]);
-    layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
+    layoutW = cellWidths[0] + cellWidths[1] + cellWidths[2];
+    layoutH = CELL_HEIGHT;
   } else if (images.length === 4) {
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    const bottomW = cellWidths[2] + GAP + cellWidths[3];
-    layoutW = Math.max(topW, bottomW);
-    layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
+    layoutW = cellWidths[0] + cellWidths[1] + cellWidths[2] + cellWidths[3];
+    layoutH = CELL_HEIGHT;
   } else {
-    // Fallback untuk >4: baris atas 2, sisanya centered seperti 3, tapi tetap handle
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    const bottomCount = images.length - 2;
-    const bottomWs = cellWidths.slice(2);
-    const bottomW = bottomWs.reduce((a, w, i) => a + w + (i ? GAP : 0), 0);
-    layoutW = Math.max(topW, bottomW);
-    layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
+    // >4: single row juga
+    layoutW = cellWidths.reduce((a, w) => a + w, 0);
+    layoutH = CELL_HEIGHT;
   }
-
   const scale = layoutW > MAX_WIDTH ? MAX_WIDTH / layoutW : 1;
   const canvas = document.createElement('canvas');
   canvas.width = Math.round(layoutW * scale);
@@ -118,33 +109,21 @@ export async function composeReferenceImages(sources: Array<string | CompositeSo
     drawCell(0, 0, 0);
   } else if (images.length === 2) {
     drawCell(0, 0, 0);
-    drawCell(1, cellWidths[0] + GAP, 0);
+    drawCell(1, cellWidths[0], 0);
   } else if (images.length === 3) {
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    const topX = Math.round((layoutW - topW) / 2);
-    drawCell(0, topX, 0);
-    drawCell(1, topX + cellWidths[0] + GAP, 0);
-    const bottomX = Math.round((layoutW - cellWidths[2]) / 2);
-    drawCell(2, bottomX, CELL_HEIGHT + GAP);
+    drawCell(0, 0, 0);
+    drawCell(1, cellWidths[0], 0);
+    drawCell(2, cellWidths[0] + cellWidths[1], 0);
   } else if (images.length === 4) {
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    const bottomW = cellWidths[2] + GAP + cellWidths[3];
-    const topX = Math.round((layoutW - topW) / 2);
-    const bottomX = Math.round((layoutW - bottomW) / 2);
-    drawCell(0, topX, 0);
-    drawCell(1, topX + cellWidths[0] + GAP, 0);
-    drawCell(2, bottomX, CELL_HEIGHT + GAP);
-    drawCell(3, bottomX + cellWidths[2] + GAP, CELL_HEIGHT + GAP);
+    drawCell(0, 0, 0);
+    drawCell(1, cellWidths[0], 0);
+    drawCell(2, cellWidths[0] + cellWidths[1], 0);
+    drawCell(3, cellWidths[0] + cellWidths[1] + cellWidths[2], 0);
   } else {
-    const topW = cellWidths[0] + GAP + cellWidths[1];
-    const topX = Math.round((layoutW - topW) / 2);
-    drawCell(0, topX, 0);
-    drawCell(1, topX + cellWidths[0] + GAP, 0);
-    // fallback: tumpuk sisa di baris bawah tanpa centering sempurna
-    let x = Math.round((layoutW - cellWidths.slice(2).reduce((a, w, i) => a + w + (i ? GAP : 0), 0)) / 2);
-    for (let i = 2; i < images.length; i++) {
-      drawCell(i, x, CELL_HEIGHT + GAP);
-      x += cellWidths[i] + GAP;
+    let x = 0;
+    for (let i = 0; i < images.length; i++) {
+      drawCell(i, x, 0);
+      x += cellWidths[i];
     }
   }
   // PNG 1920 biasanya ~6-8MB untuk 4 gambar. Jika >8MB (foto sangat detail), scale down proporsional agar tetap ≤8MB (efficient max).
