@@ -8,6 +8,7 @@ import { portraitDomain } from './portrait';
 import { realEstateDomain } from './real-estate';
 import { foodDomain } from './food';
 import { logoDomain } from './logo';
+import { relightDomain } from './relight';
 import { toDomainRecipe } from './custom/toDomainRecipe';
 import {
   loadCustomRecipes,
@@ -15,7 +16,6 @@ import {
   deleteCustomRecipe,
 } from '../services/browserStorage';
 
-/** Registry domain aktif — StartScreen + domain switcher membaca daftar ini. */
 export const DOMAINS: DomainRecipe[] = [
   cinematicDomain,
   idPhotoDomain,
@@ -26,6 +26,7 @@ export const DOMAINS: DomainRecipe[] = [
   realEstateDomain,
   foodDomain,
   logoDomain,
+  relightDomain,
 ];
 
 export const getDomain = (id: string): DomainRecipe =>

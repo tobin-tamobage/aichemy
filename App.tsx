@@ -952,11 +952,18 @@ export default function App() {
             {hasUnsavedChanges && <span className="text-accent text-lg leading-none" title="Unsaved changes">●</span>}
             {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-ok animate-in fade-in">Saved</span>}
           </div>
-          <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
-            title="Back to start screen"
-            className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2 shrink-0">
-            <Home className="w-4 h-4" /> Home
-          </button>
+          <div className="flex items-center gap-2 shrink-0">
+            <button type="button" onClick={() => setShowPresetLibrary(true)}
+              title="Browse presets for this recipe"
+              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-accent hover:text-accent transition-all flex items-center justify-center gap-2">
+              <Bookmark className="w-4 h-4" /> Presets
+            </button>
+            <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
+              title="Back to start screen"
+              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
+              <Home className="w-4 h-4" /> Home
+            </button>
+          </div>
         </div>
       </header>
 
