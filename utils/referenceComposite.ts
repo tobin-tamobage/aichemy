@@ -16,15 +16,15 @@ export function dataURLToBlob(dataUrl: string): Blob {
   return new Blob([bytes], { type: mime });
 }
 
-/** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
-const CELL_HEIGHT = 1920;
-/** Jarak antar cell — 0 = tanpa celah putih, full 1xN. */
+/** Full-res: pakai tinggi asli foto tanpa downscale 1920, cap 3000 agar canvas aman. */
 const GAP = 0;
-/** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 7680;
-/** Output — PNG lossless, efficient max ~8MB untuk paste Gemini/ChatGPT. */
+/** Lebar total maksimum — 12288 untuk 1×4 full-res. */
+const MAX_WIDTH = 12288;
+/** Cap tinggi agar 4K foto tidak jadi 96M pixel. */
+const MAX_CELL_HEIGHT = 3000;
+/** Output PNG lossless bawa semua detail. */
 const OUTPUT_MIME = 'image/png' as const;
-const MAX_BYTES = 8 * 1024 * 1024;
+const MAX_BYTES = 20 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -35,25 +35,29 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 };
 
 /**
- * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah putih.
- * 1→1 cell, 2→1×2, 3→1×3, 4→1×4. Cell height 1920, tanpa gap (full), lebar total <=7680.
- * Output PNG lossless efficient max ~8MB. Jika >8MB, scale down proporsional.
- * Label digambar di bawah tiap cell (bar hitam + teks putih) agar AI paham face/outfit/scene.
- * Melempar Error bila ada gambar yang gagal dimuat.
+ * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah putih — full-res.
+ * Tinggi pakai max naturalHeight (cap 3000), tanpa downscale 1920. Lebar total <=12288.
+ * Output PNG lossless bawa semua detail asli (tanpa compress WebP/JPEG).
+ * Jika hasil >20MB (limit ChatGPT/Gemini), scale down proporsional otomatis.
+ * Label Image_N - Face/Outfit/Scene digambar di bawah tiap cell.
  */
 export type CompositeSource = { dataUrl: string; label: string };
-export async function composeReferenceImages(sources: Array<string | CompositeSource>): Promise<string> {
-  const dataUrls: string[] = sources.map(s => typeof s === 'string' ? s : s.dataUrl);
-  const labels: string[] = sources.map(s => typeof s === 'string' ? '' : s.label);
+export async function composeReferenceImages(
+  sources: Array<string | CompositeSource>,
+): Promise<string> {
+  const dataUrls: string[] = sources.map((s) => (typeof s === 'string' ? s : s.dataUrl));
+  const labels: string[] = sources.map((s) => (typeof s === 'string' ? '' : s.label));
   if (dataUrls.length === 0) {
     throw new Error('composeReferenceImages needs at least one image');
   }
 
   const images = await Promise.all(dataUrls.map(loadImage));
+  // Full-res: pakai tinggi asli max (tanpa compress), cap 3000 agar canvas tidak explode. Semua cell disamakan ke tinggi ini.
+  const rawMaxH = Math.max(...images.map((img) => img.naturalHeight));
+  const CELL_HEIGHT = Math.min(MAX_CELL_HEIGHT, Math.max(1, rawMaxH));
   const cellWidths = images.map((img) =>
     Math.round((img.naturalWidth * CELL_HEIGHT) / img.naturalHeight),
   );
-
   // Layout: 1×N horizontal tanpa celah putih — full strip, AI pisah via label.
   let layoutW: number;
   let layoutH: number;
