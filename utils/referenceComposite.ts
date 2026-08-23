@@ -93,3 +93,30 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
 
   return canvas.toDataURL('image/jpeg', 0.92);
 }
+
+/**
+ * Clipboard web (Chrome/Safari) HANYA menerima `image/png` di clipboard.write —
+ * blob JPEG (komposit kami) ditolak dengan TypeError. Transcode via canvas bila
+ * perlu; PNG dikembalikan apa adanya. Melempar bila gambar tidak bisa dimuat.
+ */
+export async function toClipboardImageBlob(blob: Blob): Promise<Blob> {
+  if (blob.type === 'image/png') return blob;
+  const url = URL.createObjectURL(blob);
+  try {
+    const img = await loadImage(url);
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Could not create canvas context for clipboard image');
+    ctx.drawImage(img, 0, 0);
+    const { promise, resolve, reject } = Promise.withResolvers<Blob>();
+    canvas.toBlob(
+      (png) => (png ? resolve(png) : reject(new Error('PNG encoding failed'))),
+      'image/png',
+    );
+    return promise;
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}

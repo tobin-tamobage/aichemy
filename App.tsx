@@ -42,7 +42,7 @@ import type { CustomRecipe } from './domains/custom/types';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
-import { dataURLToBlob } from './utils/referenceComposite';
+import { dataURLToBlob, toClipboardImageBlob } from './utils/referenceComposite';
 import {
   downloadTextFile,
   readFileAsText,
@@ -873,12 +873,13 @@ export default function App() {
 
     if (supportsImageClipboard) {
       try {
-        const blob = dataURLToBlob(referenceDataUrl);
+        // Clipboard Chrome/Safari hanya menerima image/png — transcode bila perlu.
+        const png = await toClipboardImageBlob(dataURLToBlob(referenceDataUrl));
         // Tiga representasi dalam SATU ClipboardItem: penerima memilih yang ia pahami.
         const html = `<img src="${referenceDataUrl}" alt="reference"><p>${escapeHtml(primaryPromptToSend)}</p>`;
         await navigator.clipboard.write([
           new ClipboardItem({
-            [blob.type || 'image/png']: blob,
+            'image/png': png,
             'text/plain': new Blob([primaryPromptToSend], { type: 'text/plain' }),
             'text/html': new Blob([html], { type: 'text/html' }),
           }),
@@ -918,9 +919,10 @@ export default function App() {
   const handleCopyPhotoOnly = async () => {
     if (!referenceDataUrl) return;
     try {
-      const blob = dataURLToBlob(referenceDataUrl);
+      // Chrome/Safari menolak image/jpeg di clipboard — transcode ke PNG dulu.
+      const png = await toClipboardImageBlob(dataURLToBlob(referenceDataUrl));
       await navigator.clipboard.write([
-        new ClipboardItem({ [blob.type || 'image/png']: blob }),
+        new ClipboardItem({ 'image/png': png }),
       ]);
       setShowCopyFeedback(true);
       setTimeout(() => setShowCopyFeedback(false), 2000);
