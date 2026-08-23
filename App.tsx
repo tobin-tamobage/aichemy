@@ -42,7 +42,7 @@ import type { CustomRecipe } from './domains/custom/types';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
-import { dataURLToBlob, toClipboardImageBlob } from './utils/referenceComposite';
+import { dataURLToBlob, toClipboardImageBlob, composeReferenceImages } from './utils/referenceComposite';
 import {
   downloadTextFile,
   readFileAsText,
@@ -265,7 +265,8 @@ export default function App() {
   const [elementError, setElementError] = useState<string | null>(null);
   const [generationMode, setGenerationMode] = useState<'generate' | 'edit'>('generate');
   const [isEditingPrompt, setIsEditingPrompt] = useState(false);
-
+  const [compositeReferenceDataUrl, setCompositeReferenceDataUrl] = useState<string | null>(null);
+  const [compositeCopyFeedback, setCompositeCopyFeedback] = useState(false);
   const [expandedSections, setExpandedSections] = useState<StudioExpandedSections>(() => (
     defaultExpandedForDomain(activeDomain)
   ));
@@ -666,6 +667,31 @@ export default function App() {
   const remainingAnonymousReferenceSlots = Math.max(0, maxAnonymousReferenceSlots - elements.additionalReferenceImages.length);
   const canAddAdditionalReference = elements.additionalReferenceImages.length < maxAnonymousReferenceSlots;
 
+  // --- Composite reference image (face/outfit/object/scene → 1 image for copy) ---
+  useEffect(() => {
+    const sources: string[] = [];
+    elements.characters.forEach(c => {
+      if (c.face.previewDataUrl) sources.push(c.face.previewDataUrl);
+      if (c.outfit.previewDataUrl) sources.push(c.outfit.previewDataUrl);
+      if (c.object.previewDataUrl) sources.push(c.object.previewDataUrl);
+    });
+    if (elements.sceneElement.previewDataUrl) sources.push(elements.sceneElement.previewDataUrl);
+    if (sources.length === 0) {
+      setCompositeReferenceDataUrl(null);
+      return;
+    }
+    if (sources.length === 1) {
+      setCompositeReferenceDataUrl(sources[0]);
+      return;
+    }
+    let cancelled = false;
+    composeReferenceImages(sources).then((url) => {
+      if (!cancelled) setCompositeReferenceDataUrl(url);
+    }).catch(() => {
+      if (!cancelled) setCompositeReferenceDataUrl(sources[0] ?? null);
+    });
+    return () => { cancelled = true; };
+  }, [elements.characters, elements.sceneElement.previewDataUrl]);
   // --- Character + image mention options for Subject & Action field ---
   const subjectCharacterMentions = useMemo<MentionOption[]>(() => {
     const options: MentionOption[] = [];
@@ -819,6 +845,18 @@ export default function App() {
     }
   };
 
+  const handleCopyComposite = async () => {
+    if (!compositeReferenceDataUrl) return;
+    try {
+      const png = await toClipboardImageBlob(dataURLToBlob(compositeReferenceDataUrl));
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
+      setCompositeCopyFeedback(true);
+      setTimeout(() => setCompositeCopyFeedback(false), 2000);
+    } catch (err) {
+      console.error('Clipboard composite copy failed', err);
+      window.alert('Your browser cannot copy images — drag the preview instead.');
+    }
+  };
   /** Export the constructed prompt as a .txt download */
   const handleExportPrompt = () => {
     if (!primaryPromptToSend) return;
@@ -1219,233 +1257,51 @@ export default function App() {
               )}
               </>
 
-              {/* Global Reference / Image Input */}
-              <div role="button" tabIndex={0}
-                onClick={() => elements.openElementFilePicker(elements.imageInput.id)}
-                onKeyDown={(e) => e.key === 'Enter' && elements.openElementFilePicker(elements.imageInput.id)}
-                {...makeElementDragHandlers(elements.imageInput.id, elements.setDragOverElementId, elements.handleDropImage, setElementError)}
+              {/* Global Reference — composite (hasil gabungan semua reference, click untuk copy) */}
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={handleCopyComposite}
+                onKeyDown={(e) => e.key === 'Enter' && handleCopyComposite()}
                 className={`col-span-2 relative aspect-[3/1] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
-                  elements.dragOverElementId === elements.imageInput.id
-                    ? 'border-accent ring-2 ring-accent/50'
+                  compositeReferenceDataUrl
+                    ? 'border-accent/50 hover:border-accent'
                     : 'border-line hover:border-accent/50'
-                }`}
-                title={elements.imageInput.previewDataUrl ? `Replace Global Reference` : `Upload Global Reference`}>
-                {elements.dragOverElementId === elements.imageInput.id && <DropOverlay />}
-                {elements.imageInput.previewDataUrl ? (
+                } ${compositeCopyFeedback ? 'ring-2 ring-accent' : ''}`}
+                title={compositeReferenceDataUrl ? 'Click to copy composite reference image' : 'Upload references above to generate composite'}
+              >
+                {compositeReferenceDataUrl ? (
                   <>
-                    <img src={elements.imageInput.previewDataUrl} alt="Global reference" className="absolute inset-0 w-full h-full object-cover opacity-50" />
-                    <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <img src={compositeReferenceDataUrl} alt="Composite reference" className="absolute inset-0 w-full h-full object-contain bg-white" />
+                    <div className="absolute inset-0 bg-base/0 group-hover:bg-base/20 transition-colors" />
                     <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                      <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('global', elements.imageInput.previewDataUrl!); }}
-                        className="bg-base/70 hover:bg-blue-500 hover:text-ink text-ink p-2 rounded-full transition-all" title="Edit Image">
-                        <Edit2 className="w-4 h-4" />
-                      </button>
-                      <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(elements.imageInput.id); }}
-                        className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
-                        <X className="w-4 h-4" />
-                      </button>
+                      <span className="bg-accent text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+                        <Copy className="w-3 h-3" /> {compositeCopyFeedback ? 'COPIED' : 'COPY'}
+                      </span>
                     </div>
-                    {elements.imageInput.originalDataUrl && (
-                      <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('global'); }}
-                        className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
-                        <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
-                      </button>
-                    )}
                   </>
                 ) : (
                   <div className="w-full h-full flex flex-row items-center justify-center gap-4">
-                    {elementIcon(elements.imageInput.id)}
+                    <Upload className="w-7 h-7 text-dim" />
                     <div className="flex flex-col">
-                      <div className="text-xs font-black uppercase tracking-widest text-ink">{elements.imageInput.label}</div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Drop image or click to upload</div>
+                      <div className="text-xs font-black uppercase tracking-widest text-dim">Reference Composite</div>
+                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Upload face / outfit / scene above</div>
                     </div>
                   </div>
                 )}
                 <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2 flex justify-between items-center">
                   <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">{elements.imageInput.label}</div>
-                    <div className="text-[10px] font-bold tracking-wide text-dim">Switch the prompt to Edit mode</div>
-                  </div>
-                  {elements.imageInput.previewDataUrl && <div className="text-[10px] text-accent font-bold">ACTIVE</div>}
-                </div>
-              </div>
-
-              <div className="col-span-2 space-y-3">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="space-y-1">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-dim">
-                      {`Additional Reference Images (${activeAnonymousReferenceCount} active, ${currentReferenceDescriptors.length}/${MAX_REFERENCE_IMAGES} total)`}
-                    </div>
+                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">Reference Composite</div>
                     <div className="text-[10px] font-bold tracking-wide text-dim">
-                      {`Generic uploads appear in the prompt as @Image# after character, scene, and global refs.${remainingAnonymousReferenceSlots > 0
-                        ? ` ${remainingAnonymousReferenceSlots} slot${remainingAnonymousReferenceSlots === 1 ? '' : 's'} remaining.`
-                        : ' No additional slots available at the current limit.'}`}
+                      {compositeReferenceDataUrl ? 'Click to copy — paste in Gemini / ChatGPT' : 'No references yet'}
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={elements.addAdditionalReferenceImage}
-                    disabled={!canAddAdditionalReference}
-                    className={`inline-flex items-center gap-1 px-3 py-2 border text-[10px] font-bold uppercase tracking-wider transition-all ${
-                      canAddAdditionalReference
-                        ? 'border-line text-ink hover:border-accent hover:text-accent'
-                        : 'border-line text-dim cursor-not-allowed'
-                    }`}
-                  >
-                    <Plus className="w-3 h-3" /> Add Image
-                  </button>
-                </div>
-
-                {elements.additionalReferenceImages.length > 0 && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-                    {elements.additionalReferenceImages.map((reference, index) => {
-                      const referenceKey = reference.instanceId || `anonymous-${index}`;
-                      const activeNumber = activeAnonymousReferenceNumbers.get(referenceKey);
-                      const isOverflow = overflowAnonymousReferenceKeys.has(referenceKey) || index >= maxAnonymousReferenceSlots;
-                      const isDragOver = elements.dragOverAdditionalReferenceIndex === index;
-                      const statusText = activeNumber
-                        ? `ACTIVE AS @Image${activeNumber}`
-                        : isOverflow
-                          ? 'OVER LIMIT'
-                          : reference.base64Data
-                            ? 'READY'
-                            : 'EMPTY';
-
-                      return (
-                        <div key={referenceKey} className="space-y-1.5">
-                          <div className="flex items-center justify-between gap-2 min-w-0">
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-dim truncate min-w-0">
-                              Reference {index + 1}
-                            </span>
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <button
-                                type="button"
-                                onClick={() => elements.openAdditionalReferenceFilePicker(index)}
-                                className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider border border-line text-ink hover:border-accent hover:text-accent"
-                              >
-                                <span className="inline-flex items-center gap-1"><Upload className="w-3 h-3" /> Upload</span>
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => elements.removeAdditionalReferenceImage(index)}
-                                className="p-1.5 border border-line text-dim hover:border-accent hover:text-accent transition-all"
-                                title="Remove reference slot"
-                              >
-                                <X className="w-3 h-3" />
-                              </button>
-                            </div>
-                          </div>
-
-                          <div
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => elements.openAdditionalReferenceFilePicker(index)}
-                            onKeyDown={(e) => e.key === 'Enter' && elements.openAdditionalReferenceFilePicker(index)}
-                            {...makeAdditionalReferenceDragHandlers(index, elements.setDragOverAdditionalReferenceIndex, elements.handleDropAdditionalReferenceImage, setElementError)}
-                            className={`relative aspect-[4/3] bg-base border overflow-hidden group text-left cursor-pointer transition-all ${
-                              isDragOver
-                                ? 'border-accent ring-2 ring-accent/50'
-                                : activeNumber
-                                  ? 'border-accent/60'
-                                  : isOverflow
-                                    ? 'border-orange-500/50'
-                                    : 'border-line hover:border-accent/50'
-                            }`}
-                            title={reference.previewDataUrl ? `Replace Reference ${index + 1}` : `Upload Reference ${index + 1}`}
-                          >
-                            {isDragOver && <DropOverlay />}
-                            {reference.previewDataUrl ? (
-                              <>
-                                <img src={reference.previewDataUrl} alt={`Reference ${index + 1}`} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                                <div className="absolute inset-0 bg-base/35" />
-                              </>
-                            ) : (
-                              <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                                {elementIcon('anonymousReference')}
-                                <div className="text-xs font-black uppercase tracking-widest text-ink">Reference Image</div>
-                                <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Drop image or click to upload</div>
-                              </div>
-                            )}
-
-                            <div className="absolute bottom-0 left-0 right-0 bg-base/75 backdrop-blur-sm border-t border-ink/10 px-3 py-2 flex items-center justify-between gap-3">
-                              <div>
-                                <div className="text-[10px] font-black uppercase tracking-widest text-ink">Reference {index + 1}</div>
-                                <div className={`text-[10px] font-bold tracking-wide ${
-                                  activeNumber
-                                    ? 'text-accent2'
-                                    : isOverflow
-                                      ? 'text-orange-400'
-                                      : 'text-dim'
-                                }`}>
-                                  {statusText}
-                                </div>
-                              </div>
-                              {activeNumber && (
-                                <div className="text-[10px] font-black uppercase tracking-widest text-accent2">
-                                  {`image_${activeNumber}`}
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-
-              {/* Prompt Mode Toggle */}
-              {hasEditSource ? (
-                <div className="col-span-2 flex items-center gap-2 mt-2">
-                  <div className="flex bg-surface border border-line rounded-full p-1 w-full">
-                    <button type="button" onClick={() => setGenerationMode('generate')}
-                      className={`flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                        generationMode === 'generate' ? 'bg-accent text-white' : 'text-dim hover:text-ink'
-                      }`}>Generate</button>
-                    <button type="button" onClick={() => setGenerationMode('edit')}
-                      className={`flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                        generationMode === 'edit' ? 'bg-accent text-white' : 'text-dim hover:text-ink'
-                      }`}>Edit (Inpaint)</button>
-                  </div>
-                </div>
-              ) : (
-                <div className="col-span-2 flex items-center gap-2 mt-2 relative group">
-                  <div className="flex bg-surface/50 border border-line rounded-full p-1 w-full opacity-50 cursor-not-allowed">
-                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-dim text-center">Generate</div>
-                    <div className="flex-1 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-dim text-center">Edit (Inpaint)</div>
-                  </div>
-                  <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 bg-surface2 border border-line px-3 py-2 rounded-lg text-xs text-ink whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-                    <div className="flex items-center gap-2">
-                      <AlertCircle className="w-3 h-3 text-accent" />
-                      <span>Add a Global Reference image to enable Edit mode</span>
+                  {compositeReferenceDataUrl && (
+                    <div className={`text-[10px] font-bold ${compositeCopyFeedback ? 'text-ok' : 'text-accent'}`}>
+                      {compositeCopyFeedback ? 'COPIED' : 'COPY'}
                     </div>
-                    <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-surface2 border-l border-t border-line rotate-45" />
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Narrative Angle Toggle */}
-            <div className="mt-2 flex items-center justify-between bg-surface/30 border border-line/50 p-3 hover:bg-surface/50 transition-colors cursor-pointer group select-none"
-              onClick={() => domain.updateField('showNewAnglePrompt', domain.state.showNewAnglePrompt !== true)}>
-              <div className="flex items-center gap-3">
-                <div className={`p-1.5 rounded-full ${domain.state.showNewAnglePrompt === true ? 'bg-accent/20 text-accent' : 'bg-surface2 text-dim'}`}>
-                  <Video className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col">
-                  <span className={`text-xs font-bold uppercase tracking-widest ${domain.state.showNewAnglePrompt === true ? 'text-ink' : 'text-dim group-hover:text-ink'}`}>
-                    Narrative Angle Prompting
-                  </span>
-                  <span className="text-[10px] text-dim">"In this new angle what would the viewer see? Show us..."</span>
-                  {domain.state.showNewAnglePrompt === true && !domain.state.shotType && (
-                    <span className="text-[10px] text-accent/80 mt-0.5 animate-in fade-in">
-                      Warning: Needs a <b>Shot Type</b> to activate.
-                    </span>
                   )}
                 </div>
-              </div>
-              <div className={`w-10 h-5 rounded-full relative transition-colors duration-200 ${domain.state.showNewAnglePrompt === true ? 'bg-accent' : 'bg-surface2'}`}>
-                <div className={`absolute top-1 bottom-1 w-3 bg-white rounded-full transition-all duration-200 ${domain.state.showNewAnglePrompt === true ? 'left-6' : 'left-1'}`} />
               </div>
             </div>
 

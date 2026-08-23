@@ -52,15 +52,28 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
     Math.round((img.naturalWidth * CELL_HEIGHT) / img.naturalHeight),
   );
 
-  // Layout: 2 → satu baris; 3 → baris atas 2 cell + baris bawah 1 cell centered.
+  // Layout: 2 → satu baris; 3 → baris atas 2 cell + baris bawah 1 cell centered; 4 → grid 2x2.
   let layoutW: number;
   let layoutH: number;
   if (images.length === 2) {
     layoutW = cellWidths[0] + GAP + cellWidths[1];
     layoutH = CELL_HEIGHT;
-  } else {
+  } else if (images.length === 3) {
     const topW = cellWidths[0] + GAP + cellWidths[1];
     layoutW = Math.max(topW, cellWidths[2]);
+    layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
+  } else if (images.length === 4) {
+    const topW = cellWidths[0] + GAP + cellWidths[1];
+    const bottomW = cellWidths[2] + GAP + cellWidths[3];
+    layoutW = Math.max(topW, bottomW);
+    layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
+  } else {
+    // Fallback untuk >4: baris atas 2, sisanya centered seperti 3, tapi tetap handle
+    const topW = cellWidths[0] + GAP + cellWidths[1];
+    const bottomCount = images.length - 2;
+    const bottomWs = cellWidths.slice(2);
+    const bottomW = bottomWs.reduce((a, w, i) => a + w + (i ? GAP : 0), 0);
+    layoutW = Math.max(topW, bottomW);
     layoutH = CELL_HEIGHT + GAP + CELL_HEIGHT;
   }
 
@@ -82,13 +95,33 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
   if (images.length === 2) {
     drawCell(0, 0, 0);
     drawCell(1, cellWidths[0] + GAP, 0);
-  } else {
+  } else if (images.length === 3) {
     const topW = cellWidths[0] + GAP + cellWidths[1];
     const topX = Math.round((layoutW - topW) / 2);
     drawCell(0, topX, 0);
     drawCell(1, topX + cellWidths[0] + GAP, 0);
     const bottomX = Math.round((layoutW - cellWidths[2]) / 2);
     drawCell(2, bottomX, CELL_HEIGHT + GAP);
+  } else if (images.length === 4) {
+    const topW = cellWidths[0] + GAP + cellWidths[1];
+    const bottomW = cellWidths[2] + GAP + cellWidths[3];
+    const topX = Math.round((layoutW - topW) / 2);
+    const bottomX = Math.round((layoutW - bottomW) / 2);
+    drawCell(0, topX, 0);
+    drawCell(1, topX + cellWidths[0] + GAP, 0);
+    drawCell(2, bottomX, CELL_HEIGHT + GAP);
+    drawCell(3, bottomX + cellWidths[2] + GAP, CELL_HEIGHT + GAP);
+  } else {
+    const topW = cellWidths[0] + GAP + cellWidths[1];
+    const topX = Math.round((layoutW - topW) / 2);
+    drawCell(0, topX, 0);
+    drawCell(1, topX + cellWidths[0] + GAP, 0);
+    // fallback: tumpuk sisa di baris bawah tanpa centering sempurna
+    let x = Math.round((layoutW - cellWidths.slice(2).reduce((a, w, i) => a + w + (i ? GAP : 0), 0)) / 2);
+    for (let i = 2; i < images.length; i++) {
+      drawCell(i, x, CELL_HEIGHT + GAP);
+      x += cellWidths[i] + GAP;
+    }
   }
 
   return canvas.toDataURL('image/jpeg', 0.92);
