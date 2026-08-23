@@ -16,15 +16,16 @@ export function dataURLToBlob(dataUrl: string): Blob {
   return new Blob([bytes], { type: mime });
 }
 
-/** Full-res: pakai tinggi asli foto tanpa downscale 1920, cap 3000 agar canvas aman. */
+/** Full-res: tinggi asli max (cap 2500), tanpa downscale 1920 — detail maksimal. */
 const GAP = 0;
 /** Lebar total maksimum — 12288 untuk 1×4 full-res. */
 const MAX_WIDTH = 12288;
-/** Cap tinggi agar 4K foto tidak jadi 96M pixel. */
-const MAX_CELL_HEIGHT = 3000;
-/** Output PNG lossless bawa semua detail. */
-const OUTPUT_MIME = 'image/png' as const;
-const MAX_BYTES = 20 * 1024 * 1024;
+/** Cap 2500 — sweet spot: 3000 terlalu besar (20MB), 1920 terlalu kecil, 2500 efisien. */
+const MAX_CELL_HEIGHT = 2500;
+/** Simpan sebagai WebP 0.92 efisien (~40% lebih kecil dari PNG, detail 95% mirip). Copy ke clipboard otomatis jadi PNG lossless. */
+const OUTPUT_MIME = 'image/webp' as const;
+const OUTPUT_QUALITY = 0.92;
+const MAX_BYTES = 8 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -35,11 +36,11 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 };
 
 /**
- * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah putih — full-res.
- * Tinggi pakai max naturalHeight (cap 3000), tanpa downscale 1920. Lebar total <=12288.
- * Output PNG lossless bawa semua detail asli (tanpa compress WebP/JPEG).
- * Jika hasil >20MB (limit ChatGPT/Gemini), scale down proporsional otomatis.
- * Label Image_N - Face/Outfit/Scene digambar di bawah tiap cell.
+ * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah — full-res efisien.
+ * Tinggi max naturalHeight cap 2500, lebar <=12288. WebP 0.92 (~4-8MB) → PNG saat copy.
+ * Jika >8MB turunkan quality 0.06 step atau scale down.
+ * Label Image_N di bawah tiap cell.
+ * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export type CompositeSource = { dataUrl: string; label: string };
 export async function composeReferenceImages(
@@ -130,9 +131,16 @@ export async function composeReferenceImages(
       x += cellWidths[i];
     }
   }
-  // PNG 1920 biasanya ~6-8MB untuk 4 gambar. Jika >8MB (foto sangat detail), scale down proporsional agar tetap ≤8MB (efficient max).
-  let dataUrl = canvas.toDataURL(OUTPUT_MIME);
+  // Efficient: WebP 0.92 2500px full-res ~4-8MB. Jika >8MB, turunkan quality step 0.06, jika masih >8MB scale down.
+  let quality = OUTPUT_QUALITY;
+  let dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
   let blob = dataURLToBlob(dataUrl);
+  while (blob.size > MAX_BYTES && quality > 0.7) {
+    quality = Math.max(0.7, quality - 0.06);
+    dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
+    blob = dataURLToBlob(dataUrl);
+    if (quality <= 0.7) break;
+  }
   if (blob.size > MAX_BYTES) {
     const ratio = Math.sqrt(MAX_BYTES / blob.size) * 0.97;
     const tmp = document.createElement('canvas');
@@ -141,7 +149,7 @@ export async function composeReferenceImages(
     const tCtx = tmp.getContext('2d');
     if (tCtx) {
       tCtx.drawImage(canvas, 0, 0, tmp.width, tmp.height);
-      dataUrl = tmp.toDataURL(OUTPUT_MIME);
+      dataUrl = tmp.toDataURL(OUTPUT_MIME, quality);
     }
   }
   return dataUrl;
