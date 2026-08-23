@@ -41,17 +41,28 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
   const [sources, setSources] = useState<string[]>([]);
   const [isComposing, setIsComposing] = useState(false);
 
-  // Value jadi null (remove ATAU restore project tanpa foto) → sumber ikut dibuang.
-  // Komposit hasil import tak diketahui sumbernya → diperlakukan 1 sumber (spec).
-  useEffect(() => {
-    if (value === null) setSources([]);
-  }, [value]);
-
   // Derived: import-restore menghasilkan value tanpa sources → hitung 1.
   const sourceCount = sources.length === 0 && value ? 1 : sources.length;
 
+  /** dataUrl terakhir yang field ini hasilkan — membedakan perubahan value dari luar
+   *  (import project / remove) vs dari onChange kita sendiri. */
+  const lastEmittedRef = useRef<string | null>(null);
+  /** Guard sinkron (state terlalu lambat) — memblokir double-add saat FileReader masih membaca. */
+  const busyRef = useRef(false);
+
+  // Perubahan value dari luar (import project, remove) → sumber ikut disinkronkan.
+  useEffect(() => {
+    if (value === lastEmittedRef.current) return; // perubahan dari field ini sendiri
+    lastEmittedRef.current = value;
+    setSources(value ? [value] : []);
+  }, [value]);
+
   const handleFile = (file: File | null | undefined) => {
-    if (!file || isComposing) return;
+    if (!file) return;
+    if (busyRef.current) {
+      setError('Still combining your photos — try again in a moment.');
+      return;
+    }
     if (!file.type.startsWith('image/')) {
       setError('Please choose an image file (JPG, PNG, WebP, ...).');
       return;
@@ -65,12 +76,16 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
       return;
     }
     setError(null);
+    busyRef.current = true;
     const reader = new FileReader();
     reader.onload = async () => {
       const newDataUrl = reader.result as string;
       if (!value) {
         onChange(newDataUrl);
+        lastEmittedRef.current = newDataUrl;
         setSources([newDataUrl]);
+        busyRef.current = false;
+        if (fileInputRef.current) fileInputRef.current.value = '';
         return;
       }
       // Tambahan foto → compose ulang dari SEMUA sumber asli (bukan komposit lama).
@@ -79,19 +94,23 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
         const next = [...(sources.length > 0 ? sources : [value]), newDataUrl];
         const composite = await composeReferenceImages(next);
         onChange(composite);
+        lastEmittedRef.current = composite;
         setSources(next);
       } catch (err) {
         // Komposit gagal (gambar korup) → jangan lempar ke UI; pakai foto terbaru saja.
         console.error('Failed to combine reference photos — using the newest photo only', err);
         onChange(newDataUrl);
+        lastEmittedRef.current = newDataUrl;
         setSources([newDataUrl]);
       } finally {
         setIsComposing(false);
+        busyRef.current = false;
         if (fileInputRef.current) fileInputRef.current.value = '';
       }
     };
     reader.onerror = () => {
       setError('Could not read that image. Please try another one.');
+      busyRef.current = false;
     };
     reader.readAsDataURL(file);
   };
@@ -134,7 +153,11 @@ export const ReferencePhotoField: React.FC<ReferencePhotoFieldProps> = ({
         accept="image/*"
         data-reference-photo-input
         className="hidden"
-        onChange={(e) => handleFile(e.target.files?.[0])}
+        onChange={(e) => {
+          const picked = e.target.files?.[0];
+          e.target.value = ''; // reset sinkron — memilih file yang sama lagi tetap memicu onChange
+          handleFile(picked);
+        }}
       />
 
       {value ? (
