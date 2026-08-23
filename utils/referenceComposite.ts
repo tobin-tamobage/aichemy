@@ -181,3 +181,19 @@ export async function toClipboardImageBlob(blob: Blob): Promise<Blob> {
     URL.revokeObjectURL(url);
   }
 }
+
+/** Download a dataUrl as a file — for WebP full-detail download. */
+export function downloadDataUrl(dataUrl: string, filename: string): void {
+  const a = document.createElement('a');
+  a.href = dataUrl;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+/** Generate filename for composite download — e.g. aichemy-reference-2026-08-23.webp */
+export function compositeFilename(prefix = 'aichemy-reference'): string {
+  const d = new Date().toISOString().slice(0, 10);
+  return `${prefix}-${d}.webp`;
+}

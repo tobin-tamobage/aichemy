@@ -42,7 +42,7 @@ import type { CustomRecipe } from './domains/custom/types';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
-import { dataURLToBlob, toClipboardImageBlob, composeReferenceImages } from './utils/referenceComposite';
+import { dataURLToBlob, toClipboardImageBlob, composeReferenceImages, downloadDataUrl, compositeFilename } from './utils/referenceComposite';
 import {
   downloadTextFile,
   readFileAsText,
@@ -758,7 +758,7 @@ export default function App() {
     return `${currentElementsInstructionDisplay} ${finalPrompt}`.trim();
   }, [currentElementsInstructionDisplay, finalPrompt]);
 
-  /** Copy the constructed prompt (and the reference photo, when available). */
+  /** Copy the constructed prompt (text only — image download is separate). */
   const handleCopyPrompt = async () => {
     if (!primaryPromptToSend) return;
     const showFeedback = () => {
@@ -769,39 +769,6 @@ export default function App() {
       setShowCopyHint(true);
       setTimeout(() => setShowCopyHint(false), 4000);
     };
-
-    // Prefer image+text+html clipboard (Chrome/Edge) when a reference photo is attached.
-    // Browser yang melempar error multi-format (Safari/Firefox) ditandai sekali —
-    // percobaan berikutnya langsung text-only.
-    const supportsImageClipboard = referenceDataUrl
-      && !clipboardImageUnsupported.current
-      && typeof ClipboardItem !== 'undefined'
-      && !!navigator.clipboard
-      && typeof navigator.clipboard.write === 'function';
-
-    if (supportsImageClipboard) {
-      try {
-        // Clipboard Chrome/Safari hanya menerima image/png — transcode bila perlu.
-        const png = await toClipboardImageBlob(dataURLToBlob(referenceDataUrl));
-        // Tiga representasi dalam SATU ClipboardItem: penerima memilih yang ia pahami.
-        const html = `<img src="${referenceDataUrl}" alt="reference"><p>${escapeHtml(primaryPromptToSend)}</p>`;
-        await navigator.clipboard.write([
-          new ClipboardItem({
-            'image/png': png,
-            'text/plain': new Blob([primaryPromptToSend], { type: 'text/plain' }),
-            'text/html': new Blob([html], { type: 'text/html' }),
-          }),
-        ]);
-        showFeedback();
-        showHint();
-        return;
-      } catch (err) {
-        console.error('Clipboard multi-format copy failed, falling back to text-only', err);
-        clipboardImageUnsupported.current = true;
-      }
-    }
-
-    // Text-only fallback.
     try {
       await navigator.clipboard.writeText(primaryPromptToSend);
       showFeedback();
@@ -823,34 +790,19 @@ export default function App() {
     }
   };
 
-  /** Ghost button: copy only the reference photo (or its composite). */
-  const handleCopyPhotoOnly = async () => {
+  /** Download reference photo as full WebP — no PNG transcode, detail penuh. */
+  const handleDownloadPhoto = () => {
     if (!referenceDataUrl) return;
-    try {
-      // Chrome/Safari menolak image/jpeg di clipboard — transcode ke PNG dulu.
-      const png = await toClipboardImageBlob(dataURLToBlob(referenceDataUrl));
-      await navigator.clipboard.write([
-        new ClipboardItem({ 'image/png': png }),
-      ]);
-      setShowCopyFeedback(true);
-      setTimeout(() => setShowCopyFeedback(false), 2000);
-    } catch (err) {
-      console.error('Clipboard image-only copy failed', err);
-      window.alert('Your browser cannot copy images — drag the preview instead.');
-    }
+    downloadDataUrl(referenceDataUrl, compositeFilename('aichemy-reference'));
+    setShowCopyFeedback(true);
+    setTimeout(() => setShowCopyFeedback(false), 2000);
   };
 
-  const handleCopyComposite = async () => {
+  const handleDownloadComposite = () => {
     if (!compositeReferenceDataUrl) return;
-    try {
-      const png = await toClipboardImageBlob(dataURLToBlob(compositeReferenceDataUrl));
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': png })]);
-      setCompositeCopyFeedback(true);
-      setTimeout(() => setCompositeCopyFeedback(false), 2000);
-    } catch (err) {
-      console.error('Clipboard composite copy failed', err);
-      window.alert('Your browser cannot copy images — drag the preview instead.');
-    }
+    downloadDataUrl(compositeReferenceDataUrl, compositeFilename('aichemy-composite'));
+    setCompositeCopyFeedback(true);
+    setTimeout(() => setCompositeCopyFeedback(false), 2000);
   };
   /** Export the constructed prompt as a .txt download */
   const handleExportPrompt = () => {
@@ -1259,18 +1211,18 @@ export default function App() {
               )}
               </>
 
-              {/* Global Reference — composite (hasil gabungan semua reference, click untuk copy) */}
+              {/* Global Reference — composite (hasil gabungan semua reference, click untuk download WebP full) */}
               <div
                 role="button"
                 tabIndex={0}
-                onClick={handleCopyComposite}
-                onKeyDown={(e) => e.key === 'Enter' && handleCopyComposite()}
+                onClick={handleDownloadComposite}
+                onKeyDown={(e) => e.key === 'Enter' && handleDownloadComposite()}
                 className={`col-span-2 relative aspect-[3/1] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
                   compositeReferenceDataUrl
                     ? 'border-accent/50 hover:border-accent'
                     : 'border-line hover:border-accent/50'
                 } ${compositeCopyFeedback ? 'ring-2 ring-accent' : ''}`}
-                title={compositeReferenceDataUrl ? 'Click to copy composite reference image' : 'Upload references above to generate composite'}
+                title={compositeReferenceDataUrl ? 'Click to download composite as WebP (full detail)' : 'Upload references above to generate composite'}
               >
                 {compositeReferenceDataUrl ? (
                   <>
@@ -1278,7 +1230,7 @@ export default function App() {
                     <div className="absolute inset-0 bg-base/0 group-hover:bg-base/20 transition-colors" />
                     <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
                       <span className="bg-accent text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-                        <Copy className="w-3 h-3" /> {compositeCopyFeedback ? 'COPIED' : 'COPY'}
+                        <FileDown className="w-3 h-3" /> {compositeCopyFeedback ? 'DOWNLOADED' : 'DOWNLOAD'}
                       </span>
                     </div>
                   </>
@@ -1295,12 +1247,12 @@ export default function App() {
                   <div>
                     <div className="text-[10px] font-black uppercase tracking-widest text-ink">Reference Composite</div>
                     <div className="text-[10px] font-bold tracking-wide text-dim">
-                      {compositeReferenceDataUrl ? 'Click to copy — paste in Gemini / ChatGPT' : 'No references yet'}
+                      {compositeReferenceDataUrl ? 'Click to download WebP — full detail' : 'No references yet'}
                     </div>
                   </div>
                   {compositeReferenceDataUrl && (
                     <div className={`text-[10px] font-bold ${compositeCopyFeedback ? 'text-ok' : 'text-accent'}`}>
-                      {compositeCopyFeedback ? 'COPIED' : 'COPY'}
+                      {compositeCopyFeedback ? 'DOWNLOADED' : 'DOWNLOAD'}
                     </div>
                   )}
                 </div>
@@ -1369,7 +1321,7 @@ export default function App() {
                 className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5">
                 {showCopyFeedback
                   ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span>
-                  : <><Copy className="w-3 h-3" /> {referenceDataUrl ? 'COPY PROMPT + FOTO' : 'COPY'}</>}
+                  : <><Copy className="w-3 h-3" /> COPY</>}
               </button>
               {referenceDataUrl && (
                 <>
@@ -1378,10 +1330,10 @@ export default function App() {
                     title="Copy the prompt text only">
                     Text only
                   </button>
-                  <button onClick={handleCopyPhotoOnly}
+                  <button onClick={handleDownloadPhoto}
                     className="flex items-center gap-1 text-dim hover:text-accent text-[10px] font-bold uppercase transition-all px-2 py-1"
-                    title="Copy the reference photo only">
-                    Photo only
+                    title="Download reference as full WebP (detail penuh)">
+                    <FileDown className="w-3 h-3" /> Download WebP
                   </button>
                 </>
               )}
@@ -1412,9 +1364,7 @@ export default function App() {
 
           {showCopyHint && (
             <div className="p-3 bg-accent/10 border border-accent/30 text-accent2 text-xs font-medium rounded-card">
-              {clipboardImageUnsupported.current
-                ? 'Your browser copied the text only — use the small buttons for the photo.'
-                : 'Paste into ChatGPT/Gemini — photo and prompt arrive together. If only one appears, use the small buttons.'}
+              Copied prompt to clipboard — download the reference image separately and upload both to ChatGPT/Gemini.
             </div>
           )}
 
