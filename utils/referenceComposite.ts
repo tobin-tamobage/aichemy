@@ -35,13 +35,16 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 };
 
 /**
- * Gabungkan 1-4 foto referensi jadi SATU dataUrl.
+ * Gabungkan 1-4 foto referensi jadi SATU dataUrl dengan label agar AI paham.
  * 1 input → single cell 1920px. 2 → side-by-side. 3 → grid 2+1. 4 → grid 2x2. Cell height 1920, gap 16,
  * latar putih, lebar total <= 5760 (scale proporsional). Output PNG lossless efficient max ~8MB (≤20MB limit, optimal untuk paste).
- * Jika hasil >8MB, otomatis scale down proporsional agar tetap ≤8MB.
+ * Jika hasil >8MB, otomatis scale down proporsional agar tetap ≤8MB. Label digambar di bawah tiap cell (bar hitam + teks putih).
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
-export async function composeReferenceImages(dataUrls: string[]): Promise<string> {
+export type CompositeSource = { dataUrl: string; label: string };
+export async function composeReferenceImages(sources: Array<string | CompositeSource>): Promise<string> {
+  const dataUrls: string[] = sources.map(s => typeof s === 'string' ? s : s.dataUrl);
+  const labels: string[] = sources.map(s => typeof s === 'string' ? '' : s.label);
   if (dataUrls.length === 0) {
     throw new Error('composeReferenceImages needs at least one image');
   }
@@ -93,6 +96,22 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
 
   const drawCell = (index: number, x: number, y: number) => {
     ctx.drawImage(images[index], x, y, cellWidths[index], CELL_HEIGHT);
+    const label = labels[index];
+    if (label) {
+      const barH = 72;
+      const pad = 12;
+      // bar hitam semi-transparan di bawah cell
+      ctx.fillStyle = 'rgba(0,0,0,0.82)';
+      ctx.fillRect(x, y + CELL_HEIGHT - barH, cellWidths[index], barH);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 32px Inter, Nunito, sans-serif';
+      ctx.textBaseline = 'middle';
+      // potong jika terlalu panjang
+      let text = label;
+      const maxW = cellWidths[index] - pad * 2;
+      while (ctx.measureText(text).width > maxW && text.length > 4) text = text.slice(0, -2) + '…';
+      ctx.fillText(text, x + pad, y + CELL_HEIGHT - barH / 2);
+    }
   };
 
   if (images.length === 1) {

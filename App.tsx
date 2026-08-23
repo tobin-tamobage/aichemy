@@ -669,13 +669,14 @@ export default function App() {
 
   // --- Composite reference image (face/outfit/object/scene → 1 image for copy) ---
   useEffect(() => {
-    const sources: string[] = [];
-    elements.characters.forEach(c => {
-      if (c.face.previewDataUrl) sources.push(c.face.previewDataUrl);
-      if (c.outfit.previewDataUrl) sources.push(c.outfit.previewDataUrl);
-      if (c.object.previewDataUrl) sources.push(c.object.previewDataUrl);
+    const sources: Array<{ dataUrl: string; label: string }> = [];
+    elements.characters.forEach((c, idx) => {
+      const n = idx + 1;
+      if (c.face.previewDataUrl) sources.push({ dataUrl: c.face.previewDataUrl, label: `Character ${n} — Face` });
+      if (c.outfit.previewDataUrl) sources.push({ dataUrl: c.outfit.previewDataUrl, label: `Character ${n} — Outfit` });
+      if (c.object.previewDataUrl) sources.push({ dataUrl: c.object.previewDataUrl, label: `Character ${n} — Object` });
     });
-    if (elements.sceneElement.previewDataUrl) sources.push(elements.sceneElement.previewDataUrl);
+    if (elements.sceneElement.previewDataUrl) sources.push({ dataUrl: elements.sceneElement.previewDataUrl, label: 'Scene' });
     if (sources.length === 0) {
       setCompositeReferenceDataUrl(null);
       return;
@@ -684,11 +685,10 @@ export default function App() {
     composeReferenceImages(sources).then((url) => {
       if (!cancelled) setCompositeReferenceDataUrl(url);
     }).catch(() => {
-      if (!cancelled) setCompositeReferenceDataUrl(sources[0] ?? null);
+      if (!cancelled) setCompositeReferenceDataUrl(sources[0]?.dataUrl ?? null);
     });
     return () => { cancelled = true; };
   }, [elements.characters, elements.sceneElement.previewDataUrl]);
-  // --- Character + image mention options for Subject & Action field ---
   const subjectCharacterMentions = useMemo<MentionOption[]>(() => {
     const options: MentionOption[] = [];
     elements.characters.forEach((c, i) => {
