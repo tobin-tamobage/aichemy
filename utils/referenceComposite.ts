@@ -22,9 +22,8 @@ const CELL_HEIGHT = 2048;
 const GAP = 16;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
 const MAX_WIDTH = 6144;
-/** Output format — WebP 0.92: kecil (~70% lebih kecil dari PNG) tapi detail hampir identik. */
-const OUTPUT_MIME = 'image/webp' as const;
-const OUTPUT_QUALITY = 0.92;
+/** Output format — PNG lossless, detail maksimal (tanpa kompresi). */
+const OUTPUT_MIME = 'image/png' as const;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -38,7 +37,7 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
  * Gabungkan 1-4 foto referensi jadi SATU dataUrl.
  * 1 input → dikembalikan apa adanya (tanpa re-encode). 2 → side-by-side.
  * 3 → grid 2 atas + 1 bawah (bawah centered). 4 → grid 2x2. Cell height 2048, gap 16,
- * latar putih, lebar total <= 6144 (scale proporsional). Output WebP 0.92 (kecil, detail tinggi).
+ * latar putih, lebar total <= 6144 (scale proporsional). Output PNG lossless.
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export async function composeReferenceImages(dataUrls: string[]): Promise<string> {
@@ -126,7 +125,7 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
     }
   }
 
-  return canvas.toDataURL(OUTPUT_MIME, OUTPUT_QUALITY);
+  return canvas.toDataURL(OUTPUT_MIME);
 }
 
 /**
