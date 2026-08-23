@@ -42,6 +42,7 @@ import type { CustomRecipe } from './domains/custom/types';
 import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
 import { createStateComparisonKey } from './services/stateComparisonKey';
+import { dataURLToBlob } from './utils/referenceComposite';
 import {
   downloadTextFile,
   readFileAsText,
@@ -289,16 +290,14 @@ const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning })
   </div>
 );
 
-/** Convert a `data:image/...;base64,...` URL into a Blob for clipboard image+text copy. */
-function dataURLToBlob(dataUrl: string): Blob {
-  const comma = dataUrl.indexOf(',');
-  const header = comma >= 0 ? dataUrl.slice(0, comma) : '';
-  const base64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
-  const mime = /^data:([^;]+);/.exec(header)?.[1] ?? 'image/png';
-  const binary = atob(base64);
-  const bytes = new Uint8Array(binary.length);
-  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
-  return new Blob([bytes], { type: mime });
+/** Escape HTML special chars for the text/html clipboard representation. */
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 /**
@@ -324,6 +323,8 @@ export default function App() {
   const [showCharacterLibrary, setShowCharacterLibrary] = useState(false);
   const [showCopyFeedback, setShowCopyFeedback] = useState(false);
   const [showCopyHint, setShowCopyHint] = useState(false);
+  /** Session flag: browser threw on multi-format clipboard write → langsung text-only. */
+  const clipboardImageUnsupported = useRef(false);
   const [showExportFeedback, setShowExportFeedback] = useState(false);
   /** Reference photo data URL — session-only; persisted to the project when <500KB. */
   const [referenceDataUrl, setReferenceDataUrl] = useState<string | null>(null);
@@ -856,9 +857,16 @@ export default function App() {
       setShowCopyFeedback(true);
       setTimeout(() => setShowCopyFeedback(false), 2000);
     };
+    const showHint = () => {
+      setShowCopyHint(true);
+      setTimeout(() => setShowCopyHint(false), 4000);
+    };
 
-    // Prefer image+text clipboard (Chrome/Edge) when a reference photo is attached.
+    // Prefer image+text+html clipboard (Chrome/Edge) when a reference photo is attached.
+    // Browser yang melempar error multi-format (Safari/Firefox) ditandai sekali —
+    // percobaan berikutnya langsung text-only.
     const supportsImageClipboard = referenceDataUrl
+      && !clipboardImageUnsupported.current
       && typeof ClipboardItem !== 'undefined'
       && !!navigator.clipboard
       && typeof navigator.clipboard.write === 'function';
@@ -866,17 +874,21 @@ export default function App() {
     if (supportsImageClipboard) {
       try {
         const blob = dataURLToBlob(referenceDataUrl);
+        // Tiga representasi dalam SATU ClipboardItem: penerima memilih yang ia pahami.
+        const html = `<img src="${referenceDataUrl}" alt="reference"><p>${escapeHtml(primaryPromptToSend)}</p>`;
         await navigator.clipboard.write([
           new ClipboardItem({
             [blob.type || 'image/png']: blob,
             'text/plain': new Blob([primaryPromptToSend], { type: 'text/plain' }),
+            'text/html': new Blob([html], { type: 'text/html' }),
           }),
         ]);
         showFeedback();
-        setShowCopyHint(false);
+        showHint();
         return;
       } catch (err) {
-        console.error('Clipboard image+text copy failed, falling back to text-only', err);
+        console.error('Clipboard multi-format copy failed, falling back to text-only', err);
+        clipboardImageUnsupported.current = true;
       }
     }
 
@@ -884,12 +896,37 @@ export default function App() {
     try {
       await navigator.clipboard.writeText(primaryPromptToSend);
       showFeedback();
-      if (referenceDataUrl) {
-        setShowCopyHint(true);
-        setTimeout(() => setShowCopyHint(false), 3000);
-      }
+      if (referenceDataUrl) showHint();
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  /** Ghost button: copy only the prompt text. */
+  const handleCopyTextOnly = async () => {
+    if (!primaryPromptToSend) return;
+    try {
+      await navigator.clipboard.writeText(primaryPromptToSend);
+      setShowCopyFeedback(true);
+      setTimeout(() => setShowCopyFeedback(false), 2000);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  /** Ghost button: copy only the reference photo (or its composite). */
+  const handleCopyPhotoOnly = async () => {
+    if (!referenceDataUrl) return;
+    try {
+      const blob = dataURLToBlob(referenceDataUrl);
+      await navigator.clipboard.write([
+        new ClipboardItem({ [blob.type || 'image/png']: blob }),
+      ]);
+      setShowCopyFeedback(true);
+      setTimeout(() => setShowCopyFeedback(false), 2000);
+    } catch (err) {
+      console.error('Clipboard image-only copy failed', err);
+      window.alert('Your browser cannot copy images — drag the preview instead.');
     }
   };
 
@@ -1642,8 +1679,24 @@ export default function App() {
               </button>
               <button onClick={handleCopyPrompt}
                 className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5">
-                {showCopyFeedback ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span> : <><Copy className="w-3 h-3" /> COPY</>}
+                {showCopyFeedback
+                  ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span>
+                  : <><Copy className="w-3 h-3" /> {referenceDataUrl ? 'COPY PROMPT + FOTO' : 'COPY'}</>}
               </button>
+              {referenceDataUrl && (
+                <>
+                  <button onClick={handleCopyTextOnly}
+                    className="flex items-center gap-1 text-dim hover:text-accent text-[10px] font-bold uppercase transition-all px-2 py-1"
+                    title="Copy the prompt text only">
+                    Text only
+                  </button>
+                  <button onClick={handleCopyPhotoOnly}
+                    className="flex items-center gap-1 text-dim hover:text-accent text-[10px] font-bold uppercase transition-all px-2 py-1"
+                    title="Copy the reference photo only">
+                    Photo only
+                  </button>
+                </>
+              )}
             </div>
 
             <div className="mt-8 font-mono text-sm leading-relaxed text-ink whitespace-pre-wrap">
@@ -1671,7 +1724,9 @@ export default function App() {
 
           {showCopyHint && (
             <div className="p-3 bg-accent/10 border border-accent/30 text-accent2 text-xs font-medium rounded-card">
-              Prompt copied — attach your photo in the AI app
+              {clipboardImageUnsupported.current
+                ? 'Your browser copied the text only — use the small buttons for the photo.'
+                : 'Paste into ChatGPT/Gemini — photo and prompt arrive together. If only one appears, use the small buttons.'}
             </div>
           )}
 
