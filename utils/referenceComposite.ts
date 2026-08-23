@@ -44,9 +44,6 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
   if (dataUrls.length === 0) {
     throw new Error('composeReferenceImages needs at least one image');
   }
-  if (dataUrls.length === 1) {
-    return dataUrls[0];
-  }
 
   const images = await Promise.all(dataUrls.map(loadImage));
   const cellWidths = images.map((img) =>
@@ -56,7 +53,11 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
   // Layout: 2 → satu baris; 3 → baris atas 2 cell + baris bawah 1 cell centered; 4 → grid 2x2.
   let layoutW: number;
   let layoutH: number;
-  if (images.length === 2) {
+  // Layout: 1 → single cell; 2 → satu baris; 3 → baris atas 2 + bawah 1 centered; 4 → grid 2x2.
+  if (images.length === 1) {
+    layoutW = cellWidths[0];
+    layoutH = CELL_HEIGHT;
+  } else if (images.length === 2) {
     layoutW = cellWidths[0] + GAP + cellWidths[1];
     layoutH = CELL_HEIGHT;
   } else if (images.length === 3) {
@@ -89,11 +90,9 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(0, 0, layoutW, layoutH);
 
-  const drawCell = (index: number, x: number, y: number) => {
-    ctx.drawImage(images[index], x, y, cellWidths[index], CELL_HEIGHT);
-  };
-
-  if (images.length === 2) {
+  if (images.length === 1) {
+    drawCell(0, 0, 0);
+  } else if (images.length === 2) {
     drawCell(0, 0, 0);
     drawCell(1, cellWidths[0] + GAP, 0);
   } else if (images.length === 3) {
