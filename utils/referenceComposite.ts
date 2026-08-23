@@ -17,12 +17,12 @@ export function dataURLToBlob(dataUrl: string): Blob {
 }
 
 /** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
-const CELL_HEIGHT = 2048;
+const CELL_HEIGHT = 2560;
 /** Jarak antar cell. */
 const GAP = 16;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 6144;
-/** Output format — PNG lossless, detail maksimal (tanpa kompresi). */
+const MAX_WIDTH = 7680;
+/** Output format — PNG lossless, detail maksimal (≤20MB limit ChatGPT/Gemini). */
 const OUTPUT_MIME = 'image/png' as const;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
@@ -36,8 +36,8 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 /**
  * Gabungkan 1-4 foto referensi jadi SATU dataUrl.
  * 1 input → dikembalikan apa adanya (tanpa re-encode). 2 → side-by-side.
- * 3 → grid 2 atas + 1 bawah (bawah centered). 4 → grid 2x2. Cell height 2048, gap 16,
- * latar putih, lebar total <= 6144 (scale proporsional). Output PNG lossless.
+ * 3 → grid 2 atas + 1 bawah (bawah centered). 4 → grid 2x2. Cell height 2560, gap 16,
+ * latar putih, lebar total <= 7680 (scale proporsional). Output PNG lossless (~10-18MB, ≤20MB limit).
  * Melempar Error bila ada gambar yang gagal dimuat.
  */
 export async function composeReferenceImages(dataUrls: string[]): Promise<string> {
