@@ -196,85 +196,19 @@ const makeAdditionalReferenceDragHandlers = (
 /** Accordion state per section id — engine section ids + 'elements-tool' (cinematic). */
 type StudioExpandedSections = Record<string, boolean>;
 
-const isDesktopStudioViewport = () => {
-  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-    return true;
-  }
-  return window.matchMedia('(min-width: 1280px)').matches;
-};
-
 const hasNonEmptyValue = (value?: string | null) => !!value?.trim();
 const hasLoadedElement = (element?: ElementState | null) => !!(element?.base64Data || element?.previewDataUrl);
 
-const hasLoadedCharacterReferences = (characters: CharacterData[]) => characters.some(character => (
-  hasLoadedElement(character.face)
-  || hasLoadedElement(character.outfit)
-  || hasLoadedElement(character.object)
-));
-
-const createDefaultExpandedSections = (
-  promptState: PromptState,
-  characters: CharacterData[],
-  sceneElement: ElementState,
-  imageInput: ElementState,
-  additionalReferenceImages: ElementState[],
-): StudioExpandedSections => {
-  if (!isDesktopStudioViewport()) {
-    return {
-      'subject-framing': true,
-      'lighting-mood': true,
-      'camera-gear': true,
-      'style-aesthetics': true,
-      'elements-tool': true,
-    };
-  }
-
-  return {
-    'subject-framing': true,
-    'lighting-mood': hasNonEmptyValue(promptState.lighting) || hasNonEmptyValue(promptState.mood),
-    'camera-gear': hasNonEmptyValue(promptState.camera)
-      || hasNonEmptyValue(promptState.focalLength)
-      || hasNonEmptyValue(promptState.lens)
-      || hasNonEmptyValue(promptState.fStop)
-      || hasNonEmptyValue(promptState.filmStock),
-    'style-aesthetics': hasNonEmptyValue(promptState.photographer)
-      || hasNonEmptyValue(promptState.movieLook)
-      || promptState.filter.length > 0,
-    'elements-tool': !!promptState.showNewAnglePrompt
-      || characters.length > 1
-      || hasLoadedCharacterReferences(characters)
-      || hasLoadedElement(sceneElement)
-      || hasLoadedElement(imageInput)
-      || additionalReferenceImages.some(reference => hasLoadedElement(reference)),
-  };
-};
-
-/** Buka semua section engine (domain non-cinematic, fresh project). */
+/** Buka semua section engine — konsisten untuk semua domain, termasuk cinematic
+ *  (sebelumnya cinematic collapse section tanpa nilai di desktop, terasa "kosong"). */
 const expandAllSections = (domain: DomainRecipe): StudioExpandedSections => {
   const expanded: StudioExpandedSections = {};
   for (const section of domain.sections) expanded[section.id] = true;
   return expanded;
 };
 
-/** Default accordion untuk sebuah domain (cinematic pakai logika lama; lainnya semua terbuka). */
-const defaultExpandedForDomain = (
-  domain: DomainRecipe,
-  state: DomainState,
-  characters: CharacterData[],
-  sceneElement: ElementState,
-  imageInput: ElementState,
-  additionalReferenceImages: ElementState[],
-): StudioExpandedSections => (
-  domain.id === 'cinematic'
-    ? createDefaultExpandedSections(
-        state as unknown as PromptState,
-        characters,
-        sceneElement,
-        imageInput,
-        additionalReferenceImages,
-      )
-    : expandAllSections(domain)
-);
+/** Default accordion: semua section domain terbuka (mobile & desktop). */
+const defaultExpandedForDomain = (domain: DomainRecipe): StudioExpandedSections => expandAllSections(domain);
 
 /** Banner smart-rule (domain.warnings) di bawah section terkait. */
 const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning }) => (
@@ -333,14 +267,7 @@ export default function App() {
   const [isEditingPrompt, setIsEditingPrompt] = useState(false);
 
   const [expandedSections, setExpandedSections] = useState<StudioExpandedSections>(() => (
-    defaultExpandedForDomain(
-      activeDomain,
-      domain.state,
-      elements.characters,
-      elements.sceneElement,
-      elements.imageInput,
-      elements.additionalReferenceImages,
-    )
+    defaultExpandedForDomain(activeDomain)
   ));
 
   // --- App View State ---
@@ -562,14 +489,7 @@ export default function App() {
     const emptyState = nextDomain.createEmptyState();
     domain.reset(emptyState);
     setDomainId(nextDomain.id);
-    setExpandedSections(defaultExpandedForDomain(
-      nextDomain,
-      emptyState,
-      [createInitialCharacter(0)],
-      createInitialScene(),
-      createInitialImageInput(),
-      [],
-    ));
+    setExpandedSections(defaultExpandedForDomain(nextDomain));
     const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
     const projectName = name?.trim() || 'Untitled';
     setCurrentProjectId(id);
@@ -632,14 +552,7 @@ export default function App() {
     projectIO.handleClearAll();
     const emptyState = activeDomain.createEmptyState();
     domain.reset(emptyState);
-    setExpandedSections(defaultExpandedForDomain(
-      activeDomain,
-      emptyState,
-      [createInitialCharacter(0)],
-      createInitialScene(),
-      createInitialImageInput(),
-      [],
-    ));
+    setExpandedSections(defaultExpandedForDomain(activeDomain));
     setReferenceDataUrl(null);
     requestCleanBaseline();
   }, [activeDomain, domain, projectIO, requestCleanBaseline]);
@@ -653,14 +566,7 @@ export default function App() {
       setDomainId(nextId);
       const emptyState = targetDomain.createEmptyState();
       domain.reset(emptyState);
-      setExpandedSections(defaultExpandedForDomain(
-        targetDomain,
-        emptyState,
-        [createInitialCharacter(0)],
-        createInitialScene(),
-        createInitialImageInput(),
-        [],
-      ));
+      setExpandedSections(defaultExpandedForDomain(targetDomain));
       const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
       setCurrentProjectId(id);
       setCurrentProjectName('Untitled');
@@ -683,22 +589,10 @@ export default function App() {
     }
 
     studioLayoutResetRequestedRef.current = false;
-    setExpandedSections(defaultExpandedForDomain(
-      activeDomain,
-      domain.state,
-      elements.characters,
-      elements.sceneElement,
-      elements.imageInput,
-      elements.additionalReferenceImages,
-    ));
+    setExpandedSections(defaultExpandedForDomain(activeDomain));
   }, [
     appView,
     activeDomain,
-    domain.state,
-    elements.characters,
-    elements.sceneElement,
-    elements.imageInput,
-    elements.additionalReferenceImages,
   ]);
 
   useEffect(() => {
@@ -828,14 +722,7 @@ export default function App() {
     domain.reset(nextState);
     setExpandedSections(prev => ({
       ...prev,
-      ...defaultExpandedForDomain(
-        activeDomain,
-        nextState,
-        elements.characters,
-        elements.sceneElement,
-        elements.imageInput,
-        elements.additionalReferenceImages,
-      ),
+      ...defaultExpandedForDomain(activeDomain),
     }));
   };
 
