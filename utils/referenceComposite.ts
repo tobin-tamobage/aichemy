@@ -17,12 +17,11 @@ export function dataURLToBlob(dataUrl: string): Blob {
 }
 
 /** Tinggi setiap cell komposit — lebar mengikuti rasio asli gambar. */
-const CELL_HEIGHT = 1024;
+const CELL_HEIGHT = 1536;
 /** Jarak antar cell. */
 const GAP = 16;
 /** Lebar total maksimum; di atas ini komposit di-scale down proporsional. */
-const MAX_WIDTH = 2048;
-
+const MAX_WIDTH = 4096;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -124,7 +123,7 @@ export async function composeReferenceImages(dataUrls: string[]): Promise<string
     }
   }
 
-  return canvas.toDataURL('image/jpeg', 0.92);
+  return canvas.toDataURL('image/jpeg', 0.95);
 }
 
 /**
