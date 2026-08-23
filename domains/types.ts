@@ -27,7 +27,7 @@ export interface SelectField extends DomainFieldBase {
   kind: 'select'; options: FieldOptions; placeholder?: string;
 }
 export interface VisualField extends DomainFieldBase {
-  kind: 'visual'; options: FieldOptions; previewRatio?: string; multi?: false;
+  kind: 'visual'; options: FieldOptions; previewRatio?: string; multi?: boolean;
 }
 export interface ChipsField extends DomainFieldBase {
   kind: 'chips'; options: FieldOptions; max?: number; // multi-select

@@ -913,76 +913,17 @@ export default function App() {
     <div className="min-h-screen lg:h-screen bg-base text-ink font-sans flex flex-col lg:overflow-hidden">
       {/* ========== HEADER ========== */}
       <header className="shrink-0 border-b border-line bg-base/90 sticky top-0 z-50 backdrop-blur-md">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-4 flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-          <div className="flex min-w-0 flex-col gap-3 lg:flex-row lg:items-center">
-            <div>
-              <h1 className="brand-wordmark text-3xl tracking-tight">
-                Ai<span className="text-accent">chemy</span>
-              </h1>
-              <p className="brand-tagline text-xs mt-1">Brew your perfect prompt</p>
-            </div>
-            {/* Project name + saved indicator */}
-            {currentProjectName && (
-              <div className="flex min-w-0 flex-wrap items-center gap-2 lg:ml-4 lg:border-l lg:border-line lg:pl-4">
-                <span className="text-xs font-medium text-dim truncate max-w-full lg:max-w-[200px]">{currentProjectName}</span>
-                {hasUnsavedChanges && <span className="text-accent text-lg leading-none" title="Unsaved changes">●</span>}
-                {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-ok animate-in fade-in">Saved</span>}
-              </div>
-            )}
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+          <div className="min-w-0 flex items-center gap-2">
+            <span className="text-sm font-bold truncate max-w-[60vw]">{currentProjectName || 'Untitled'}</span>
+            {hasUnsavedChanges && <span className="text-accent text-lg leading-none" title="Unsaved changes">●</span>}
+            {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-ok animate-in fade-in">Saved</span>}
           </div>
-
-          <div className="flex flex-wrap items-center gap-3 xl:justify-end">
-            {/* Domain switcher — key on customsVersion forces a fresh getAllDomains() read after studio save/import/delete */}
-            <div key={customsVersion} className="flex items-center gap-1.5" role="group" aria-label="Recipe domain">
-              {getAllDomains().map(d => (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => switchDomain(d.id)}
-                  title={d.tagline}
-                  className={`h-9 px-3 rounded-full border text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5 ${
-                    d.id === domainId
-                      ? 'bg-accent text-white border-accent'
-                      : 'border-line text-dim hover:text-ink hover:border-dim'
-                  }`}
-                >
-                  <span aria-hidden="true">{d.icon}</span>
-                  <span className="hidden sm:inline">{d.label}</span>
-                </button>
-              ))}
-            </div>
-            <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
-              title="Back to start screen"
-              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
-              <Home className="w-4 h-4" /> Home
-            </button>
-            <button type="button" onClick={() => requestNavigation(() => setShowNewProjectModal(true))}
-              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
-              <Plus className="w-4 h-4" /> New
-            </button>
-            <button type="button" onClick={handleClearWorkspace}
-              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center">
-              Clear All
-            </button>
-            <button type="button" onClick={() => setShowPresetLibrary(true)}
-              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-accent hover:text-accent transition-all flex items-center gap-2">
-              <Bookmark className="w-4 h-4" /> Presets
-            </button>
-            <button type="button" onClick={() => requestNavigation(handleOpenProject)}
-              title="Import a .nbproject file"
-              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-blue-500 hover:text-blue-500 transition-all flex items-center gap-2">
-              <FolderOpen className="w-4 h-4" /> Import
-            </button>
-            <button type="button" onClick={handleExportProject}
-              title="Export project as .nbproject file"
-              className="h-9 px-4 py-2 bg-accent text-white rounded-full text-xs font-bold uppercase tracking-wider hover:bg-accent/90 transition-all flex items-center gap-2">
-              <Download className="w-4 h-4" /> Export
-            </button>
-            <button type="button" onClick={toggle} title="Toggle theme"
-              className="h-9 w-9 border-2 border-line bg-surface rounded-full text-xs font-bold uppercase text-accent2 hover:border-accent transition-all flex items-center justify-center">
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-          </div>
+          <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
+            title="Back to start screen"
+            className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2 shrink-0">
+            <Home className="w-4 h-4" /> Home
+          </button>
         </div>
       </header>
 

@@ -234,10 +234,12 @@ const sections: DomainSection[] = [
         previewRatio: 'aspect-video',
       },
       {
-        kind: 'chips',
+        kind: 'visual',
         key: 'filter',
         label: 'Filter / Effect',
         options: toVisualOptions(FILTERS),
+        previewRatio: 'aspect-square',
+        multi: true,
       },
     ],
   },

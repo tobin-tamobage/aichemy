@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Search } from 'lucide-react';
+import { X } from 'lucide-react';
 
 /** Minimal option shape — `image` may be undefined → placeholder tile. */
 export interface VisualSelectorOption {
@@ -44,8 +44,15 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
   previewRatio = "aspect-video", // Default 16:9
   multiSelect = false
 }) => {
+  // Fallback inline aspect-ratio for cases where Tailwind purge misses arbitrary classes (e.g. aspect-[3/4]).
+  const aspectRatioStyle = (() => {
+    const m = previewRatio.match(/aspect-\[(\d+)\/(\d+)\]/);
+    if (m) return `${m[1]} / ${m[2]}`;
+    if (previewRatio === 'aspect-video') return '16 / 9';
+    if (previewRatio === 'aspect-square') return '1 / 1';
+    return undefined;
+  })();
   const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
   // Placeholder mode: image failed to load (or was never provided) per option value.
   const [imgFailed, setImgFailed] = useState<Record<string, boolean>>({});
 
@@ -61,10 +68,6 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
     if (labels.length <= 2) return labels.join(", ");
     return `${labels.slice(0, 2).join(", ")} +${labels.length - 2}`;
   })();
-
-  const filteredOptions = options.filter(opt => 
-    opt.label.toLowerCase().includes(search.toLowerCase())
-  );
 
   const hasImage = (opt: VisualSelectorOption): boolean => !!opt.image && !imgFailed[opt.value];
 
@@ -140,7 +143,6 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                       } else {
                         (onChange as (value: string) => void)("");
                       }
-                      setSearch("");
                     }}
                     className="flex items-center gap-2 px-3 py-1.5 border border-line text-[10px] font-bold uppercase tracking-widest text-ink hover:text-ink hover:border-dim transition-colors"
                   >
@@ -157,26 +159,11 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
               </div>
             </div>
 
-            {/* Search Bar */}
-            <div className="p-4 border-b border-line bg-base sticky top-0 z-10">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dim" />
-                <input 
-                  type="text" 
-                  placeholder="Filter options..." 
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  autoFocus
-                  className="w-full bg-surface border border-line rounded-none pl-10 pr-4 py-3 text-sm text-ink focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-            </div>
-
             {/* Grid Content */}
-            {/* Added extra padding (p-10 md:p-14) to ensure scaled items (1.75x) have room to expand without being clipped by the overflow container */}
-            <div className="flex-1 overflow-y-auto p-10 md:p-14 custom-scrollbar">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {filteredOptions.map((opt) => {
+            {/* Responsive padding: tight on mobile (320) to maximize tile size, expanded on desktop for hover scale room */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 custom-scrollbar">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+                {options.map((opt) => {
                   const isSelected = selectedValues.includes(opt.value);
                   const showImage = hasImage(opt);
                   return (
@@ -196,12 +183,12 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                         (onChange as (value: string) => void)(opt.value);
                       }
                       setIsOpen(false);
-                      setSearch("");
                     }}
+                    style={aspectRatioStyle ? { aspectRatio: aspectRatioStyle } : undefined}
                     className={`
                       group relative w-full text-left transition-all duration-300 ease-out
                       ${previewRatio}
-                      hover:scale-[1.75] hover:z-50 hover:shadow-2xl
+                      hover:scale-[1.35] hover:z-50 hover:shadow-2xl
                       border-2 
                       ${isSelected ? 'border-accent ring-1 ring-accent z-10' : 'border-line hover:border-dim'}
                     `}
@@ -213,7 +200,7 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                               src={opt.image} 
                               alt={opt.label}
                               onError={() => handleImageError(opt)}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-70 group-hover:opacity-100"
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.025] opacity-70 group-hover:opacity-100"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-40 transition-opacity" />
                             
@@ -249,11 +236,6 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                 );
                 })}
 
-                {filteredOptions.length === 0 && (
-                  <div className="col-span-full py-12 text-center text-dim">
-                    <p>No matches found for "{search}"</p>
-                  </div>
-                )}
               </div>
             </div>
           </div>

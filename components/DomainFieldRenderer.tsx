@@ -125,16 +125,30 @@ export const DomainFieldRenderer: React.FC<DomainFieldRendererProps> = ({ field,
           placeholder={field.placeholder}
         />
       );
-    case 'visual':
+    case 'visual': {
+      const isMulti = (field as VisualField).multi === true || Array.isArray(value);
+      if (isMulti) {
+        return (
+          <VisualSelector
+            label={field.label}
+            value={Array.isArray(value) ? (value as string[]) : []}
+            onChange={onChange as (value: string[]) => void}
+            options={resolveOptions(field)}
+            previewRatio={field.previewRatio}
+            multiSelect={true}
+          />
+        );
+      }
       return (
         <VisualSelector
           label={field.label}
           value={typeof value === 'string' ? value : ''}
-          onChange={onChange}
+          onChange={onChange as (value: string) => void}
           options={resolveOptions(field)}
           previewRatio={field.previewRatio}
         />
       );
+    }
     case 'chips':
       return <ChipsFieldControl field={field} value={value} onChange={onChange} options={resolveOptions(field)} />;
     case 'toggle':

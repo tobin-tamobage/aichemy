@@ -4,8 +4,16 @@ module.exports = {
   content: [
     "./index.html",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./domains/**/*.{js,ts,jsx,tsx}",
+    "./App.tsx",
     "./packages/shared-core/**/*.{js,ts,jsx,tsx}",
     "./*.{js,ts,jsx,tsx}"
+  ],
+  safelist: [
+    'aspect-video',
+    'aspect-square',
+    'aspect-[3/4]',
+    'aspect-[4/3]',
   ],
   theme: {
     extend: {
