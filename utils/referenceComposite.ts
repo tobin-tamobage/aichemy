@@ -16,14 +16,13 @@ export function dataURLToBlob(dataUrl: string): Blob {
   return new Blob([bytes], { type: mime });
 }
 
-/** 2×2 grid — AI-friendly: gap putih jelas, label besar di atas tiap cell, jarak antar-reference tegas. */
+/** 2×2 grid — AI-friendly: gap putih jelas, label warna kategori + sub-hint Keep…, jarak tegas. */
 const GAP = 24;
 const MAX_CANVAS = 2500;
-const LABEL_H = 96;
+const LABEL_H = 108;
 const FOOTER_H = 56;
 const OUTPUT_MIME = 'image/webp' as const;
 const OUTPUT_QUALITY = 0.92;
-const MAX_BYTES = 8 * 1024 * 1024;
 const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
   const { promise, resolve, reject } = Promise.withResolvers<HTMLImageElement>();
   const img = new Image();
@@ -76,57 +75,65 @@ export async function composeReferenceImages(
     if (idx >= n) return;
     const x = col * (cellW + GAP);
     const y = row * (cellH + GAP);
-    // Cell background + border
+    const raw = labels[idx] || `Image ${idx + 1}`;
+    const catRaw = raw.includes('-') ? raw.split('-').pop()!.trim().toUpperCase() : raw.toUpperCase();
+    // Warna + sub-hint per kategori
+    const catKey = catRaw.toLowerCase();
+    const isFace = catKey.includes('face');
+    const isOutfit = catKey.includes('outfit') || catKey.includes('cloth');
+    const isObject = catKey.includes('object') || catKey.includes('product');
+    const isScene = catKey.includes('scene') || catKey.includes('background');
+    const accent = isFace ? '#2563eb' : isOutfit ? '#d97706' : isObject ? '#059669' : isScene ? '#7c3aed' : '#111827';
+    const subHint = isFace ? 'Keep face identity' : isOutfit ? 'Keep clothing' : isObject ? 'Keep object' : isScene ? 'Keep background' : 'Keep as reference';
+    const labelText = catRaw; // e.g. OUTFIT
+    // Cell background + border warna kategori
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(x, y, cellW, cellH);
+    ctx.strokeStyle = accent;
+    ctx.lineWidth = 4;
+    ctx.strokeRect(x + 2, y + 2, cellW - 4, cellH - 4);
     ctx.strokeStyle = '#e5e7eb';
-    ctx.lineWidth = 3;
-    ctx.strokeRect(x + 1.5, y + 1.5, cellW - 3, cellH - 3);
-    // Label bar — solid white, bottom border, text hitam besar
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x + 0.5, y + 0.5, cellW - 1, cellH - 1);
+    // Label bar solid putih, garis bawah warna kategori
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(x, y, cellW, LABEL_H);
-    ctx.fillStyle = '#111827';
-    ctx.fillRect(x, y + LABEL_H - 2, cellW, 2);
-    // Number badge + label
-    const raw = labels[idx] || `Image ${idx + 1}`;
-    // Format: "Image_2 - Outfit" -> "②  OUTFIT" — ambil kategori setelah "-"
-    const cat = raw.includes('-') ? raw.split('-').pop()!.trim().toUpperCase() : raw.toUpperCase();
-    const num = idx + 1;
-    const badge = `${num}`;
-    const labelText = `${cat}`;
-    // Badge circle
-    const badgeR = 28;
-    const badgeX = x + 24 + badgeR;
-    const badgeY = y + LABEL_H / 2;
-    ctx.fillStyle = '#111827';
+    ctx.fillStyle = accent;
+    ctx.fillRect(x, y + LABEL_H - 4, cellW, 4);
+    // Badge bulat warna kategori
+    const badgeR = 26;
+    const badgeX = x + 20 + badgeR;
+    const badgeY = y + 36;
+    ctx.fillStyle = accent;
     ctx.beginPath();
     ctx.arc(badgeX, badgeY, badgeR, 0, Math.PI * 2);
     ctx.fill();
     ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 30px Inter, Nunito, sans-serif';
+    ctx.font = 'bold 26px Inter, Nunito, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText(badge, badgeX, badgeY + 1);
-    // Label text besar
-    ctx.fillStyle = '#111827';
-    ctx.font = '900 42px Inter, Nunito, sans-serif';
+    ctx.fillText(`${idx + 1}`, badgeX, badgeY + 1);
+    // Label utama besar
+    ctx.fillStyle = '#0f172a';
+    ctx.font = '900 40px Inter, Nunito, sans-serif';
     ctx.textAlign = 'left';
-    ctx.letterSpacing = '0.04em' as unknown as string;
     let text = labelText;
-    const maxW = cellW - (badgeX + badgeR + 24) - 16;
-    // Trim panjang
+    const maxW = cellW - (badgeX + badgeR + 16) - 16;
     while (ctx.measureText(text).width > maxW && text.length > 4) text = text.slice(0, -2) + '…';
-    ctx.fillText(text, badgeX + badgeR + 16, y + LABEL_H / 2 + 1);
+    ctx.fillText(text, badgeX + badgeR + 14, y + 38);
+    // Sub-hint kecil abu
+    ctx.fillStyle = '#64748b';
+    ctx.font = '600 20px Inter, Nunito, sans-serif';
+    ctx.fillText(subHint, badgeX + badgeR + 14, y + 68);
     // Image area — object-contain center, tidak crop
     const img = images[idx];
-    const scale = Math.min(cellW / img.naturalWidth, imgAreaH / img.naturalHeight) * 0.96;
+    const scale = Math.min(cellW / img.naturalWidth, imgAreaH / img.naturalHeight) * 0.94;
     const dw = img.naturalWidth * scale;
     const dh = img.naturalHeight * scale;
     const dx = x + (cellW - dw) / 2;
     const dy = y + LABEL_H + (imgAreaH - dh) / 2;
     ctx.drawImage(img, dx, dy, dw, dh);
   };
-
   if (n === 1) {
     drawCell(0, 0, 0);
   } else if (n === 2) {
