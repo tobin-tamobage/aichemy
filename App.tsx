@@ -1217,7 +1217,7 @@ export default function App() {
                 tabIndex={0}
                 onClick={handleDownloadComposite}
                 onKeyDown={(e) => e.key === 'Enter' && handleDownloadComposite()}
-                className={`col-span-2 relative aspect-[3/1] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
+                className={`col-span-2 relative aspect-square max-h-[520px] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
                   compositeReferenceDataUrl
                     ? 'border-accent/50 hover:border-accent'
                     : 'border-line hover:border-accent/50'

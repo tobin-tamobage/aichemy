@@ -16,13 +16,11 @@ export function dataURLToBlob(dataUrl: string): Blob {
   return new Blob([bytes], { type: mime });
 }
 
-/** Full-res: tinggi asli max (cap 2500), tanpa downscale 1920 — detail maksimal. */
-const GAP = 0;
-/** Lebar total maksimum — 12288 untuk 1×4 full-res. */
-const MAX_WIDTH = 12288;
-/** Cap 2500 — sweet spot: 3000 terlalu besar (20MB), 1920 terlalu kecil, 2500 efisien. */
-const MAX_CELL_HEIGHT = 2500;
-/** Simpan sebagai WebP 0.92 efisien (~40% lebih kecil dari PNG, detail 95% mirip). Copy ke clipboard otomatis jadi PNG lossless. */
+/** 2×2 grid — AI-friendly: gap putih jelas, label besar di atas tiap cell, jarak antar-reference tegas. */
+const GAP = 24;
+const MAX_CANVAS = 2500;
+const LABEL_H = 96;
+const FOOTER_H = 56;
 const OUTPUT_MIME = 'image/webp' as const;
 const OUTPUT_QUALITY = 0.92;
 const MAX_BYTES = 8 * 1024 * 1024;
@@ -36,11 +34,13 @@ const loadImage = (dataUrl: string): Promise<HTMLImageElement> => {
 };
 
 /**
- * Gabungkan 1-4 foto referensi jadi SATU dataUrl horizontal 1×N tanpa celah — full-res efisien.
- * Tinggi max naturalHeight cap 2500, lebar <=12288. WebP 0.92 (~4-8MB) → PNG saat copy.
- * Jika >8MB turunkan quality 0.06 step atau scale down.
- * Label Image_N di bawah tiap cell.
- * Melempar Error bila ada gambar yang gagal dimuat.
+ * Gabungkan 1-4 foto referensi jadi SATU dataUrl grid 2×2 — AI mudah bedakan per referensi.
+ * - 1 foto: 1 cell besar (2500×2500) label atas
+ * - 2 foto: 1 baris 2 kolom (2500×~1300) gap 24
+ * - 3-4 foto: 2 baris 2 kolom (2500×2500) gap 24
+ * Tiap cell: label bar solid putih di ATAS (bukan overlay di gambar) font 44px bold, kategori jelas,
+ * jarak putih antar cell, border tipis, gambar object-contain center (tidak crop), footer instruksi bawah.
+ * WebP 0.92 cap 2500, fallback turunkan quality/scale jika >8MB.
  */
 export type CompositeSource = { dataUrl: string; label: string };
 export async function composeReferenceImages(
@@ -48,90 +48,117 @@ export async function composeReferenceImages(
 ): Promise<string> {
   const dataUrls: string[] = sources.map((s) => (typeof s === 'string' ? s : s.dataUrl));
   const labels: string[] = sources.map((s) => (typeof s === 'string' ? '' : s.label));
-  if (dataUrls.length === 0) {
-    throw new Error('composeReferenceImages needs at least one image');
-  }
+  if (dataUrls.length === 0) throw new Error('composeReferenceImages needs at least one image');
+  const n = Math.min(dataUrls.length, 4);
+  const images = await Promise.all(dataUrls.slice(0, 4).map(loadImage));
 
-  const images = await Promise.all(dataUrls.map(loadImage));
-  // Full-res: pakai tinggi asli max (tanpa compress), cap 3000 agar canvas tidak explode. Semua cell disamakan ke tinggi ini.
-  const rawMaxH = Math.max(...images.map((img) => img.naturalHeight));
-  const CELL_HEIGHT = Math.min(MAX_CELL_HEIGHT, Math.max(1, rawMaxH));
-  const cellWidths = images.map((img) =>
-    Math.round((img.naturalWidth * CELL_HEIGHT) / img.naturalHeight),
-  );
-  // Layout: 1×N horizontal tanpa celah putih — full strip, AI pisah via label.
-  let layoutW: number;
-  let layoutH: number;
-  if (images.length === 1) {
-    layoutW = cellWidths[0];
-    layoutH = CELL_HEIGHT;
-  } else if (images.length === 2) {
-    layoutW = cellWidths[0] + cellWidths[1];
-    layoutH = CELL_HEIGHT;
-  } else if (images.length === 3) {
-    layoutW = cellWidths[0] + cellWidths[1] + cellWidths[2];
-    layoutH = CELL_HEIGHT;
-  } else if (images.length === 4) {
-    layoutW = cellWidths[0] + cellWidths[1] + cellWidths[2] + cellWidths[3];
-    layoutH = CELL_HEIGHT;
-  } else {
-    // >4: single row juga
-    layoutW = cellWidths.reduce((a, w) => a + w, 0);
-    layoutH = CELL_HEIGHT;
-  }
-  const scale = layoutW > MAX_WIDTH ? MAX_WIDTH / layoutW : 1;
+  // Grid geometry
+  const cols = n === 1 ? 1 : 2;
+  const rows = n <= 2 ? 1 : 2;
+  // Canvas size — 1 image: full 2500 square besar; 2: 1 baris; 3-4: 2x2 penuh
+  const canvasW = MAX_CANVAS;
+  const canvasH = n === 1 ? MAX_CANVAS : rows === 1 ? Math.round(MAX_CANVAS * 0.52) + FOOTER_H : MAX_CANVAS;
+  const gridW = canvasW;
+  const gridH = canvasH - FOOTER_H;
+  const cellW = cols === 1 ? gridW : Math.floor((gridW - GAP) / 2);
+  const cellH = rows === 1 ? gridH : Math.floor((gridH - GAP) / 2);
+  const imgAreaH = cellH - LABEL_H;
+
   const canvas = document.createElement('canvas');
-  canvas.width = Math.round(layoutW * scale);
-  canvas.height = Math.round(layoutH * scale);
+  canvas.width = canvasW;
+  canvas.height = canvasH;
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Could not create canvas context for compositing');
-  if (scale !== 1) ctx.scale(scale, scale);
-
   ctx.fillStyle = '#ffffff';
-  ctx.fillRect(0, 0, layoutW, layoutH);
+  ctx.fillRect(0, 0, canvasW, canvasH);
 
-  const drawCell = (index: number, x: number, y: number) => {
-    ctx.drawImage(images[index], x, y, cellWidths[index], CELL_HEIGHT);
-    const label = labels[index];
-    if (label) {
-      const barH = 72;
-      const pad = 12;
-      // bar hitam semi-transparan di bawah cell
-      ctx.fillStyle = 'rgba(0,0,0,0.82)';
-      ctx.fillRect(x, y + CELL_HEIGHT - barH, cellWidths[index], barH);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 32px Inter, Nunito, sans-serif';
-      ctx.textBaseline = 'middle';
-      // potong jika terlalu panjang
-      let text = label;
-      const maxW = cellWidths[index] - pad * 2;
-      while (ctx.measureText(text).width > maxW && text.length > 4) text = text.slice(0, -2) + '…';
-      ctx.fillText(text, x + pad, y + CELL_HEIGHT - barH / 2);
-    }
+  const drawCell = (idx: number, col: number, row: number) => {
+    if (idx >= n) return;
+    const x = col * (cellW + GAP);
+    const y = row * (cellH + GAP);
+    // Cell background + border
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x, y, cellW, cellH);
+    ctx.strokeStyle = '#e5e7eb';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(x + 1.5, y + 1.5, cellW - 3, cellH - 3);
+    // Label bar — solid white, bottom border, text hitam besar
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(x, y, cellW, LABEL_H);
+    ctx.fillStyle = '#111827';
+    ctx.fillRect(x, y + LABEL_H - 2, cellW, 2);
+    // Number badge + label
+    const raw = labels[idx] || `Image ${idx + 1}`;
+    // Format: "Image_2 - Outfit" -> "②  OUTFIT" — ambil kategori setelah "-"
+    const cat = raw.includes('-') ? raw.split('-').pop()!.trim().toUpperCase() : raw.toUpperCase();
+    const num = idx + 1;
+    const badge = `${num}`;
+    const labelText = `${cat}`;
+    // Badge circle
+    const badgeR = 28;
+    const badgeX = x + 24 + badgeR;
+    const badgeY = y + LABEL_H / 2;
+    ctx.fillStyle = '#111827';
+    ctx.beginPath();
+    ctx.arc(badgeX, badgeY, badgeR, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 30px Inter, Nunito, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(badge, badgeX, badgeY + 1);
+    // Label text besar
+    ctx.fillStyle = '#111827';
+    ctx.font = '900 42px Inter, Nunito, sans-serif';
+    ctx.textAlign = 'left';
+    ctx.letterSpacing = '0.04em' as unknown as string;
+    let text = labelText;
+    const maxW = cellW - (badgeX + badgeR + 24) - 16;
+    // Trim panjang
+    while (ctx.measureText(text).width > maxW && text.length > 4) text = text.slice(0, -2) + '…';
+    ctx.fillText(text, badgeX + badgeR + 16, y + LABEL_H / 2 + 1);
+    // Image area — object-contain center, tidak crop
+    const img = images[idx];
+    const scale = Math.min(cellW / img.naturalWidth, imgAreaH / img.naturalHeight) * 0.96;
+    const dw = img.naturalWidth * scale;
+    const dh = img.naturalHeight * scale;
+    const dx = x + (cellW - dw) / 2;
+    const dy = y + LABEL_H + (imgAreaH - dh) / 2;
+    ctx.drawImage(img, dx, dy, dw, dh);
   };
 
-  if (images.length === 1) {
+  if (n === 1) {
     drawCell(0, 0, 0);
-  } else if (images.length === 2) {
+  } else if (n === 2) {
     drawCell(0, 0, 0);
-    drawCell(1, cellWidths[0], 0);
-  } else if (images.length === 3) {
+    drawCell(1, 1, 0);
+  } else if (n === 3) {
     drawCell(0, 0, 0);
-    drawCell(1, cellWidths[0], 0);
-    drawCell(2, cellWidths[0] + cellWidths[1], 0);
-  } else if (images.length === 4) {
-    drawCell(0, 0, 0);
-    drawCell(1, cellWidths[0], 0);
-    drawCell(2, cellWidths[0] + cellWidths[1], 0);
-    drawCell(3, cellWidths[0] + cellWidths[1] + cellWidths[2], 0);
+    drawCell(1, 1, 0);
+    drawCell(2, 0, 1);
+    // cell (1,1) kosong — biarkan putih
   } else {
-    let x = 0;
-    for (let i = 0; i < images.length; i++) {
-      drawCell(i, x, 0);
-      x += cellWidths[i];
-    }
+    drawCell(0, 0, 0);
+    drawCell(1, 1, 0);
+    drawCell(2, 0, 1);
+    drawCell(3, 1, 1);
   }
-  // Efficient: WebP 0.92 2500px full-res ~4-8MB. Jika >8MB, turunkan quality step 0.06, jika masih >8MB scale down.
+
+  // Footer instruksi — bantu AI jangan campur referensi
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(0, canvasH - FOOTER_H, canvasW, FOOTER_H);
+  ctx.fillStyle = '#e5e7eb';
+  ctx.fillRect(0, canvasH - FOOTER_H, canvasW, 2);
+  ctx.fillStyle = '#64748b';
+  ctx.font = '700 22px Inter, Nunito, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const footerText = n === 1
+    ? 'REFERENCE  —  use as labeled, keep identity'
+    : `REFERENCE SHEET  ·  ${n} IMAGES  ·  each labeled — do not mix, keep separate`;
+  ctx.fillText(footerText, canvasW / 2, canvasH - FOOTER_H / 2 + 1);
+
+  // Encode WebP 0.92, fallback quality/scale jika >8MB
   let quality = OUTPUT_QUALITY;
   let dataUrl = canvas.toDataURL(OUTPUT_MIME, quality);
   let blob = dataURLToBlob(dataUrl);
@@ -154,6 +181,7 @@ export async function composeReferenceImages(
   }
   return dataUrl;
 }
+
 
 /**
  * Clipboard web (Chrome/Safari) HANYA menerima `image/png` di clipboard.write —
