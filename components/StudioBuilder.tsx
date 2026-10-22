@@ -107,9 +107,6 @@ const uid = () => `u${++uidCounter}`;
 const slugify = (s: string): string =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-{2,}/g, '-').replace(/^-+|-+$/g, '');
 
-const autoStudioId = (label: string): string => `x-${slugify(label)}`;
-
-const ID_RE = /^x-[a-z0-9][a-z0-9-]*$/;
 
 const newOption = (): DraftOption => ({ uid: uid(), value: '', label: '', promptPhrase: '' });
 
@@ -131,19 +128,6 @@ const newField = (kind: CustomFieldKind): DraftField => ({
 
 const newSection = (): DraftSection => ({ uid: uid(), id: '', title: '', fields: [] });
 
-const emptyDraft = (): Draft => ({
-  label: '',
-  tagline: '',
-  icon: '',
-  id: 'x-',
-  referencePhoto: false,
-  referenceLabel: '',
-  referenceClause: '',
-  sections: [newSection()],
-  blocks: [],
-  rules: [],
-  protectedKeys: [],
-});
 
 function whenToDraft(when: When): DraftWhen {
   switch (when.op) {
@@ -497,31 +481,24 @@ const WhenEditor: React.FC<WhenEditorProps> = ({ fields, value, onChange, requir
 // ---------- main component ----------
 
 export interface StudioBuilderProps {
-  isOpen: boolean;
   onClose: () => void;
-  /** Called after a successful save — parent bumps the registry version and closes. */
+  /** Called after a successful save — parent refreshes the registry and closes. */
   onSaved: () => void;
-  /** Edit mode: pre-fill from this recipe; Save overwrites the same id. */
-  initialRecipe?: CustomRecipe | null;
+  initialRecipe: CustomRecipe;
 }
 
-export const StudioBuilder: React.FC<StudioBuilderProps> = (props) => {
-  if (!props.isOpen) return null;
-  // key remounts the form when switching between create/edit targets → fresh state per open.
-  return <BuilderForm key={props.initialRecipe?.id ?? 'new'} {...props} />;
-};
+export const StudioBuilder: React.FC<StudioBuilderProps> = (props) => (
+  <BuilderForm key={props.initialRecipe.id} {...props} />
+);
 
 const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRecipe }) => {
-  const [draft, setDraft] = useState<Draft>(() =>
-    initialRecipe ? draftFromRecipe(initialRecipe) : emptyDraft(),
-  );
-  const isEdit = Boolean(initialRecipe);
+  const [draft, setDraft] = useState<Draft>(() => draftFromRecipe(initialRecipe));
 
-  /** Builtin ids + other custom ids (own id excluded in edit mode). */
+  /** Builtin ids + other custom ids (own id excluded). */
   const collisionIds = useMemo(
     () => [
       ...DOMAINS.map(d => d.id),
-      ...listCustomRecipes().filter(r => r.id !== initialRecipe?.id).map(r => r.id),
+      ...listCustomRecipes().filter(r => r.id !== initialRecipe.id).map(r => r.id),
     ],
     [initialRecipe],
   );
@@ -545,14 +522,6 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
     };
   }, [draft, collisionIds]);
 
-  const idFormatOk = ID_RE.test(draft.id);
-
-  // --- identity handlers (id auto-derives from label until manually edited) ---
-
-  const setLabel = (label: string) => setDraft(d => {
-    const wasAuto = d.id === autoStudioId(d.label) || d.id === '' || d.id === 'x-';
-    return { ...d, label, id: wasAuto ? autoStudioId(label) : d.id };
-  });
 
   // --- section / field updaters ---
 
@@ -739,7 +708,7 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
           <div className="flex items-center gap-2 text-accent2 min-w-0">
             <Wand2 className="w-5 h-5 flex-shrink-0" />
             <h2 className="text-lg font-black tracking-widest uppercase">
-              {isEdit ? 'Edit Studio' : 'Studio Builder'}
+              Edit Studio
             </h2>
             {draft.label.trim() && (
               <span className="px-2 py-0.5 border border-line rounded-full text-[9px] font-bold uppercase tracking-wider text-dim truncate">
@@ -749,8 +718,8 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
           </div>
           <button
             onClick={onClose}
-            title="Close studio builder"
-            aria-label="Close studio builder"
+            title="Close studio editor"
+            aria-label="Close studio editor"
             className="p-2 hover:bg-surface2 rounded-full transition-colors text-dim hover:text-ink"
           >
             <X className="w-5 h-5" />
@@ -770,7 +739,7 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
                   id="sb-label"
                   type="text"
                   value={draft.label}
-                  onChange={e => setLabel(e.target.value)}
+                  onChange={e => setDraft(d => ({ ...d, label: e.target.value }))}
                   placeholder="e.g. Pet Portraits"
                   className={inputCls}
                 />
@@ -805,17 +774,10 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
                   id="sb-id"
                   type="text"
                   value={draft.id}
-                  onChange={e => setDraft(d => ({ ...d, id: e.target.value }))}
-                  disabled={isEdit}
-                  title={isEdit ? 'Studio id is fixed after creation' : undefined}
-                  className={`${inputCls} font-mono text-xs ${idFormatOk ? '' : 'border-danger'} ${isEdit ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  aria-invalid={!idFormatOk}
+                  disabled
+                  title="Studio id is fixed after creation"
+                  className={`${inputCls} font-mono text-xs opacity-50 cursor-not-allowed`}
                 />
-                {!idFormatOk && (
-                  <p className="text-[10px] text-danger mt-1">
-                    Must be x- + lowercase slug, e.g. x-pet-portraits.
-                  </p>
-                )}
               </div>
             </div>
           </div>
@@ -1375,11 +1337,11 @@ const BuilderForm: React.FC<StudioBuilderProps> = ({ onClose, onSaved, initialRe
             <button
               onClick={handleSave}
               disabled={!built.ok}
-              title={built.ok ? 'Save this studio' : 'Fix validation errors to save'}
+              title={built.ok ? 'Save changes to this studio' : 'Fix validation errors to save'}
               className="bg-accent hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold uppercase text-xs px-4 py-2 rounded-full flex items-center gap-2 transition-all"
             >
               <Save className="w-4 h-4" />
-              Save Studio
+              Save changes
             </button>
           </div>
         </div>

@@ -36,22 +36,22 @@ export class ErrorBoundary extends React.Component<Props, State> {
       }
 
       return (
-        <div className="min-h-screen bg-base text-ink flex items-center justify-center p-8">
-          <div className="max-w-lg text-center space-y-4">
-            <h1 className="text-2xl font-black uppercase tracking-wider text-danger">
-              Something went wrong
+        <div className="page-loading">
+          <div className="empty-state">
+            <h1>
+              Ada kendala pada halaman ini.
             </h1>
-            <p className="text-dim text-sm">
-              {this.state.error?.message || 'An unexpected error occurred.'}
+            <p className="muted">
+              Muat ulang untuk kembali ke ruang kreasimu. Draft yang sudah tersimpan tetap ada di akun.
             </p>
             <button
               onClick={() => {
                 this.setState({ hasError: false, error: null });
                 window.location.reload();
               }}
-              className="mt-4 px-6 py-3 bg-accent text-white font-bold uppercase tracking-wider hover:bg-accent/90 transition-colors"
+              className="button button-primary"
             >
-              Reload Application
+              Muat Ulang Aichemy
             </button>
           </div>
         </div>

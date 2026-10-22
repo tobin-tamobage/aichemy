@@ -30,14 +30,14 @@ const ChipsFieldControl: React.FC<{
 
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-xs font-bold uppercase tracking-wider text-accent2">
+      <span className="ui-field-label">
         {field.label}
         {field.max !== undefined && (
           <span className="ml-2 text-dim normal-case tracking-normal font-medium">
             ({selected.length}/{field.max})
           </span>
         )}
-      </label>
+      </span>
       <div className="flex flex-wrap gap-2">
         {options.map(opt => {
           const isSelected = selected.includes(opt.value);
@@ -49,7 +49,7 @@ const ChipsFieldControl: React.FC<{
               onClick={() => toggle(opt.value)}
               disabled={isFull}
               title={opt.hint}
-              className={`px-3 py-1.5 border text-xs font-bold uppercase tracking-wider transition-colors ${
+              className={`rounded-full border px-3 py-1.5 text-xs font-bold uppercase tracking-wider transition-colors ${
                 isSelected
                   ? 'bg-accent text-white border-accent'
                   : isFull
@@ -74,23 +74,22 @@ const ToggleFieldControl: React.FC<{
   const checked = value === true;
   return (
     <div className="flex flex-col gap-1">
-      <label
-        className="flex items-center gap-2.5 cursor-pointer group select-none px-1"
+      <button
+        type="button"
+        role="switch"
+        aria-checked={checked}
+        className="group flex items-center gap-2.5 px-1 text-left"
         onClick={() => onChange(!checked)}
       >
-        <div className={`w-4 h-4 rounded border flex items-center justify-center transition-colors ${
+        <span className={`flex h-5 w-9 items-center rounded-full border p-0.5 transition-colors ${
           checked ? 'bg-accent border-accent' : 'border-line bg-surface group-hover:border-dim'
         }`}>
-          {checked && (
-            <svg className="w-3 h-3 text-white" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M2 6l3 3 5-5" />
-            </svg>
-          )}
-        </div>
+          <span className={`h-3.5 w-3.5 rounded-full bg-white shadow-sm transition-transform ${checked ? 'translate-x-3.5' : ''}`} />
+        </span>
         <span className={`text-xs font-medium tracking-wide ${
           checked ? 'text-ink' : 'text-dim group-hover:text-ink'
         }`}>{field.label}</span>
-      </label>
+      </button>
       {field.hint && <p className="text-[10px] text-dim px-1">{field.hint}</p>}
     </div>
   );

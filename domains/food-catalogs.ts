@@ -18,16 +18,16 @@ export interface DishOption extends DomainOption {
   promptPhrase: string;
 }
 export const FOOD_DISHES: DishOption[] = [
-  { value: 'rendang', label: 'Rendang', image: img('dishes', 'rendang'), promptPhrase: 'beef rendang with dark glossy caramelized coconut sauce, tender shredded beef, garnished with fried shallots and red chili' },
-  { value: 'sate-ayam', label: 'Sate Ayam', image: img('dishes', 'sate-ayam'), promptPhrase: 'chicken satay skewers with charred edges, peanut sauce on the side, lime wedges and ketupat rice cakes' },
-  { value: 'nasi-goreng', label: 'Nasi Goreng', image: img('dishes', 'nasi-goreng'), promptPhrase: 'nasi goreng, Indonesian fried rice topped with a fried egg, shrimp crackers, cucumber slices and fried shallots' },
+  { value: 'rendang', label: 'Rendang', image: img('dishes', 'rendang'), promptPhrase: 'beef rendang with a dark glossy caramelized coconut sauce, tender shredded beef, fried shallots and red chili' },
+  { value: 'sate-ayam', label: 'Sate Ayam', image: img('dishes', 'sate-ayam'), promptPhrase: 'chicken satay skewers with charred edges and juicy meat, peanut sauce on the side, lime wedges and ketupat rice cakes' },
+  { value: 'nasi-goreng', label: 'Nasi Goreng', image: img('dishes', 'nasi-goreng'), promptPhrase: 'nasi goreng, Indonesian fried rice with distinct savory grains, topped with a fried egg, shrimp crackers, cucumber slices and fried shallots' },
   { value: 'gado-gado', label: 'Gado-Gado', image: img('dishes', 'gado-gado'), promptPhrase: 'gado-gado, Indonesian vegetable salad with creamy peanut dressing, boiled egg, tofu and lontong rice cakes' },
   { value: 'soto-ayam', label: 'Soto Ayam', image: img('dishes', 'soto-ayam'), promptPhrase: 'soto ayam, golden turmeric chicken soup with rice noodles, bean sprouts, lime and fried shallots' },
-  { value: 'rawon', label: 'Rawon', image: img('dishes', 'rawon'), promptPhrase: 'rawon, dark black beef soup with keluak broth, bean sprouts and sambal' },
-  { value: 'ayam-bakar', label: 'Ayam Bakar', image: img('dishes', 'ayam-bakar'), promptPhrase: 'ayam bakar, grilled chicken with a smoky sweet glaze, sambal and fresh vegetables' },
-  { value: 'mie-goreng', label: 'Mie Goreng', image: img('dishes', 'mie-goreng'), promptPhrase: 'mie goreng, stir-fried noodles with vegetables, egg and kecap manis glaze' },
+  { value: 'rawon', label: 'Rawon', image: img('dishes', 'rawon'), promptPhrase: 'rawon, dark beef soup with keluak broth, tender beef, bean sprouts and sambal' },
+  { value: 'ayam-bakar', label: 'Ayam Bakar', image: img('dishes', 'ayam-bakar'), promptPhrase: 'ayam bakar, grilled chicken with a smoky sweet glaze and caramelized edges, sambal and fresh vegetables' },
+  { value: 'mie-goreng', label: 'Mie Goreng', image: img('dishes', 'mie-goreng'), promptPhrase: 'mie goreng, stir-fried noodles with a glossy kecap manis glaze, vegetables and egg' },
   { value: 'sushi', label: 'Sushi platter', image: img('dishes', 'sushi'), promptPhrase: 'an elegant sushi platter with glistening fresh nigiri and maki rolls' },
-  { value: 'ramen', label: 'Ramen', image: img('dishes', 'ramen'), promptPhrase: 'a steaming bowl of ramen with rich broth, soft-boiled egg, chashu pork and spring onions' },
+  { value: 'ramen', label: 'Ramen', image: img('dishes', 'ramen'), promptPhrase: 'a bowl of ramen with rich broth, soft-boiled egg, chashu pork and spring onions' },
   { value: 'pasta', label: 'Pasta', image: img('dishes', 'pasta'), promptPhrase: 'a plated pasta dish, al dente, with fresh herbs and shaved parmesan' },
   { value: 'burger', label: 'Gourmet burger', image: img('dishes', 'burger'), promptPhrase: 'a juicy gourmet burger with melted cheese, crisp lettuce and a toasted bun' },
   { value: 'dessert', label: 'Plated dessert', image: img('dishes', 'dessert'), promptPhrase: 'a delicate plated dessert with a glossy sauce swirl and a light garnish' },
@@ -41,7 +41,7 @@ export interface PresentationOption extends DomainOption {
 export const FOOD_PRESENTATIONS: PresentationOption[] = [
   { value: 'fine-dining', label: 'Fine dining', image: img('presentations', 'fine-dining'), promptPhrase: 'fine-dining plating, precise and minimal' },
   { value: 'rustic-family', label: 'Rustic family style', image: img('presentations', 'rustic-family'), promptPhrase: 'rustic family-style serving, generous and casual' },
-  { value: 'flat-lay', label: 'Flat lay', image: img('presentations', 'flat-lay'), promptPhrase: 'a flat lay with ingredients arranged around the dish' },
+  { value: 'flat-lay', label: 'Flat lay', image: img('presentations', 'flat-lay'), promptPhrase: 'ingredients arranged neatly around the dish in a balanced, uncluttered layout' },
 ];
 
 // Plan Task 1 Step 3 Field 3 — mood cahaya (visual).
@@ -93,8 +93,8 @@ export const FOOD_LENSES: FoodLensOption[] = [
 export interface FoodCameraOption extends DomainOption { promptPhrase: string; }
 export const FOOD_CAMERAS: FoodCameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
-  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
-  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4 APS-C mirrorless camera' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II medium-format mirrorless camera' },
   { value: 'iphone-pro', label: 'iPhone Pro', image: '/images/cameras/iphone-pro.webp', promptPhrase: 'modern iPhone Pro camera, computational photography' },
 ];
 

@@ -1,42 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https: file:; media-src 'self' blob: data: https:; connect-src 'self' blob: https: ws: wss:;">
-    <link rel="icon" type="image/png" href="./favicon-32.png" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https: file:; media-src 'self' blob: data: https:; connect-src 'self' blob: https: ws: wss:;"
+    />
+    <link rel="icon" type="image/png" href="/assets/brand/mark-32.png" />
+    <link rel="apple-touch-icon" href="/assets/brand/mark-192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aichemy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-      body { font-family: 'Nunito', sans-serif; }
-      /* Hide scrollbar for clean look */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: rgb(var(--bg));
-      }
-      ::-webkit-scrollbar-thumb {
-        background: rgb(var(--dim));
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: rgb(var(--dim));
-      }
-    </style>
-</head>
+    <meta
+      name="description"
+      content="Racik prompt gambar lewat pilihan visual. 10 studio kreatif, preset, dan studio kustom. Rp149.000 sekali bayar untuk akses lifetime dan pembaruan mendatang."
+    />
+    <meta name="theme-color" content="#faf8f5" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta
+      property="og:title"
+      content="Aichemy — Ide kamu. Visual luar biasa."
+    />
+    <meta
+      property="og:description"
+      content="Prompt builder visual untuk kreator Indonesia. Rp149.000 sekali bayar, akses lifetime."
+    />
+    <meta property="og:image" content="/assets/brand/social.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Aichemy — Racik Prompt, Wujudkan Ide. Rp149.000 Lifetime.</title>
+  </head>
   <body class="bg-base text-ink antialiased">
     <script>
       (function () {
         try {
-          var t = localStorage.getItem('aichemy-theme');
-          if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+          var t = localStorage.getItem("aichemy-theme");
+          if (
+            t === "dark" ||
+            (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)
+          ) {
+            document.documentElement.classList.add("dark");
           }
         } catch (e) {}
       })();
     </script>
     <div id="root"></div>
-    <script type="module" src="./index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

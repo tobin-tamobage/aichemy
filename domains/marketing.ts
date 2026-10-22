@@ -20,9 +20,9 @@ import {
  * Guardrail/negative jadi konstanta blok 10, bukan field (plan keputusan authoring).
  */
 
-// Klausa referensi PERSIS spec §3.4 / plan Task 2 — produk di-attach user; jangan redraw/ubah.
+// The external image tool uses the attached product photo as the ad's unchanged hero.
 const REFERENCE_CLAUSE =
-  'Use the attached product photo exactly as-is, do not redraw or alter the product.';
+  'Use the attached product photo as the hero product; preserve its appearance, packaging, label, logo, and proportions exactly, and integrate it into the design without redrawing it.';
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 
@@ -108,8 +108,8 @@ export const marketingDomain: DomainRecipe = {
     const colorPreset = COLOR_PRESETS.find(o => o.value === str(state.colorScheme)) ?? COLOR_PRESETS[0];
     const typography = TYPOGRAPHY_STYLES.find(o => o.value === str(state.typography)) ?? TYPOGRAPHY_STYLES[0];
     const strategy = TEXT_STRATEGIES.find(o => o.value === str(state.textStrategy)) ?? TEXT_STRATEGIES[0];
-    // Kutip ganda di teks bebas → kutip tunggal agar pembungkusan kutip aman.
-    const headline = str(state.headlineText).trim().replace(/"/g, "'");
+    // Keep the user's headline text intact; quotation marks below delimit the exact copy.
+    const headline = str(state.headlineText);
     const isStory = format.value === '9x16';
 
     // Promo elements chips terpilih → frasa prompt (riset §2 Field 7).
@@ -126,11 +126,9 @@ export const marketingDomain: DomainRecipe = {
     // [Riset §2 Field 3] Design style / mood.
     blocks.push(`${designStyle.descriptor}.`);
 
-    // [Riset §1 blok 2 + jebakan #4] Hero — klausa referensi (produk di-attach user,
-    // jangan digambar ulang) + hero cutout bersih di tengah. Disertakan selama
-    // reference mode aktif (pola id-photo).
+    // [Riset §1 blok 2 + jebakan #4] Preserve the attached product; layout handles placement.
     if (state.hasReferencePhoto !== false) {
-      blocks.push(`${REFERENCE_CLAUSE} Use the attached photo as the hero element, cut out cleanly, centered.`);
+      blocks.push(REFERENCE_CLAUSE);
     }
 
     // [Riset §2 Field 4] Color scheme — warna konkret + peran.
@@ -140,7 +138,8 @@ export const marketingDomain: DomainRecipe = {
     // merender teks (render-exact/placeholder); empty-area memakai klausa blok 6.
     // CTA hanya disebut bila chip cta-button terpilih. Story 9:16 memakai varian
     // layout safe-zone — klausa safe-zone sudah ada di format clause (tanpa duplikasi).
-    const hasHeadline = strategy.value === 'render-exact' || strategy.value === 'placeholder';
+    const hasHeadline = strategy.value === 'placeholder'
+      || (strategy.value === 'render-exact' && headline.trim().length > 0);
     const hasCta = selectedPromos.some(o => o.value === 'cta-button');
     const layoutParts: string[] = [];
     if (hasHeadline) {
@@ -148,15 +147,14 @@ export const marketingDomain: DomainRecipe = {
     }
     layoutParts.push('product in the center');
     if (hasCta) {
-      layoutParts.push(isStory ? 'CTA just above the bottom 250px' : 'CTA at the bottom');
+      layoutParts.push(isStory ? 'CTA just above the bottom edge, within the central safe zone' : 'CTA at the bottom');
     }
     blocks.push(`${layoutParts.join(', ')}.`);
 
-    // [Riset §1 blok 4 + jebakan #1] Headline & copy — frasa strategi dari katalog;
-    // render-exact menambahkan baris headline dengan teks persis dalam kutip
-    // (fallback placeholder bila kosong).
     if (strategy.value === 'render-exact') {
-      blocks.push(`${strategy.promptPhrase}. headline text: "${headline ? headline : '[HEADLINE]'}"`);
+      blocks.push(headline.trim()
+        ? `${strategy.promptPhrase}: “${headline}”`
+        : 'Leave the headline area at the top blank until exact copy is supplied.');
     } else {
       blocks.push(strategy.promptPhrase);
     }
@@ -171,15 +169,16 @@ export const marketingDomain: DomainRecipe = {
       blocks.push(`${selectedPromos.map(o => o.promptPhrase).join(', ')}, only these elements`);
     }
 
-    // [Riset §1 blok 8] Visual hierarchy — headline > produk > CTA (jebakan #5);
-    // CTA hanya disebut bila chip cta-button terpilih (konsisten dengan layout).
-    blocks.push(hasCta
-      ? 'Clear visual hierarchy: headline biggest and highest contrast, product second, CTA third.'
-      : 'Clear visual hierarchy: headline biggest and highest contrast, product second.');
-
-    // [Riset §1 blok 10/11 + jebakan #2] Guardrail/negative — turunan langsung
-    // MARKETING_GUARDRAILS (kapitalisasi awal + titik; single source of truth).
-    blocks.push(`${MARKETING_GUARDRAILS.charAt(0).toUpperCase()}${MARKETING_GUARDRAILS.slice(1)}.`);
+    // Keep hierarchy consistent with whether headline text and a CTA are present.
+    blocks.push(hasHeadline
+      ? (hasCta
+        ? 'Clear visual hierarchy: headline biggest and highest contrast, product second, CTA third.'
+        : 'Clear visual hierarchy: headline biggest and highest contrast, product second.')
+      : (hasCta
+        ? 'Clear visual hierarchy: product first, CTA second.'
+        : 'Clear visual hierarchy: the product is the focal point.'));
+    // Text guardrail complements the selected headline strategy and reserved promo areas.
+    blocks.push(`${MARKETING_GUARDRAILS.charAt(0).toUpperCase()}${MARKETING_GUARDRAILS.slice(1)}`);
 
     return blocks.join('\n\n');
   },
@@ -218,6 +217,14 @@ export const marketingDomain: DomainRecipe = {
         sectionId: 'format-size',
         level: 'warn',
         text: 'Story content pairs with 9:16 — switch Format & Size to IG / TikTok Story.',
+      });
+    }
+
+    if (strategy === 'render-exact' && headline.length === 0) {
+      out.push({
+        sectionId: 'headline-promo',
+        level: 'info',
+        text: 'No headline copy entered — the prompt leaves this area blank. Add exact copy or choose the empty-area strategy.',
       });
     }
 

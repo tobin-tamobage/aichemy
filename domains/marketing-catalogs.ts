@@ -52,15 +52,15 @@ export interface DesignStyleOption extends DomainOption {
   descriptor: string;
 }
 export const DESIGN_STYLES: DesignStyleOption[] = [
-  { value: 'minimalist', label: 'Minimalist / Clean', image: img('styles', 'minimalist'), descriptor: 'minimalist clean layout, generous white space, one or two colors, thin sans-serif' },
-  { value: 'bold-brutalist', label: 'Bold Brutalist', image: img('styles', 'bold-brutalist'), descriptor: 'bold brutalist design, giant typography, extreme contrast, solid color blocks, rigid grid' },
-  { value: 'modern-gradient', label: 'Modern Gradient', image: img('styles', 'modern-gradient'), descriptor: 'modern gradient design, soft mesh gradients, glassmorphism, tech startup feel' },
-  { value: 'retro-vintage', label: 'Retro / Vintage', image: img('styles', 'retro-vintage'), descriptor: 'retro vintage design, 70s 80s 90s nostalgia, grainy texture, muted colors, circular badges' },
-  { value: 'luxury-elegant', label: 'Luxury / Elegant', image: img('styles', 'luxury-elegant'), descriptor: 'luxury elegant design, black and gold or navy palette, elegant serif, generous spacing, foil detail' },
-  { value: 'playful-fun', label: 'Playful / Fun', image: img('styles', 'playful-fun'), descriptor: 'playful fun design, candy colors, doodle illustrations, rounded fonts, stickers' },
-  { value: 'corporate-clean', label: 'Corporate Clean', image: img('styles', 'corporate-clean'), descriptor: 'corporate clean design, professional blue and gray, neat grid, simple icons' },
+  { value: 'minimalist', label: 'Minimalist / Clean', image: img('styles', 'minimalist'), descriptor: 'minimalist clean layout, generous white space, restrained visual elements' },
+  { value: 'bold-brutalist', label: 'Bold Brutalist', image: img('styles', 'bold-brutalist'), descriptor: 'bold brutalist design, oversized type, extreme contrast, solid blocks, rigid grid' },
+  { value: 'modern-gradient', label: 'Modern Gradient', image: img('styles', 'modern-gradient'), descriptor: 'modern digital design, soft transitions, sleek geometry, refined interface-like details' },
+  { value: 'retro-vintage', label: 'Retro / Vintage', image: img('styles', 'retro-vintage'), descriptor: 'retro vintage design, nostalgic era-specific motifs, grainy texture, circular badges' },
+  { value: 'luxury-elegant', label: 'Luxury / Elegant', image: img('styles', 'luxury-elegant'), descriptor: 'luxury elegant design, generous spacing, refined ornamental details' },
+  { value: 'playful-fun', label: 'Playful / Fun', image: img('styles', 'playful-fun'), descriptor: 'playful fun design, loose doodle illustrations, lively layout, rounded graphic accents' },
+  { value: 'corporate-clean', label: 'Corporate Clean', image: img('styles', 'corporate-clean'), descriptor: 'corporate clean design, neat grid, simple icons, clear information hierarchy' },
   { value: 'streetwear-urban', label: 'Streetwear / Urban', image: img('styles', 'streetwear-urban'), descriptor: 'streetwear urban design, grunge, tape, photocopy texture, layered collage' },
-  { value: 'organic-natural', label: 'Organic / Natural', image: img('styles', 'organic-natural'), descriptor: 'organic natural design, earth tones, paper texture, botanical elements' },
+  { value: 'organic-natural', label: 'Organic / Natural', image: img('styles', 'organic-natural'), descriptor: 'organic natural design, paper texture, botanical motifs, relaxed composition' },
 ];
 
 // Riset §2 Field 4 + spec §3.4 section 4 — preset palet (visual select).
@@ -81,8 +81,7 @@ export const COLOR_PRESETS: ColorPresetOption[] = [
   { value: 'orange-black', label: 'Orange & Black (Energetic)', hex: '#F97316/#1A1A1A', image: img('color-presets', 'orange-black'), promptPhrase: 'deep black background with bright orange accents' },
 ];
 
-// Riset §2 Field 5 — typography style (visual).
-// Handwritten hanya untuk sub-copy (riset §2 Field 5); jangan minta font brand (jebakan #3/#8).
+// Riset §2 Field 5 — typography style; handwritten accents keep headline text readable.
 export interface TypographyOption extends DomainOption {
   promptPhrase: string;
 }
@@ -92,7 +91,7 @@ export const TYPOGRAPHY_STYLES: TypographyOption[] = [
   { value: 'rounded-playful', label: 'Rounded playful', image: img('typography', 'rounded-playful'), promptPhrase: 'rounded playful font' },
   { value: 'retro-groovy', label: 'Retro display / groovy', image: img('typography', 'retro-groovy'), promptPhrase: 'retro groovy display font' },
   { value: 'monospace-tech', label: 'Monospace tech', image: img('typography', 'monospace-tech'), promptPhrase: 'monospace tech font' },
-  { value: 'handwritten-accent', label: 'Handwritten accent', image: img('typography', 'handwritten-accent'), promptPhrase: 'handwritten accent font, sub-copy only', hint: 'Sub-copy only — keep the headline in a readable font' },
+  { value: 'handwritten-accent', label: 'Handwritten accent', image: img('typography', 'handwritten-accent'), promptPhrase: 'readable headline lettering with subtle handwritten accents', hint: 'Keep the headline legible with a handwritten accent style' },
   { value: 'chunky-3d', label: 'Chunky 3D type', image: img('typography', 'chunky-3d'), promptPhrase: 'chunky 3D type' },
 ];
 
@@ -101,9 +100,9 @@ export interface TextStrategyOption extends DomainOption {
   promptPhrase: string;
 }
 export const TEXT_STRATEGIES: TextStrategyOption[] = [
-  { value: 'render-exact', label: 'Render text exactly', image: img('text-strategies', 'render-exact'), promptPhrase: 'render the headline text exactly as written, wrapped in quotes', hint: 'Most accurate in GPT Image / Imagen' },
-  { value: 'placeholder', label: 'Placeholder "[HEADLINE]"', image: img('text-strategies', 'placeholder'), promptPhrase: '"[HEADLINE]"', hint: 'Swap the placeholder yourself — recommended for Midjourney' },
-  { value: 'empty-area', label: 'Empty area (add copy in Canva)', image: img('text-strategies', 'empty-area'), promptPhrase: 'leave clean empty space at the top for the headline text', hint: 'Safest for important brands — add copy manually' },
+  { value: 'render-exact', label: 'Render text exactly', image: img('text-strategies', 'render-exact'), promptPhrase: 'Render the headline character for character, preserving its spelling, capitalization, punctuation, and line breaks' },
+  { value: 'placeholder', label: 'Placeholder "[HEADLINE]"', image: img('text-strategies', 'placeholder'), promptPhrase: 'Render the literal placeholder "[HEADLINE]" as the visible headline' },
+  { value: 'empty-area', label: 'Empty area (add copy in Canva)', image: img('text-strategies', 'empty-area'), promptPhrase: 'Leave a clean empty area at the top for copy to be added later' },
 ];
 
 // Riset §2 Field 7 + spec §3.4 section 5 — elemen promosi (chips, max 3).
@@ -112,14 +111,14 @@ export interface PromoElementOption extends DomainOption {
   promptPhrase: string;
 }
 export const PROMO_ELEMENTS: PromoElementOption[] = [
-  { value: 'discount-badge', label: 'Discount badge', image: img('promo-elements', 'discount-badge'), promptPhrase: 'circular discount badge in the top-right corner' },
-  { value: 'cta-button', label: 'CTA button', image: img('promo-elements', 'cta-button'), promptPhrase: 'rounded pill CTA button at the bottom' },
-  { value: 'price-tag', label: 'Price tag', image: img('promo-elements', 'price-tag'), promptPhrase: 'strikethrough price tag' },
-  { value: 'countdown', label: 'Countdown / urgency tag', image: img('promo-elements', 'countdown'), promptPhrase: 'countdown urgency tag' },
-  { value: 'star-rating', label: 'Star rating', image: img('promo-elements', 'star-rating'), promptPhrase: 'star rating strip' },
-  { value: 'logo-placeholder', label: 'Logo placeholder circle', image: img('promo-elements', 'logo-placeholder'), promptPhrase: 'clean placeholder circle at the top-left for the logo', hint: 'AI hallucinates fake logos — paste the real one manually' },
+  { value: 'discount-badge', label: 'Discount badge', image: img('promo-elements', 'discount-badge'), promptPhrase: 'blank circular discount badge in the top-right, reserved for offer text to be added later' },
+  { value: 'cta-button', label: 'CTA button', image: img('promo-elements', 'cta-button'), promptPhrase: 'blank rounded-pill CTA button at the bottom, reserved for a label to be added later' },
+  { value: 'price-tag', label: 'Price tag', image: img('promo-elements', 'price-tag'), promptPhrase: 'blank price tag with spaces for current and crossed-out prices' },
+  { value: 'countdown', label: 'Countdown / urgency tag', image: img('promo-elements', 'countdown'), promptPhrase: 'blank urgency tag reserved for countdown copy to be added later' },
+  { value: 'star-rating', label: 'Star rating', image: img('promo-elements', 'star-rating'), promptPhrase: 'a row of rating stars with its text label left blank' },
+  { value: 'logo-placeholder', label: 'Logo placeholder circle', image: img('promo-elements', 'logo-placeholder'), promptPhrase: 'clean empty circle at the top-left, reserved for a real logo to be added later', hint: 'AI hallucinates fake logos — paste the real one manually' },
 ];
 
-// Riset §1 anatomy block 10/11 + §4 jebakan #2 — negative/guardrail (disisipkan buildPrompt).
+// Keep copy to the selected headline strategy and reserve promo copy areas for manual entry.
 export const MARKETING_GUARDRAILS =
-  'no extra text, no watermark, clean uncluttered layout, generous white space';
+  'Render only headline text specified by the selected text strategy; leave promotional copy areas blank for manual entry.';

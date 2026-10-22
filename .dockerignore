@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-server
+.git
+.env
+.env.*
+design/originals
+artifacts
+test-results
+playwright-report
+ChatGPT Image*.png

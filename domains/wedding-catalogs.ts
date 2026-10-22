@@ -40,9 +40,9 @@ export const POSES_BY_MOMENT: Record<string, PoseOption[]> = {
     { value: 'foreheads-together', label: 'Foreheads together', image: img('poses/first-look', 'foreheads-together'), promptPhrase: 'foreheads together eyes closed' },
   ],
   ceremony: [
-    { value: 'walking-down-aisle', label: 'Walking down the aisle', image: img('poses/ceremony', 'walking-down-aisle'), promptPhrase: 'walking down the aisle, seen from behind, guests standing and turning to look' },
-    { value: 'exchange-of-vows', label: 'Exchange of vows', image: img('poses/ceremony', 'exchange-of-vows'), promptPhrase: 'exchange of vows close-up on hands' },
-    { value: 'ring-exchange', label: 'Ring exchange macro', image: img('poses/ceremony', 'ring-exchange'), promptPhrase: 'ring exchange macro' },
+    { value: 'walking-down-aisle', label: 'Walking down the aisle', image: img('poses/ceremony', 'walking-down-aisle'), promptPhrase: 'bride walking down the aisle, seen from behind, guests standing and turning to look' },
+    { value: 'exchange-of-vows', label: 'Exchange of vows', image: img('poses/ceremony', 'exchange-of-vows'), promptPhrase: 'the couple exchanging vows, hands joined' },
+    { value: 'ring-exchange', label: 'Ring exchange', image: img('poses/ceremony', 'ring-exchange'), promptPhrase: 'the couple exchanging rings' },
     { value: 'ceremony-kiss', label: 'The ceremony kiss', image: img('poses/ceremony', 'ceremony-kiss'), promptPhrase: 'the ceremony kiss at the altar' },
     { value: 'recessional-confetti', label: 'Recessional with confetti', image: img('poses/ceremony', 'recessional-confetti'), promptPhrase: 'recessional walk with confetti and petals' },
     { value: 'guests-wiping-tears', label: 'Guests wiping tears', image: img('poses/ceremony', 'guests-wiping-tears'), promptPhrase: 'guests wiping tears, reaction shot' },
@@ -51,7 +51,7 @@ export const POSES_BY_MOMENT: Record<string, PoseOption[]> = {
     { value: 'walking-hand-in-hand', label: 'Walking hand in hand', image: img('poses/couple-portraits', 'walking-hand-in-hand'), promptPhrase: 'walking hand in hand looking at each other' },
     { value: 'the-dip', label: 'The dip', image: img('poses/couple-portraits', 'the-dip'), promptPhrase: 'the dip' },
     { value: 'forehead-kiss', label: 'Forehead kiss', image: img('poses/couple-portraits', 'forehead-kiss'), promptPhrase: 'forehead kiss' },
-    { value: 'nose-to-nose', label: 'Nose to nose', image: img('poses/couple-portraits', 'nose-to-nose'), promptPhrase: 'nose to nose (eskimo kiss)' },
+    { value: 'ring-exchange', label: 'Ring exchange macro', image: img('poses/ceremony', 'ring-exchange'), promptPhrase: 'the couple exchanging rings' },
     { value: 'under-the-veil', label: 'Under-the-veil portrait', image: img('poses/couple-portraits', 'under-the-veil'), promptPhrase: "veil lift, under-the-veil portrait" },
     { value: 'veil-flowing', label: 'Veil flowing in the wind', image: img('poses/couple-portraits', 'veil-flowing'), promptPhrase: 'veil flowing in the wind' },
     { value: 'lifting-spinning', label: 'Groom lifting / spinning bride', image: img('poses/couple-portraits', 'lifting-spinning'), promptPhrase: 'groom lifting and spinning his bride' },
@@ -76,9 +76,9 @@ export const POSES_BY_MOMENT: Record<string, PoseOption[]> = {
     { value: 'dance-floor-wide', label: 'Dance floor party wide shot', image: img('poses/reception', 'dance-floor-wide'), promptPhrase: 'dance floor party wide shot' },
   ],
   'detail-shots': [
-    { value: 'rings-macro-invitation', label: 'Rings macro on invitation', image: img('poses/detail-shots', 'rings-macro-invitation'), promptPhrase: 'wedding rings macro on the invitation' },
+    { value: 'rings-macro-invitation', label: 'Rings on invitation', image: img('poses/detail-shots', 'rings-macro-invitation'), promptPhrase: 'wedding rings arranged on the invitation' },
     { value: 'invitation-flat-lay', label: 'Invitation suite flat lay', image: img('poses/detail-shots', 'invitation-flat-lay'), promptPhrase: 'flat lay of the invitation suite with flowers' },
-    { value: 'bouquet-close-up', label: 'Bouquet close-up', image: img('poses/detail-shots', 'bouquet-close-up'), promptPhrase: 'bouquet close-up' },
+    { value: 'bouquet-close-up', label: 'Bouquet details', image: img('poses/detail-shots', 'bouquet-close-up'), promptPhrase: 'bouquet details' },
     { value: 'heels-perfume-flat-lay', label: 'Heels and perfume flat lay', image: img('poses/detail-shots', 'heels-perfume-flat-lay'), promptPhrase: 'heels and perfume flat lay' },
     { value: 'groom-watch-cufflinks', label: "Groom's watch and cufflinks", image: img('poses/detail-shots', 'groom-watch-cufflinks'), promptPhrase: "groom's watch and cufflinks" },
   ],
@@ -89,7 +89,7 @@ export interface FramingOption extends DomainOption {
   promptPhrase: string;
 }
 export const FRAMINGS: FramingOption[] = [
-  { value: 'close-up', label: 'Close-up', image: img('framings', 'close-up'), promptPhrase: 'close-up portrait' },
+  { value: 'close-up', label: 'Close-up', image: img('framings', 'close-up'), promptPhrase: 'close-up shot' },
   { value: 'full-length', label: 'Full-length', image: img('framings', 'full-length'), promptPhrase: 'full-length wide shot' },
   { value: 'over-the-shoulder', label: 'Over the shoulder', image: img('framings', 'over-the-shoulder'), promptPhrase: 'over-the-shoulder' },
   { value: 'from-behind', label: 'From behind', image: img('framings', 'from-behind'), promptPhrase: 'shot from behind' },
@@ -110,7 +110,7 @@ export const VENUES: VenueOption[] = [
   { value: 'barn', label: 'Rustic Barn / Farm', image: img('venues', 'barn'), promptPhrase: 'in a rustic barn on a farm' },
   { value: 'ballroom', label: 'Ballroom / Grand Hotel', image: img('venues', 'ballroom'), promptPhrase: 'in a grand hotel ballroom' },
   { value: 'rooftop', label: 'Rooftop / City Skyline', image: img('venues', 'rooftop'), promptPhrase: 'on a modern rooftop with the city skyline' },
-  { value: 'forest', label: 'Forest / Woodland', image: img('venues', 'forest'), promptPhrase: 'in a forest woodland' },
+  { value: 'forest', label: 'Forest / Woodland', image: img('venues', 'forest'), promptPhrase: 'in a forest clearing' },
   { value: 'mountain', label: 'Mountain / Lakeside', image: img('venues', 'mountain'), promptPhrase: 'in the mountains by a lakeside' },
   { value: 'villa', label: 'Villa / Tropical', image: img('venues', 'villa'), promptPhrase: 'at a tropical villa' },
 ];
@@ -137,10 +137,10 @@ export interface StyleOption extends DomainOption {
 }
 export const STYLES: StyleOption[] = [
   { value: 'editorial', label: 'Editorial', image: img('styles', 'editorial'), promptModifier: 'editorial wedding photography, Vogue-style, dramatic composition, high fashion', hint: 'Posed, fashion-magazine, strong composition' },
-  { value: 'documentary', label: 'Documentary', image: img('styles', 'documentary'), promptModifier: 'documentary wedding photography, candid unposed moment, photojournalistic, captured spontaneously', hint: 'Candid, unposed, storytelling — most requested 2025/26' },
+  { value: 'documentary', label: 'Documentary', image: img('styles', 'documentary'), promptModifier: 'documentary wedding photography, candid photojournalistic storytelling', hint: 'Candid, unposed, storytelling — most requested 2025/26' },
   { value: 'fine-art', label: 'Fine Art', image: img('styles', 'fine-art'), promptModifier: 'fine art wedding photography, soft ethereal tones, film aesthetic, delicate composition', hint: 'Soft, ethereal, film-like, delicate palette' },
   { value: 'dark-moody', label: 'Dark & Moody', image: img('styles', 'dark-moody'), promptModifier: 'dark and moody wedding photography, deep shadows, rich contrast, desaturated earthy tones', hint: 'Deep shadows, high contrast — suits indoor/rustic venues' },
-  { value: 'light-airy', label: 'Light & Airy', image: img('styles', 'light-airy'), promptModifier: 'light and airy wedding photography, bright soft tones, pastel palette, airy overexposed highlights', hint: 'Bright, pastel — suits daytime outdoor' },
+  { value: 'light-airy', label: 'Light & Airy', image: img('styles', 'light-airy'), promptModifier: 'light and airy wedding photography, bright soft tones, pastel palette, soft bright highlights', hint: 'Bright, pastel — suits daytime outdoor' },
   { value: 'classic', label: 'Classic / Traditional', image: img('styles', 'classic'), promptModifier: 'classic traditional wedding photography, formal posed portrait, true-to-life colors, timeless', hint: 'Formal posed, true-to-color, timeless' },
   { value: 'vintage-film', label: 'Vintage / Film', image: img('styles', 'vintage-film'), promptModifier: 'vintage film wedding photo, 35mm analog, heavy film grain, faded nostalgic tones', hint: 'Heavy grain, analog colors, sometimes faded' },
   { value: 'black-white', label: 'Black & White', image: img('styles', 'black-white'), promptModifier: 'black and white wedding photography, monochrome, high contrast, timeless', hint: 'Monochrome, emotion-focused' },
@@ -198,9 +198,9 @@ export const ATTIRE: AttireOption[] = [
 export interface WeddingCameraOption extends DomainOption { promptPhrase: string; }
 export const WEDDING_CAMERAS: WeddingCameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
-  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
-  { value: 'lumix-gh5', label: 'Lumix GH5', image: '/images/cameras/lumix-gh5.webp', promptPhrase: 'Lumix GH5, micro four thirds mirrorless' },
-  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4 APS-C mirrorless camera' },
+  { value: 'lumix-gh5', label: 'Lumix GH5', image: '/images/cameras/lumix-gh5.webp', promptPhrase: 'Lumix GH5 micro four thirds mirrorless camera' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II medium-format mirrorless camera' },
 ];
 
 // Phase 6 Task 1 — lens override (visual). 'auto' = keep derived-from-framing (LENS_BY_FRAMING).

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Check, Search, X } from 'lucide-react';
 
 /** Minimal option shape — `image` may be undefined → placeholder tile. */
 export interface VisualSelectorOption {
@@ -35,11 +35,19 @@ type VisualSelectorProps =
       multiSelect: true;
     };
 
-export const VisualSelector: React.FC<VisualSelectorProps> = ({ 
-  label, 
-  value, 
-  onChange, 
-  options, 
+const getFocusableDialogControls = (dialog: HTMLElement): HTMLElement[] =>
+  Array.from(dialog.querySelectorAll<HTMLElement>(
+    'button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), a[href], [tabindex]:not([tabindex="-1"])'
+  )).filter(control =>
+    control.getClientRects().length > 0 && getComputedStyle(control).visibility !== 'hidden'
+  );
+
+
+export const VisualSelector: React.FC<VisualSelectorProps> = ({
+  label,
+  value,
+  onChange,
+  options,
   placeholder = "Select style...",
   previewRatio = "aspect-video", // Default 16:9
   multiSelect = false
@@ -53,8 +61,12 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
     return undefined;
   })();
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState('');
   // Placeholder mode: image failed to load (or was never provided) per option value.
   const [imgFailed, setImgFailed] = useState<Record<string, boolean>>({});
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const isMultiSelect = multiSelect === true;
   const selectedValues = Array.isArray(value) ? value : value ? [value] : [];
@@ -69,35 +81,95 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
     return `${labels.slice(0, 2).join(", ")} +${labels.length - 2}`;
   })();
 
+  // Local filter only — narrows the visible catalog, never touches selection.
+  const q = query.trim().toLowerCase();
+  const visibleOptions = q
+    ? options.filter(o => o.label.toLowerCase().includes(q) || o.value.toLowerCase().includes(q))
+    : options;
+  // Search is worth its chrome only for catalogs too big to scan at a glance.
+  const showSearch = options.length > 8;
+
   const hasImage = (opt: VisualSelectorOption): boolean => !!opt.image && !imgFailed[opt.value];
 
   const handleImageError = (opt: VisualSelectorOption) => {
     setImgFailed(prev => (prev[opt.value] ? prev : { ...prev, [opt.value]: true }));
   };
 
+  const openPicker = () => {
+    setQuery('');
+    setIsOpen(true);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (showSearch && searchRef.current) {
+      searchRef.current.focus();
+    } else {
+      (getFocusableDialogControls(dialog)[0] ?? dialog).focus();
+    }
+  }, [isOpen, showSearch]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+
+      const dialog = dialogRef.current;
+      if (!dialog) return;
+      const controls = getFocusableDialogControls(dialog);
+      if (controls.length === 0) {
+        e.preventDefault();
+        dialog.focus();
+        return;
+      }
+
+      const activeIndex = controls.indexOf(document.activeElement as HTMLElement);
+      if (e.shiftKey && (activeIndex === 0 || activeIndex === -1)) {
+        e.preventDefault();
+        controls[controls.length - 1].focus();
+      } else if (!e.shiftKey && (activeIndex === controls.length - 1 || activeIndex === -1)) {
+        e.preventDefault();
+        controls[0].focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [isOpen]);
+
   return (
     <div className="flex flex-col gap-2">
-      <label className="text-xs font-bold uppercase tracking-wider text-accent2">{label}</label>
-      
+      <span className="ui-field-label">{label}</span>
+
       {/* Trigger Button */}
-      <button 
-        onClick={() => setIsOpen(true)}
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={openPicker}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
         className="group relative w-full text-left"
       >
-        <div className={`
-          w-full border-b-2 bg-surface px-4 py-3 text-sm font-medium text-ink transition-colors 
-          hover:bg-surface2 flex items-center justify-between
-          ${hasSelection ? 'border-accent' : 'border-line'}
-        `}>
+        <div className={`ui-field flex items-center justify-between ${hasSelection ? 'border-accent' : ''}`}>
           <span className={`${hasSelection ? 'text-ink' : 'text-dim'} block truncate`}>
             {selectionLabel}
           </span>
           {primaryOption && (
             <div className="flex items-center gap-2">
               {hasImage(primaryOption) ? (
-                <img 
-                  src={primaryOption.image} 
-                  alt={primaryOption.label} 
+                <img
+                  src={primaryOption.image}
+                  alt={primaryOption.label}
                   onError={() => handleImageError(primaryOption)}
                   className="w-8 h-8 object-cover rounded-sm border border-line"
                 />
@@ -120,23 +192,33 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10">
           {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-base/90 backdrop-blur-sm" 
-            onClick={() => setIsOpen(false)}
+          <div
+            className="absolute inset-0 bg-base/90"
+            onClick={close}
           />
 
           {/* Modal Content */}
-          <div className="relative w-full max-w-5xl h-full max-h-[85vh] bg-base border border-line rounded-card shadow-2xl flex flex-col animate-in fade-in zoom-in-95 duration-200">
-            
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Select ${label}`}
+            tabIndex={-1}
+            className="relative w-full max-w-5xl h-full max-h-[85vh] bg-base border border-line rounded-card shadow-2xl flex flex-col"
+          >
+
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b border-line bg-surface/50">
               <div className="flex flex-col">
                 <h3 className="text-xl font-black uppercase tracking-wider text-ink">Select {label}</h3>
-                <p className="text-xs text-dim font-mono mt-1">// {options.length} OPTIONS AVAILABLE</p>
+                <p className="text-xs text-dim font-mono mt-1">
+                  // {q ? `${visibleOptions.length} OF ${options.length} MATCH` : `${options.length} OPTIONS AVAILABLE`}
+                </p>
               </div>
               <div className="flex items-center gap-3">
                 {hasSelection && (
                   <button
+                    type="button"
                     onClick={() => {
                       if (isMultiSelect) {
                         (onChange as (value: string[]) => void)([]);
@@ -150,25 +232,47 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                     Clear Selection
                   </button>
                 )}
-                <button 
-                  onClick={() => setIsOpen(false)}
+                <button
+                  type="button"
+                  onClick={close}
+                  aria-label="Close dialog"
                   className="p-2 hover:bg-surface2 rounded-full transition-colors text-dim hover:text-ink"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-6 h-6" aria-hidden="true" />
                 </button>
               </div>
             </div>
 
-            {/* Grid Content */}
-            {/* Responsive padding: tight on mobile (320) to maximize tile size, expanded on desktop for hover scale room */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 lg:p-10 custom-scrollbar">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
-                {options.map((opt) => {
+            {/* Local filter — visible catalogs skip the search chrome */}
+            {showSearch && (
+              <div className="px-4 sm:px-6 py-3 border-b border-line">
+                <div className="relative max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-dim pointer-events-none" aria-hidden="true" />
+                  <input
+                    ref={searchRef}
+                    type="search"
+                    role="searchbox"
+                    aria-label={`Filter ${label} options`}
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    placeholder={`Filter ${options.length} options…`}
+                    className="w-full bg-surface border border-line pl-9 pr-3 py-2 text-sm text-ink placeholder:text-dim focus:outline-none focus:border-accent transition-colors"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Contact-sheet grid */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 custom-scrollbar">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
+                {visibleOptions.map((opt) => {
                   const isSelected = selectedValues.includes(opt.value);
                   const showImage = hasImage(opt);
                   return (
                   <button
                     key={opt.value}
+                    type="button"
+                    aria-pressed={isSelected}
                     onClick={() => {
                       if (isMultiSelect) {
                         const nextSelection = isSelected
@@ -182,32 +286,31 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                       } else {
                         (onChange as (value: string) => void)(opt.value);
                       }
-                      setIsOpen(false);
+                      close();
                     }}
                     style={aspectRatioStyle ? { aspectRatio: aspectRatioStyle } : undefined}
                     className={`
-                      group relative w-full text-left transition-all duration-300 ease-out
+                      group relative w-full text-left transition-colors
                       ${previewRatio}
-                      hover:scale-[1.35] hover:z-50 hover:shadow-2xl
-                      border-2 
-                      ${isSelected ? 'border-accent ring-1 ring-accent z-10' : 'border-line hover:border-dim'}
+                      border
+                      ${isSelected ? 'border-accent' : 'border-line hover:border-dim'}
                     `}
                   >
                     <div className="absolute inset-0 overflow-hidden bg-base">
                         {showImage ? (
                           <>
-                            <img 
-                              src={opt.image} 
+                            <img
+                              src={opt.image}
                               alt={opt.label}
                               onError={() => handleImageError(opt)}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.025] opacity-70 group-hover:opacity-100"
+                              className="w-full h-full object-cover opacity-90"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-40 transition-opacity" />
-                            
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
+
                             <div className="absolute bottom-0 left-0 right-0 p-3">
                               <span className={`
                                 text-xs font-bold uppercase tracking-wider block truncate
-                                ${isSelected ? 'text-accent' : 'text-white group-hover:text-white'}
+                                ${isSelected ? 'text-accent' : 'text-white'}
                                 drop-shadow-md
                               `}>
                                 {opt.label}
@@ -229,14 +332,21 @@ export const VisualSelector: React.FC<VisualSelectorProps> = ({
                         )}
 
                         {isSelected && (
-                           <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent)_/_0.5)]" />
+                          <span className="absolute top-2 right-2 w-5 h-5 bg-accent text-base flex items-center justify-center" aria-hidden="true">
+                            <Check className="w-3 h-3" strokeWidth={3} />
+                          </span>
                         )}
                     </div>
                   </button>
                 );
                 })}
-
               </div>
+
+              {visibleOptions.length === 0 && (
+                <p className="py-10 text-center text-sm text-dim">
+                  No options match “{query.trim()}”.
+                </p>
+              )}
             </div>
           </div>
         </div>

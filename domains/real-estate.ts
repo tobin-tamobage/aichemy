@@ -12,11 +12,9 @@ import {
  * DomainRecipe: Real Estate — dari design/research-realestate.md §1-§5 + plan Task 2 Step 2.
  * Komentar [Riset §…] di buildPrompt/warnings memetakan tiap blok prompt ke temuan riset.
  *
- * Keputusan authoring plan: referencePhoto: false dan presetProtectedKeys: [] (semua
- * field adalah select). Deteksi eksterior = scene.value diawali 'exterior-' (riset §2
- * Field 1: prefix value menandakan blok interior/exterior). Virtual staging menambahkan
- * klausa realistic-scale + no-people di blok Staging yang sama (riset §4 jebakan #3).
- * Guardrail/negative jadi konstanta blok terakhir buildPrompt (pola marketing blok 5).
+ * This recipe generates new property scenes without a source photo. Exterior scenes use
+ * exterior-appropriate staging and time-of-day language; virtual staging adds perspective
+ * and shadow guidance, while the closing direction keeps the frame property-focused.
  */
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
@@ -79,6 +77,17 @@ export const realEstateDomain: DomainRecipe = {
 
     // [Riset §2 Field 1] Prefix 'exterior-' di value scene → blok exterior (vs interior).
     const isExterior = scene.value.startsWith('exterior-');
+    const lightingPhrase = isExterior
+      ? timeOfDay.promptPhrase.replace('interior lighting', 'exterior lighting').replace('interior lights', 'house lights')
+      : timeOfDay.promptPhrase;
+    const stagingPhrase = isExterior
+      ? ({
+          'furnished-styled': 'professionally presented with tasteful landscaping and outdoor details',
+          'virtual-staging': 'virtually staged with realistically scaled outdoor furniture and landscaping',
+          'partial-staging': 'light landscaping with a few tasteful outdoor details',
+          empty: 'clean, uncluttered grounds ready for inspection',
+        } as Record<string, string>)[staging.value] ?? staging.promptPhrase
+      : staging.promptPhrase;
 
     const blocks: string[] = [];
 
@@ -86,23 +95,20 @@ export const realEstateDomain: DomainRecipe = {
     blocks.push(`Photorealistic ${isExterior ? 'exterior' : 'interior'} photograph of ${scene.promptPhrase}, styled in ${style.promptPhrase}.`);
 
     // [Riset §1] Cahaya per waktu (golden hour / twilight = momen listing premium).
-    blocks.push(`Lighting: ${timeOfDay.promptPhrase}.`);
+    blocks.push(`Lighting: ${lightingPhrase}.`);
 
-    // [Riset §2 Field 4 + §4 jebakan #3] Virtual staging menambahkan klausa realistic
-    // scale + no-people di blok yang sama (furniture AI sering melayang/tidak proporsional).
+    // [Riset §2 Field 4] Virtual staging adds scale and perspective guidance.
     const virtualClause = staging.value === 'virtual-staging'
-      ? ' Furniture must be realistically scaled, cast natural shadows, and contain no people.'
+      ? ' Added furniture should cast natural shadows and follow the scene perspective.'
       : '';
-    blocks.push(`Staging: ${staging.promptPhrase}.${virtualClause}`);
+    blocks.push(`Staging: ${stagingPhrase}.${virtualClause}`);
 
     // [Riset §2 Field 5] Angle & lens — 16mm ultra-wide untuk interior, bukan eksterior.
     blocks.push(`Shot with ${angleLens.promptPhrase}.`);
 
-    // [Phase 6] Camera/technique sentence — capitalise first letter of the phrase.
     blocks.push(`${cameraTechnique.promptPhrase.charAt(0).toUpperCase()}${cameraTechnique.promptPhrase.slice(1)}.`);
 
-    // [Riset §4 jebakan #1/#2] Guardrail/negative — vertikal lurus, orang/hewan/teks dihapus.
-    blocks.push('Straight verticals, natural colors, realistic materials, no people, no pets, no watermarks, no text overlays.');
+    blocks.push('An unoccupied, uncluttered property frame, with straight verticals, natural colors, and realistic materials.');
 
     return blocks.join('\n\n');
   },
@@ -120,7 +126,7 @@ export const realEstateDomain: DomainRecipe = {
       out.push({
         sectionId: 'staging',
         level: 'info',
-        text: 'Virtual staging — the prompt adds a realistic scale and no-people clause.',
+        text: 'Virtual staging adds realistic scale and perspective/shadow guidance; people remain excluded by the property specification.',
       });
     }
 

@@ -16,9 +16,9 @@ const HIJAB_COLORS: DomainOption[] = [
   { value: 'light-brown', label: 'Light brown', image: 'images/id-photo/hijab/light-brown.webp' },
 ];
 
-// Klausa referensi persis spec §3.1
+// Attached-photo identity-preservation clause for external image tools.
 const REFERENCE_CLAUSE =
-  'Use the attached photo as the exact identity reference. Preserve facial features, skin tone, and face shape. Replace background and attire as specified. Ignore the original outfit and background.';
+  'Use the attached photo as the exact identity reference. Preserve facial features, skin tone, and face shape; follow the specified attire, pose, framing, background, and lighting.';
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 
@@ -89,6 +89,8 @@ export const idPhotoDomain: DomainRecipe = {
 
   buildPrompt: (state: DomainState): string => {
     const purpose = PURPOSES.find(o => o.value === str(state.purpose)) ?? PURPOSES[0];
+    const country = COUNTRIES.find(o => o.value === str(state.country)) ?? COUNTRIES[0];
+    const countryName = country.label.split(' (')[0];
     const size = PRINT_SIZES.find(o => o.value === str(state.printSize)) ?? PRINT_SIZES[1];
     const bg = BACKGROUNDS.find(o => o.value === str(state.background)) ?? BACKGROUNDS[0];
     const outfit = OUTFITS.find(o => o.value === str(state.outfit)) ?? OUTFITS[0];
@@ -100,80 +102,58 @@ export const idPhotoDomain: DomainRecipe = {
     const blocks: string[] = [];
 
     // [Riset §1 blok 2 — img2img, jebakan #5] Klausa identitas di posisi awal — paling dipatuhi.
-    // Foto di-attach user di app AI, jadi instruksi selalu disertakan selama reference mode aktif.
+    // The source photo is attached in the external image tool while reference mode is active.
     if (state.hasReferencePhoto !== false) {
       blocks.push(REFERENCE_CLAUSE);
     }
 
-    // [Riset §1 blok 1] Intent + konteks dokumen → AI masuk mode patuh-standar.
+    // Set the selected use and country as guidance, not a guarantee of legal compliance.
     blocks.push(
-      `Transform the photo into a formal ID photo (pas foto) for: ${purpose.label}. Meets official document photo standards.`,
+      `Create a formal document-style portrait for ${purpose.label}, following photo conventions for ${countryName}.`,
     );
 
-    // [Riset §1 blok 3, jebakan #10] Pakaian spesifik, bukan "formal clothes" generik.
+    // Specify the selected attire positively; the optional head covering stays clearly separated from the face.
     let attire = `Dress the subject in ${outfit.promptPhrase}.`;
     if (hijab) {
-      // [Riset §3 skenario bonus + §4 jebakan konteks] hijab: dahi–dagu terlihat penuh, telinga tidak wajib.
-      attire += ` The subject wears a neatly draped ${hijabColor.label.toLowerCase()} hijab that fully covers the hair and neck, with the face oval clearly framed and the forehead-to-chin area fully visible.`;
+      attire += ` The subject wears a neatly draped ${hijabColor.label.toLowerCase()} hijab that fully covers the hair and neck while keeping the face clearly visible from forehead to chin.`;
     }
     blocks.push(attire);
 
     // [Riset §1 blok 4, keyword ★★★] Pose & framing — membunuh pose 3/4 / kepala miring (jebakan #2).
-    const framingPhrase = str(state.framing) === 'half-body'
+    const framingPhrase = framing.value === 'half-body'
       ? 'upper half of the body visible'
-      : str(state.framing) === 'chest-up'
+      : framing.value === 'chest-up'
         ? 'head and chest visible'
         : 'head and upper shoulders visible, face occupying approximately 70–80% of the image height';
     blocks.push(
       `Front-facing pose, ${framingPhrase}, head perfectly centered, shoulders level and symmetrical, both eyes looking directly at the camera.`,
     );
 
-    // [Riset §1 blok 5, keyword ★★★, jebakan #3] Ekspresi — neutral wajib dokumen resmi; no smile di negatif juga.
+    // State the selected expression directly.
     blocks.push(
       softSmile
         ? 'Subtle professional smile, friendly and approachable, mouth relaxed.'
-        : 'Neutral expression, mouth closed, no smile.',
+        : 'Neutral expression, lips gently closed.',
     );
 
-    // [Riset §1 blok 6, jebakan #1 & #4] Latar: hex eksplisit + kata kunci keseragaman.
+    // A uniform backdrop and soft, even face lighting suit compliance-style portraits.
     blocks.push(
-      `${bg.promptColor.charAt(0).toUpperCase()}${bg.promptColor.slice(1)}, seamless and uniform, evenly lit, no gradient, no vignette, no shadows on the background.`,
+      `${bg.promptColor.charAt(0).toUpperCase()}${bg.promptColor.slice(1)}, seamless, uniform, and evenly lit.`,
     );
-
-    // [Riset §1 blok 7, jebakan #1] Softbox lighting — klausa ganda bersama background anti-bayangan.
     blocks.push(
-      'Professional studio softbox lighting, soft and even illumination on the face, no shadows under the nose or chin, balanced exposure, natural skin tones.',
+      'Soft, even studio lighting across the face, balanced exposure, natural skin tones.',
     );
 
-    // [Riset §1 blok 8, jebakan #6] Kualitas teknis + anti beauty filter.
-    blocks.push(
-      'Photorealistic, high-resolution DSLR photo quality, 85mm lens, sharp focus, natural skin texture with realistic pores, accurate skin tones, no beauty filter, no excessive retouching.',
-    );
-
-    // [Riset §1 blok 9, jebakan #8] Rasio eksplisit — AI tidak bisa presisi cm, crop akhir manual.
-    blocks.push(
-      `Output in ${size.ratio} portrait orientation (for ${size.label} print), print-ready.`,
-    );
-
-    // [Riset §1 blok 10, jebakan #3 & #9] Daftar negatif — selalu di akhir.
-    const negatives = [
-      softSmile ? null : 'no smile',
-      'no glasses glare',
-      'no jewelry',
-      'no distracting accessories',
-      'no watermark',
-      'no text',
-      'no logos',
-      'no blur',
-      'no artistic effects',
-    ].filter(Boolean).join(', ');
-    blocks.push(`${negatives}.`);
+    blocks.push('Photorealistic portrait with natural skin texture and accurate skin tones.');
+    blocks.push(`Compose the portrait in a ${size.ratio} vertical frame for a ${size.label} print.`);
 
     return blocks.join('\n\n');
   },
 
   warnings: (state: DomainState): DomainWarning[] => {
     const out: DomainWarning[] = [];
+    const country = COUNTRIES.find(o => o.value === str(state.country)) ?? COUNTRIES[0];
+    const countryName = country.label.split(' (')[0];
 
     // Disclaimer konstan — riset §0 catatan etika/legal + spec §3.1
     out.push({
@@ -182,12 +162,12 @@ export const idPhotoDomain: DomainRecipe = {
       text: 'AI photos work for CV/LinkedIn/applications; official biometric documents may reject AI-generated photos.',
     });
 
-    // Smart rule: passport/visa → info standar biometrik (spec §3.1 — info, tidak lock field)
+    // Destination requirements vary; avoid presenting one background/expression as universal.
     if (str(state.purpose) === 'passport-visa') {
       out.push({
         sectionId: 'purpose',
         level: 'info',
-        text: 'Biometric standard: white background, neutral expression, face 70–80%.',
+        text: `Check the current official photo requirements for ${countryName}, including background, expression, and crop.`,
       });
     }
 

@@ -2,3 +2,10 @@ node_modules/
 dist/
 .superpowers/
 .vercel
+.env
+.env.test
+.env.*.local
+dist-server/
+test-results/
+playwright-report/
+artifacts/

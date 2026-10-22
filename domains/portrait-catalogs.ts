@@ -83,10 +83,10 @@ export const PORTRAIT_LENSES: LensOption[] = [
 export interface CameraOption extends DomainOption { promptPhrase: string; }
 export const PORTRAIT_CAMERAS: CameraOption[] = [
   { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
-  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
-  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
-  { value: 'pentax-645z', label: 'Pentax 645Z', image: '/images/cameras/pentax-645z.webp', promptPhrase: 'Pentax 645Z, 51MP medium format' },
-  { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4, 150MP medium format' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II medium-format mirrorless camera' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4 APS-C mirrorless camera' },
+  { value: 'pentax-645z', label: 'Pentax 645Z', image: '/images/cameras/pentax-645z.webp', promptPhrase: 'Pentax 645Z medium-format camera' },
+  { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4 medium-format camera' },
 ];
 
 // Phase 6 Task 1 — photographer style (visual). 'auto' = no clause.

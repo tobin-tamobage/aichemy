@@ -30,10 +30,10 @@ module.exports = {
         ok: 'rgb(var(--ok) / <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Nunito', 'ui-rounded', 'system-ui', 'sans-serif'],
+        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       borderRadius: {
-        card: '18px',
+        card: '14px',
       },
     },
   },

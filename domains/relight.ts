@@ -17,13 +17,19 @@ import {
  * DomainRecipe: Relight — Photo Relight & Colour Grade (visual prompt builder).
  * Research: design/research-relight.md §1-§6. Plan: docs/superpowers/plans/2026-08-23-relight-recipe.md §3.
  *
- * Semua field visual (kecuali preservation chips & toggle) — sesuai brief "semua menggunakan visual prompt builder".
- * referencePhoto: true — foto adalah ground truth, prompt mengandung referenceClause preservasi.
- * 6 sections, 10 blok buildPrompt, 5 smart warnings + toggle removeBackgroundPeople.
+ * The attached photo is the external edit source; prompt preservation and lighting controls
+ * follow the selected mode, while background controls distinguish relighting from replacement.
  */
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 const arr = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
+
+const needsRelight = (state: DomainState): boolean =>
+  ['relight-only', 'both'].includes(str(state.mode));
+const needsGrade = (state: DomainState): boolean =>
+  ['grade-only', 'both'].includes(str(state.mode));
+const needsEnvironment = (state: DomainState): boolean =>
+  needsRelight(state) || str(state.backgroundMode) === 'replace';
 
 export const relightDomain: DomainRecipe = {
   id: 'relight',
@@ -32,7 +38,7 @@ export const relightDomain: DomainRecipe = {
   tagline: 'Relight & colour grade any photo — keep identity, change light.',
   referencePhoto: true,
   referenceLabel: 'Photo to relight',
-  referenceClause: 'Use the uploaded photo as the exact source — keep the same person, clothing, and pose.',
+  referenceClause: 'Use the attached photo as the source image for this edit.',
   presetProtectedKeys: [],
 
   createEmptyState: () => ({
@@ -58,30 +64,30 @@ export const relightDomain: DomainRecipe = {
     },
     {
       id: 'aesthetic',
-      title: '02 · Aesthetic Preset (1-klik viral)',
+      title: '02 · Aesthetic Preset',
       fields: [{ kind: 'visual', key: 'aestheticPreset', label: 'Aesthetic preset', options: AESTHETIC_PRESETS, previewRatio: 'aspect-square' }],
     },
     {
       id: 'light',
       title: '03 · Light Direction & Quality',
       fields: [
-        { kind: 'visual', key: 'lightDirection', label: 'Light direction', options: LIGHT_DIRECTIONS, previewRatio: 'aspect-[4/3]' },
-        { kind: 'visual', key: 'lightQuality', label: 'Light quality', options: LIGHT_QUALITIES, previewRatio: 'aspect-[4/3]' },
-        { kind: 'visual', key: 'lightColor', label: 'Light color', options: LIGHT_COLORS, previewRatio: 'aspect-square' },
-        { kind: 'visual', key: 'intensity', label: 'Intensity & contrast', options: INTENSITIES, previewRatio: 'aspect-[4/3]' },
+        { kind: 'visual', key: 'lightDirection', label: 'Light direction', options: LIGHT_DIRECTIONS, previewRatio: 'aspect-[4/3]', visibleWhen: needsRelight },
+        { kind: 'visual', key: 'lightQuality', label: 'Light quality', options: LIGHT_QUALITIES, previewRatio: 'aspect-[4/3]', visibleWhen: needsRelight },
+        { kind: 'visual', key: 'lightColor', label: 'Light color', options: LIGHT_COLORS, previewRatio: 'aspect-square', visibleWhen: needsRelight },
+        { kind: 'visual', key: 'intensity', label: 'Intensity & contrast', options: INTENSITIES, previewRatio: 'aspect-[4/3]', visibleWhen: needsRelight },
       ],
     },
     {
       id: 'environment',
       title: '04 · Environment',
-      fields: [{ kind: 'visual', key: 'environment', label: 'Environment bounce', options: ENVIRONMENTS, previewRatio: 'aspect-video' }],
+      fields: [{ kind: 'visual', key: 'environment', label: 'Environment bounce', options: ENVIRONMENTS, previewRatio: 'aspect-video', visibleWhen: needsEnvironment }],
     },
     {
       id: 'grade',
       title: '05 · Colour Grade',
       fields: [
-        { kind: 'visual', key: 'colorGrade', label: 'Colour grade (LUT)', options: COLOR_GRADES, previewRatio: 'aspect-square' },
-        { kind: 'visual', key: 'gradeStrength', label: 'Grade strength', options: GRADE_STRENGTHS, previewRatio: 'aspect-square' },
+        { kind: 'visual', key: 'colorGrade', label: 'Colour grade (LUT)', options: COLOR_GRADES, previewRatio: 'aspect-square', visibleWhen: needsGrade },
+        { kind: 'visual', key: 'gradeStrength', label: 'Grade strength', options: GRADE_STRENGTHS, previewRatio: 'aspect-square', visibleWhen: (s: DomainState) => needsGrade(s) && str(s.colorGrade) !== 'none-natural' },
       ],
     },
     {
@@ -90,7 +96,7 @@ export const relightDomain: DomainRecipe = {
       fields: [
         { kind: 'chips', key: 'preservation', label: 'Keep / preserve', options: PRESERVATION_OPTIONS },
         { kind: 'visual', key: 'backgroundMode', label: 'Background handling', options: BACKGROUND_MODES, previewRatio: 'aspect-video' },
-        { kind: 'toggle', key: 'removeBackgroundPeople', label: 'Remove people from background', hint: 'Erase other people / crowd behind the subject — clean empty background' },
+        { kind: 'toggle', key: 'removeBackgroundPeople', label: 'Remove people from background', hint: 'Erase other people / crowd behind the subject — clean empty background', visibleWhen: (s: DomainState) => str(s.backgroundMode) !== 'replace' },
       ],
     },
   ],
@@ -107,64 +113,67 @@ export const relightDomain: DomainRecipe = {
     const aesthetic = AESTHETIC_PRESETS.find(o => o.value === str(state.aestheticPreset)) ?? AESTHETIC_PRESETS[0];
     const preservation = arr(state.preservation);
     const bgMode = str(state.backgroundMode) || 'relight';
-    const removeBgPeople = Boolean(state.removeBackgroundPeople);
+    const removeBgPeople = Boolean(state.removeBackgroundPeople) && bgMode !== 'replace';
+    const isRelight = needsRelight(state);
+    const isGrade = needsGrade(state);
 
     const relightModes = RELIGHT_MODES.find(o => o.value === mode) ?? RELIGHT_MODES[2];
+    const preservedItems = preservation
+      .filter(value => value !== 'background')
+      .map(value => (
+        PRESERVATION_OPTIONS.find(o => o.value === value)?.label ?? value
+      ).replace(/^Keep\s+/i, '').toLowerCase());
 
     const blocks: string[] = [];
 
-    // 1 — Instruction + preservasi
-    const keepList = preservation.length > 0
-      ? preservation.map(v => PRESERVATION_OPTIONS.find(o => o.value === v)?.label ?? v).join(', ')
-      : 'facial identity and pose';
-    blocks.push(`${relightModes.instruction} — keep ${keepList} exactly the same.`);
+    // Keep the source image explicit; selected preservation fields refine the edit.
+    const sourceInstruction = relightModes.instruction.replace('this photo', 'the attached source photo');
+    const keepClause = preservedItems.length > 0
+      ? ` — preserve ${preservedItems.join(', ')} from the source`
+      : '';
+    blocks.push(`${sourceInstruction}${keepClause}.`);
 
-    // 0 — Aesthetic preset (bila bukan none)
     if (aesthetic.value !== 'none' && aesthetic.promptPhrase) {
-      blocks.push(`Aesthetic: ${aesthetic.promptPhrase}.`);
+      const precedence = isRelight
+        ? `Treat this as a mood reference; selected lighting${isGrade ? ' and grade' : ''} settings take priority where they differ.`
+        : 'Treat this as a color-mood reference; preserve the source lighting and follow the selected grade settings.';
+      blocks.push(`Aesthetic mood reference: ${aesthetic.promptPhrase}. ${precedence}`);
     }
 
-    const isRelight = mode === 'relight-only' || mode === 'both';
-    const isGrade = mode === 'grade-only' || mode === 'both';
-
-    // 2-5 — Lighting blocks (hanya bila relight)
+    // Lighting controls apply only to relight modes.
     if (isRelight) {
       blocks.push(`Lighting: ${lightDir.promptPhrase}, ${lightQual.promptPhrase}.`);
       blocks.push(`Light color: ${lightCol.promptPhrase}.`);
       blocks.push(`Intensity: ${intensity.promptPhrase}.`);
-      blocks.push(`Environment bounce: ${env.promptPhrase}.`);
-    } else {
-      // grade-only tetap butuh environment bila background replace
-      if (bgMode === 'replace') {
+      if (bgMode !== 'replace') {
         blocks.push(`Environment bounce: ${env.promptPhrase}.`);
       }
     }
 
-    // 6 — Colour grade
+    // Colour-grade controls apply only to grade modes.
     if (isGrade && grade.value !== 'none-natural' && grade.promptPhrase) {
-      blocks.push(`Colour grade: ${grade.promptPhrase}, strength ${gradeStrength}.`);
+      blocks.push(`Colour grade: ${grade.promptPhrase} at ${gradeStrength} strength.`);
     }
 
-    // 7 — Background handling
+    // Background handling preserves scene content unless replacement is selected.
     if (bgMode === 'keep') {
-      blocks.push('Keep the background exactly unchanged.');
+      blocks.push(removeBgPeople
+        ? 'Keep the background setting and composition unchanged except for the requested people removal.'
+        : 'Keep the background content and composition; apply only the selected lighting or colour adjustments.');
     } else if (bgMode === 'relight') {
-      blocks.push('Relight the background consistently with the new lighting.');
+      blocks.push(isRelight
+        ? 'Relight the background to match the new light while preserving its content and composition.'
+        : 'Apply the selected colour grade consistently to the background, preserving its content and composition.');
     } else if (bgMode === 'replace') {
-      blocks.push(`Replace the background with the ${env.promptPhrase}.`);
+      blocks.push(`Replace the background with ${env.promptPhrase}, matching its lighting to the subject.`);
     }
 
-    // 8 — Background people removal (toggle)
+    // This requested cleanup overrides the keep-background choice only in the selected areas.
     if (removeBgPeople) {
-      blocks.push('Remove all other people from the background — clean, empty background behind the subject, no crowd, no bystanders, inpaint the area naturally to match the environment.');
+      blocks.push('Remove other people from the background and naturally fill those areas to match the existing setting.');
     }
 
-    // 9 — Guardrail
-    if (removeBgPeople) {
-      blocks.push('Photorealistic, sharp focus, natural skin texture, no plastic skin, no face swap, no extra person (background already cleaned), no text, no watermark, single consistent light source.');
-    } else {
-      blocks.push('Photorealistic, sharp focus, natural skin texture, no plastic skin, no face swap, no extra person, no text, no watermark, single consistent light source.');
-    }
+    blocks.push('Photorealistic edit with natural texture and detail.');
 
     return blocks.join('\n\n');
   },
@@ -186,14 +195,18 @@ export const relightDomain: DomainRecipe = {
       out.push({ sectionId: 'light', level: 'warn', text: "High contrast without 'Keep skin texture' can make skin waxy — enable it." });
     }
     if (mode === 'grade-only' && bgMode === 'replace') {
-      out.push({ sectionId: 'preserve', level: 'warn', text: 'Grade-only with background replace is unusual — use Relight + Grade to change the environment.' });
+      out.push({ sectionId: 'preserve', level: 'warn', text: "Background replacement keeps the subject's original lighting in grade-only mode; choose Relight + Grade if it should match the new setting." });
+    }
+    if (bgMode === 'replace' && preservation.includes('background')) {
+      out.push({ sectionId: 'preserve', level: 'info', text: 'Background replacement takes priority over preserving the original background.' });
     }
     if (preservation.length === 0) {
       out.push({ sectionId: 'preserve', level: 'warn', text: 'No preservation — the AI may change the face. Keep at least identity + pose.' });
     }
     if (removeBgPeople && bgMode === 'keep') {
-      out.push({ sectionId: 'preserve', level: 'info', text: 'You asked to remove people but keep the background unchanged — the AI will clean only the people and inpaint the same background.' });
+      out.push({ sectionId: 'preserve', level: 'info', text: 'The background stays the same except for the requested people removal and natural fill.' });
     }
     return out;
   },
+
 };

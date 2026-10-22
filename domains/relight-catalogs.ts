@@ -10,13 +10,12 @@ const img = (category: string, slug: string) => `images/relight/${category}/${sl
 
 // ── Mode ──
 export interface RelightModeOption extends DomainOption {
-  promptPhrase: string;
   instruction: string;
 }
 export const RELIGHT_MODES: RelightModeOption[] = [
-  { value: 'relight-only', label: 'Relight only', image: img('mode', 'relight-only'), promptPhrase: 'relight only', instruction: 'Relight this photo' },
-  { value: 'grade-only', label: 'Colour grade only', image: img('mode', 'grade-only'), promptPhrase: 'colour grade only', instruction: 'Color grade this photo' },
-  { value: 'both', label: 'Relight + Grade', image: img('mode', 'both'), promptPhrase: 'relight and colour grade', instruction: 'Relight and color grade this photo' },
+  { value: 'relight-only', label: 'Relight only', image: img('mode', 'relight-only'), instruction: 'Relight this photo' },
+  { value: 'grade-only', label: 'Colour grade only', image: img('mode', 'grade-only'), instruction: 'Color grade this photo' },
+  { value: 'both', label: 'Relight + Grade', image: img('mode', 'both'), instruction: 'Relight and color grade this photo' },
 ];
 
 // ── Light Direction (8) ──
@@ -24,14 +23,14 @@ export interface LightDirectionOption extends DomainOption {
   promptPhrase: string;
 }
 export const LIGHT_DIRECTIONS: LightDirectionOption[] = [
-  { value: 'front', label: 'Front', image: img('direction', 'front'), promptPhrase: 'soft frontal light, evenly illuminating the subject from the front' },
-  { value: 'left-45', label: 'Left 45°', image: img('direction', 'left-45'), promptPhrase: 'soft light coming from the left at 45 degrees' },
-  { value: 'right-45', label: 'Right 45°', image: img('direction', 'right-45'), promptPhrase: 'soft light coming from the right at 45 degrees' },
-  { value: 'side-90', label: 'Side 90°', image: img('direction', 'side-90'), promptPhrase: 'dramatic side light at 90 degrees, strong falloff on the shadow side' },
-  { value: 'rim-back', label: 'Rim / Back', image: img('direction', 'rim-back'), promptPhrase: 'rim light from behind, creating a glowing edge around the subject' },
-  { value: 'top-down', label: 'Top down', image: img('direction', 'top-down'), promptPhrase: 'top-down light, casting soft shadows downward' },
-  { value: 'butterfly', label: 'Butterfly', image: img('direction', 'butterfly'), promptPhrase: 'butterfly lighting from above-front, symmetrical shadow under the nose' },
-  { value: 'split', label: 'Split', image: img('direction', 'split'), promptPhrase: 'split lighting, half the face lit, half in shadow' },
+  { value: 'front', label: 'Front', image: img('direction', 'front'), promptPhrase: 'light from the front of the subject' },
+  { value: 'left-45', label: 'Left 45°', image: img('direction', 'left-45'), promptPhrase: 'light coming from the left at 45 degrees' },
+  { value: 'right-45', label: 'Right 45°', image: img('direction', 'right-45'), promptPhrase: 'light coming from the right at 45 degrees' },
+  { value: 'side-90', label: 'Side 90°', image: img('direction', 'side-90'), promptPhrase: 'light positioned 90 degrees to the side of the subject' },
+  { value: 'rim-back', label: 'Rim / Back', image: img('direction', 'rim-back'), promptPhrase: 'light from behind, outlining the subject with rim illumination' },
+  { value: 'top-down', label: 'Top down', image: img('direction', 'top-down'), promptPhrase: 'light from above, casting shadows downward' },
+  { value: 'butterfly', label: 'Butterfly', image: img('direction', 'butterfly'), promptPhrase: 'light from above-front for a butterfly-lighting pattern' },
+  { value: 'split', label: 'Split', image: img('direction', 'split'), promptPhrase: 'side lighting for a split-lighting pattern across the face' },
 ];
 
 // ── Light Quality (14) — studio + aesthetic medsos ──
@@ -39,20 +38,20 @@ export interface LightQualityOption extends DomainOption {
   promptPhrase: string;
 }
 export const LIGHT_QUALITIES: LightQualityOption[] = [
-  { value: 'soft-diffused', label: 'Soft diffused', image: img('quality', 'soft-diffused'), promptPhrase: 'soft, diffused light with gentle falloff and soft shadows' },
-  { value: 'hard-directional', label: 'Hard directional', image: img('quality', 'hard-directional'), promptPhrase: 'hard, directional light with crisp shadows and strong contrast' },
-  { value: 'volumetric', label: 'Volumetric / God rays', image: img('quality', 'volumetric'), promptPhrase: 'volumetric light with visible god rays and airy haze' },
-  { value: 'window-bounced', label: 'Window bounced', image: img('quality', 'window-bounced'), promptPhrase: 'natural window light bounced softly, airy and organic' },
+  { value: 'soft-diffused', label: 'Soft diffused', image: img('quality', 'soft-diffused'), promptPhrase: 'soft, diffused light with gentle falloff and soft-edged shadows' },
+  { value: 'hard-directional', label: 'Hard directional', image: img('quality', 'hard-directional'), promptPhrase: 'hard light with crisp-edged shadows' },
+  { value: 'volumetric', label: 'Volumetric / God rays', image: img('quality', 'volumetric'), promptPhrase: 'volumetric light with visible rays through light haze' },
+  { value: 'window-bounced', label: 'Window bounced', image: img('quality', 'window-bounced'), promptPhrase: 'light bounced softly from a window, airy and organic' },
   { value: 'neon-glow', label: 'Neon glow', image: img('quality', 'neon-glow'), promptPhrase: 'glowing neon light with colorful bloom and reflections' },
-  { value: 'candle-flicker', label: 'Candle', image: img('quality', 'candle'), promptPhrase: 'warm candlelight with flickering, intimate falloff' },
-  { value: 'ring-light', label: 'Ring light (beauty)', image: img('quality', 'ring-light'), promptPhrase: 'ring light beauty lighting, even catchlight in the eyes, soft glam, influencer style' },
-  { value: 'beauty-dish', label: 'Beauty dish', image: img('quality', 'beauty-dish'), promptPhrase: 'beauty dish lighting, soft but sculpted, fashion beauty with round catchlight' },
-  { value: 'fairy-bokeh', label: 'Fairy lights bokeh', image: img('quality', 'fairy-bokeh'), promptPhrase: 'fairy lights bokeh, warm tiny points of light in the background, dreamy' },
-  { value: 'sunset-silhouette', label: 'Sunset silhouette', image: img('quality', 'sunset-silhouette'), promptPhrase: 'sunset silhouette lighting, warm backlight outlining the subject, rim glow' },
-  { value: 'overcast-soft', label: 'Overcast soft (cloudy)', image: img('quality', 'overcast-soft'), promptPhrase: 'soft overcast light on a cloudy day, even and flattering, no harsh shadows' },
-  { value: 'studio-strobe', label: 'Studio strobe', image: img('quality', 'studio-strobe'), promptPhrase: 'studio strobe lighting, crisp and punchy, clean commercial look' },
-  { value: 'led-strip', label: 'LED strip', image: img('quality', 'led-strip'), promptPhrase: 'LED strip accent light, colorful linear glow on the wall behind' },
-  { value: 'sun-flare', label: 'Sun flare / Lens flare', image: img('quality', 'sun-flare'), promptPhrase: 'warm sun flare with lens flare streaks, golden haze leaking into the frame' },
+  { value: 'candle-flicker', label: 'Candle', image: img('quality', 'candle'), promptPhrase: 'warm candlelight with gentle flicker and intimate falloff' },
+  { value: 'ring-light', label: 'Ring light (beauty)', image: img('quality', 'ring-light'), promptPhrase: 'even ring-light illumination with a circular catchlight in the eyes' },
+  { value: 'beauty-dish', label: 'Beauty dish', image: img('quality', 'beauty-dish'), promptPhrase: 'beauty-dish illumination, softly sculpted with a round catchlight' },
+  { value: 'fairy-bokeh', label: 'Fairy lights bokeh', image: img('quality', 'fairy-bokeh'), promptPhrase: 'warm points of light with gentle background bokeh' },
+  { value: 'sunset-silhouette', label: 'Sunset silhouette', image: img('quality', 'sunset-silhouette'), promptPhrase: 'warm sunset glow with subtle rim highlights' },
+  { value: 'overcast-soft', label: 'Overcast soft (cloudy)', image: img('quality', 'overcast-soft'), promptPhrase: 'broad, even illumination with gentle shadow edges' },
+  { value: 'studio-strobe', label: 'Studio strobe', image: img('quality', 'studio-strobe'), promptPhrase: 'studio-strobe illumination with a crisp, commercial look' },
+  { value: 'led-strip', label: 'LED strip', image: img('quality', 'led-strip'), promptPhrase: 'colored linear accent light with soft spill' },
+  { value: 'sun-flare', label: 'Sun flare / Lens flare', image: img('quality', 'sun-flare'), promptPhrase: 'warm sun flare with a soft streak of lens flare' },
 ];
 
 // ── Light Color (12) ──
@@ -80,8 +79,8 @@ export interface IntensityOption extends DomainOption {
   promptPhrase: string;
 }
 export const INTENSITIES: IntensityOption[] = [
-  { value: 'flat', label: 'Flat / Even', image: img('intensity', 'flat'), promptPhrase: 'flat, even lighting with minimal shadows, low contrast' },
-  { value: 'natural', label: 'Natural', image: img('intensity', 'natural'), promptPhrase: 'natural lighting intensity with balanced, soft shadows' },
+  { value: 'flat', label: 'Flat / Even', image: img('intensity', 'flat'), promptPhrase: 'even illumination with minimal shadows and low contrast' },
+  { value: 'natural', label: 'Natural', image: img('intensity', 'natural'), promptPhrase: 'natural lighting intensity with balanced contrast and tonal range' },
   { value: 'dramatic', label: 'Dramatic', image: img('intensity', 'dramatic'), promptPhrase: 'dramatic lighting with pronounced shadows and highlight sculpting' },
   { value: 'chiaroscuro', label: 'Chiaroscuro / High contrast', image: img('intensity', 'chiaroscuro'), promptPhrase: 'high-contrast chiaroscuro, deep shadows and bright highlights' },
   { value: 'low-key', label: 'Low-key moody', image: img('intensity', 'low-key'), promptPhrase: 'low-key moody lighting, mostly shadows with a single key light' },
@@ -138,8 +137,7 @@ export const COLOR_GRADES: ColorGradeOption[] = [
   { value: 'bleach-bypass', label: 'Bleach bypass', image: img('grade', 'bleach-bypass'), promptPhrase: 'bleach bypass grade, high contrast, desaturated, gritty silver retention' },
   { value: 'vintage-faded', label: 'Vintage faded', image: img('grade', 'vintage-faded'), promptPhrase: 'vintage faded grade, lifted blacks, warm fade, slightly desaturated' },
   { value: 'cyberpunk', label: 'Cyberpunk', image: img('grade', 'cyberpunk'), promptPhrase: 'cyberpunk grade, neon magenta-cyan palette, crushed blacks, high saturation, subtle bloom' },
-  { value: 'wes-anderson', label: 'Wes Anderson pastel', image: img('grade', 'wes-anderson'), promptPhrase: 'Wes Anderson pastel palette, symmetrical pastels, warm beige and mint, playful' },
-  { value: 'noir', label: 'Noir', image: img('grade', 'noir'), promptPhrase: 'noir grade, high-contrast black and white with a single subtle color accent, moody' },
+  { value: 'wes-anderson', label: 'Wes Anderson pastel', image: img('grade', 'wes-anderson'), promptPhrase: 'pastel color palette with warm beige and mint tones, playful' },
 ];
 
 export const GRADE_STRENGTHS: DomainOption[] = [
@@ -154,7 +152,7 @@ export const PRESERVATION_OPTIONS: DomainOption[] = [
   { value: 'skin', label: 'Keep skin texture' },
   { value: 'clothing', label: 'Keep clothing' },
   { value: 'pose', label: 'Keep pose' },
-  { value: 'background', label: 'Keep background' },
+  { value: 'background', label: 'Keep background content' },
 ];
 
 export const BACKGROUND_MODES: DomainOption[] = [

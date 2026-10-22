@@ -18,11 +18,11 @@ import {
  * field adalah select). Satu katalog gabungan FOOD_DISHES (8 Indonesia + 6 internasional)
  * — prompt langsung spesifik per hidangan. Steam clause hanya untuk hidangan panas
  * (HOT_DISHES); TALL_DISHES memicu warning angle overhead (riset §4 jebakan #2).
- * Guardrail/negative jadi konstanta blok terakhir buildPrompt (pola marketing blok 7).
+ * Guardrail block describes appetizing texture and natural color without blanket exclusions.
  */
 
 // Plan Task 2 Step 3 — konstanta smart rules (persis dari plan).
-const HOT_DISHES = ['rendang', 'sate-ayam', 'soto-ayam', 'rawon', 'ayam-bakar', 'mie-goreng', 'ramen'];
+const HOT_DISHES = ['rendang', 'sate-ayam', 'nasi-goreng', 'soto-ayam', 'rawon', 'ayam-bakar', 'mie-goreng', 'ramen', 'pasta', 'burger'];
 const TALL_DISHES = ['ramen', 'drink', 'burger'];
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
@@ -131,8 +131,8 @@ export const foodDomain: DomainRecipe = {
       blocks.push(`${publicationStyle.promptPhrase}.`);
     }
 
-    // [Riset §4] Guardrail/negative — warna natural, DOF dangkal, tanpa tangan/orang/teks.
-    blocks.push('Vibrant natural colors, shallow depth of field, fresh garnish, no hands, no people, no text, no watermark.');
+    // [Riset §4] Positive finish cue; dish-specific texture and selected lighting stay primary.
+    blocks.push("Show the dish's defining textures clearly in the selected lighting.");
 
     return blocks.join('\n\n');
   },

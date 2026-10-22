@@ -3,25 +3,24 @@
  *
  * Replaces the Electron file-system APIs for:
  * - built-in presets (fetched from public/presets/*.json)
- * - user presets, characters, recent projects, autosave, UI settings
+ * - user presets, characters, custom studios, UI settings
  */
 
-import type { Preset, ProjectFile, SavedCharacter } from '../types';
+import type { Preset, SavedCharacter } from '../types';
 import type { CustomRecipe } from '../domains/custom/types';
 
 const KEYS = {
   /** Legacy user-preset key (cinematic) — dibaca + dimigrasi ke aichemy-presets-cinematic. */
   userPresets: 'renderzero_user_presets_v1',
   characters: 'renderzero_characters_v1',
-  recentProjects: 'renderzero_recent_projects_v1',
   settings: 'renderzero_settings_v1',
-  autosavePrefix: 'renderzero_autosave:',
+  recentStudios: 'aichemy-recent-studios-v1',
+  favoriteStudios: 'aichemy-favorite-studios-v1',
 } as const;
 
 /** Key preset user per domain (spec: aichemy-presets-<domainId>). */
 const userPresetKey = (domainId: string): string => `aichemy-presets-${domainId}`;
 
-const MAX_RECENT_PROJECTS = 10;
 
 /** Built-in preset files bundled under public/presets/ */
 export const BUILTIN_PRESET_FILES: string[] = [
@@ -192,42 +191,6 @@ export function deleteCharacter(character: SavedCharacter): SavedCharacter[] {
   return characters;
 }
 
-// ---------- recent projects + autosave ----------
-
-export interface RecentProjectEntry {
-  projectId: string;
-  name: string;
-  lastOpened: number;
-  /** Domain recipe id — opsional, backward compatible dengan entry lama (default 'cinematic'). */
-  domainId?: string;
-}
-
-export function loadRecentProjects(): RecentProjectEntry[] {
-  return readJson<RecentProjectEntry[]>(KEYS.recentProjects, []);
-}
-
-export function touchRecentProject(projectId: string, name: string, domainId?: string): RecentProjectEntry[] {
-  const recents = loadRecentProjects().filter(r => r.projectId !== projectId);
-  recents.unshift({ projectId, name, lastOpened: Date.now(), ...(domainId ? { domainId } : {}) });
-  const trimmed = recents.slice(0, MAX_RECENT_PROJECTS);
-  writeJson(KEYS.recentProjects, trimmed);
-  return trimmed;
-}
-
-export function removeRecentProject(projectId: string): RecentProjectEntry[] {
-  const recents = loadRecentProjects().filter(r => r.projectId !== projectId);
-  writeJson(KEYS.recentProjects, recents);
-  try { localStorage.removeItem(KEYS.autosavePrefix + projectId); } catch { /* ignore */ }
-  return recents;
-}
-
-export function saveAutosave(projectId: string, project: ProjectFile): boolean {
-  return writeJson(KEYS.autosavePrefix + projectId, project);
-}
-
-export function loadAutosave(projectId: string): ProjectFile | null {
-  return readJson<ProjectFile | null>(KEYS.autosavePrefix + projectId, null);
-}
 
 // ---------- custom studios (phase 5) ----------
 
@@ -282,6 +245,34 @@ export function saveSetting(key: string, value: unknown): void {
   const settings = readJson<Record<string, unknown>>(KEYS.settings, {});
   settings[key] = value;
   writeJson(KEYS.settings, settings);
+}
+
+/** Local-first discovery preferences for the recipe library. */
+export function loadRecentStudios(): string[] {
+  const value = readJson<unknown>(KEYS.recentStudios, []);
+  return Array.isArray(value)
+    ? value.filter((id): id is string => typeof id === 'string').slice(0, 6)
+    : [];
+}
+
+export function rememberStudio(id: string): string[] {
+  const next = [id, ...loadRecentStudios().filter(existingId => existingId !== id)].slice(0, 6);
+  writeJson(KEYS.recentStudios, next);
+  return next;
+}
+
+export function loadFavoriteStudios(): string[] {
+  const value = readJson<unknown>(KEYS.favoriteStudios, []);
+  return Array.isArray(value) ? value.filter((id): id is string => typeof id === 'string') : [];
+}
+
+export function toggleFavoriteStudio(id: string): string[] {
+  const favorites = loadFavoriteStudios();
+  const next = favorites.includes(id)
+    ? favorites.filter(existingId => existingId !== id)
+    : [id, ...favorites];
+  writeJson(KEYS.favoriteStudios, next);
+  return next;
 }
 
 // ---------- file download / upload helpers ----------

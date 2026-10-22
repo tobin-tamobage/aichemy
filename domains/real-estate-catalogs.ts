@@ -74,7 +74,7 @@ export const RE_ANGLES: ReAngleOption[] = [
 // Phase 6 Task 2 — camera & technique (visual). Sentence clause.
 export interface ReCameraOption extends DomainOption { promptPhrase: string; }
 export const RE_CAMERAS: ReCameraOption[] = [
-  { value: 'full-frame', label: 'Full-frame mirrorless', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'shot on a full-frame mirrorless camera, high resolution' },
+  { value: 'full-frame', label: 'Full-frame mirrorless', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'shot on a full-frame mirrorless camera' },
   { value: 'hdr-blend', label: 'HDR exposure blend', image: img('technique', 'hdr-bracketing'), promptPhrase: 'HDR exposure blend, balanced interior and window light' },
   { value: 'drone', label: 'Drone aerial', image: img('technique', 'drone-aerial'), promptPhrase: 'aerial drone photograph, elevated perspective' },
 ];

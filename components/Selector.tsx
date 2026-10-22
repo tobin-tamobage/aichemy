@@ -15,15 +15,17 @@ interface SelectorProps {
 }
 
 export const Selector: React.FC<SelectorProps> = ({ label, value, onChange, options, placeholder = "Select...", disabled = false, disabledReason, disabledOptions = [] }) => {
+  const inputId = `field-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   return (
     <div className={`flex flex-col gap-2${disabled ? ' opacity-50 cursor-not-allowed' : ''}`} title={disabled ? disabledReason : undefined}>
-      <label className={`text-xs font-bold uppercase tracking-wider ${disabled ? 'text-dim' : 'text-accent2'}`}>{label}</label>
+      <label htmlFor={inputId} className={`ui-field-label ${disabled ? 'text-dim' : ''}`}>{label}</label>
       <div className="relative">
         <select
+          id={inputId}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          className={`w-full appearance-none rounded-none border-b-2 border-line bg-surface px-4 py-3 text-sm font-medium transition-colors focus:outline-none ${
+          className={`ui-field appearance-none pr-10 ${
             disabled ? 'text-dim cursor-not-allowed' : 'text-ink focus:border-accent hover:bg-surface2'
           }`}
         >

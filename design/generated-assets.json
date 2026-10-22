@@ -1,0 +1,71 @@
+{
+  "tool": "built-in image_gen",
+  "selectedLogo": "User-confirmed attachment: violet a with coral spark",
+  "files": {
+    "product": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-dbee47a3-5159-4110-b3cb-761d2846fa60.png",
+    "food": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-2ab85895-23d4-453b-b99d-f2b525eceafc.png",
+    "portrait": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-98a40dbd-c99b-45fb-b7a9-8dd54f55e76f.png",
+    "cinematic": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-d4c2e109-d9ba-4a63-af08-ac092d1faa8f.png",
+    "wedding": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-3832047d-9971-44de-becd-2f8606ed50ff.png",
+    "real-estate": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-9a9e7fdc-73a2-46ae-937c-217479c41fb4.png",
+    "marketing": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-8c254c54-7119-490a-b6ca-b92299fa7fa4.png",
+    "logo": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-a18c595f-ac1c-4f36-93f1-e49dcaf47829.png",
+    "id-photo": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-45b2df0e-003c-458d-ab73-51fb5b6b0101.png",
+    "relight-before": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-f160e33a-7a20-4149-a380-a0f7023fbed5.png",
+    "brand": "/Users/tobin/orca/aichemy/ChatGPT Image Oct 18, 2026, 01_46_29 PM.png",
+    "relight": "/Users/tobin/.codex/generated_images/01a14ccf-51c2-74a0-bfd7-bbbf3aaad5dd/exec-1ef86e00-8d6e-4e64-958d-7fa12903e5b5.png"
+  },
+  "prompts": [
+    [
+      "product",
+      "product-mockup",
+      "A premium pale peach skincare serum glass bottle with ivory dropper, no label or lettering. Suspended above a peach stone plinth, a soft apricot drape and small orange slice, morning sun through a window, elegant editorial cosmetic advertising, warm blush palette."
+    ],
+    [
+      "food",
+      "photorealistic-natural",
+      "Indonesian nasi goreng with perfectly fried sunny side egg, sambal, sliced cucumber and tomato, crispy shallots, steam visible, handmade ivory plate on dark wooden cafe table with rumpled linen, lush natural side light, mouthwatering sophisticated food photography, true realistic food textures."
+    ],
+    [
+      "portrait",
+      "photorealistic-natural",
+      "Editorial portrait of a young adult Indonesian woman in a coral orange knit shirt, short dark hair, cheerful natural expression, warm afternoon sunlight, pale peach studio background, subtle skin texture, portrait photography 85mm, creative magazine editorial."
+    ],
+    [
+      "cinematic",
+      "photorealistic-natural",
+      "Dreamlike cinematic wide photograph of a solitary young Indonesian woman in a flowing coral dress on a coastal cliff overlooking turquoise ocean, distant rolling mist and pastel peach sky, warm late afternoon rim light, 35mm film still, expansive elegant composition."
+    ],
+    [
+      "wedding",
+      "photorealistic-natural",
+      "Romantic editorial wedding portrait of an adult Indonesian bride in ivory modern kebaya and groom in white suit at a lush botanical garden, standing close together with delicate floral details, soft golden backlight, candid loving expressions, elegant intimate atmosphere."
+    ],
+    [
+      "real-estate",
+      "photorealistic-natural",
+      "Architectural editorial photograph of a sunlit modern Bali villa living room, sculptural cream sofa, natural oak, tall arch opening toward tropical garden, linen curtains, a terracotta vase, warm beige and sage palette, ultra realistic tactile materials, clean magazine composition."
+    ],
+    [
+      "marketing",
+      "ads-marketing",
+      "A creative advertising flat lay of an iced matcha latte in a transparent glass with tiny condensation droplets, vibrant mint green background, cream paper circles and lime wedges, bold graphic shadows, sophisticated playful cafe campaign product photograph. No text or lettering anywhere."
+    ],
+    [
+      "logo",
+      "logo-brand",
+      "An original single orange blossom icon for a fictional artisan cafe identity, flat coral orange and forest green screenprinted icon with balanced negative space, centered on warm ivory paper with subtle tactile texture, minimal thoughtful professional branding, no text."
+    ],
+    [
+      "id-photo",
+      "photorealistic-natural",
+      "Professional formal headshot of an adult Indonesian man wearing a navy jacket and white shirt, friendly confident expression, clean soft pale blue seamless background, evenly lit clear natural face and realistic skin texture, front facing neatly composed passport inspired corporate profile photo."
+    ],
+    [
+      "relight-before",
+      "photorealistic-natural",
+      "Editorial portrait photo of an adult Indonesian woman with long dark hair wearing a cream blouse, neutral calm expression looking at camera, plain dim gray studio background, flat cool overcast illumination, natural skin texture, shoulders and head portrait, deliberately simple neutral source photo for a relighting demonstration."
+    ]
+  ],
+  "relightEditPrompt": "Change only light to warm golden sunlight with peach background; preserve source identity, pose, framing, clothing and facial features."
+}

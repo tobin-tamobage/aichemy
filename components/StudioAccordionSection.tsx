@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
 
 interface StudioAccordionSectionProps {
   id: string;
@@ -7,6 +7,9 @@ interface StudioAccordionSectionProps {
   isOpen: boolean;
   onToggle: () => void;
   title: string;
+  step?: number;
+  completed?: boolean;
+  summary?: string;
   children: React.ReactNode;
 }
 
@@ -16,13 +19,18 @@ export function StudioAccordionSection({
   isOpen,
   onToggle,
   title,
+  step,
+  completed = false,
+  summary,
   children,
 }: StudioAccordionSectionProps) {
   const buttonId = `studio-section-button-${id}`;
   const panelId = `studio-section-panel-${id}`;
 
   return (
-    <section className="border border-line bg-base/40 rounded-card overflow-hidden">
+    <section className={`studio-section overflow-hidden rounded-card border bg-surface shadow-sm transition-colors ${
+      isOpen ? 'border-accent/50 shadow-md' : 'border-line'
+    }`}>
       <h2>
         <button
           id={buttonId}
@@ -30,15 +38,25 @@ export function StudioAccordionSection({
           aria-expanded={isOpen}
           aria-controls={panelId}
           onClick={onToggle}
-          className="w-full flex items-center justify-between gap-4 px-4 py-4 text-left hover:bg-surface/60 transition-colors"
+          className="w-full flex items-center justify-between gap-4 px-4 py-4 text-left hover:bg-surface2 transition-colors"
         >
           <span className="flex items-center gap-3 text-ink">
-            <span className="text-accent2">{icon}</span>
-            <span className="text-lg font-bold uppercase tracking-wider text-accent2">{title}</span>
+            <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-accent2 ${
+              completed ? 'border-accent bg-accent/10 text-accent' : 'border-line bg-base'
+            }`}>
+              {completed ? <Check className="h-4 w-4" aria-hidden="true" /> : icon}
+            </span>
+            <span className="min-w-0">
+              <span className="flex items-center gap-2">
+                {step !== undefined && <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">Step {step}</span>}
+                <span className="text-sm font-semibold tracking-tight text-ink sm:text-[1rem]">{title}</span>
+              </span>
+              {summary && <span className="mt-0.5 block truncate text-xs font-normal text-dim">{summary}</span>}
+            </span>
           </span>
 
           <ChevronDown
-            className={`w-4 h-4 text-dim transition-transform duration-200 ${
+            className={`w-4 h-4 text-dim transition-transform duration-200 motion-reduce:transition-none ${
               isOpen ? 'rotate-180 text-accent' : ''
             }`}
           />
@@ -50,7 +68,7 @@ export function StudioAccordionSection({
         role="region"
         aria-labelledby={buttonId}
         hidden={!isOpen}
-        className="border-t border-line px-4 py-4"
+        className="border-t border-line bg-base/40 px-4 py-5"
       >
         {children}
       </div>

@@ -9,22 +9,21 @@ import {
   QUALITY_MODIFIERS,
   PRODUCT_LENSES,
   PRODUCT_CAMERAS,
-  NEGATIVES,
 } from './product-catalogs';
 
 /**
  * DomainRecipe: Product — dari design/research-produk.md §1-§4 + spec §3.3.
  * Komentar [Riset §…] di buildPrompt/warnings memetakan tiap blok prompt ke temuan riset.
  *
- * Spec §3.3: referencePhoto: true — ada reference clause (produk di-attach user,
- * scene dibangun di sekelilingnya, produk TIDAK diubah). Lighting single-select
- * (smart rule "one scene, one light"). Constraint fisik kamera/lensa kini berasal
- * dari field Camera & Lens (Phase 6) — dulu hardcoded `85mm f/8 product shot`.
+ * Spec §3.3: referencePhoto: true — use an attached product photo and build the scene around it.
+ * Preserve product identity; the explicit blank-label toggle allows that one label change.
+ * Lighting is single-select (smart rule "one scene, one light"); camera/lens cues
+ * come from their fields (Phase 6), replacing the former hardcoded `85mm f/8 product shot`.
  */
 
-// Klausa referensi PERSIS spec §3.3 — produk di-attach user; jangan redraw/ubah produk.
+// Product photo reference; a blank-label request is the only allowed product change.
 const REFERENCE_CLAUSE =
-  'Use the attached product photo as the product. Do not redraw or alter the product itself; build the scene around it.';
+  'Use the attached product photo as the exact product reference. Preserve its shape, proportions, materials, and colors, and keep its visible label unchanged unless a blank label is requested; build the scene around it.';
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 
@@ -46,8 +45,7 @@ export const productDomain: DomainRecipe = {
     props: [],
     composition: 'centered',
     negativeSpace: false,
-    blankLabel: false,
-    quality: ['commercial', '8k', 'ultra-sharp'],
+    quality: [],
     productName: '',
     lens: '85mm-f8',
     camera: 'phase-one-xf-iq4',
@@ -100,7 +98,7 @@ export const productDomain: DomainRecipe = {
         {
           kind: 'chips',
           key: 'props',
-          label: 'Props & styling',
+          label: 'Props & styling (select to override category defaults)',
           max: 3,
           // Task 1 dynamic options — katalog props mengikuti category (riset §2.5, spec §3.3 section 5).
           options: (state: DomainState): DomainOption[] => PROPS_BY_CATEGORY[str(state.category)] ?? [],
@@ -175,8 +173,7 @@ export const productDomain: DomainRecipe = {
     // productName bebas user; fallback "the product" (produk sesungguhnya dari foto referensi).
     let subject = productName ? productName : 'the product';
     if (blankLabel) {
-      // [Riset §4 jebakan #1] Label kosong — mitigasi teks salah eja/logo melting.
-      subject += ' with a blank minimal label (no text)';
+      subject += ' with only its label replaced by a blank minimal label';
     }
     blocks.push(subject);
 
@@ -201,9 +198,6 @@ export const productDomain: DomainRecipe = {
     // [Phase 6] Physical constraint now comes from the lens field (was hardcoded '85mm f/8 product shot').
     const qualityTail = qualityLabels.length > 0 ? `${qualityLabels.join(', ')}, ` : '';
     blocks.push(`${qualityTail}${lens.qualityPhrase}, ${camera.promptPhrase}`);
-
-    // [Riset §2.9] Daftar negatif — selalu di akhir.
-    blocks.push(`Negative: ${NEGATIVES}.`);
 
     return blocks.join('\n\n');
   },

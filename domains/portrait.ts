@@ -14,11 +14,7 @@ import {
  * DomainRecipe: Portrait — dari design/research-portrait.md §1-§4 + plan Task 2 Step 1.
  * Komentar [Riset §…] di buildPrompt/warnings memetakan tiap blok prompt ke temuan riset.
  *
- * Keputusan authoring plan: referencePhoto: false (subjek di-scene AI, tidak ada foto
- * referensi) dan presetProtectedKeys: [] (semua field adalah select — tidak ada teks bebas).
- * Dua varian prompt: foto vs stylized-avatar — avatar men-skip blok Lighting + Lens
- * (riset §3a: ilustrasi tidak punya fisika kamera) dan menutup dengan klausa ilustrasi.
- * Guardrail/negative jadi konstanta blok terakhir buildPrompt (pola marketing blok 5/10).
+ * Both variants treat lighting, camera, and photographer choices as visual cues, not guarantees.
  */
 
 const str = (v: unknown): string => (typeof v === 'string' ? v : '');
@@ -93,20 +89,23 @@ export const portraitDomain: DomainRecipe = {
 
     const blocks: string[] = [];
 
-    // [Riset §1 anatomi + §3a] Varian avatar — klausa ilustrasi murni; TIDAK ada
-    // blok Lighting/Lens (fisika kamera tidak berlaku untuk ilustrasi digital).
+    // Avatar mode translates photographic choices into composition and art-direction cues.
     if (type.value === 'stylized-avatar') {
       blocks.push(`A stylized digital avatar portrait of a person with ${expression.promptPhrase}.`);
       blocks.push(`The character wears ${wardrobe.promptPhrase}.`);
+      blocks.push(`Illustration composition: ${lens.promptPhrase}.`);
+      blocks.push(`Illustrative lighting: ${lighting.promptPhrase}.`);
+      blocks.push(`Camera look cue: ${camera.promptPhrase}.`);
       blocks.push(`Background: ${background.promptPhrase}.`);
-      blocks.push('Clean illustration style, consistent character design, soft shading, high detail, no text, no watermark.');
+      if (photographer.promptPhrase) {
+        blocks.push(`${photographer.promptPhrase.charAt(0).toUpperCase()}${photographer.promptPhrase.slice(1)}.`);
+      }
+      blocks.push('Clean digital illustration with a consistent character design, clear facial features, and soft shading.');
     } else {
-      // [Riset §1] Varian foto — lens/framing dikunci sejak blok pertama (riset §1 lens).
-      // promptPhrase katalog diawali artikel 'a ' — kapitalisasi huruf pertama, bukan
-      // prefix 'A ' (hindari "A a corporate headshot…").
-      blocks.push(`${type.promptPhrase.charAt(0).toUpperCase()}${type.promptPhrase.slice(1)} of a person, shot on ${lens.promptPhrase}.`);
-      // [Phase 6] Camera body — klausa kamera setelah blok shot type/lens.
-      blocks.push(`Camera: ${camera.promptPhrase}.`);
+      // Lens, camera, and photographer selections are photographic cues, not generation settings.
+      blocks.push(`${type.promptPhrase.charAt(0).toUpperCase()}${type.promptPhrase.slice(1)} of a person.`);
+      blocks.push(`Lens and framing cue: ${lens.promptPhrase}.`);
+      blocks.push(`Camera look: ${camera.promptPhrase}.`);
       blocks.push(`Lighting: ${lighting.promptPhrase}.`);
       blocks.push(`Background: ${background.promptPhrase}.`);
       blocks.push(`The subject wears ${wardrobe.promptPhrase} with ${expression.promptPhrase}.`);
@@ -114,7 +113,7 @@ export const portraitDomain: DomainRecipe = {
       if (photographer.promptPhrase) {
         blocks.push(`${photographer.promptPhrase.charAt(0).toUpperCase()}${photographer.promptPhrase.slice(1)}.`);
       }
-      blocks.push('Sharp focus on the eyes, natural skin texture, photorealistic, no heavy retouching, no text, no watermark.');
+      blocks.push('Photorealistic portrait photography, natural skin texture, sharp focus on the eyes.');
     }
 
     return blocks.join('\n\n');
@@ -128,12 +127,12 @@ export const portraitDomain: DomainRecipe = {
     const expression = str(state.expression);
     const lens = str(state.lens);
 
-    // (a) [Riset §3a] Avatar mode men-skip klausa kamera — info, bukan error.
+    // Avatar settings remain visually active as illustrative cues.
     if (type === 'stylized-avatar') {
       out.push({
         sectionId: 'portrait-type',
         level: 'info',
-        text: 'Avatar mode switches to a stylized illustration — camera, lens, lighting, and photographer-style clauses are skipped.',
+        text: 'Avatar mode keeps camera, lens, lighting, and photographer choices as visual direction for the illustration.',
       });
     }
 

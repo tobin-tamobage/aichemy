@@ -26,13 +26,13 @@ const str = (v: unknown): string => (typeof v === 'string' ? v : '');
 
 // Tipe logo berhuruf → risiko salah eja teks (riset §3 jebakan #1).
 const TEXT_TYPES = ['wordmark', 'lettermark', 'emblem', 'combination'];
-// Tipe dengan kata "wordmark" di lockup → typography section tampil (plan §2).
-const LETTERING_TYPES = ['wordmark', 'lettermark', 'combination'];
-// Tipe dengan ikon → icon motif tampil; wordmark/lettermark murni huruf ("no icon").
+// Semua tipe yang menampilkan huruf memakai field lettering.
+const LETTERING_TYPES = TEXT_TYPES;
+// Tipe dengan ikon → icon motif tampil; wordmark/lettermark murni huruf.
 const ICON_TYPES = ['pictorial', 'abstract', 'emblem', 'mascot', 'combination'];
 
 // Klausa reference — disisipkan saat sketsa ter-attach (pola id-photo/product).
-const REFERENCE_CLAUSE = 'Use the attached sketch as the structural basis — keep its layout and proportions, redraw it as a clean vector logo.';
+const REFERENCE_CLAUSE = 'Use the attached sketch as a design reference. Preserve its defining idea and proportions while applying the selected logo structure, style, palette, and lettering.';
 
 export const logoDomain: DomainRecipe = {
   id: 'logo',
@@ -68,7 +68,7 @@ export const logoDomain: DomainRecipe = {
       id: 'brand',
       title: '02 · Brand',
       fields: [
-        { kind: 'textarea', key: 'brandBrief', label: 'Brand brief', placeholder: 'Brand name and what it does…', rows: 2 },
+        { kind: 'textarea', key: 'brandBrief', label: 'Brand brief', placeholder: 'Brand name in quotes + what it does…', rows: 2 },
         { kind: 'visual', key: 'industry', label: 'Industry', options: LOGO_INDUSTRIES, previewRatio: 'aspect-square' },
       ],
     },
@@ -129,10 +129,9 @@ export const logoDomain: DomainRecipe = {
     const typography = LOGO_TYPESTYLES.find(o => o.value === str(state.typography)) ?? LOGO_TYPESTYLES[0];
     const designer = LOGO_DESIGNERS.find(o => o.value === str(state.designer)) ?? LOGO_DESIGNERS[0];
 
-    // Input bebas: buang titik di ujung agar tak ada ".."; motif hanya untuk tipe ber-ikon
-    // (wordmark/lettermark menyatakan "no icon" — jangan kontradiksi, riset §2).
-    const brandBrief = str(state.brandBrief).replace(/\.+$/, '');
-    const motif = ICON_TYPES.includes(str(state.logoType)) ? str(state.iconMotif).replace(/\.+$/, '') : '';
+    // Input bebas: buang titik di ujung agar tak ada ".."; motif hanya untuk tipe ber-ikon.
+    const brandBrief = str(state.brandBrief).trim().replace(/\.+$/, '');
+    const motif = ICON_TYPES.includes(str(state.logoType)) ? str(state.iconMotif).trim().replace(/\.+$/, '') : '';
     const techniqueValues = Array.isArray(state.techniques) ? (state.techniques as string[]) : [];
     const selected = techniqueValues
       .map(v => LOGO_TECHNIQUES.find(o => o.value === v))
@@ -144,16 +143,25 @@ export const logoDomain: DomainRecipe = {
 
     // [Riset §1 blok 2 — img2img, pola id-photo/product] Klausa sketsa di posisi awal
     // (paling dipatuhi). Berbeda dari sibling: default createEmptyState TIDAK men-set
-    // hasReferencePhoto — klausa hanya muncul saat sketsa benar-benar ter-attach
-    // (App meng-update hasReferencePhoto saat upload/hapus), sehingga default prompt bersih.
+    // hasReferencePhoto — klausa hanya muncul saat sketsa benar-benar ter-attach.
     if (state.hasReferencePhoto === true) {
       blocks.push(REFERENCE_CLAUSE);
     }
 
-    // [Riset §1 blok 1] Kata "logo" + tipe di kalimat pertama mengunci genre; industri
-    // memberi kosakata asosiasi; brand brief + motif ikon jadi subjek konkret.
-    blocks.push(`${cap(type.promptPhrase)}, ${industry.promptPhrase}${brandBrief ? ` — ${brandBrief}` : ''}.${motif ? ` The icon depicts ${motif}.` : ''}`);
-
+    // [Riset §1 blok 1] Keep the brand brief as context, separate from the logo type.
+    const typePhrase = !brandBrief && type.value === 'emblem'
+      ? type.promptPhrase.replace('with the brand name and icon', 'with an icon')
+      : type.promptPhrase;
+    blocks.push(`${cap(typePhrase)}, ${industry.promptPhrase}.`);
+    if (brandBrief) {
+      const textInstruction = type.value === 'lettermark'
+        ? 'Use only the brand initials from the brief as visible text; add no other words.'
+        : TEXT_TYPES.includes(type.value)
+          ? 'Render only the brand name from the brief, spelled exactly as written; add no other words.'
+          : 'Use this as brand context only; include no visible lettering.';
+      blocks.push(`Brand brief: ${brandBrief}. ${textInstruction}`);
+    }
+    if (motif) blocks.push(`The icon depicts ${motif}.`);
     // [Riset §1 blok 4] Style axis — satu saja; dua style bertabrakan.
     blocks.push(`Style: ${style.promptPhrase}.`);
 
@@ -178,10 +186,13 @@ export const logoDomain: DomainRecipe = {
       blocks.push(`${cap(designer.promptPhrase)}.`);
     }
 
-    // [Riset §3 jebakan #2-#4] Guardrail/negative konstan di akhir — melawan mockup
-    // pollution, 3D bevel, photorealism leak, dan teks ekstra.
-    blocks.push('Presented flat, no mockup, no stationery scene, no 3D bevel, no drop shadow, no gloss, no photorealistic rendering, no watermark, no extra text beyond the brand name.');
-
+    // [Riset §3 jebakan #2-#4] Specify the intended flat, isolated presentation and text.
+    const textConstraint = type.value === 'lettermark'
+      ? (brandBrief ? 'Use only the supplied initials, with exact spelling.' : 'Do not invent initials or placeholder text.')
+      : TEXT_TYPES.includes(type.value)
+        ? (brandBrief ? 'Use only the supplied brand name, with exact spelling.' : 'Do not invent a brand name or placeholder text.')
+        : 'Keep the mark free of lettering.';
+    blocks.push(`Present a clean, flat vector logo alone on the selected plain background. ${textConstraint}`);
     return blocks.join('\n\n');
   },
 

@@ -251,9 +251,17 @@ export const cinematicDomain: DomainRecipe = {
   icon: '🎬',
   tagline: 'Compose cinematic photo prompts — subject, lighting, camera gear, and film aesthetics.',
   referencePhoto: false,
-  createEmptyState: () => createEmptyPromptState() as unknown as Record<string, unknown>,
+  createEmptyState: () => ({
+    ...createEmptyPromptState(),
+    subjectAction: 'a solitary traveler reading beside a rain-streaked window',
+    environment: 'a quiet room at dusk',
+    shotType: 'Medium shot',
+    lighting: 'warm window spill lighting',
+    mood: 'quiet and reflective',
+  }) as unknown as Record<string, unknown>,
   presetProtectedKeys: ['subjectAction', 'environment'],
   sections,
   customSections: ['elements'],
-  buildPrompt: state => buildPromptFromState(state as unknown as PromptState),
+  buildPrompt: state =>
+    buildPromptFromState(state as unknown as PromptState),
 };

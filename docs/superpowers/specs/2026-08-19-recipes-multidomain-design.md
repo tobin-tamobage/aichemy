@@ -135,3 +135,14 @@ Smart rules: "1 prompt = 1 message" guardrail (hint bila >3 elemen); story safe-
 ## 10. Research References
 
 `design/research-wedding.md`, `design/research-pasfoto.md`, `design/research-produk.md`, `design/research-marketing.md` (anatomi prompt, katalog field lengkap, contoh prompt jadi, jebakan + mitigasi, sumber 2025/2026).
+
+## Current implementation notes
+
+The shipped app has ten built-in recipes and remains prompt-only: no image upload input. When a recipe refers to a source photo or sketch, attach it in the chosen image tool; the recipe app does not receive or send image data.
+
+Keep generated prompts provider-neutral. Specify the subject, composition, style, lighting, and constraints; quote visible text and state its placement; separate requested edits from details to preserve. Keep provider-specific parameters outside the prompt and avoid promising exact text, print dimensions, or output resolution.
+
+Current guidance:
+- [OpenAI image prompting](https://developers.openai.com/api/docs/guides/image-prompting)
+- [Gemini image generation](https://ai.google.dev/gemini-api/docs/image-generation)
+- [Midjourney prompt basics](https://docs.midjourney.com/hc/en-us/articles/32023408776205-Prompt-Basics)

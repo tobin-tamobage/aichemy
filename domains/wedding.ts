@@ -109,6 +109,7 @@ export const weddingDomain: DomainRecipe = {
   ],
 
   buildPrompt: (state: DomainState): string => {
+    const moment = MOMENTS.find(o => o.value === str(state.moment)) ?? MOMENTS[0];
     const poses = POSES_BY_MOMENT[str(state.moment)] ?? POSES_BY_MOMENT.ceremony;
     const pose = poses.find(o => o.value === str(state.pose)) ?? poses[0];
     const framing = FRAMINGS.find(o => o.value === str(state.framing)) ?? FRAMINGS[0];
@@ -119,42 +120,33 @@ export const weddingDomain: DomainRecipe = {
     const camera = WEDDING_CAMERAS.find(o => o.value === str(state.camera)) ?? WEDDING_CAMERAS[0];
     const lensOverride = WEDDING_LENSES.find(o => o.value === str(state.lensOverride)) ?? WEDDING_LENSES[0];
 
-    // [Riset §1 blok 2] Subject + attire — hanya disisipkan bila ada chips terpilih.
+    // Attire chips guide clothing without making the bride or groom the focus of every scene.
     const attireValues = Array.isArray(state.attire) ? (state.attire as string[]) : [];
     const selected = attireValues
       .map(v => ATTIRE.find(o => o.value === v))
       .filter((o): o is NonNullable<typeof o> => Boolean(o));
     const bride = selected.filter(o => o.group === 'bride').map(o => o.promptPhrase);
     const groom = selected.filter(o => o.group === 'groom').map(o => o.promptPhrase);
-    let subject = 'the couple';
-    if (bride.length > 0 && groom.length > 0) {
-      subject = `the bride in ${bride.join(', ')}, the groom in ${groom.join(', ')}`;
-    } else if (bride.length > 0) {
-      subject = `the bride in ${bride.join(', ')}`;
-    } else if (groom.length > 0) {
-      subject = `the groom in ${groom.join(', ')}`;
-    }
+    const attireDetails: string[] = [];
+    if (bride.length > 0) attireDetails.push(`Bride wears ${bride.join(', ')}`);
+    if (groom.length > 0) attireDetails.push(`Groom wears ${groom.join(', ')}`);
 
-    // [Riset §1 blok 1 + §5 #4] Shot type/framing di awal (token paling berpengaruh);
-    // lensa default derived dari framing (spec §3.2 smart rule, riset §3.7).
-    // Phase 6 Task 1 — lensOverride 'auto' keeps the derived lens; explicit overrides it.
+    // Framing supplies the shot cue; Auto derives a matching lens, while an override replaces it.
     const derivedLens = LENS_BY_FRAMING[framing.value] ?? LENS_BY_FRAMING['close-up'];
     const lens = lensOverride.promptPhrase !== '' ? lensOverride.promptPhrase : derivedLens;
-
-    // [Riset §1] Satu kalimat ringkas: shot type → subject → pose → venue →
-    // lighting → mood+style (promptModifier) → kamera → film stock (bila dipilih).
-    // Target ≤80 kata (spec §3.2, riset §5 #12) — gabung blok, bukan paragraf.
     const parts = [
-      `${framing.promptPhrase.charAt(0).toUpperCase()}${framing.promptPhrase.slice(1)} of ${subject}`,
-      pose.promptPhrase,
+      `Wedding moment: ${moment.label}`,
+      `${framing.promptPhrase}: ${pose.promptPhrase}`,
+      ...attireDetails,
       venue.promptPhrase,
       lighting.promptPhrase,
       style.promptModifier,
-      `shot on ${lens}, ${camera.promptPhrase}`,
+      `Lens perspective: ${lens}`,
+      `Camera look: ${camera.promptPhrase}`,
     ];
     if (film.keyword) parts.push(film.keyword);
 
-    return `${parts.join(', ')}, photorealistic, natural skin texture, high resolution.`;
+    return `${parts.join(', ')}, photorealistic wedding photography, natural skin texture.`;
   },
 
   warnings: (state: DomainState): DomainWarning[] => {

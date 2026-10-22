@@ -3,212 +3,60 @@
  *
  * RenderZero Web - Cinematic AI Prompt Builder (frontend-only)
  *
- * Users compose cinematic image prompts from structured controls, then
- * copy or export the constructed prompt text to paste into external tools
- * (Gemini, ChatGPT, ...). No image/video generation, no API keys, no backend.
- *
- * Persistence: projects export/import as .nbproject JSON files; recent
- * projects and autosave live in localStorage (services/browserStorage.ts).
+ * Users build structured image prompts and copy or download them for external AI tools.
+ * Prompt state is session-only; image generation, APIs, and project files are not supported.
  */
 
-import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { PresetLibraryModal } from './components/PresetLibraryModal';
-import { CharacterLibraryModal } from './components/CharacterLibraryModal';
-import { InpaintEditor } from './components/InpaintEditor';
 import { StartScreen } from './components/StartScreen';
 import { StudioBuilder } from './components/StudioBuilder';
 import { StudioAccordionSection } from './components/StudioAccordionSection';
 import { StudioWorkspaceShell } from './components/StudioWorkspaceShell';
-import { UnsavedChangesModal } from './components/UnsavedChangesModal';
-import { NewProjectModal } from './components/NewProjectModal';
-import { MentionTextarea } from './components/video/MentionTextarea';
 import { DomainFieldRenderer } from './components/DomainFieldRenderer';
-import { ReferencePhotoField } from './components/ReferencePhotoField';
-import type { MentionOption } from './components/video/MentionTextarea';
 
-import {
-  useReferenceImages,
-  useElements, useProjectIO, projectNameFromPath, normalizeProjectFile, useTheme,
-  createInitialCharacter, createInitialScene, createInitialImageInput,
-} from './hooks';
+import { useTheme } from './hooks';
 import { useDomainState } from './hooks/useDomainState';
 import {
-  getAllDomains, getDomain, DEFAULT_DOMAIN_ID, applyPreset,
-  DOMAINS, listCustomRecipes, saveCustomStudio,
+  getDomain, DEFAULT_DOMAIN_ID, applyPreset,
 } from './domains';
-import type { DomainRecipe, DomainState, DomainWarning } from './domains';
-import { validateRecipe } from './domains/custom/validate';
+import type { DomainRecipe, DomainWarning } from './domains';
 import type { CustomRecipe } from './domains/custom/types';
-import { getSubjectPhrase, getAspectRatioSentence } from './packages/shared-core/services/promptBuilder';
 
-import { createStateComparisonKey } from './services/stateComparisonKey';
-import { dataURLToBlob, toClipboardImageBlob, composeReferenceImages, downloadDataUrl, compositeFilename } from './utils/referenceComposite';
-import {
-  downloadTextFile,
-  readFileAsText,
-  saveAutosave,
-  loadAutosave,
-  touchRecentProject,
-} from './services/browserStorage';
+import { downloadTextFile, rememberStudio } from './services/browserStorage';
 
-import type {
-  CharacterData,
-  ElementId,
-  ElementState,
-  InlineReferenceImage,
-  PresetWithPrompts,
-  PromptState,
-  ReferenceImageCategory,
-  UnsavedChangesAction,
-  ProjectFile,
-} from './types';
+import type { PresetWithPrompts } from './types';
 
 import {
-  Video, Download, AlertCircle, Layers,
-  X, Copy, Check, User, Shirt, Box, ImageIcon, Edit2, Bookmark,
-  RefreshCw, Upload, Plus, Home, FolderOpen, FileDown, Moon, Sun,
-  AlertTriangle,
+  AlertCircle, AlertTriangle, Bookmark, Check, CheckCircle2, Copy, Edit2, FileDown, Moon, Sun, X,
 } from 'lucide-react';
 
 // ============================================
 // HELPER COMPONENTS
 // ============================================
 
-/** Total reference images folded into the constructed prompt. */
-const MAX_REFERENCE_IMAGES = 14;
 
-/** Returns the icon component for an element type */
-const elementIcon = (id: ElementId) => {
-  const icons: Record<string, React.ReactNode> = {
-    character: <User className="w-7 h-7 text-accent" />,
-    outfit: <Shirt className="w-7 h-7 text-accent" />,
-    object: <Box className="w-7 h-7 text-accent" />,
-    scene: <ImageIcon className="w-7 h-7 text-accent" />,
-    imageInput: <Upload className="w-7 h-7 text-accent" />,
-    anonymousReference: <ImageIcon className="w-7 h-7 text-accent" />,
-  };
-  return icons[id] || <ImageIcon className="w-7 h-7 text-accent" />;
-};
-
-/** Drag-and-drop overlay shown when dragging an image over an element cell */
-const DropOverlay = () => (
-  <div className="absolute inset-0 bg-base/60 flex items-center justify-center z-10 pointer-events-none">
-    <span className="text-accent text-xs font-black uppercase tracking-widest">Drop image here</span>
-  </div>
-);
-
-type PromptReferenceDescriptor = InlineReferenceImage & {
-  key: string;
-  number: number;
-  displayText: string;
-  fullText: string;
-  assetFileName: string;
-  previewDataUrl: string | null;
-  mentionTag?: string;
-  mentionLabel?: string;
-};
-
-/** Builds drag event handlers for an element cell */
-const makeElementDragHandlers = (
-  elementId: ElementId,
-  setDragOverElementId: (id: ElementId | null) => void,
-  handleDropImage: (id: ElementId, source: File | string, setError?: (msg: string | null) => void) => void,
-  setError?: (msg: string | null) => void,
-) => ({
-  onDragOver: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverElementId(elementId);
-  },
-  onDragEnter: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverElementId(elementId);
-  },
-  onDragLeave: (e: React.DragEvent) => {
-    e.stopPropagation();
-    const related = e.relatedTarget as Node | null;
-    if (related && e.currentTarget.contains(related)) return;
-    setDragOverElementId(null);
-  },
-  onDrop: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverElementId(null);
-    const inAppImage = e.dataTransfer.getData('text/nano-banana-image');
-    if (inAppImage) {
-      handleDropImage(elementId, inAppImage, setError);
-      return;
-    }
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      handleDropImage(elementId, file, setError);
-      return;
-    }
-    const url = e.dataTransfer.getData('text/uri-list') || e.dataTransfer.getData('text/plain');
-    if (url && (url.startsWith('data:image/') || url.startsWith('http'))) {
-      handleDropImage(elementId, url, setError);
-    }
-  },
-});
-
-const makeAdditionalReferenceDragHandlers = (
-  index: number,
-  setDragOverAdditionalReferenceIndex: (index: number | null) => void,
-  handleDropAdditionalReferenceImage: (index: number, source: File | string, setError?: (msg: string | null) => void) => void,
-  setError?: (msg: string | null) => void,
-) => ({
-  onDragOver: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverAdditionalReferenceIndex(index);
-  },
-  onDragEnter: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverAdditionalReferenceIndex(index);
-  },
-  onDragLeave: (e: React.DragEvent) => {
-    e.stopPropagation();
-    const related = e.relatedTarget as Node | null;
-    if (related && e.currentTarget.contains(related)) return;
-    setDragOverAdditionalReferenceIndex(null);
-  },
-  onDrop: (e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragOverAdditionalReferenceIndex(null);
-    const inAppImage = e.dataTransfer.getData('text/nano-banana-image');
-    if (inAppImage) {
-      handleDropAdditionalReferenceImage(index, inAppImage, setError);
-      return;
-    }
-    const files = Array.from(e.dataTransfer.files || []);
-    const file = files.find(f => f.type.startsWith('image/'));
-    if (file) {
-      handleDropAdditionalReferenceImage(index, file, setError);
-    } else if (setError) {
-      setError('Only image files can be dropped here');
-    }
-  },
-});
-
-/** Accordion state per section id — engine section ids + 'elements-tool' (cinematic). */
+/** Accordion state keyed by recipe section id. */
 type StudioExpandedSections = Record<string, boolean>;
 
-const hasNonEmptyValue = (value?: string | null) => !!value?.trim();
-const hasLoadedElement = (element?: ElementState | null) => !!(element?.base64Data || element?.previewDataUrl);
 
-/** Buka semua section engine — konsisten untuk semua domain, termasuk cinematic
- *  (sebelumnya cinematic collapse section tanpa nilai di desktop, terasa "kosong"). */
-const expandAllSections = (domain: DomainRecipe): StudioExpandedSections => {
+/** Progressive disclosure: start with the first two decisions, keep the rest one click away. */
+const defaultExpandedForDomain = (domain: DomainRecipe): StudioExpandedSections => {
   const expanded: StudioExpandedSections = {};
-  for (const section of domain.sections) expanded[section.id] = true;
+  domain.sections.forEach((section, index) => { expanded[section.id] = index < 2; });
   return expanded;
 };
 
-/** Default accordion: semua section domain terbuka (mobile & desktop). */
-const defaultExpandedForDomain = (domain: DomainRecipe): StudioExpandedSections => expandAllSections(domain);
+function getSectionProgress(section: DomainRecipe['sections'][number], state: Record<string, unknown>) {
+  const fields = section.fields.filter(field => !field.visibleWhen || field.visibleWhen(state));
+  const completed = fields.filter(field => {
+    const value = state[field.key];
+    if (typeof value === 'string') return value.trim().length > 0;
+    if (Array.isArray(value)) return value.length > 0;
+    return value === true;
+  }).length;
+  return { completed, total: fields.length, done: fields.length > 0 && completed === fields.length };
+}
 
 /** Banner smart-rule (domain.warnings) di bawah section terkait. */
 const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning }) => (
@@ -224,21 +72,32 @@ const SectionWarningBanner: React.FC<{ warning: DomainWarning }> = ({ warning })
   </div>
 );
 
-/** Escape HTML special chars for the text/html clipboard representation. */
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+
+async function writeClipboardText(text: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return;
+  } catch {
+    // Clipboard permission can be denied even during a user click.
+  }
+
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.readOnly = true;
+  textarea.style.cssText = 'position: fixed; top: 0; left: 0; opacity: 0; pointer-events: none;';
+  document.body.appendChild(textarea);
+
+  let copied = false;
+  try {
+    textarea.select();
+    copied = document.execCommand('copy');
+  } finally {
+    textarea.remove();
+  }
+
+  if (!copied) throw new Error('Unable to copy text to clipboard.');
 }
 
-/**
- * Project file format v3 — generic, domain-driven
- * { id, name, version: '3.0.0', timestamp, domainId, domainState, referencePhotoDataUrl? }.
- * Legacy v2 files are migrated on import via normalizeProjectFile.
- */
 
 // ============================================
 // MAIN APP COMPONENT
@@ -249,482 +108,69 @@ export default function App() {
   const [domainId, setDomainId] = useState<string>(DEFAULT_DOMAIN_ID);
   const activeDomain = useMemo(() => getDomain(domainId), [domainId]);
   const domain = useDomainState(activeDomain);
-  const elements = useElements();
   const { theme, toggle } = useTheme();
 
   // --- Local UI State ---
   const [showPresetLibrary, setShowPresetLibrary] = useState(false);
-  const [showCharacterLibrary, setShowCharacterLibrary] = useState(false);
   const [showCopyFeedback, setShowCopyFeedback] = useState(false);
-  const [showCopyHint, setShowCopyHint] = useState(false);
-  /** Session flag: browser threw on multi-format clipboard write → langsung text-only. */
-  const clipboardImageUnsupported = useRef(false);
   const [showExportFeedback, setShowExportFeedback] = useState(false);
-  /** Reference photo data URL — session-only; persisted to the project when <500KB. */
-  const [referenceDataUrl, setReferenceDataUrl] = useState<string | null>(null);
-  const [elementError, setElementError] = useState<string | null>(null);
-  const [generationMode, setGenerationMode] = useState<'generate' | 'edit'>('generate');
   const [isEditingPrompt, setIsEditingPrompt] = useState(false);
-  const [compositeReferenceDataUrl, setCompositeReferenceDataUrl] = useState<string | null>(null);
-  const [compositeCopyFeedback, setCompositeCopyFeedback] = useState(false);
   const [expandedSections, setExpandedSections] = useState<StudioExpandedSections>(() => (
     defaultExpandedForDomain(activeDomain)
   ));
 
   // --- App View State ---
   const [appView, setAppView] = useState<'start' | 'editor'>('start');
-  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
-  const [showUnsavedModal, setShowUnsavedModal] = useState(false);
-  const [showNewProjectModal, setShowNewProjectModal] = useState(false);
-  const [pendingNavAction, setPendingNavAction] = useState<(() => void) | null>(null);
-  const [showSavedFeedback, setShowSavedFeedback] = useState(false);
-  const [currentProjectId, setCurrentProjectId] = useState<string | null>(null);
-  const [currentProjectName, setCurrentProjectName] = useState<string | null>(null);
-  const studioLayoutResetRequestedRef = useRef(false);
-  const isRestoringProjectRef = useRef(false);
-  const importFileInputRef = useRef<HTMLInputElement | null>(null);
 
-  // --- Studio Builder (custom domains, phase 5) ---
-  const [showStudioBuilder, setShowStudioBuilder] = useState(false);
-  /** Edit mode target; null = create mode. */
+  // --- Custom studio editor ---
   const [editingRecipe, setEditingRecipe] = useState<CustomRecipe | null>(null);
   /** Bump forces re-render → pills + StartScreen re-read getAllDomains()
    *  (registry cache already invalidated by saveCustomStudio/deleteCustomStudio). */
   const [customsVersion, setCustomsVersion] = useState(0);
-  const studioImportInputRef = useRef<HTMLInputElement | null>(null);
 
   const toggleSection = useCallback((sectionId: string) => {
     setExpandedSections(prev => ({ ...prev, [sectionId]: !prev[sectionId] }));
   }, []);
 
-  // --- Project IO ---
-  /** Only persist the reference photo to the project file when it is small enough. */
-  const exportedReferenceDataUrl = useMemo(
-    () => (referenceDataUrl && referenceDataUrl.length < 500 * 1024 ? referenceDataUrl : undefined),
-    [referenceDataUrl],
-  );
 
-  const projectIO = useProjectIO({
-    domainId,
-    domainState: domain.state,
-    referencePhotoDataUrl: exportedReferenceDataUrl,
-    characters: elements.characters,
-    sceneElement: elements.sceneElement,
-    sceneInputMode: elements.sceneInputMode,
-    imageInput: elements.imageInput,
-    additionalReferenceImages: elements.additionalReferenceImages,
-    setCharacters: elements.setCharacters,
-    setSceneElement: elements.setSceneElement,
-    setSceneInputMode: elements.setSceneInputMode,
-    setImageInput: elements.setImageInput,
-    setAdditionalReferenceImages: elements.setAdditionalReferenceImages,
-    setError: setElementError,
-    setIsManualPrompt: () => domain.clearManual(),
-    setIsEditingPrompt: setIsEditingPrompt,
-    currentProjectId,
-    setCurrentProjectId,
-    currentProjectName,
-    setCurrentProjectName,
-    setHasUnsavedChanges,
-  });
 
-  // --- Track dirty state on prompt/setting changes ---
-  const projectSnapshotRef = useRef<string | null>(null);
-  const [baselineEpoch, setBaselineEpoch] = useState(0);
-  const currentProjectSnapshot = useMemo(
-    () => createStateComparisonKey({ domainId, domainState: domain.state }),
-    [domainId, domain.state],
-  );
-
-  /** Tetapkan baseline bersih — effect capture menangkap snapshot pada commit
-   *  berikutnya sebagai acuan compare. Dipanggil di titik save/load/create/switch
-   *  (epoch berubah → capture; typing TIDAK mengubah epoch → snapshot tetap acuan). */
-  const requestCleanBaseline = useCallback(() => {
-    setBaselineEpoch(epoch => epoch + 1);
-    setHasUnsavedChanges(false);
-  }, []);
-
-  // Capture baseline bersih (state sudah final di commit ini)
-  useEffect(() => {
-    projectSnapshotRef.current = currentProjectSnapshot;
-    // deps sengaja hanya epoch: capture HANYA saat baseline diminta eksplisit
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [baselineEpoch]);
-
-  // Compare current state to snapshot — mark dirty if changed
-  useEffect(() => {
-    if (appView !== 'editor') return;
-    if (isRestoringProjectRef.current) return;
-    if (projectSnapshotRef.current === null) return;
-    if (currentProjectSnapshot !== projectSnapshotRef.current) {
-      setHasUnsavedChanges(true);
-    }
-  }, [currentProjectSnapshot, appView]);
-
-  // --- Autosave to localStorage (debounced) ---
-  const autosaveTimeoutRef = useRef<number | null>(null);
-  useEffect(() => {
-    if (appView !== 'editor' || !currentProjectId) return;
-    clearTimeout(autosaveTimeoutRef.current ?? undefined);
-    autosaveTimeoutRef.current = window.setTimeout(() => {
-      const data = projectIO.buildProjectData();
-      if (saveAutosave(currentProjectId, data)) {
-        touchRecentProject(currentProjectId, data.name, domainId);
-      }
-    }, 1000);
-    return () => clearTimeout(autosaveTimeoutRef.current ?? undefined);
-  }, [appView, currentProjectId, currentProjectName, currentProjectSnapshot, projectIO, domainId, domain.state]);
-
-  // --- Warn before leaving the page with unsaved changes ---
-  useEffect(() => {
-    if (!hasUnsavedChanges) return;
-    const handler = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-    };
-    window.addEventListener('beforeunload', handler);
-    return () => window.removeEventListener('beforeunload', handler);
-  }, [hasUnsavedChanges]);
-
-  // --- Project Management Handlers ---
-
-  /** Check for unsaved changes before navigating. If dirty, show modal; otherwise run action immediately. */
-  const requestNavigation = useCallback((action: () => void) => {
-    if (hasUnsavedChanges) {
-      setPendingNavAction(() => action);
-      setShowUnsavedModal(true);
-    } else {
-      action();
-    }
-  }, [hasUnsavedChanges]);
-
-  /** Export the current project as a .nbproject JSON download. */
-  const handleExportProject = useCallback(() => {
-    const data = projectIO.buildProjectData();
-    const safeName = (data.name || 'untitled').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
-    downloadTextFile(`${safeName}.nbproject`, JSON.stringify(data, null, 2));
-    if (currentProjectId) {
-      saveAutosave(data.id, data);
-      touchRecentProject(data.id, data.name, domainId);
-    }
-    requestCleanBaseline();
-    setShowSavedFeedback(true);
-    setTimeout(() => setShowSavedFeedback(false), 2000);
-  }, [projectIO, currentProjectId, domainId, domain.state, requestCleanBaseline]);
-
-  /** Restore semua state dari ProjectFile v2/v3 — normalize → set domainId + reset domainState. */
-  const restoreProject = useCallback((project: ProjectFile) => {
-    const normalized = normalizeProjectFile(project);
-    const nextDomainId = getDomain(normalized.domainId).id;
-    setDomainId(nextDomainId);
-    // Elemen cinematic (characters/scene/ref) + id/name via projectIO; state domain
-    // ditimpa eksplisit di bawah (restore = reset(domainState) + set domainId).
-    projectIO.restoreProjectState(normalized);
-    domain.reset(normalized.domainState);
-    setReferenceDataUrl(normalized.referencePhotoDataUrl ?? null);
-    requestCleanBaseline();
-  }, [domain, projectIO, requestCleanBaseline]);
-
-  /** Import a .nbproject file picked via the hidden file input. */
-  const handleImportFile = useCallback(async (file: File) => {
-    isRestoringProjectRef.current = true;
-    try {
-      const text = await readFileAsText(file);
-      const project = JSON.parse(text) as ProjectFile;
-      const hasDomainState = !!project.domainState && typeof project.domainState === 'object';
-      const hasPromptState = !!project.promptState && typeof project.promptState === 'object';
-      if (!project || typeof project !== 'object' || (!hasDomainState && !hasPromptState)) {
-        throw new Error('Not a valid .nbproject file');
-      }
-      if (!project.id) project.id = globalThis.crypto.randomUUID();
-      if (!project.name) project.name = projectNameFromPath(file.name);
-      restoreProject(project);
-      saveAutosave(project.id, project);
-      touchRecentProject(project.id, project.name, project.domainId ?? DEFAULT_DOMAIN_ID);
-      studioLayoutResetRequestedRef.current = true;
-      setTimeout(() => { isRestoringProjectRef.current = false; }, 100);
-      setAppView('editor');
-    } catch (err) {
-      isRestoringProjectRef.current = false;
-      setElementError(`Failed to import project: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  }, [restoreProject]);
-
-  /** Load a project from the localStorage autosave of a recent entry. */
-  const handleLoadRecentProject = useCallback((projectId: string) => {
-    const project = loadAutosave(projectId) as ProjectFile | null;
-    if (!project) {
-      setElementError('Saved state for this project is no longer available. Import the .nbproject file instead.');
-      return;
-    }
-    isRestoringProjectRef.current = true;
-    restoreProject(project);
-    touchRecentProject(projectId, project.name, project.domainId ?? DEFAULT_DOMAIN_ID);
-    studioLayoutResetRequestedRef.current = true;
-    setTimeout(() => { isRestoringProjectRef.current = false; }, 100);
-    setAppView('editor');
-  }, [restoreProject]);
-
-  /** Handle the unsaved changes modal result */
-  const handleUnsavedAction = useCallback((action: UnsavedChangesAction) => {
-    setShowUnsavedModal(false);
-
-    if (action === 'cancel') {
-      setPendingNavAction(null);
-      return;
-    }
-
-    if (action === 'save') {
-      handleExportProject();
-    }
-
-    if (pendingNavAction) {
-      pendingNavAction();
-      setPendingNavAction(null);
-    }
-  }, [pendingNavAction, handleExportProject]);
-
-  /** New Project: clear state, enter editor, autosave initial state */
-  const handleNewProject = useCallback((recipeId?: string, name?: string) => {
-    const nextDomain = getDomain(recipeId ?? domainId);
-    projectIO.handleClearAll();
-    const emptyState = nextDomain.createEmptyState();
-    domain.reset(emptyState);
+  /** Start a fresh prompt for the selected recipe. */
+  const handleSelectRecipe = useCallback((recipeId: string) => {
+    const nextDomain = getDomain(recipeId);
+    rememberStudio(recipeId);
+    domain.clearManual();
+    setIsEditingPrompt(false);
+    domain.reset(nextDomain.createEmptyState());
     setDomainId(nextDomain.id);
     setExpandedSections(defaultExpandedForDomain(nextDomain));
-    const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
-    const projectName = name?.trim() || 'Untitled';
-    setCurrentProjectId(id);
-    setCurrentProjectName(projectName);
-    setReferenceDataUrl(null);
-    requestCleanBaseline();
     setAppView('editor');
-  }, [domain, domainId, projectIO, requestCleanBaseline]);
+  }, [domain]);
 
-  /** Open Project: trigger the hidden file input */
-  const handleOpenProject = useCallback(() => {
-    importFileInputRef.current?.click();
-  }, []);
 
-  // --- Studio Builder handlers (phase 5) ---
+  // --- Custom studio editor handlers ---
 
-  /** Create Studio: open the builder empty. */
-  const openBuilder = useCallback(() => {
-    setEditingRecipe(null);
-    setShowStudioBuilder(true);
-  }, []);
-
-  /** Edit Studio: open the builder pre-filled; Save overwrites the same id. */
+  /** Edit Studio: open the editor pre-filled; Save overwrites the same id. */
   const openBuilderWith = useCallback((recipe: CustomRecipe) => {
     setEditingRecipe(recipe);
-    setShowStudioBuilder(true);
   }, []);
 
-  /** Import Studio: trigger the hidden .nbrecipe file input. */
-  const handleImportStudio = useCallback(() => {
-    studioImportInputRef.current?.click();
-  }, []);
 
-  /** Import a .nbrecipe file: parse → validate (builtin + existing custom id
-   *  collisions rejected, v1 per plan) → save + bump. Errors alert, nothing saved. */
-  const handleStudioImportFile = useCallback(async (file: File) => {
-    try {
-      const text = await readFileAsText(file);
-      const json: unknown = JSON.parse(text);
-      const collisionIds = [...DOMAINS.map(d => d.id), ...listCustomRecipes().map(r => r.id)];
-      const result = validateRecipe(json, collisionIds);
-      if (!result.ok) {
-        window.alert(`Invalid studio recipe:\n${result.errors.join('\n')}`);
-        return;
-      }
-      if (saveCustomStudio(result.recipe)) setCustomsVersion(v => v + 1);
-    } catch (err) {
-      window.alert(`Failed to import studio: ${err instanceof Error ? err.message : String(err)}`);
-    }
-  }, []);
-
-  /** Builder saved: refresh pills/cards and close. */
+  /** Saved edits refresh the cards and close the editor. */
   const handleStudioSaved = useCallback(() => {
     setCustomsVersion(v => v + 1);
-    setShowStudioBuilder(false);
     setEditingRecipe(null);
   }, []);
 
-  const handleClearWorkspace = useCallback(() => {
-    projectIO.handleClearAll();
-    const emptyState = activeDomain.createEmptyState();
-    domain.reset(emptyState);
-    setExpandedSections(defaultExpandedForDomain(activeDomain));
-    setReferenceDataUrl(null);
-    requestCleanBaseline();
-  }, [activeDomain, domain, projectIO, requestCleanBaseline]);
 
-  /** Ganti domain aktif (header switcher) — reset state hook + project baru,
-   *  dengan unsaved-warning bila ada perubahan yang belum disimpan. */
-  const switchDomain = useCallback((nextId: string) => {
-    if (nextId === domainId) return;
-    const targetDomain = getDomain(nextId);
-    const apply = () => {
-      setDomainId(nextId);
-      const emptyState = targetDomain.createEmptyState();
-      domain.reset(emptyState);
-      setExpandedSections(defaultExpandedForDomain(targetDomain));
-      const id = globalThis.crypto?.randomUUID?.() ?? `proj-${Date.now()}`;
-      setCurrentProjectId(id);
-      setCurrentProjectName('Untitled');
-      setReferenceDataUrl(null);
-      requestCleanBaseline();
-      setShowSavedFeedback(false);
-    };
-    requestNavigation(apply);
-  }, [domainId, domain, requestNavigation, requestCleanBaseline]);
 
-  // --- Auto-switch generation mode based on global reference image ---
-  useEffect(() => {
-    setGenerationMode(elements.imageInput.base64Data ? 'edit' : 'generate');
-  }, [elements.imageInput.base64Data]);
-
-  // Reset accordion layout after a project is loaded
-  useEffect(() => {
-    if (appView !== 'editor' || !studioLayoutResetRequestedRef.current) {
-      return;
-    }
-
-    studioLayoutResetRequestedRef.current = false;
-    setExpandedSections(defaultExpandedForDomain(activeDomain));
-  }, [
-    appView,
-    activeDomain,
-  ]);
-
-  useEffect(() => {
-    if (elementError) {
-      setExpandedSections(prev => (prev['elements-tool'] ? prev : { ...prev, 'elements-tool': true }));
-    }
-  }, [elementError]);
-
-  // --- Final prompt: auto-build dari domain hook; cinematic pakai prompt singkat
-  // saat mode Edit (Inpaint) dengan Global Reference aktif (perilaku lama).
-  const isEditWithSourceImage = domainId === 'cinematic'
-    && !!elements.imageInput.base64Data
-    && generationMode === 'edit';
-  const editModePrompt = useMemo(() => {
-    if (!isEditWithSourceImage) return '';
-    const subject = getSubjectPhrase(domain.state as unknown as PromptState);
-    const ar = getAspectRatioSentence(domain.state as unknown as PromptState);
-    return [`Modify the source image to: ${subject}.`, 'Don\'t blur faces randomly.', ar].filter(Boolean).join(' ');
-  }, [isEditWithSourceImage, domain.state]);
-  const finalPrompt = isEditWithSourceImage && !domain.isManualPrompt ? editModePrompt : domain.finalPrompt;
-
-  // --- Reference image descriptors folded into the prompt ---
-  const refs = useReferenceImages(
-    elements.characters,
-    elements.sceneElement,
-    elements.imageInput,
-    elements.additionalReferenceImages,
-    MAX_REFERENCE_IMAGES,
-    undefined,
-    'image',
+  const finalPrompt = domain.finalPrompt;
+  const sectionMetrics = useMemo(
+    () => activeDomain.sections.map(section => ({ section, ...getSectionProgress(section, domain.state) })),
+    [activeDomain, domain.state],
   );
+  const completedSections = sectionMetrics.filter(metric => metric.done).length;
+  const promptReady = finalPrompt.trim().length > 0;
 
-  const currentReferenceDescriptors = useMemo<PromptReferenceDescriptor[]>(
-    () => generationMode === 'edit' ? refs.activeReferenceDescriptorsForEdit : refs.activeReferenceDescriptors,
-    [generationMode, refs.activeReferenceDescriptors, refs.activeReferenceDescriptorsForEdit],
-  );
-  const currentOverflowReferenceDescriptors = useMemo<PromptReferenceDescriptor[]>(
-    () => generationMode === 'edit' ? refs.overflowReferenceDescriptorsForEdit : refs.overflowReferenceDescriptors,
-    [generationMode, refs.overflowReferenceDescriptors, refs.overflowReferenceDescriptorsForEdit],
-  );
-
-  const currentElementsInstructionFull = generationMode === 'edit'
-    ? refs.elementsInstructionFullEdit
-    : refs.elementsInstructionFull;
-  const currentElementsInstructionDisplay = generationMode === 'edit'
-    ? refs.elementsInstructionDisplayEdit
-    : refs.elementsInstructionDisplay;
-
-  const activeAnonymousReferenceNumbers = useMemo(
-    () => new Map<string, number>(
-      currentReferenceDescriptors
-        .filter(descriptor => descriptor.category === 'anonymous')
-        .map(descriptor => [descriptor.key, descriptor.number]),
-    ),
-    [currentReferenceDescriptors],
-  );
-  const overflowAnonymousReferenceKeys = useMemo(
-    () => new Set<string>(
-      currentOverflowReferenceDescriptors
-        .filter(descriptor => descriptor.category === 'anonymous')
-        .map(descriptor => descriptor.key),
-    ),
-    [currentOverflowReferenceDescriptors],
-  );
-  const nonAnonymousReferenceCount = useMemo(
-    () => currentReferenceDescriptors.filter(descriptor => descriptor.category !== 'anonymous').length,
-    [currentReferenceDescriptors],
-  );
-  const maxAnonymousReferenceSlots = Math.max(0, MAX_REFERENCE_IMAGES - nonAnonymousReferenceCount);
-  const activeAnonymousReferenceCount = activeAnonymousReferenceNumbers.size;
-  const remainingAnonymousReferenceSlots = Math.max(0, maxAnonymousReferenceSlots - elements.additionalReferenceImages.length);
-  const canAddAdditionalReference = elements.additionalReferenceImages.length < maxAnonymousReferenceSlots;
-
-  // --- Composite reference image (face/outfit/object/scene → 1 image for copy) ---
-  useEffect(() => {
-    const sources: Array<{ dataUrl: string; label: string }> = [];
-    let imgIdx = 1;
-    elements.characters.forEach((c) => {
-      if (c.face.previewDataUrl) sources.push({ dataUrl: c.face.previewDataUrl, label: `Image_${imgIdx++} - Face` });
-      if (c.outfit.previewDataUrl) sources.push({ dataUrl: c.outfit.previewDataUrl, label: `Image_${imgIdx++} - Outfit` });
-      if (c.object.previewDataUrl) sources.push({ dataUrl: c.object.previewDataUrl, label: `Image_${imgIdx++} - Object` });
-    });
-    if (elements.sceneElement.previewDataUrl) sources.push({ dataUrl: elements.sceneElement.previewDataUrl, label: `Image_${imgIdx} - Scene` });
-    if (sources.length === 0) {
-      setCompositeReferenceDataUrl(null);
-      return;
-    }
-    let cancelled = false;
-    composeReferenceImages(sources).then((url) => {
-      if (!cancelled) setCompositeReferenceDataUrl(url);
-    }).catch(() => {
-      if (!cancelled) setCompositeReferenceDataUrl(sources[0]?.dataUrl ?? null);
-    });
-    return () => { cancelled = true; };
-  }, [elements.characters, elements.sceneElement.previewDataUrl]);
-  const subjectCharacterMentions = useMemo<MentionOption[]>(() => {
-    const options: MentionOption[] = [];
-    elements.characters.forEach((c, i) => {
-      const hasImages = !!(c.face.base64Data || c.outfit.base64Data || c.object.base64Data);
-      const parts: string[] = [];
-      if (c.face.base64Data) parts.push('face');
-      if (c.outfit.base64Data) parts.push('outfit');
-      if (c.object.base64Data) parts.push('object');
-      options.push({
-        tag: `@Character${i + 1}`,
-        label: `Character ${i + 1} - ${parts.join(', ')} loaded`,
-        kind: 'character',
-        thumbnailUrl: c.face.previewDataUrl || (c.face.base64Data ? `data:${c.face.mimeType || 'image/jpeg'};base64,${c.face.base64Data}` : null),
-        thumbnailKind: c.face.previewDataUrl || c.face.base64Data ? 'image' : 'placeholder',
-      });
-    });
-    return options;
-  }, [elements.characters]);
-
-  const subjectImageMentions = useMemo<MentionOption[]>(
-    () => currentReferenceDescriptors
-      .filter(descriptor => descriptor.category === 'anonymous' && descriptor.mentionTag && descriptor.mentionLabel)
-      .map(descriptor => ({
-        tag: descriptor.mentionTag!,
-        label: descriptor.mentionLabel!,
-        kind: 'image',
-        thumbnailUrl: descriptor.previewDataUrl,
-        thumbnailKind: descriptor.previewDataUrl ? 'image' : 'placeholder',
-      })),
-    [currentReferenceDescriptors],
-  );
-
-  const subjectMentions = useMemo(
-    () => [...subjectCharacterMentions, ...subjectImageMentions],
-    [subjectCharacterMentions, subjectImageMentions],
-  );
 
   /** Load visual settings — merge preset ke state saat ini (engine). */
   const handleLoadPreset = (preset: PresetWithPrompts) => {
@@ -747,86 +193,28 @@ export default function App() {
     }));
   };
 
-  /** Full prompt text (reference instruction + constructed prompt). */
-  const primaryPromptToSend = useMemo(() => {
-    if (!currentElementsInstructionFull) return finalPrompt;
-    return `${currentElementsInstructionFull} ${finalPrompt}`.trim();
-  }, [currentElementsInstructionFull, finalPrompt]);
 
-  const primaryPromptForDisplay = useMemo(() => {
-    if (!currentElementsInstructionDisplay) return finalPrompt;
-    return `${currentElementsInstructionDisplay} ${finalPrompt}`.trim();
-  }, [currentElementsInstructionDisplay, finalPrompt]);
-
-  /** Copy the constructed prompt (text only — image download is separate). */
+  /** Copy the constructed prompt text. */
   const handleCopyPrompt = async () => {
-    if (!primaryPromptToSend) return;
-    const showFeedback = () => {
-      setShowCopyFeedback(true);
-      setTimeout(() => setShowCopyFeedback(false), 2000);
-    };
-    const showHint = () => {
-      setShowCopyHint(true);
-      setTimeout(() => setShowCopyHint(false), 4000);
-    };
+    if (!finalPrompt) return;
     try {
-      await navigator.clipboard.writeText(primaryPromptToSend);
-      showFeedback();
-      if (referenceDataUrl) showHint();
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  /** Ghost button: copy only the prompt text. */
-  const handleCopyTextOnly = async () => {
-    if (!primaryPromptToSend) return;
-    try {
-      await navigator.clipboard.writeText(primaryPromptToSend);
+      await writeClipboardText(finalPrompt);
       setShowCopyFeedback(true);
       setTimeout(() => setShowCopyFeedback(false), 2000);
     } catch (err) {
       console.error(err);
     }
-  };
-
-  /** Download reference photo as full WebP — no PNG transcode, detail penuh. */
-  const handleDownloadPhoto = () => {
-    if (!referenceDataUrl) return;
-    downloadDataUrl(referenceDataUrl, compositeFilename('aichemy-reference'));
-    setShowCopyFeedback(true);
-    setTimeout(() => setShowCopyFeedback(false), 2000);
-  };
-
-  const handleDownloadComposite = () => {
-    if (!compositeReferenceDataUrl) return;
-    downloadDataUrl(compositeReferenceDataUrl, compositeFilename('aichemy-composite'));
-    setCompositeCopyFeedback(true);
-    setTimeout(() => setCompositeCopyFeedback(false), 2000);
   };
   /** Export the constructed prompt as a .txt download */
   const handleExportPrompt = () => {
-    if (!primaryPromptToSend) return;
-    const safeName = (currentProjectName || 'prompt').replace(/[^a-z0-9]+/gi, '_').toLowerCase();
-    downloadTextFile(`${safeName}_prompt.txt`, primaryPromptToSend, 'text/plain');
+    if (!finalPrompt) return;
+    const safeName = activeDomain.label.replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+    downloadTextFile(`${safeName}_prompt.txt`, finalPrompt, 'text/plain');
     setShowExportFeedback(true);
     setTimeout(() => setShowExportFeedback(false), 2000);
   };
 
-  // Ctrl+S exports the project file
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-        e.preventDefault();
-        if (appView === 'editor') handleExportProject();
-      }
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [appView, handleExportProject]);
 
-  const isSceneStitchMode = elements.sceneInputMode === 'stitch';
-  const hasEditSource = !!elements.imageInput.base64Data;
 
   // ============================================
   // RENDER
@@ -834,98 +222,92 @@ export default function App() {
 
   return (
     <>
-      {/* Unsaved Changes Modal */}
-      <UnsavedChangesModal
-        isOpen={showUnsavedModal}
-        onAction={handleUnsavedAction}
-        projectName={currentProjectName}
-      />
 
-      {/* New Project Name Modal */}
-      <NewProjectModal
-        isOpen={showNewProjectModal}
-        onConfirm={(name) => {
-          setShowNewProjectModal(false);
-          handleNewProject(domainId, name);
-        }}
-        onCancel={() => setShowNewProjectModal(false)}
-      />
 
-      {/* Hidden project import input */}
-      <input
-        ref={importFileInputRef}
-        type="file"
-        accept=".nbproject,.json,application/json"
-        className="hidden"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) void handleImportFile(file);
-          e.target.value = '';
-        }}
-      />
-
-      {/* Hidden studio recipe import input */}
-      <input
-        ref={studioImportInputRef}
-        type="file"
-        accept=".json,.nbrecipe,application/json"
-        className="hidden"
-        onChange={(e) => {
-          const file = e.target.files?.[0];
-          if (file) void handleStudioImportFile(file);
-          e.target.value = '';
-        }}
-      />
-
-      {/* Studio Builder modal (create/edit custom studios) */}
-      <StudioBuilder
-        isOpen={showStudioBuilder}
-        initialRecipe={editingRecipe}
-        onClose={() => { setShowStudioBuilder(false); setEditingRecipe(null); }}
-        onSaved={handleStudioSaved}
-      />
+      {/* Edit imported custom studios */}
+      {editingRecipe && (
+        <StudioBuilder
+          initialRecipe={editingRecipe}
+          onClose={() => setEditingRecipe(null)}
+          onSaved={handleStudioSaved}
+        />
+      )}
 
       {appView === 'start' ? (
         <StartScreen
-          onNewProject={handleNewProject}
-          onOpenProject={handleOpenProject}
-          onLoadRecentProject={handleLoadRecentProject}
-          onCreateStudio={openBuilder}
-          onImportStudio={handleImportStudio}
+          onSelectRecipe={handleSelectRecipe}
           onEditStudio={openBuilderWith}
+          theme={theme}
+          onToggleTheme={toggle}
         />
       ) : (
     <div className="min-h-screen lg:h-screen bg-base text-ink font-sans flex flex-col lg:overflow-hidden">
       {/* ========== HEADER ========== */}
-      <header className="shrink-0 border-b border-line bg-base/90 sticky top-0 z-50 backdrop-blur-md">
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
-          <div className="min-w-0 flex items-center gap-2">
-            <span className="text-sm font-bold truncate max-w-[60vw]">{currentProjectName || 'Untitled'}</span>
-            {hasUnsavedChanges && <span className="text-accent text-lg leading-none" title="Unsaved changes">●</span>}
-            {showSavedFeedback && <span className="text-[10px] font-bold uppercase tracking-wider text-ok animate-in fade-in">Saved</span>}
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <button type="button" onClick={() => setShowPresetLibrary(true)}
-              title="Browse presets for this recipe"
-              className="h-9 px-4 py-2 border border-line bg-surface rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-accent hover:text-accent transition-all flex items-center justify-center gap-2">
-              <Bookmark className="w-4 h-4" /> Presets
+      <header className="sticky top-0 z-50 shrink-0 border-b border-line bg-base/95 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <div className="flex min-w-0 items-center gap-3">
+            <button type="button" onClick={() => setAppView('start')} aria-label="Aichemy — choose another recipe" className="shrink-0 text-left">
+              <span className="brand-wordmark text-xl text-ink sm:text-2xl">Ai<span className="text-accent">chemy</span></span>
             </button>
-            <button type="button" onClick={() => requestNavigation(() => setAppView('start'))}
-              title="Back to start screen"
-              className="h-9 px-4 py-2 border border-line rounded-full text-xs font-bold uppercase tracking-wider text-ink hover:text-ink hover:border-dim transition-all flex items-center justify-center gap-2">
-              <Home className="w-4 h-4" /> Home
+            <span aria-hidden="true" className="hidden h-6 w-px bg-line sm:block" />
+            <div className="min-w-0">
+              <p className="hidden text-[9px] font-semibold uppercase tracking-[0.18em] text-dim sm:block">Recipe</p>
+              <p className="truncate text-sm font-semibold text-ink">{activeDomain.label}</p>
+            </div>
+          </div>
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
+            <button
+              type="button"
+              onClick={toggle}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-line bg-surface text-dim transition-colors hover:text-accent"
+            >
+              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowPresetLibrary(true)}
+              aria-label="Browse presets for this recipe"
+              title="Browse presets for this recipe"
+              className="inline-flex h-9 items-center justify-center gap-2 rounded-md border border-line bg-surface px-2.5 text-xs font-medium text-ink transition-colors hover:border-accent hover:text-accent sm:px-3"
+            >
+              <Bookmark className="h-4 w-4" /> <span className="hidden sm:inline">Presets</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* ========== MAIN CONTENT ========== */}
+      <div className="mx-auto w-full max-w-[1440px] px-4 pt-5 sm:px-6 lg:px-8 lg:pt-6">
+        <div className="flex flex-col gap-4 border-b border-line pb-5 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="eyebrow">Build your brief</p>
+            <h1 className="mt-1 font-serif text-2xl tracking-tight sm:text-3xl">A few thoughtful choices, then you’re ready.</h1>
+          </div>
+          <p className="text-xs text-dim"><span className="font-semibold text-accent">{completedSections}</span> of {sectionMetrics.length} sections complete</p>
+        </div>
+        <nav aria-label="Prompt-building stages" className="grid grid-cols-3 gap-2 pt-4 sm:gap-4">
+          {[
+            ['01', 'Describe', 'Start with the subject and idea.'],
+            ['02', 'Shape', 'Choose the visual language.'],
+            ['03', 'Finish', 'Review and copy your brief.'],
+          ].map(([number, label, description], index) => {
+            const stageDone = index === 0 ? completedSections > 0 : index === 1 ? completedSections > 1 : promptReady;
+            return <div key={number} className={`rounded-card border px-3 py-3 sm:px-4 ${stageDone ? 'border-accent/50 bg-accent/5' : 'border-line bg-surface/50'}`}>
+              <div className="flex items-center gap-2"><span className={`text-[10px] font-bold tracking-[0.16em] ${stageDone ? 'text-accent' : 'text-dim'}`}>{number}</span>{stageDone && <CheckCircle2 className="h-3.5 w-3.5 text-accent" aria-hidden="true" />}<span className="text-xs font-semibold text-ink sm:text-sm">{label}</span></div>
+              <p className="mt-1 hidden text-[11px] leading-relaxed text-dim sm:block">{description}</p>
+            </div>;
+          })}
+        </nav>
+      </div>
+
       <StudioWorkspaceShell
         leftPane={(
           <div className="space-y-4 pb-12 lg:pb-8">
 
-          {/* Engine sections — domain.sections via DomainFieldRenderer (customSections dirender khusus di bawah) */}
-          {activeDomain.sections.map(section => {
+          {/* Recipe fields from the active domain */}
+          {sectionMetrics.map(({ section, completed, total, done }) => {
             const sectionWarnings = domain.warnings.filter(w => w.sectionId === section.id);
             return (
               <StudioAccordionSection
@@ -935,23 +317,24 @@ export default function App() {
                 isOpen={expandedSections[section.id] ?? false}
                 onToggle={() => toggleSection(section.id)}
                 title={section.title}
+                step={sectionMetrics.findIndex(metric => metric.section.id === section.id) + 1}
+                completed={done}
+                summary={`${completed}/${total} choices made`}
               >
                 <div className="grid gap-6">
                   {section.fields.map(field => (
                     <div key={field.key}>
                       {domainId === 'cinematic' && field.key === 'subjectAction' ? (
                         <div className="flex flex-col gap-2">
-                          <label className="text-xs font-bold uppercase tracking-wider text-accent2">Subject & Action</label>
-                          <MentionTextarea
+                          <label htmlFor="cinematic-subject-action" className="ui-field-label">Subject & Action</label>
+                          <textarea
+                            id="cinematic-subject-action"
                             value={typeof domain.state.subjectAction === 'string' ? domain.state.subjectAction : ''}
-                            onChange={(val) => domain.updateField('subjectAction', val)}
-                            mentions={subjectMentions}
+                            onChange={(e) => domain.updateField('subjectAction', e.target.value)}
+                            placeholder="E.g., A woman in a trench coat checking her phone..."
                             spellCheck={true}
-                            placeholder={subjectMentions.length > 0
-                              ? 'E.g., @Character1 walks toward @Image1... (type @ to reference a character or image)'
-                              : 'E.g., A woman in a trench coat checking her phone...'}
                             rows={3}
-                            className="w-full bg-surface border border-line rounded-lg px-4 py-3 text-ink text-sm focus:outline-none focus:border-accent transition-colors resize-y"
+                            className="ui-field min-h-28 resize-y"
                           />
                         </div>
                       ) : (
@@ -976,417 +359,161 @@ export default function App() {
             );
           })}
 
-          {/* Section 5: Elements Tool — fitur khusus cinematic (customSections) */}
-          {domainId === 'cinematic' && (
-          <StudioAccordionSection
-            id="elements-tool"
-            icon={<Layers className="w-5 h-5" />}
-            isOpen={expandedSections['elements-tool'] ?? false}
-            onToggle={() => toggleSection('elements-tool')}
-            title="05. Elements Tool (Images)"
-          >
-            {/* Character Tabs */}
-            <div className="flex items-center gap-2 mb-4">
-              {elements.characters.map((char, idx) => (
-                <div key={char.id}
-                  className={`flex items-center gap-2 px-3 py-1.5 border select-none cursor-pointer transition-colors ${
-                    idx === elements.activeCharIndex
-                      ? "border-ink bg-white/10 text-ink"
-                      : "border-line bg-surface/50 text-dim hover:border-line"
-                  }`}
-                  onClick={() => elements.setActiveCharIndex(idx)}>
-                  <span className="text-xs font-bold uppercase tracking-wider">
-                    {elements.characters.length >= 4 ? `CHA ${idx + 1}` : `CHARACTER ${idx + 1}`}
-                  </span>
-                  {elements.characters.length > 1 && (
-                    <button onClick={(e) => { e.stopPropagation(); elements.handleRemoveCharacter(idx); }}
-                      className="hover:text-danger transition-colors">
-                      <X className="w-3 h-3" />
-                    </button>
-                  )}
-                </div>
-              ))}
-              {elements.characters.length < 4 && (
-                <button type="button" onClick={elements.handleAddCharacter}
-                  className="px-3 py-1.5 border border-line bg-surface/50 text-dim hover:border-ink hover:text-ink transition-colors">
-                  <span className="text-lg leading-none">+</span>
-                </button>
-              )}
-              {/* Character Library Button */}
-              <button type="button" onClick={() => setShowCharacterLibrary(true)}
-                className="ml-auto px-3 py-1.5 border border-line bg-surface/50 text-dim hover:border-accent/50 hover:text-accent transition-colors flex items-center gap-1.5"
-                title="Character Library — Save & load characters">
-                <Bookmark className="w-3.5 h-3.5" />
-                <span className="text-xs font-bold uppercase tracking-wider">Library</span>
-              </button>
-            </div>
-
-            {/* Element Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* Character elements: face, outfit, object */}
-              <>
-              {[
-                elements.characters[elements.activeCharIndex].face,
-                elements.characters[elements.activeCharIndex].outfit,
-                elements.characters[elements.activeCharIndex].object,
-              ].map(el => {
-                const characterElementType = (el.id === 'character' ? 'face' : el.id) as 'face' | 'outfit' | 'object';
-                const isElementStitchMode = elements.getCharacterElementInputMode(elements.activeCharIndex, characterElementType) === 'stitch';
-                const isDragOver = !isElementStitchMode && elements.dragOverElementId === el.id;
-
-                return (
-                  <div key={el.id} role="button" tabIndex={0}
-                    onClick={() => elements.openElementFilePicker(el.id)}
-                    onKeyDown={(e) => e.key === 'Enter' && elements.openElementFilePicker(el.id)}
-                    {...(isElementStitchMode
-                      ? {}
-                      : makeElementDragHandlers(el.id, elements.setDragOverElementId, elements.handleDropImage, setElementError))}
-                    className={`relative aspect-square bg-surface border overflow-hidden group text-left cursor-pointer transition-all ${
-                      isDragOver
-                        ? 'border-accent ring-2 ring-accent/50'
-                        : 'border-line hover:border-accent/50'
-                    }`}
-                    title={isElementStitchMode
-                      ? (el.previewDataUrl ? `Replace ${el.label} with 2-4 image stitch` : `Upload ${el.label} (Stitch: select 2-4 images)`)
-                      : (el.previewDataUrl ? `Replace ${el.label}` : `Upload ${el.label}`)}>
-                    <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-ink/20 bg-base/70">
-                      <button
-                        type="button"
-                        onClick={(ev) => {
-                          ev.stopPropagation();
-                          elements.setCharacterElementInputMode(elements.activeCharIndex, characterElementType, 'single');
-                        }}
-                        className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                          !isElementStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
-                        }`}
-                        title={`Single image upload mode for ${el.label}`}
-                      >
-                        Single
-                      </button>
-                      <button
-                        type="button"
-                        onClick={(ev) => {
-                          ev.stopPropagation();
-                          elements.setCharacterElementInputMode(elements.activeCharIndex, characterElementType, 'stitch');
-                        }}
-                        className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                          isElementStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
-                        }`}
-                        title={`Stitch mode for ${el.label} (select 2-4 images)`}
-                      >
-                        Stitch
-                      </button>
-                    </div>
-                    {isDragOver && <DropOverlay />}
-                    {el.previewDataUrl ? (
-                      <>
-                        <img src={el.previewDataUrl} alt={`${el.label} reference`} className="absolute inset-0 w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                          <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('character', el.previewDataUrl!, elements.activeCharIndex, characterElementType); }}
-                            className="bg-base/70 hover:bg-blue-500 hover:text-white text-ink p-2 rounded-full transition-all" title="Edit Image">
-                            <Edit2 className="w-4 h-4" />
-                          </button>
-                          <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(el.id); }}
-                            className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
-                            <X className="w-4 h-4" />
-                          </button>
-                        </div>
-                        {el.originalDataUrl && (
-                          <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('character', elements.activeCharIndex, characterElementType); }}
-                            className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
-                            <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
-                          </button>
-                        )}
-                      </>
-                    ) : (
-                      <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                        {elementIcon(el.id)}
-                        <div className="text-xs font-black uppercase tracking-widest text-ink">{el.label}</div>
-                        <div className="text-[10px] font-bold uppercase tracking-wider text-dim">
-                          {isElementStitchMode ? 'Click to select 2-4 images' : 'Click or drop image'}
-                        </div>
-                      </div>
-                    )}
-                    <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2">
-                      <div className="text-[10px] font-black uppercase tracking-widest text-ink">{el.label}</div>
-                      <div className="text-[10px] font-bold tracking-wide text-dim">
-                        {`Character ${elements.activeCharIndex + 1} ${el.label}`}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {/* Scene Reference */}
-              {elements.activeCharIndex === 0 ? (
-                <div role="button" tabIndex={0}
-                  onClick={() => elements.openElementFilePicker(elements.sceneElement.id)}
-                  onKeyDown={(e) => e.key === 'Enter' && elements.openElementFilePicker(elements.sceneElement.id)}
-                  {...(isSceneStitchMode
-                    ? {}
-                    : makeElementDragHandlers(elements.sceneElement.id, elements.setDragOverElementId, elements.handleDropImage, setElementError))}
-                  className={`relative aspect-square bg-surface border overflow-hidden group text-left cursor-pointer transition-all ${
-                    !isSceneStitchMode && elements.dragOverElementId === elements.sceneElement.id
-                      ? 'border-accent ring-2 ring-accent/50'
-                      : 'border-line hover:border-accent/50'
-                  }`}
-                  title={isSceneStitchMode
-                    ? (elements.sceneElement.previewDataUrl ? 'Replace Scene with 2-4 image stitch' : 'Upload Scene (Stitch: select 2-4 images)')
-                    : (elements.sceneElement.previewDataUrl ? 'Replace Scene' : 'Upload Scene')}>
-                  <div className="absolute top-2 left-2 z-20 inline-flex overflow-hidden rounded border border-ink/20 bg-base/70">
-                    <button
-                      type="button"
-                      onClick={(ev) => {
-                        ev.stopPropagation();
-                        elements.setSceneInputMode('single');
-                      }}
-                      className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                        !isSceneStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
-                      }`}
-                      title="Single image upload mode for Scene"
-                    >
-                      Single
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(ev) => {
-                        ev.stopPropagation();
-                        elements.setSceneInputMode('stitch');
-                      }}
-                      className={`px-2 py-1 text-[9px] font-black uppercase tracking-wider transition-colors ${
-                        isSceneStitchMode ? 'bg-accent text-white' : 'text-ink hover:text-ink'
-                      }`}
-                      title="Stitch mode for Scene (select 2-4 images)"
-                    >
-                      Stitch
-                    </button>
-                  </div>
-                  {!isSceneStitchMode && elements.dragOverElementId === elements.sceneElement.id && <DropOverlay />}
-                  {elements.sceneElement.previewDataUrl ? (
-                    <>
-                      <img src={elements.sceneElement.previewDataUrl} alt="Scene reference" className="absolute inset-0 w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-base/40 opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                        <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.openInpaintEditor('scene', elements.sceneElement.previewDataUrl!); }}
-                          className="bg-base/70 hover:bg-blue-500 hover:text-ink text-ink p-2 rounded-full transition-all" title="Edit Image">
-                          <Edit2 className="w-4 h-4" />
-                        </button>
-                        <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.removeElementImage(elements.sceneElement.id); }}
-                          className="bg-base/70 hover:bg-accent hover:text-white text-ink p-2 rounded-full transition-all" title="Remove">
-                          <X className="w-4 h-4" />
-                        </button>
-                      </div>
-                      {elements.sceneElement.originalDataUrl && (
-                        <button type="button" onClick={(ev) => { ev.stopPropagation(); elements.resetToOriginal('scene'); }}
-                          className="absolute bottom-14 left-2 bg-base/70 hover:bg-ok hover:text-white text-ink px-2 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-all" title="Reset to Original">
-                          <RefreshCw className="w-3 h-3 inline mr-1" /> Reset
-                        </button>
-                      )}
-                    </>
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-3">
-                      {elementIcon(elements.sceneElement.id)}
-                      <div className="text-xs font-black uppercase tracking-widest text-ink">{elements.sceneElement.label}</div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">
-                        {isSceneStitchMode ? 'Click to select 2-4 images' : 'Click or drop image'}
-                      </div>
-                    </div>
-                  )}
-                  <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2">
-                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">{elements.sceneElement.label}</div>
-                    <div className="text-[10px] font-bold tracking-wide text-dim">{elements.sceneElement.promptLabel}</div>
-                  </div>
-                </div>
-              ) : (
-                <div className="relative aspect-square bg-surface/30 border border-line/50 flex flex-col items-center justify-center gap-3 opacity-50 cursor-not-allowed"
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => { e.preventDefault(); e.stopPropagation(); }}>
-                  <ImageIcon className="w-7 h-7 text-dim" />
-                  <div className="text-xs font-black uppercase tracking-widest text-dim">Scene Reference</div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-dim text-center px-2">
-                    Set in Character 1
-                  </div>
-                </div>
-              )}
-              </>
-
-              {/* Global Reference — composite (hasil gabungan semua reference, click untuk download WebP full) */}
-              <div
-                role="button"
-                tabIndex={0}
-                onClick={handleDownloadComposite}
-                onKeyDown={(e) => e.key === 'Enter' && handleDownloadComposite()}
-                className={`col-span-2 relative aspect-square max-h-[520px] bg-surface/50 border overflow-hidden group text-left cursor-pointer transition-all ${
-                  compositeReferenceDataUrl
-                    ? 'border-accent/50 hover:border-accent'
-                    : 'border-line hover:border-accent/50'
-                } ${compositeCopyFeedback ? 'ring-2 ring-accent' : ''}`}
-                title={compositeReferenceDataUrl ? 'Click to download composite as WebP (full detail)' : 'Upload references above to generate composite'}
-              >
-                {compositeReferenceDataUrl ? (
-                  <>
-                    <img src={compositeReferenceDataUrl} alt="Composite reference" className="absolute inset-0 w-full h-full object-contain bg-white" />
-                    <div className="absolute inset-0 bg-base/0 group-hover:bg-base/20 transition-colors" />
-                    <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                      <span className="bg-accent text-white px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
-                        <FileDown className="w-3 h-3" /> {compositeCopyFeedback ? 'DOWNLOADED' : 'DOWNLOAD'}
-                      </span>
-                    </div>
-                  </>
-                ) : (
-                  <div className="w-full h-full flex flex-row items-center justify-center gap-4">
-                    <Upload className="w-7 h-7 text-dim" />
-                    <div className="flex flex-col">
-                      <div className="text-xs font-black uppercase tracking-widest text-dim">Reference Composite</div>
-                      <div className="text-[10px] font-bold uppercase tracking-wider text-dim">Upload face / outfit / scene above</div>
-                    </div>
-                  </div>
-                )}
-                <div className="absolute bottom-0 left-0 right-0 bg-base/70 backdrop-blur-sm border-t border-ink/10 px-3 py-2 flex justify-between items-center">
-                  <div>
-                    <div className="text-[10px] font-black uppercase tracking-widest text-ink">Reference Composite</div>
-                    <div className="text-[10px] font-bold tracking-wide text-dim">
-                      {compositeReferenceDataUrl ? 'Click to download WebP — full detail' : 'No references yet'}
-                    </div>
-                  </div>
-                  {compositeReferenceDataUrl && (
-                    <div className={`text-[10px] font-bold ${compositeCopyFeedback ? 'text-ok' : 'text-accent'}`}>
-                      {compositeCopyFeedback ? 'DOWNLOADED' : 'DOWNLOAD'}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Hidden file input + transcoding canvas */}
-            <input ref={elements.elementFileInputRef} type="file" accept="image/*" multiple={elements.filePickerMultiple} className="hidden"
-              onChange={(e) => elements.handleElementFileSelected(e, setElementError)} />
-            <canvas ref={elements.transcodeCanvasRef} className="hidden" />
-          </StudioAccordionSection>
-          )}
           </div>
         )}
         rightPane={(
           <div className="space-y-6 pb-12 lg:pb-8">
 
-          {/* Reference Photo Field (only when the domain uses one) */}
-          {activeDomain.referencePhoto && (
-            <ReferencePhotoField
-              value={referenceDataUrl}
-              onChange={(url) => {
-                setReferenceDataUrl(url);
-                // Mirror upload state into domain state so domains whose reference clause
-                // is gated on actual upload (logo) can react; siblings keep their default
-                // hasReferencePhoto: true, so their default prompts are unchanged.
-                domain.updateField('hasReferencePhoto', url !== null);
-              }}
-              label={activeDomain.referenceLabel}
-              hint="Used as the identity reference — your AI app receives it alongside the prompt."
-            />
-          )}
 
-          {/* Prompt Preview Box */}
-          <div className={`prompt-panel rounded-card border border-line p-6 relative transition-all group ${isEditingPrompt ? 'border-accent/50' : 'hover:border-accent/50'}`}>
-            <div className="absolute -top-2.5 left-4 px-2 py-0.5 bg-base border border-line rounded-full text-accent2 text-[10px] font-black uppercase tracking-widest flex items-center gap-2">
-              Constructed Prompt
+          {/* Prompt Preview */}
+          <section
+            aria-labelledby="prompt-preview-title"
+            className={`prompt-panel rounded-card border border-line p-5 transition-colors sm:p-6 lg:sticky lg:top-4 ${isEditingPrompt ? 'border-accent/60' : ''}`}
+          >
+            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line pb-4">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent2">Prompt <span aria-hidden="true">/</span> {activeDomain.label}</p>
+                  <span className={`ui-badge ${domain.isManualPrompt ? 'border-accent/50 text-accent' : ''}`}>{domain.isManualPrompt ? 'Edited by you' : 'Live draft'}</span>
+                </div>
+                <h2 id="prompt-preview-title" className="mt-1 font-serif text-2xl tracking-tight text-ink">Your image brief</h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowPresetLibrary(true)}
+                title="Save current options as a preset"
+                className="inline-flex items-center gap-2 rounded-md border border-line bg-base px-3 py-2 text-xs font-medium text-ink transition-colors hover:border-accent hover:text-accent motion-reduce:transition-none"
+              >
+                <Bookmark className="h-3.5 w-3.5" /> Save preset
+              </button>
             </div>
 
-            <div className="absolute top-0 right-0 p-2 flex max-w-[calc(100%-7rem)] flex-wrap justify-end gap-2">
-              <button onClick={() => setShowPresetLibrary(true)}
-                className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5" title="Save current options as a preset">
-                <Bookmark className="w-3 h-3" /> SAVE PRESET
-              </button>
-              <button onClick={() => setIsEditingPrompt(!isEditingPrompt)}
-                className={`flex items-center gap-1 text-[10px] font-bold uppercase px-2 py-1 border transition-all ${
-                  isEditingPrompt ? "bg-accent text-white border-accent" : "bg-transparent text-dim border-transparent hover:text-accent"
-                }`}>
-                {isEditingPrompt ? <Check className="w-3 h-3" /> : <Edit2 className="w-3 h-3" />}
-                {isEditingPrompt ? "DONE" : "EDIT"}
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsEditingPrompt(!isEditingPrompt)}
+                aria-pressed={isEditingPrompt}
+                className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs font-medium transition-colors motion-reduce:transition-none ${
+                  isEditingPrompt
+                    ? 'border-accent bg-accent text-white'
+                    : 'border-line bg-base text-ink hover:border-accent hover:text-accent'
+                }`}
+              >
+                {isEditingPrompt ? <Check className="h-3.5 w-3.5" /> : <Edit2 className="h-3.5 w-3.5" />}
+                {isEditingPrompt ? 'Done editing' : 'Edit prompt'}
               </button>
               {domain.isManualPrompt && isEditingPrompt && (
-                <button onClick={() => domain.clearManual()}
-                  className="flex items-center gap-1 text-danger hover:text-danger/80 text-[10px] font-bold uppercase transition-all px-2 py-1 border border-danger/30 hover:border-danger/70" title="Revert to auto-generated prompt">
-                  <X className="w-3 h-3" /> RESET
+                <button
+                  type="button"
+                  onClick={() => domain.clearManual()}
+                  title="Revert to the automatically built prompt"
+                  className="inline-flex items-center gap-1.5 rounded-md border border-danger/40 px-2.5 py-1.5 text-xs font-medium text-danger transition-colors hover:border-danger hover:bg-danger/10 motion-reduce:transition-none"
+                >
+                  <X className="h-3.5 w-3.5" /> Reset
                 </button>
               )}
-              <button onClick={handleExportPrompt}
-                className={`flex items-center gap-1 font-bold uppercase transition-all px-2 py-1 text-[10px] ${
-                  showExportFeedback ? "text-ok" : "text-dim hover:text-accent"
-                }`} title="Download prompt as .txt">
-                {showExportFeedback ? <Check className="w-3 h-3" /> : <FileDown className="w-3 h-3" />}
-                {showExportFeedback ? "EXPORTED" : "EXPORT"}
+              <button
+                type="button"
+                onClick={handleExportPrompt}
+                aria-live="polite"
+                title="Download prompt as a text file"
+                className={`inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1.5 text-xs font-medium transition-colors motion-reduce:transition-none ${
+                  showExportFeedback ? 'bg-ok/10 text-ok' : 'bg-base text-ink hover:border-accent hover:text-accent'
+                }`}
+              >
+                {showExportFeedback ? <Check className="h-3.5 w-3.5" /> : <FileDown className="h-3.5 w-3.5" />}
+                {showExportFeedback ? 'Exported' : 'Export .txt'}
               </button>
-              <button onClick={handleCopyPrompt}
-                className="flex items-center gap-1 bg-accent text-white rounded-full hover:bg-accent/90 text-[10px] font-bold uppercase transition-all px-3 py-1.5">
-                {showCopyFeedback
-                  ? <span className="flex items-center gap-1"><Check className="w-3 h-3" /> COPIED</span>
-                  : <><Copy className="w-3 h-3" /> COPY</>}
-              </button>
-              {referenceDataUrl && (
-                <>
-                  <button onClick={handleCopyTextOnly}
-                    className="flex items-center gap-1 text-dim hover:text-accent text-[10px] font-bold uppercase transition-all px-2 py-1"
-                    title="Copy the prompt text only">
-                    Text only
-                  </button>
-                  <button onClick={handleDownloadPhoto}
-                    className="flex items-center gap-1 text-dim hover:text-accent text-[10px] font-bold uppercase transition-all px-2 py-1"
-                    title="Download reference as full WebP (detail penuh)">
-                    <FileDown className="w-3 h-3" /> Download WebP
-                  </button>
-                </>
-              )}
             </div>
 
-            <div className="mt-8 font-mono text-sm leading-relaxed text-ink whitespace-pre-wrap">
+            <div className="prompt-copy-surface mt-4 min-h-36 whitespace-pre-wrap break-words text-sm leading-7 text-ink/90">
               {isEditingPrompt ? (
-                <div className="flex flex-col gap-2">
-                  {currentElementsInstructionDisplay && (
-                    <div className="p-3 bg-base/30 border border-line text-dim italic text-xs select-none">
-                      {currentElementsInstructionDisplay}
-                    </div>
-                  )}
-                  <textarea value={finalPrompt}
+                <div className="flex flex-col gap-3">
+                  <textarea
+                    value={finalPrompt}
                     onChange={(e) => domain.setManual(e.target.value)}
-                    placeholder="Type your prompt here..."
+                    placeholder="Write your prompt..."
                     spellCheck={true}
-                    className="w-full h-40 bg-base/50 border border-line p-3 text-ink focus:border-accent focus:outline-none resize-y" />
+                    aria-label="Edit constructed prompt"
+                    className="min-h-40 w-full resize-y rounded-md border border-line bg-base px-4 py-3 text-sm leading-7 text-ink placeholder:text-dim focus:border-accent focus:outline-none"
+                  />
                 </div>
               ) : (
-                <p className="cursor-pointer" onClick={handleCopyPrompt}>
-                  {primaryPromptForDisplay || "Start selecting options to build your prompt..."}
-                </p>
+                <button
+                  type="button"
+                  onClick={handleCopyPrompt}
+                  title="Copy the constructed prompt"
+                  aria-label="Copy constructed prompt"
+                  className="w-full cursor-copy rounded-md border border-transparent p-2 text-left transition-colors hover:border-line hover:bg-base/60 motion-reduce:transition-none"
+                >
+                  {finalPrompt || 'Choose a few options on the left and your brief will take shape here.'}
+                </button>
               )}
             </div>
 
-          </div>
-
-          {showCopyHint && (
-            <div className="p-3 bg-accent/10 border border-accent/30 text-accent2 text-xs font-medium rounded-card">
-              Copied prompt to clipboard — download the reference image separately and upload both to ChatGPT/Gemini.
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
+              <p className="text-xs text-dim">Built locally from your recipe choices. Nothing is sent from here.</p>
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleCopyPrompt}
+                  aria-live="polite"
+                  className="inline-flex min-h-10 items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:brightness-110 motion-reduce:transition-none"
+                >
+                  {showCopyFeedback
+                    ? <><Check className="h-4 w-4" /> Copied</>
+                    : <><Copy className="h-4 w-4" /> Copy prompt</>}
+                </button>
+              </div>
             </div>
-          )}
+          </section>
 
-          {elementError && (
-            <div className="p-4 bg-danger/20 border border-danger/50 text-danger text-sm font-medium flex items-start justify-between gap-3">
-              <span>Error: {elementError}</span>
-              <button type="button" onClick={() => setElementError(null)} className="text-danger hover:text-ink transition-colors" title="Dismiss">
-                <X className="w-4 h-4" />
-              </button>
+
+
+          <section className="rounded-card border border-line bg-surface p-5 sm:p-6" aria-labelledby="next-steps-title">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-accent2">Next step</p>
+                <h3 id="next-steps-title" className="mt-1 font-serif text-xl tracking-tight text-ink">
+                  Take it to your image tool
+                </h3>
+              </div>
+              <span className="rounded-md border border-line px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-dim">
+                Local only
+              </span>
             </div>
-          )}
-
-          {/* Hint footer */}
-          <div className="text-center text-dim text-xs max-w-md mx-auto mt-4">
-            <p>
-              Copy the constructed prompt and paste it into your favorite image tool
-              (Gemini, ChatGPT, Midjourney, ...). Aichemy never calls any API.
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-dim">
+              Aichemy shapes the brief; your chosen image tool creates the picture. Nothing is sent from here.
             </p>
-          </div>
+            <ol className="mt-5 grid gap-3 border-t border-line pt-4 sm:grid-cols-2">
+              <li className="text-xs leading-relaxed text-dim"><span className="mr-2 font-semibold text-accent">01</span>Copy the brief</li>
+              <li className="text-xs leading-relaxed text-dim"><span className="mr-2 font-semibold text-accent">02</span>Paste into your image model</li>
+            </ol>
+          </section>
           </div>
         )}
       />
+
+      <aside
+        className="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-base px-4 pt-3 shadow-lg lg:hidden"
+        style={{ paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))' }}
+        aria-label="Live prompt actions"
+      >
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent2">Live prompt</p>
+            <p className="truncate text-xs text-dim">{activeDomain.label} · updates as you build</p>
+          </div>
+          <button
+            type="button"
+            onClick={handleCopyPrompt}
+            aria-live="polite"
+            className="inline-flex min-h-10 shrink-0 items-center gap-2 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white transition-colors hover:brightness-110 motion-reduce:transition-none"
+          >
+            {showCopyFeedback ? <><Check className="h-4 w-4" /> Copied</> : <><Copy className="h-4 w-4" /> Copy prompt</>}
+          </button>
+        </div>
+      </aside>
 
       {/* ========== MODALS ========== */}
 
@@ -1399,31 +526,6 @@ export default function App() {
         presetProtectedKeys={activeDomain.presetProtectedKeys}
       />
 
-      <CharacterLibraryModal
-        isOpen={showCharacterLibrary}
-        onClose={() => setShowCharacterLibrary(false)}
-        currentCharacter={elements.characters[elements.activeCharIndex]}
-        onLoad={(charData) => {
-          const updated = [...elements.characters];
-          updated[elements.activeCharIndex] = {
-            ...charData,
-            id: updated[elements.activeCharIndex].id,
-            label: updated[elements.activeCharIndex].label,
-            faceInputMode: charData.faceInputMode === 'stitch' ? 'stitch' : 'single',
-            outfitInputMode: charData.outfitInputMode === 'stitch' ? 'stitch' : 'single',
-            objectInputMode: charData.objectInputMode === 'stitch' ? 'stitch' : 'single',
-          };
-          elements.setCharacters(updated);
-        }}
-      />
-
-      {/* Inpaint Editor Modal */}
-      <InpaintEditor
-        isOpen={elements.inpaintEditor.isOpen}
-        sourceImageUrl={elements.inpaintEditor.sourceImageUrl}
-        onSave={elements.handleInpaintSave}
-        onCancel={elements.handleInpaintCancel}
-      />
     </div>
       )}
     </>

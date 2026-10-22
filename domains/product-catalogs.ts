@@ -35,7 +35,7 @@ export const PRODUCT_SHOT_TYPES: ShotTypeOption[] = [
   { value: 'eye-level', label: 'Eye-level / straight-on', image: img('shot-types', 'eye-level'), promptPhrase: 'straight-on eye-level packshot' },
   { value: '45-degree', label: '45-degree angle', image: img('shot-types', '45-degree'), promptPhrase: '45-degree angle three-quarter view' },
   { value: 'flat-lay', label: 'Flat lay (top-down)', image: img('shot-types', 'flat-lay'), promptPhrase: 'top-down flat lay composition' },
-  { value: 'macro', label: 'Macro detail', image: img('shot-types', 'macro'), promptPhrase: 'extreme macro close-up detail shot, 100mm macro lens' },
+  { value: 'macro', label: 'Macro detail', image: img('shot-types', 'macro'), promptPhrase: 'extreme macro close-up detail shot' },
   { value: 'lifestyle', label: 'Lifestyle / in-context', image: img('shot-types', 'lifestyle'), promptPhrase: 'lifestyle in-context scene, product in real environment' },
   { value: 'scale', label: 'Scale shot', image: img('shot-types', 'scale'), promptPhrase: 'scale reference shot next to a familiar object for size comparison' },
   { value: 'floating', label: 'Floating / levitation', image: img('shot-types', 'floating'), promptPhrase: 'product levitating mid-air, dynamic hero composition' },
@@ -135,19 +135,15 @@ export const COMPOSITIONS: CompositionOption[] = [
 
 // Riset §2.8 + spec §3.3 — chips kualitas (multi-select); label = frasa prompt itu sendiri
 export const QUALITY_MODIFIERS: DomainOption[] = [
-  { value: 'commercial', label: 'commercial photography' },
-  { value: 'advertising', label: 'advertising quality' },
-  { value: '8k', label: '8k' },
-  { value: 'ultra-sharp', label: 'ultra sharp focus' },
-  { value: 'high-detail', label: 'high detail' },
-  { value: 'studio', label: 'professional studio photography' },
-  { value: 'packshot', label: 'packshot' },
-  { value: 'award-winning', label: 'award-winning product photography' },
+  { value: 'commercial', label: 'polished commercial styling' },
+  { value: 'advertising', label: 'clean edges and controlled highlights' },
+  { value: '8k', label: 'fine product detail' },
+  { value: 'ultra-sharp', label: 'crisp focus on defining product details' },
+  { value: 'high-detail', label: 'true-to-life material and color' },
+  { value: 'studio', label: 'controlled studio reflections' },
+  { value: 'packshot', label: 'clear separation from the background' },
+  { value: 'award-winning', label: 'balanced, deliberate visual hierarchy' },
 ];
-
-// Riset §2.9 — negative/avoid verbatim (untuk platform yang mendukung negative prompt)
-export const NEGATIVES =
-  'distorted label, misspelled text, warped packaging, extra objects, cluttered background, harsh reflections, deformed product, low resolution, watermark, blurry';
 
 // Phase 6 Task 2 — lens (visual). qualityPhrase replaces the hardcoded '85mm f/8 product shot'.
 export interface ProductLensOption extends DomainOption {
@@ -164,9 +160,9 @@ export const PRODUCT_LENSES: ProductLensOption[] = [
 // Phase 6 Task 2 — camera body (visual). Sentence clause.
 export interface ProductCameraOption extends DomainOption { promptPhrase: string; }
 export const PRODUCT_CAMERAS: ProductCameraOption[] = [
-  { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4, 150MP medium format' },
-  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II, 50MP medium format mirrorless' },
-  { value: 'pentax-645z', label: 'Pentax 645Z', image: '/images/cameras/pentax-645z.webp', promptPhrase: 'Pentax 645Z, 51MP medium format' },
-  { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D, full-frame DSLR' },
-  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4, 26MP APS-C mirrorless' },
+  { value: 'phase-one-xf-iq4', label: 'Phase One XF IQ4', image: '/images/cameras/phase-one-xf-iq4.webp', promptPhrase: 'Phase One XF IQ4 medium-format camera' },
+  { value: 'hasselblad-x1d-ii', label: 'Hasselblad X1D II', image: '/images/cameras/hasselblad-x1d-ii.webp', promptPhrase: 'Hasselblad X1D II medium-format mirrorless camera' },
+  { value: 'pentax-645z', label: 'Pentax 645Z', image: '/images/cameras/pentax-645z.webp', promptPhrase: 'Pentax 645Z medium-format camera' },
+  { value: 'canon-eos-5d', label: 'Canon EOS 5D', image: '/images/cameras/canon-eos-5d.webp', promptPhrase: 'Canon EOS 5D full-frame DSLR' },
+  { value: 'fujifilm-x-t4', label: 'Fujifilm X-T4', image: '/images/cameras/fujifilm-x-t4.webp', promptPhrase: 'Fujifilm X-T4 APS-C mirrorless camera' },
 ];

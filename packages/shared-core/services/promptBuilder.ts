@@ -144,7 +144,7 @@ export const buildPromptFromState = (state: PromptState): string => {
     getPhotographerSentence(state),
     getMovieLookSentence(state),
     getFilterSentence(state),
-    "Don't blur faces randomly.",
+    "If people are present, keep facial features clear and naturally focused.",
     getAspectRatioSentence(state)
   ];
   return parts.filter(p => !!p).join(" ");

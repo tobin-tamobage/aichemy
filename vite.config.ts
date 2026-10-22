@@ -1,31 +1,37 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
 
-const sharedCoreRoot = path.resolve(__dirname, 'packages/shared-core');
+const sharedCoreRoot = path.resolve(__dirname, "packages/shared-core");
 
 export default defineConfig({
   plugins: [react()],
-  base: './',
+  base: "/",
   resolve: {
     alias: {
-      '@renderzero/shared-core': sharedCoreRoot,
+      "@renderzero/shared-core": sharedCoreRoot,
     },
-    dedupe: ['react', 'react-dom']
+    dedupe: ["react", "react-dom"],
   },
   optimizeDeps: {
-    exclude: ['@renderzero/shared-core']
+    exclude: ["@renderzero/shared-core"],
   },
   server: {
+    proxy: { "/api": "http://localhost:3001" },
     fs: {
-      allow: [
-        path.resolve(__dirname),
-        sharedCoreRoot
-      ]
-    }
+      allow: [path.resolve(__dirname), sharedCoreRoot],
+    },
   },
   build: {
-    outDir: 'dist',
+    outDir: "dist",
     emptyOutDir: true,
-  }
-})
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (/\/node_modules\/(react|react-dom|scheduler)\//.test(id))
+            return "react-vendor";
+        },
+      },
+    },
+  },
+});
