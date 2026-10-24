@@ -17,6 +17,9 @@ import { validateRecipe } from "../domains/custom/validate";
 import { DOMAINS } from "../domains";
 import { recipeError } from "./validation";
 import { LOOKS, PRICE } from "../shared/product";
+import { buildStudioV2, demoV2 } from "./engine-v2";
+import { findService, SERVICES } from "../shared/v2-catalog";
+import { publishedViral } from "./viral";
 
 const record = z.record(z.string().max(80), z.unknown());
 const uuid = z.string().uuid();
@@ -104,9 +107,11 @@ export async function createServer() {
     if (status >= 500) app.log.error(error);
     reply.code(status).send({
       error:
-        status >= 500
-          ? "Ada kendala pada layanan. Silakan coba lagi."
-          : (error as Error).message,
+        status === 429
+          ? "Terlalu banyak percobaan. Tunggu sebentar lalu coba lagi."
+          : status >= 500
+            ? "Ada kendala pada layanan. Silakan coba lagi."
+            : (error as Error).message,
     });
   });
   app.addHook("onRequest", async (request, reply) => {
@@ -235,7 +240,24 @@ export async function createServer() {
         [user.id],
       )
     ).rows;
-    return { studios: [...LOOKS, ...customs] };
+    return { studios: [...LOOKS, ...customs], services: SERVICES };
+  });
+  app.post(
+    "/api/demo/preview",
+    { config: { rateLimit: { max: 40, timeWindow: "1 minute" } } },
+    async (request) => demoV2(request.body),
+  );
+  app.get("/api/viral-prompts", async (request) => {
+    await account(request, true);
+    return {
+      items: publishedViral().map(({ prompt, instructions, ...meta }) => meta),
+    };
+  });
+  app.get("/api/viral-prompts/:id", async (request, reply) => {
+    await account(request, true);
+    const { id } = z.object({ id: z.string().max(100) }).parse(request.params);
+    const item = publishedViral().find((i) => i.id === id);
+    return item ?? reply.code(404).send({ error: "Prompt belum tersedia." });
   });
   app.post("/api/studios/:id/preview", async (request) => {
     const user = await account(request, true);
@@ -244,8 +266,18 @@ export async function createServer() {
       .object({
         state: record.default({}),
         starter: z.boolean().default(false),
+        engineVersion: z.union([z.literal(1), z.literal(2)]).default(1),
       })
       .parse(request.body);
+    if (body.engineVersion === 2) {
+      const result = buildStudioV2(body.state);
+      if (result.service.recipeId !== id)
+        throw Object.assign(
+          new Error("Jasa tidak sesuai dengan alamat studio."),
+          { statusCode: 400 },
+        );
+      return result;
+    }
     try {
       return describeStudio(
         await ownedRecipe(id, user.id),
@@ -333,9 +365,37 @@ export async function createServer() {
         return reply
           .code(409)
           .send({ error: "ID studio sudah digunakan. Pilih ID lain." });
-    } else await ownedRecipe(body.studioId, user.id);
+    } else {
+      await ownedRecipe(body.studioId, user.id);
+      if (
+        body.data.engineVersion === 2 &&
+        ["draft", "preset"].includes(body.kind)
+      ) {
+        const result = buildStudioV2(body.data.state);
+        if (result.service.recipeId !== body.studioId)
+          throw Object.assign(new Error("Data studio tidak sesuai."), {
+            statusCode: 400,
+          });
+        if (
+          body.data.manual !== null &&
+          typeof body.data.manual !== "string" &&
+          body.data.manual !== undefined
+        )
+          throw Object.assign(new Error("Suntingan prompt tidak valid."), {
+            statusCode: 400,
+          });
+        if (body.data.clientModifiedAt !== undefined)
+          z.iso.datetime().parse(body.data.clientModifiedAt);
+        body.data = {
+          ...body.data,
+          schemaVersion: 2,
+          state: result.state,
+          manual: body.data.manual ?? null,
+        };
+      }
+    }
     const saved = await pool.query(
-      "INSERT INTO aichemy_library(id,user_id,kind,studio_id,name,data) VALUES($1,$2,$3,$4,$5,$6) ON CONFLICT(id) DO UPDATE SET kind=excluded.kind,studio_id=excluded.studio_id,name=excluded.name,data=excluded.data,updated_at=now() WHERE aichemy_library.user_id=$2 RETURNING id",
+      "INSERT INTO aichemy_library(id,user_id,kind,studio_id,name,data) VALUES($1,$2,$3,$4,$5,$6) ON CONFLICT(id) DO UPDATE SET kind=excluded.kind,studio_id=excluded.studio_id,name=excluded.name,data=excluded.data,updated_at=now() WHERE aichemy_library.user_id=$2 AND NOT (excluded.kind='draft' AND COALESCE(excluded.data->>'engineVersion','')='2' AND COALESCE(aichemy_library.data->>'engineVersion','')='2' AND COALESCE(aichemy_library.data->>'clientModifiedAt','') > COALESCE(excluded.data->>'clientModifiedAt','')) RETURNING id",
       [
         id,
         user.id,
@@ -345,8 +405,18 @@ export async function createServer() {
         JSON.stringify(body.data),
       ],
     );
-    if (!saved.rowCount)
-      return reply.code(403).send({ error: "Item bukan milik akun Anda." });
+    if (!saved.rowCount) {
+      const owned = await pool.query(
+        "SELECT 1 FROM aichemy_library WHERE id=$1 AND user_id=$2",
+        [id, user.id],
+      );
+      return owned.rowCount
+        ? reply.code(409).send({
+            error:
+              "Versi draft yang lebih baru sudah tersimpan. Muat ulang sebelum menyimpan.",
+          })
+        : reply.code(403).send({ error: "Item bukan milik akun Anda." });
+    }
     return { id };
   });
   app.delete("/api/library/:id", async (request) => {

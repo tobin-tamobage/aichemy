@@ -1,0 +1,110 @@
+[
+  {
+    "id": "flash-digicam",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic early-2000s compact-digicam photograph using the attached person as the identity reference. Preserve the person's exact recognizable face, age, skin tone, hairstyle, expression and existing clothing. Place the person outside an understated cafe at night, with a dark, softly readable background and no lettering. Use direct on-camera flash: crisp eyes, a small hard shadow, bright but controlled skin highlights and restrained early-digital noise. Keep a candid chest-up composition, imperfectly casual but well exposed; the face must remain sharp and naturally textured. Preserve plausible anatomy and the original facial proportions. Output a single 4:5 photograph with no timestamp, captions, watermark, invented logos, illustration or 3D styling."
+  },
+  {
+    "id": "motion-blur",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic editorial panning photograph of the person in the attached reference, walking sideways along a city pavement at dusk. Preserve the exact recognizable face, age, skin tone, hairstyle, expression and visible clothing. Use a waist-up composition and track the person's movement so the eyes, nose and mouth stay relatively sharp while distant buildings and lights form coherent horizontal motion blur. A short flash-like exposure may retain a crisp subject against the ambient motion. Keep movement in the background and the edges of clothing; do not smear the face, duplicate limbs or add drawn speed lines. Use realistic skin texture, plausible anatomy and balanced dusk exposure. Preserve any reference details that cannot be inferred rather than inventing accessories. Output one 4:5 photographic frame with no words, logos, collage or watermark."
+  },
+  {
+    "id": "retro",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Restyle the attached portrait as one photorealistic vintage photographic print with warm amber highlights, muted olive shadows, visible organic grain and a subtly aged print surface. Preserve the person's exact recognizable facial identity, age, skin tone, hairstyle, expression, pose and clothing. Replace the background with a simple softly mottled warm gray studio backdrop. Use soft directional light with gentle highlight bloom; keep the eyes and main facial features readable and preserve real skin texture. Restrict delicate print wear to the background and outer edges rather than scratching across the face. Maintain plausible facial geometry and natural skin color beneath the warm grade. Output one 4:5 photograph, no added dates, signatures, lettering, logos, watermark, cartoon or 3D effect."
+  },
+  {
+    "id": "prism-glow",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic prism-light editorial portrait from the attached photograph. Preserve the person's exact recognizable facial identity, age, skin tone, hairstyle, expression, clothing and head position. Use a neutral warm gray studio backdrop and a large diffused white key light. Add one restrained refracted rainbow band across the outer cheek and shoulder, with a delicate optical flare near an outside corner; keep both eyes and the center of the face clean, correctly colored and easy to recognize. The effect should resemble light passing through a glass prism, with coherent falloff and real skin texture. Do not create extra eyes, mirrored faces, floating crystals or illustration. Output one 4:5 photograph with no words, brand marks, watermark or collage."
+  },
+  {
+    "id": "rainy-window",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic close portrait of the person in the attached photo, seen through a rain-speckled cafe window at blue hour. Preserve exact recognizable facial identity, age, skin tone, hair, expression and clothing. Place a few sharply described water droplets on the glass near the edges, with the face visible between them; use warm soft indoor light and cool distant city bokeh reflected faintly in the window. Keep the eyes unobstructed and the person's face correctly focused, with natural skin and coherent glass reflections. Use a gentle shallow depth of field and intimate chest-up composition. Do not duplicate the face in the reflection, add writing to the glass, or turn the image into an illustration. Output one 4:5 photographic image without words, logos, collage or watermark."
+  },
+  {
+    "id": "overhead-street",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Use the attached full-body photograph to create one photorealistic high-angle street editorial. Preserve the person's exact recognizable facial identity, age, skin tone, hairstyle, body proportions and complete outfit from the reference. Place the person on a quiet geometric stone pavement and photograph from a clearly elevated viewpoint, looking diagonally down at approximately 55 degrees. The person looks naturally toward the camera; keep the entire head, body and shoes in the frame with generous pavement around them. Use soft late-afternoon daylight, subtle directional shadows and restrained neutral colors. Keep perspective plausible and do not enlarge the head excessively, shorten limbs or invent accessories. Preserve clothing details. Output one 4:5 photograph with no text, logos, collage, illustration or watermark."
+  },
+  {
+    "id": "low-angle-editorial",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic fashion editorial using the person and complete outfit in the attached full-body reference. Preserve exact recognizable facial identity, age, skin tone, hairstyle, body proportions and garment details. Photograph from a modest low viewpoint around knee height, angled upward, with a restrained wide-angle character and clean concrete architecture forming leading lines. Keep the face in the upper central part of the frame where distortion is small; show the full body and shoes with a relaxed confident stance. Use soft bright daylight, natural skin texture and a pale uncluttered sky. Do not exaggerate limb length, stretch the head, add accessories, duplicate limbs or copy fashion-brand logos. Output a single 4:5 photographic frame with no writing, watermark, collage or 3D styling."
+  },
+  {
+    "id": "retro-studio",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic studio portrait with a tasteful 1980s photographic finish, using the attached person as the identity reference. Preserve the exact recognizable face, age, skin tone, hairstyle, expression and existing clothing; express the era through the photographic treatment rather than redesigning the person's identity. Use a softly graduated dusty blue and mauve studio backdrop, a broad soft key light with gentle fill, slight optical diffusion, fine film grain and warm printed skin tones. Make a centered chest-up composition, keeping the eyes clearly focused and natural facial detail visible beneath the diffusion. Avoid plastic skin, excessive grain, artificial face reshaping or added retro props. Output one 4:5 photograph without dates, lettering, publication branding, logos, collage or watermark."
+  },
+  {
+    "id": "film-poster",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic cinematic coastal portrait of the person in the attached reference. Preserve the exact recognizable facial identity, age, skin tone, hairstyle, expression and existing clothing. Use a chest-up composition with a quiet ocean horizon and dramatic but believable sunset clouds behind the person. A low warm sun creates a fine rim around the hair and shoulders, while subtle soft fill keeps the face and eyes naturally exposed. Balance warm amber highlights with cool blue shadows and restrained photographic grain. Keep a single coherent face, realistic skin, plausible perspective and an uncluttered background. This is a photographic portrait, with no movie title, credits, poster graphics, invented jewelry or franchise styling. Output one 4:5 photograph, no words, logo, collage or watermark."
+  },
+  {
+    "id": "black-white",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Turn the attached portrait into one photorealistic black-and-white editorial photograph. Preserve exact recognizable facial identity, age, hair, expression, pose, clothing and natural skin texture. Use a large directional key light approximately 45 degrees to one side of the face, with restrained fill to retain detail in the opposite cheek. Create rich charcoal shadows, luminous midtones, a subtle clean highlight rolloff and fine monochrome grain; retain separation between the dark hair, clothing and simple dark gray studio background. Keep both eyes clear and avoid crushing all detail or making the face waxy. No reshaping, added makeup, invented accessories, duotone tint or illustration. Output one 4:5 photograph without text, border, logos, collage or watermark."
+  },
+  {
+    "id": "blue-hour",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic blue-hour city portrait of the person in the attached reference. Preserve exact recognizable facial identity, age, skin tone, hairstyle, expression, pose and clothing. Set the portrait on a quiet city terrace immediately after sunset: a deep but luminous blue sky and soft warm window lights in the distance, with no readable signs or landmarks. Use a subtle warm soft key light on the face balanced against cool ambient light, shallow but believable background focus and natural skin texture. Keep the face correctly exposed with clean eyes and gentle shadows; use restrained color separation rather than neon skin. Output one coherent 4:5 chest-up photograph without lettering, added accessories, logos, collage, illustration or watermark."
+  },
+  {
+    "id": "sunset-rim",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic golden-hour portrait from the attached reference. Preserve the person's exact recognizable face, age, skin tone, hairstyle, expression, pose and clothing. Place the person in a quiet sunlit meadow with a soft distant background. Position the low sun behind and slightly to one side so a thin warm rim catches the hair and shoulder, while gentle reflected fill keeps the entire face and both eyes visible. Add a restrained warm optical bloom near the edge, never a large flare over the eyes. Keep realistic skin texture, natural greens, coherent shadows and softly separated background details. No face smoothing, invented flowers or accessories, duplicated people, drawings or 3D render. Output one 4:5 photograph, no text, logos, collage or watermark."
+  },
+  {
+    "id": "neon",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Relight the attached portrait as one photorealistic two-color neon studio photograph. Preserve exact recognizable facial identity, age, hairstyle, expression, pose and clothing. Use a soft cyan key light from one side and a magenta rim from the opposite side against a dark navy backdrop with a few abstract out-of-focus light bars. Preserve natural facial geometry, readable eyes and realistic skin texture under the colored light; keep the forehead, nose and cheeks correctly modeled rather than filling the whole face with flat saturated color. Keep a coherent single face with no invented accessories, glowing skin, signs or writing. Output a single 4:5 photographic image, no illustration, 3D styling, collage, logos or watermark."
+  },
+  {
+    "id": "double-exposure",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one fine-art photographic double exposure using the attached portrait as the identity reference. Preserve the person's recognizable facial identity, age, hairstyle, expression and head silhouette. Blend misty forest canopy and distant mountain contours into the hair and shoulder silhouette while keeping the central eyes, nose and mouth unobstructed and clearly recognizable. Use warm ivory outside the silhouette, deep green shadows and restrained amber highlights, with delicate photographic grain and realistic skin in the visible facial area. Treat this as a deliberate photographic composite with smooth transitions, one main face and no extra eyes, overlapping heads, paper layers or drawn elements. Output one 4:5 image without text, logos, collage panels or watermark."
+  },
+  {
+    "id": "window-shadow",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic minimalist portrait from the attached reference. Preserve exact recognizable facial identity, age, skin tone, hair, expression, clothing and head position. Place the person against a matte warm ivory wall. Late-afternoon sunlight through a real rectangular window creates broad diagonal light-and-shadow bands mainly across the wall, the outer cheek and shoulder; keep both eyes and the center of the face readable with gentle ambient fill. The shadow direction, edge softness and falloff must agree across wall and body. Use warm neutral color, realistic skin texture and a calm chest-up composition. Do not add furniture, decorative objects, drawn stripes or duplicate faces. Output one 4:5 photograph without text, logos, collage, illustration or watermark."
+  },
+  {
+    "id": "product-splash",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic high-speed studio product photograph using the attached product as the exact reference. Preserve the product's silhouette, dimensions, cap, packaging structure, materials, authentic colors and all existing label content. Keep the product upright and fully visible on a subtly reflective surface. Arrange a sculptural clear-water splash around the lower half and a few suspended droplets outside the product, with controlled side lighting, crisp liquid edges and a warm blush background. Keep the label area unobstructed; the splash must not change, penetrate or melt the packaging. Preserve plausible gravity, scale and a natural contact shadow. Do not invent ingredient claims, extra text, reviews, branding or duplicate products. Output one 4:5 commercial photograph, no illustration, collage, watermark or CGI appearance."
+  },
+  {
+    "id": "product-caustics",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic premium product photograph from the attached product reference. Preserve the exact product geometry, packaging proportions, cap, material, authentic color and all existing label content. Stand the product upright and fully visible on a pale warm stone surface against a simple aqua-tinted studio background. Sunlight reflected through water outside the frame forms delicate moving-water caustic patterns across the surrounding surface and background, with a subtle reflection near the base. Keep the bottle or package itself dry and the label readable; no claim of water resistance is implied. Use clean directional highlights, believable contact shadow and realistic material texture. Do not add splashes, extra packaging, ingredients, labels, benefit claims or duplicate products. Output one 4:5 commercial photograph without text overlays, logos added by the generator, CGI styling, collage or watermark."
+  },
+  {
+    "id": "cover-portrait",
+    "status": "published",
+    "publishedAt": "2026-10-22",
+    "prompt": "Create one photorealistic editorial cover portrait using the attached person as the exact identity reference. Preserve recognizable facial geometry, age, skin tone, hairstyle and expression. Add a refined plain cream blazer over the existing shirt, with no logos or accessories. Use a warm terracotta studio background and soft window light with natural shadow falloff. Frame from the chest up with comfortable empty space above the hair and along the sides for a title to be added later in a design editor. Keep the eyes sharply focused and retain real skin texture; use restrained warm editorial color and plausible tailoring. Do not create a masthead, magazine title, cover line, publication branding or claims of endorsement. Output one 4:5 photograph with no written words, collage, illustration or watermark."
+  }
+]

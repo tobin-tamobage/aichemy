@@ -5,6 +5,7 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/dm-sans";
 import "./web/site.css";
+import "./web/v2.css";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) {

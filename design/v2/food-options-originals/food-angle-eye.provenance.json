@@ -1,0 +1,30 @@
+{
+  "id": "food-angle-eye",
+  "tool": "built-in image_gen",
+  "operation": "built-in image edit; saved original copied without semantic alteration",
+  "generatedInput": "/Users/tobin/.codex/generated_images/01a163aa-e592-7aa1-be98-814f02008472/exec-cfa34933-0266-445c-aa76-7d2fb5ff42b6.png",
+  "savedOriginal": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-eye.png",
+  "toolInput": {
+    "prompt": "Use case: precise-object-edit\nAsset type: Aichemy food-angle-eye, single portrait 4:5 realistic food photograph.\nInput images: Image 1 is the edit target, a first attempt whose camera is still TOO HIGH. Image 2 is the exact food identity and neutral white-table baseline reference.\nPrimary request: correct ONLY the camera elevation. Bring the lens DOWN to the height of the rice mound, about 7 cm above the tabletop, viewing HORIZONTALLY across this plate, with ZERO downward camera tilt. This must look like a LOW SIDE-ON food photograph, not an elevated view. The plate rim should form a VERY FLAT shallow ellipse, its visible depth at most about one fifth of its width. The egg is seen at a grazing angle from the side: the orange yolk dome rises above the rice, and the top of the egg is strongly foreshortened. Behind the rice only the upper part of the cucumber/tomato fan and cracker tips are visible. Hide rather than remove food that is naturally occluded from this new low camera position. Keep the SAME actual portion, plate and ingredient arrangement; do not restyle the food. Keep the plate comparable width in frame, with neutral gray background above a white tabletop. Camera remains level, not tilted upward, no wide-angle distortion.\nInvariants: exact same chicken nasi goreng, fried egg, fried shallot, rice/chicken/scallion/chili/cooked egg already present, dark sambal bowl left, cucumber/tomato rear left, crackers rear right; same beige speckled plate, broad neutral diffuse light from upper left and natural food colors. Do not invent ingredients or change portion/tableware. Preserve a realistic full-height rice mound rather than flattening it. No external props, utensils, fabric, text, logos, watermark, collage or diagram.",
+    "referenced_image_paths": [
+      "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-eye-attempt1.png",
+      "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-three-quarter.png"
+    ],
+    "transparent_background": false
+  },
+  "reuse": null,
+  "derivativeEncoding": [
+    {
+      "width": 700,
+      "quality": 82,
+      "format": "webp"
+    },
+    {
+      "width": 350,
+      "quality": 80,
+      "format": "webp"
+    }
+  ],
+  "reviewed": true,
+  "reviewNotes": "Visually inspected corrected original: distinctly low side view, shallow plate ellipse, front rice mound and chicken prominent, egg visibly foreshortened with yolk rising above it; rear cucumber/tomato and crackers partially occluded naturally. Same beige speckled plate and dark sambal bowl, food identity and apparent portion preserved. White table, neutral gray backdrop and soft light retained; no external props, text or watermark. Replaces rejected first attempt whose camera was too high."
+}

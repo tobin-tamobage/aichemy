@@ -1,0 +1,782 @@
+[
+  {
+    "id": "couple-pose-embrace",
+    "src": "/assets/v2/options/couple-pose-embrace.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/couple-pose-embrace.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison couple-pose-embrace, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve BOTH exact adult Indonesian identities from Image 1: same groom face and short wavy black hair, same bride face and updo with white flowers. Keep his ivory three-piece suit and tie, her embroidered ivory kebaya gown and patterned skirt, exact bouquet. Same floral garden arch and stone steps, same golden soft backlight, knee-up portrait framing and comparable subject scale. Primary request: Change only their pose to a tender standing embrace, groom arms naturally around her waist, bride one arm at his shoulder, same bouquet held low, their faces close and smiling. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same adult faces, groom suit/tie, bride embroidered kebaya and patterned skirt, hair flowers and bouquet. Standing embrace with natural arm placement, both smiling toward each other; same flower arch, garden steps and golden light.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "couple-pose-facing",
+    "src": "/assets/v2/options/couple-pose-facing.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/couple-pose-facing.png",
+    "prompt": "Baseline reuse for couple-pose-facing. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected source: same adult Indonesian bride and groom facing one another, ivory suit and embroidered ivory kebaya, bouquet, flower arch and garden steps, golden backlight. No semantic changes.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "couple-pose-seated",
+    "src": "/assets/v2/options/couple-pose-seated.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/couple-pose-seated.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison couple-pose-seated, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve BOTH exact adult Indonesian identities from Image 1: same groom face and short wavy black hair, same bride face and updo with white flowers. Keep his ivory three-piece suit and tie, her embroidered ivory kebaya gown and patterned skirt, exact bouquet. Same floral garden arch and stone steps, same golden soft backlight, knee-up portrait framing and comparable subject scale. Primary request: Change only their pose to sitting naturally close together on the existing garden stone step, bride holding the same bouquet in her lap and groom turned slightly toward her. Realistic joined hands. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same groom and bride identities, ivory suit and embroidered kebaya with patterned skirt, bouquet and floral updo retained. Both seated on garden stone steps, bride bouquet in lap, plausible joined hands and original golden backlight.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "couple-pose-walk",
+    "src": "/assets/v2/options/couple-pose-walk.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/couple-pose-walk.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison couple-pose-walk, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve BOTH exact adult Indonesian identities from Image 1: same groom face and short wavy black hair, same bride face and updo with white flowers. Keep his ivory three-piece suit and tie, her embroidered ivory kebaya gown and patterned skirt, exact bouquet. Same floral garden arch and stone steps, same golden soft backlight, knee-up portrait framing and comparable subject scale. Primary request: Change only their pose to walking gently together side-by-side hand in hand along this garden aisle, bride holding same bouquet in free hand, both smiling toward each other. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: both original adult identities recognizable, same ivory suit/tie and embroidered kebaya with patterned skirt, updo flowers and bouquet. Side-by-side hand-in-hand walking pose in same garden arch scene with golden backlight; plausible joined hands.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-presentation-clean",
+    "src": "/assets/v2/options/food-presentation-clean.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/food-presentation-clean.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison food-presentation-clean, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact nasi goreng dish and scene reference. Preserve the same dish identity, ingredients and natural warm daylight. No substitutions of cuisine. Primary request: Change only plating presentation and supporting table styling to clean minimalist: same nasi goreng, same ingredients and serving amount, same fried egg, chicken, cucumber, tomato, crackers and sambal bowl on a simple clean white ceramic plate, tidy arrangement on a plain neutral tabletop. Retain same three-quarter camera angle, scale, window-light direction and warm natural food colors. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/food.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same nasi goreng, chicken, egg, cucumber, tomato, crackers and sambal. Presentation changes to simple white plate and clean neutral tabletop, retaining three-quarter viewpoint and directional daylight; appetizing realistic grain and egg textures.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-presentation-close",
+    "src": "/assets/v2/options/food-presentation-close.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/food-presentation-close.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison food-presentation-close, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact nasi goreng dish and scene reference. Preserve the same dish identity, ingredients and natural warm daylight. No substitutions of cuisine. Primary request: Change only framing to a tight appetizing close-up of the exact fried egg and nasi goreng rice grains and chicken beneath, same three-quarter angle and daylight direction. Keep same plate, ingredients, rustic table and cloth; outer plate naturally crops out. No added garnish. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/food.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: tight three-quarter detail of same fried egg, rice grains and chicken, with unchanged cucumber, tomato, sambal, crackers and speckled plate visible around crop. Same rustic table, linen and warm daylight; realistic food texture.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-presentation-flatlay",
+    "src": "/assets/v2/options/food-presentation-flatlay.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/food-presentation-flatlay.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison food-presentation-flatlay, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact nasi goreng dish and scene reference. Preserve the same dish identity, ingredients and natural warm daylight. No substitutions of cuisine. Primary request: Change only camera viewpoint to a true directly overhead flatlay of this exact nasi goreng plate, same fried egg, rice, chicken, cucumber, tomatoes, crackers, sambal bowl, rustic table and linen. Preserve food amounts and arrangement as seen from above, same daylight direction and color treatment. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/food.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: true overhead view of same nasi goreng ingredients and speckled plate, sambal left, egg centered-right, vegetables above and crackers upper-right. Same rustic table, linen and daylight direction; no cuisine substitution.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-presentation-rustic",
+    "src": "/assets/v2/options/food-presentation-rustic.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/food-presentation-rustic.png",
+    "prompt": "Baseline reuse for food-presentation-rustic. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/food.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected source: rustic nasi goreng in speckled bowl with chicken, fried egg, cucumber, tomato, crackers and sambal, worn wood and linen, warm window daylight. No semantic changes.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-cutout",
+    "src": "/assets/v2/options/people-cutout.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-cutout.png",
+    "prompt": "Use case: background-extraction. Asset type: Aichemy transparent portrait for exact CSS background-color examples. Image 1 is the edit target. Extract this exact neutral front-facing adult Indonesian woman, same face, short dark wavy bob, coral knit top, lighting, expression, pose, and mid-torso crop onto a genuinely transparent alpha background. Preserve fine flyaway hair, natural skin and knit edges. Remove every pixel of peach studio backdrop without changing the subject. Actual alpha transparency, no checkerboard baked in, no solid color, no cast shadow outside subject, no halo, no text, no watermark.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected generated neutral frontal portrait and composites over white, teal and navy. Same bob, face, coral knit and soft light. Genuine transparent background; no checkerboard, natural flyaways and clean garment edges. Verified 700w and 350w WebPs both retain alpha and fully transparent background pixels.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-depth-balanced",
+    "src": "/assets/v2/options/people-depth-balanced.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-balanced.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-depth-balanced, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same person, neutral expression, frontal pose, coral knit top, fixed camera and crop, background plant at left and shelf at right, lighting and exposure. Primary request: Change only depth of field from deep to balanced: subject eyes, face and knit front remain sharp, distant plant and shelf are moderately softly defocused but recognizable. Same fixed focal length, camera position, framing, light, exposure, background objects and distances. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-deep.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output against deep baseline: exact person, face scale, crop, knit, light and plant/shelf positions retained. Face and shirt remain sharp; distant leaves, ceramics and books are moderately defocused but identifiable.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-depth-deep",
+    "src": "/assets/v2/options/people-depth-deep.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-deep.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy depth comparison baseline people-depth-deep, single photorealistic vertical 4:5 portrait. Image 1 is the person and lighting reference. Preserve the exact front-facing adult Indonesian woman, facial identity, short dark wavy bob, coral knit shirt, neutral closed mouth, same mid-torso framing and neutral softbox key. Place her in front of a tasteful studio interior background with a beige plaster wall, one leafy plant at camera-left and a wooden shelf camera-right, all several metres behind her. Deep depth of field: her face, knit texture, distant plant leaves and shelf details are all clearly resolved and sharp, consistent exposure. This fixed 85 mm illustrative composition will anchor depth edits; keep natural perspective. No new accessories, text, watermark or labels.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same frontal woman, bob, coral knit, skin texture, framing and soft light; clear detailed plant at left and wooden shelf with ceramics at right, establishing the deep-focus scene for fixed-camera depth variants.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-depth-shallow",
+    "src": "/assets/v2/options/people-depth-shallow.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-shallow.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-depth-shallow, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same person, neutral expression, frontal pose, coral knit top, fixed camera and crop, background plant at left and shelf at right, lighting and exposure. Primary request: Change only depth of field to very shallow: both subject eyes and face in focus, distant plant and shelf dissolve into strongly soft creamy bokeh; their color positions still match the reference. Same fixed focal length, camera position, framing, light, exposure and geometry. Do not zoom or enlarge the face. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-deep.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output against deep baseline: same face, frontal crop, coral knit and illumination, plant left and shelf right remain in fixed positions. Both eyes sharp; background strongly defocused with creamy color shapes. No focal-length or framing change.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-expression-confident",
+    "src": "/assets/v2/options/people-expression-confident.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-expression-confident.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-expression-confident, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only facial expression to calm confidence: assured direct gaze and a very subtle closed-mouth smile, relaxed brows, same head position. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, clothing, framing and illumination. Assured direct gaze, relaxed eyebrows and subtle closed-mouth self-assured smile; expression distinction is subtle and natural.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-expression-neutral",
+    "src": "/assets/v2/options/people-expression-neutral.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-expression-neutral.png",
+    "prompt": "Baseline reuse for people-expression-neutral. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: same frontal bob-haired adult woman, coral knit shirt, neutral expression, soft studio light; exact unchanged baseline pixels resized only. Illustrative perspective.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-expression-smile",
+    "src": "/assets/v2/options/people-expression-smile.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-expression-smile.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-expression-smile, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only facial expression to a warm natural teeth-visible smile, eyes gently smiling, same neutral head position. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same facial identity, bob, coral knit, pose, crop and studio background; a natural teeth-visible smile with gently lifted cheeks, plausible teeth and realistic skin.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-expression-thoughtful",
+    "src": "/assets/v2/options/people-expression-thoughtful.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-expression-thoughtful.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-expression-thoughtful, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only facial expression to thoughtful contemplation: gaze slightly toward camera-right and softly pensive lips, head and shoulders remain fixed. Do not add hand gestures. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same frontal head and shoulder placement, bob, coral knit and lighting; contemplative gaze toward viewer-right and relaxed pensive closed mouth, no hand gesture or pose addition.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-lens-100",
+    "src": "/assets/v2/options/people-lens-100.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-100.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-lens-100, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, directly front-facing mid-torso pose, eye-level height and subject size. Use this ONE same real room: beige plaster wall, same monstera plant and pale cylindrical pot camera-left, same wood shelving camera-right with hanging vine, books and ceramic bowls/vase; all objects stay fixed in actual scene positions. Same soft light and exposure, keep background details comparably in focus. Vary only camera distance and illustrative field of view to explain environmental perspective, not background styling, pose, light or bokeh. No quantified optical accuracy or camera-brand claim. Primary request: Illustrative 100 mm portrait perspective: move the camera FARTHER AWAY while holding EXACTLY SAME head-and-mid-torso framing, face size and eye-level height as reference and 35/50/85. Background objects appear visibly LARGER relative to her face and feel closer behind her: larger monstera leaves at left and larger shelf ceramics and wider shelf uprights at right, less surrounding room context. Keep the identical real plant, shelf, vine and ceramics in their locked scene positions, not different props. Preserve same lighting and deep-focus clarity. Full hair and both shoulders remain visible; NO macro or closeup. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim. Image 1 is the approved 35 mm room composition from this same source. CRITICAL: keep her head, hair silhouette, face size, eye height, shoulder placement and torso crop at EXACTLY the same image locations as Image 1. Change only the background room projection for the farther camera: strongest background enlargement in the series: plant leaves and shelf objects larger and more tightly cropped than 85, with much less room context. Do not zoom or crop the person; no closeup. Preserve the exact plant and shelf designs and their actual scene positions, same neutral soft light and background focus.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-35.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Room-perspective replacement inspected against approved 35 and 85: same head-and-torso framing, face size, hair, coral knit, pose and light. Plant leaves, planter and shelf ceramics are largest relative to subject in the series and more tightly cropped. No macro closeup. Illustrates camera-distance perspective while retaining framing; no brand or measured-optics promise.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-lens-35",
+    "src": "/assets/v2/options/people-lens-35.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-35.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-lens-35, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, directly front-facing mid-torso pose, eye-level height and subject size. Use this ONE same real room: beige plaster wall, same monstera plant and pale cylindrical pot camera-left, same wood shelving camera-right with hanging vine, books and ceramic bowls/vase; all objects stay fixed in actual scene positions. Same soft light and exposure, keep background details comparably in focus. Vary only camera distance and illustrative field of view to explain environmental perspective, not background styling, pose, light or bokeh. No quantified optical accuracy or camera-brand claim. Primary request: Illustrative 35 mm environmental perspective: move camera CLOSER to hold the same head-and-mid-torso size. The fixed background objects now appear distinctly SMALLER relative to her head, with MORE room context visible around the same monstera at left and wooden shelf at right. Show complete plant pot and more shelf width and beige wall, no new objects. Keep the same actual plant and shelf at the same real scene positions several metres behind her. Make background-scale distinction legible, preserve subject size, soft lighting and deep-focus clarity. No exaggerated face distortion. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-depth-deep.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Room-perspective replacement inspected: same bob-haired adult woman, coral knit, neutral frontal pose and soft light in beige plant-and-shelf room. Smaller background plant/pot and shelf reveal more wall, floor and room context; head-and-torso framing comparable to 50 mm. Camera-distance perspective is illustrative, not a quantified optical simulation.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-lens-50",
+    "src": "/assets/v2/options/people-lens-50.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-50.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-lens-50, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, directly front-facing mid-torso pose, eye-level height and subject size. Use this ONE same real room: beige plaster wall, same monstera plant and pale cylindrical pot camera-left, same wood shelving camera-right with hanging vine, books and ceramic bowls/vase; all objects stay fixed in actual scene positions. Same soft light and exposure, keep background details comparably in focus. Vary only camera distance and illustrative field of view to explain environmental perspective, not background styling, pose, light or bokeh. No quantified optical accuracy or camera-brand claim. Primary request: Illustrative 50 mm standard perspective: camera distance intermediate between the 35 mm close camera and 85 mm farther camera, holding EXACTLY SAME subject face size, head position and head-and-mid-torso crop as the provided approved 35 mm image. Keep the same real room objects and positions. Background plant and shelf appear moderately larger than the provided 35 mm image, with slightly less visible room context, but less enlarged than 85/100. Preserve lighting, fixed subject position and deep-focus clarity. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim. Image 1 is the approved 35 mm room composition from this same source. CRITICAL: keep her head, hair silhouette, face size, eye height, shoulder placement and torso crop at EXACTLY the same image locations as Image 1. Change only the background room projection for the farther camera: moderate background enlargement, same complete planter still visible at left, same shelf at right with slightly less room context. Do not zoom or crop the person; no closeup. Preserve the exact plant and shelf designs and their actual scene positions, same neutral soft light and background focus.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-35.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Final room-perspective replacement inspected against 35/85/100: same face size, eye height, hair silhouette, torso crop, coral knit, neutral pose and soft illumination. Same monstera/planter and shelf/vine/ceramics now moderately enlarged relative to 35 and smaller than 85/100. Subject framing aligns with approved 35. Illustrative camera-distance perspective, not a measured optical simulation.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-lens-85",
+    "src": "/assets/v2/options/people-lens-85.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-85.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-lens-85, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, directly front-facing mid-torso pose, eye-level height and subject size. Use this ONE same real room: beige plaster wall, same monstera plant and pale cylindrical pot camera-left, same wood shelving camera-right with hanging vine, books and ceramic bowls/vase; all objects stay fixed in actual scene positions. Same soft light and exposure, keep background details comparably in focus. Vary only camera distance and illustrative field of view to explain environmental perspective, not background styling, pose, light or bokeh. No quantified optical accuracy or camera-brand claim. Primary request: Illustrative 85 mm portrait perspective: use the reference room composition as the anchor, head-and-mid-torso framing with the same subject size. Same detailed monstera and planter at left, wooden shelf with hanging vine and ceramics at right, beige plaster wall. This represents a farther camera position than 35/50; background objects appear larger relative to her face, with less surrounding room context. Preserve all object designs, lighting and deep-focus clarity. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim. Image 1 is the approved 35 mm room composition from this same source. CRITICAL: keep her head, hair silhouette, face size, eye height, shoulder placement and torso crop at EXACTLY the same image locations as Image 1. Change only the background room projection for the farther camera: plant leaves, planter and shelf objects visibly larger than 35/50, less surrounding beige wall and room context. Do not zoom or crop the person; no closeup. Preserve the exact plant and shelf designs and their actual scene positions, same neutral soft light and background focus.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-lens-35.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Room-perspective replacement inspected against approved 35: same head size and position, face, bob, coral knit, frontal pose and neutral soft light. Same monstera, pale planter, vine and wood shelf with bowls/books appear visibly larger and closer behind subject, less room context. Illustrative farther-camera/longer-focal-length relationship, not a quantified simulation.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-dramatic",
+    "src": "/assets/v2/options/people-light-dramatic.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-dramatic.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison people-light-dramatic, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only illumination to dramatic low-key split lighting, one side of the face illuminated from camera-left, other side deeply shadowed, same peach backdrop falling dark through lighting alone. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: identity, clothing and framing remain stable. Strong low-key directional lighting with deep shadow on viewer-right face, hair, torso and background; clear dramatic contrast. Illustrative side/split treatment.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-golden",
+    "src": "/assets/v2/options/people-light-golden.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-golden.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison people-light-golden, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only illumination to warm golden-hour-style low angled light, honey highlights and gentle warm directional shadows on the same peach backdrop. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected generated output: same face, bob, coral knit and crop; visibly warmer honey side light, golden hair highlights and directional background shadows, natural skin detail retained.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-rembrandt",
+    "src": "/assets/v2/options/people-light-rembrandt.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-rembrandt.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison people-light-rembrandt, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only illumination to a clearly legible Rembrandt portrait pattern: a small key high camera-left at 55 degrees and almost no frontal fill. The viewer-right side of her face must be in deep shadow, except a small distinct closed triangular patch of light on the cheek immediately below the viewer-right eye. Connect the nose shadow to cheek shadow to enclose this light triangle; substantially darker cheek, neck and background on viewer-right. Keep head and shoulders exactly front-facing. Do not merely add broad warm frontal lighting. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same frontal subject and coral knit, high camera-left key with nose shadow connecting into cheek shadow and an illuminated triangular viewer-right cheek area; deep side shadows and preserved skin texture.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-rim",
+    "src": "/assets/v2/options/people-light-rim.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-rim.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison people-light-rim, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only illumination to a distinct luminous warm rim along both outer edges of hair and shoulders from behind, restrained soft frontal fill keeping the face clearly visible. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, coral knit, frontal pose and crop. Distinct warm backlit rim on hair flyaways and both shoulders, visible face and natural fabric detail.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-soft",
+    "src": "/assets/v2/options/people-light-soft.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison, people-light-soft; one single polished photorealistic commercial portrait, vertical 4:5. Image 1 is the identity and original coral knit wardrobe reference. Create a neutral baseline portrait of this exact Indonesian adult woman with the same short dark wavy bob, facial features, skin tone, and coral collared short-sleeved knitted top. Change her pose to directly front-facing shoulders and face, upright, calm closed-mouth neutral expression, arms and hands down outside crop. Mid-torso up composition, eye-level illustrative 85 mm portrait perspective. Plain warm peach studio backdrop. Broad neutral softbox key and gentle fill, soft natural shadows and realistic skin pores. This will anchor comparisons: preserve distinctive face and knit garment carefully. No jewelry additions, no props, no text, no watermarks. AI illustrative photography, no camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected full-size output: same short-bob adult woman and coral knit top; centered frontal shoulders, calm closed-mouth expression, realistic skin and soft peach backdrop. Neutral softbox illumination suitable as the shared baseline.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-light-window",
+    "src": "/assets/v2/options/people-light-window.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-window.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison people-light-window, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only illumination to directional neutral window light from camera-left, a clear broad side-lit face and gentle shadow falloff on the right, subtle window-shaped background light; do not add a physical window or change backdrop. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected generated output: face, bob, coral knit, crop and neutral expression match baseline; directional camera-left window illumination and broad window-shaped backdrop shadow are clearly visible.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-pose-front",
+    "src": "/assets/v2/options/people-pose-front.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-front.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy people pose comparison, one single vertical 4:5 polished photorealistic photograph. Image 1 is the face, hair, top and lighting identity reference. Use the exact same adult Indonesian woman with the same short dark wavy bob, facial features, coral collared knit top and neutral closed-mouth expression. Scene for every pose option: the same plain peach studio, same pale wooden stool at her right, charcoal straight-leg trousers, neutral softbox light from camera-left, same eye-level camera and fixed knee-up composition, same person size. Change only pose: Stand facing squarely forward, shoulders level, arms relaxed down. Keep the stool in scene even when unused, same attire and lighting. Realistic anatomy, hands and skin. No text, watermark, extra accessories or objects.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same adult bob-haired woman and coral knit, extended to knee-up front-facing standing pose with charcoal trousers; hands anatomically plausible at sides. Peach studio and pale wooden stool at viewer-right establish the fixed pose scene.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-pose-seated",
+    "src": "/assets/v2/options/people-pose-seated.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-seated.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy people pose comparison, one single vertical 4:5 polished photorealistic photograph. Image 1 is the face, hair, top and lighting identity reference. Use the exact same adult Indonesian woman with the same short dark wavy bob, facial features, coral collared knit top and neutral closed-mouth expression. Scene for every pose option: the same plain peach studio, same pale wooden stool at her right, charcoal straight-leg trousers, neutral softbox light from camera-left, same eye-level camera and fixed knee-up composition, same person size. Change only pose: Sit naturally on the existing pale wooden stool, hands relaxed on thighs, upright posture. Keep the stool in scene even when unused, same attire and lighting. Realistic anatomy, hands and skin. No text, watermark, extra accessories or objects.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-front.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same woman and attire seated on the same style wooden stool, hands resting naturally on thighs, plausible finger anatomy. Peach background, soft lighting and knee-up framing retained; stool moves beneath subject to support seated pose.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-pose-standing",
+    "src": "/assets/v2/options/people-pose-standing.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-standing.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy people pose comparison, one single vertical 4:5 polished photorealistic photograph. Image 1 is the face, hair, top and lighting identity reference. Use the exact same adult Indonesian woman with the same short dark wavy bob, facial features, coral collared knit top and neutral closed-mouth expression. Scene for every pose option: the same plain peach studio, same pale wooden stool at her right, charcoal straight-leg trousers, neutral softbox light from camera-left, same eye-level camera and fixed knee-up composition, same person size. Change only pose: Stand in a relaxed fashion pose with weight on one leg, one hand gently at the hip and other arm down. Keep the stool in scene even when unused, same attire and lighting. Realistic anatomy, hands and skin. No text, watermark, extra accessories or objects.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-front.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, coral knit and charcoal trousers, same peach studio and stool at viewer-right. Relaxed standing weight shift with one hand at hip/pocket and other arm down; natural anatomy and consistent framing.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-pose-three-quarter",
+    "src": "/assets/v2/options/people-pose-three-quarter.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-three-quarter.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy people pose comparison, one single vertical 4:5 polished photorealistic photograph. Image 1 is the face, hair, top and lighting identity reference. Use the exact same adult Indonesian woman with the same short dark wavy bob, facial features, coral collared knit top and neutral closed-mouth expression. Scene for every pose option: the same plain peach studio, same pale wooden stool at her right, charcoal straight-leg trousers, neutral softbox light from camera-left, same eye-level camera and fixed knee-up composition, same person size. Change only pose: Turn only body and head to an elegant three-quarter angle, face still looking toward camera, arms relaxed. Keep the stool in scene even when unused, same attire and lighting. Realistic anatomy, hands and skin. No text, watermark, extra accessories or objects.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-pose-front.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same woman, short bob, coral knit and charcoal trousers in same peach studio with same wooden stool. Clear three-quarter body turn, neutral gaze, knee-up crop and consistent light; natural hands.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-style-cinematic",
+    "src": "/assets/v2/options/people-style-cinematic.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-style-cinematic.png",
+    "prompt": "Use case: style-transfer. Asset type: Aichemy option comparison people-style-cinematic, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only the photographic color treatment to cinematic restrained warm highlights and cooler shadows, subtle filmic contrast and fine grain. Preserve exposure, light direction, geometry, wardrobe and pose. No bars or scene additions. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, coral knit, frontal pose and crop. Slightly stronger filmic contrast, warm highlights and fine grain, with restrained cooler shadows; same studio scene and lighting direction.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-style-editorial",
+    "src": "/assets/v2/options/people-style-editorial.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-style-editorial.png",
+    "prompt": "Use case: style-transfer. Asset type: Aichemy option comparison people-style-editorial, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only the photographic treatment to polished contemporary editorial color and retouching: refined clean tones, slightly crisper local contrast and carefully retained skin texture. No wardrobe, pose, light-direction or background change. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: exact coral-shirt subject, front pose, crop and backdrop retained. Cleaner editorial tones and refined contrast with visible skin and knit texture; lighting direction and outfit preserved.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-style-monochrome",
+    "src": "/assets/v2/options/people-style-monochrome.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-style-monochrome.png",
+    "prompt": "Use case: style-transfer. Asset type: Aichemy option comparison people-style-monochrome, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only color treatment to rich neutral black-and-white monochrome, refined tonal separation and natural skin texture. Same exposure, composition and lighting. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: full black-and-white tonal treatment, same identity, bob, knit top, front-facing pose, crop and background. Skin pores and knit remain resolved; no added scene content.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-style-natural",
+    "src": "/assets/v2/options/people-style-natural.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-style-natural.png",
+    "prompt": "Baseline reuse for people-style-natural. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: same frontal bob-haired adult woman, coral knit shirt, neutral expression, soft studio light; exact unchanged baseline pixels resized only. Illustrative perspective.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-blazer",
+    "src": "/assets/v2/options/people-wardrobe-blazer.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-blazer.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-wardrobe-blazer, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only wardrobe to a tailored charcoal blazer over a simple ivory shell; preserve her neck and face, no added jewelry. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, hair, expression, frontal shoulders, backdrop and lighting. Tailored charcoal blazer over ivory shell, clean lapel construction and realistic fabric; no added accessories.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-graduation",
+    "src": "/assets/v2/options/people-wardrobe-graduation.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-graduation.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-wardrobe-graduation, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only wardrobe to a plain black graduation gown, simple deep red stole, and a black mortarboard with a tassel; no institutional insignia, certificates or documents. Preserve the visible face and bob around the cap. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, neutral expression, camera, lighting and backdrop. Plain black gown and mortarboard, deep red stole and tassel; no institutional text, certificates or identification documents. Mortarboard upper edge reaches frame boundary.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-hijab",
+    "src": "/assets/v2/options/people-wardrobe-hijab.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-hijab.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-wardrobe-hijab, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only wardrobe to a neatly draped taupe hijab covering her hair and neck and a plain modest long-sleeved ivory blouse. Preserve the exact visible facial identity, facial proportions, expression and skin tone. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same visible facial proportions, skin tone, neutral expression and crop under a neatly draped taupe hijab with ivory long-sleeve blouse. Soft peach backdrop and illumination retained; realistic fabric folds.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-kebaya",
+    "src": "/assets/v2/options/people-wardrobe-kebaya.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-kebaya.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-wardrobe-kebaya, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only clothing to a refined ivory Indonesian kebaya blouse with delicate floral embroidery and a modest lining; same body pose and crop, no added jewelry. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same face, bob, frontal crop, pose and light; detailed ivory floral kebaya with opaque bodice lining and plausible embroidery. No jewelry or unrelated accessories added.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-original",
+    "src": "/assets/v2/options/people-wardrobe-original.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-original.png",
+    "prompt": "Baseline reuse for people-wardrobe-original. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: same frontal bob-haired adult woman, coral knit shirt, neutral expression, soft studio light; exact unchanged baseline pixels resized only. Illustrative perspective.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "people-wardrobe-shirt",
+    "src": "/assets/v2/options/people-wardrobe-shirt.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/people-wardrobe-shirt.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy option comparison people-wardrobe-shirt, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Keep the exact same adult Indonesian woman, facial identity, short dark wavy bob, coral collared knit top, neutral closed mouth, front-facing pose, mid-torso crop, camera perspective, plain warm peach studio backdrop and subject position. Primary request: Change only her coral knit top to a crisp white cotton collared button-up shirt with realistic fabric folds, same modest neckline. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/people-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: exact bob-haired face, neutral expression, crop and soft peach studio lighting retained. Only garment changes to a crisp white collared cotton shirt with plausible buttons, weave and folds.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-angle-eye",
+    "src": "/assets/v2/options/product-angle-eye.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-angle-eye.png",
+    "prompt": "Baseline reuse for product-angle-eye. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: identical upright peach serum bottle, white table, soft light, front view, no props; exact baseline pixels resized only.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-angle-macro",
+    "src": "/assets/v2/options/product-angle-macro.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-angle-macro.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-angle-macro, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only camera framing to a close macro detail of the upper peach frosted glass shoulder, rose-gold collar and cream dropper bulb. Same angle, orientation, lighting, tabletop and background; crop the lower bottle body. Preserve exact cap shape, seam and material textures. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: close crop of same cream dropper bulb, rose-gold collar and peach frosted glass shoulder, retaining exact material colors and front orientation. Fine surface texture and cap seam visible, lower bottle naturally cropped.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-angle-overhead",
+    "src": "/assets/v2/options/product-angle-overhead.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-angle-overhead.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-angle-overhead, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only camera viewpoint to EXACTLY 90 degrees overhead, optical axis straight vertically down aligned with the bottle axis. The same bottle remains UPRIGHT on the white tabletop. In this true top view, the cream bulb appears as a CIRCULAR dome centered inside the CIRCULAR rose-gold collar ring, with only the rounded-rectangular peach glass shoulder outline surrounding it. The bottle vertical walls and cap vertical side wall are NOT visible. Do not show a tall side elevation or 45-degree view. White tabletop fills the frame, same soft light from left. Preserve exact cap and bottle design and do not lay the bottle down. Top projection centered with generous negative space. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Replacement inspected: true top projection with circular ivory bulb dome inside rose-gold collar ring and rounded rectangular peach shoulder outline. Upright bottle is seen from directly above, vertical walls largely occluded. Same white tabletop and soft light; no invented label.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-angle-three-quarter",
+    "src": "/assets/v2/options/product-angle-three-quarter.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-angle-three-quarter.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-angle-three-quarter, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only the camera angle to a clear three-quarter product view, elevated about 25 degrees and around the bottle 30 degrees so top and side planes are visible. Same bottle standing in the same place, same white tabletop/backdrop and lighting, entire bottle with comparable margins. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same serum bottle design with rounded rectangular body, thick clear base and unchanged cap. Elevated oblique viewpoint reveals the top collar plane and bottle side/base perspective; same white tabletop and soft studio light.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-light-golden",
+    "src": "/assets/v2/options/product-light-golden.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-golden.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison product-light-golden, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only lighting to warm golden-hour-style low side light, warm amber highlights and a longer soft shadow to the right. Preserve the product material color. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: exact peach glass bottle, cream bulb and rose-gold collar remain unchanged in size and placement. Warm low-angle golden illumination and longer rightward shadow, same white tabletop and gray studio backdrop.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-light-rim",
+    "src": "/assets/v2/options/product-light-rim.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-rim.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison product-light-rim, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only lighting to elegant strong edge/rim highlights outlining the bottle and cap, subdued front fill, same background made slightly darker through illumination only, visible peach glass. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same upright peach frosted bottle geometry, cream bulb and rose-gold cap; strong bright rim along bottle and cap edges with subdued gray background illumination. White tabletop, position, camera and label-free design retained.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-light-soft",
+    "src": "/assets/v2/options/product-light-soft.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy product comparison baseline product-light-soft; single photorealistic polished commercial product photograph, vertical 4:5. Image 1 is the exact product design reference. Preserve the exact peach frosted rectangular glass serum bottle with gently rounded corners, thick transparent glass base, rose-gold cylindrical dropper collar and cream rubber bulb, same proportions and peach liquid, no label. Stand the bottle upright centered on a simple matte white horizontal tabletop against a warm light-gray seamless studio backdrop, level eye-height front viewpoint, entire bottle visible with generous margins. Remove the original flowers, orange, cloth and architectural scene to establish a clean comparison baseline. Broad neutral softbox lighting, soft shadow cast behind right, realistic glass and metal highlights. No new design, no label, no text, no watermark. This exact bottle geometry, tabletop, backdrop, position and camera will anchor option edits.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected full-size output: same peach frosted bottle with thick clear base, rose-gold collar and ivory rubber bulb; upright front view on white tabletop, soft shadows and no label or extraneous props.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-light-window",
+    "src": "/assets/v2/options/product-light-window.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-window.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison product-light-window, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only lighting to neutral directional window light from camera-left, rectangular reflections in glass and a clear soft-edged directional shadow to the right. No physical window addition. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: identical upright frosted peach bottle, ivory bulb and rose-gold collar, same camera/table/backdrop. Clear diagonal window-light pattern on wall and tabletop with directional rightward shadow; no label or added props.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-props-botanical",
+    "src": "/assets/v2/options/product-props-botanical.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-props-botanical.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-props-botanical, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Add only one small branch with green leaves and tiny white citrus blossoms lying on the tabletop at lower left beside the bottle. Keep exact bottle, lighting, camera, surface and background unchanged. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: exact bottle, cap, bulb, position, front camera, white table and neutral soft light retained. One botanical branch with green leaves and white citrus blossom added lower-left; no other props.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-props-citrus",
+    "src": "/assets/v2/options/product-props-citrus.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-props-citrus.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-props-citrus, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Add only one fresh orange wedge on the tabletop at lower left beside the bottle. Keep exact bottle, lighting, camera, surface and background unchanged. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: identical bottle geometry, cap, color, framing, white tabletop and soft light; one fresh orange wedge added at lower-left with realistic juicy pulp. No other scene change.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-props-fabric",
+    "src": "/assets/v2/options/product-props-fabric.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-props-fabric.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-props-fabric, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Add only a small softly folded piece of peach translucent fabric on the tabletop at lower left beside the bottle. Keep exact bottle, lighting, camera, surface and background unchanged. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same upright bottle, collar and bulb, placement, soft light and gray backdrop. Only softly folded translucent peach fabric added at lower-left on white tabletop.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-props-none",
+    "src": "/assets/v2/options/product-props-none.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-props-none.png",
+    "prompt": "Baseline reuse for product-props-none. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: identical upright peach serum bottle, white table, soft light, front view, no props; exact baseline pixels resized only.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-surface-pastel",
+    "src": "/assets/v2/options/product-surface-pastel.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-surface-pastel.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-surface-pastel, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only the white tabletop color/material to smooth matte pastel dusty-rose. Keep surface geometry, height, backdrop, bottle position, camera and lighting. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: exact bottle silhouette, collar, bulb, peach glass, lighting, crop and gray backdrop retained. Only tabletop changes from white to matte dusty pastel rose.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-surface-stone",
+    "src": "/assets/v2/options/product-surface-stone.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-surface-stone.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-surface-stone, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only the white tabletop material to pale warm travertine stone with restrained natural pores. Keep surface geometry, height, backdrop, bottle position, camera and lighting. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: identical bottle, cap, color, placement, camera and lighting. Tabletop changes to pale porous travertine; same horizon and neutral gray backdrop, no props.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-surface-white",
+    "src": "/assets/v2/options/product-surface-white.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-surface-white.png",
+    "prompt": "Baseline reuse for product-surface-white. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Baseline reused after visual inspection: identical upright peach serum bottle, white table, soft light, front view, no props; exact baseline pixels resized only.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-surface-wood",
+    "src": "/assets/v2/options/product-surface-wood.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/product-surface-wood.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison product-surface-wood, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact peach frosted rectangular glass serum bottle, rounded corners, thick clear base, rose-gold cylindrical collar, cream rubber dropper bulb and all proportions. Keep the bottle upright, centered, same position and size, eye-height front camera, warm light-gray studio backdrop and white tabletop, no label or props. Primary request: Change only the white tabletop material to natural medium warm oak with visible fine grain. Keep surface geometry, height, backdrop, bottle position, camera and lighting. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/options-originals/product-light-soft.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same peach bottle, cream bulb, rose-gold collar, front view and soft light. Only support material changes to warm oak with fine horizontal grain; background and horizon remain consistent.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-light-golden",
+    "src": "/assets/v2/options/property-light-golden.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-light-golden.png",
+    "prompt": "Baseline reuse for property-light-golden. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected original source reused directly: warm directional sunlight with golden cream plaster and timber highlights, clear curtain and foliage shadows, same room geometry and furniture. No semantic image change, resize only.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-light-soft",
+    "src": "/assets/v2/options/property-light-soft.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-light-soft.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison property-light-soft, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact same room geometry, arched pool opening and palm garden, cream sofa, round timber coffee table, ceramic vase, bowl and books, rattan chair, jute rug, curtain, planter and woven ceiling. Same fixed camera, framing and object positions. No remodel, new furniture or added objects. Primary request: Change only illumination to soft diffuse neutral daylight, gentle even interior shadows, natural beige plaster and cream upholstery; remove hard sun stripes through diffusion only. Same room, exact camera and composition. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: same original room camera, furniture and object layout. Hard sunlight stripes largely removed in favor of even diffused daylight and gentle shadows, retaining natural cream/beige and wood materials.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-light-window",
+    "src": "/assets/v2/options/property-light-window.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-light-window.png",
+    "prompt": "Use case: lighting-weather. Asset type: Aichemy option comparison property-light-window, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact same room geometry, arched pool opening and palm garden, cream sofa, round timber coffee table, ceramic vase, bowl and books, rattan chair, jute rug, curtain, planter and woven ceiling. Same fixed camera, framing and object positions. No remodel, new furniture or added objects. Primary request: Change only illumination to directional neutral daytime window light from the existing left curtain and arched opening, clear light-and-shadow bands, neutral daylight white balance. Same architecture, camera, furniture and exterior view. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: fixed original room camera and object positions preserved. Brighter neutral directional window/daylight bands on curtains, floor and upholstery, less golden than original, blue outdoor sky and clear material colors.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-style-editorial",
+    "src": "/assets/v2/options/property-style-editorial.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-style-editorial.png",
+    "prompt": "Use case: style-transfer. Asset type: Aichemy option comparison property-style-editorial, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Preserve the exact same cream plaster living room, arched pool opening, tropical garden, sofa, wood coffee table with vase/bowl/books, woven chair and rug, curtain, planter, ceiling and fixed camera composition. Primary request: Change only the photographic color and finishing treatment to clean contemporary architectural editorial: controlled highlights, refined neutral beige and cream, crisp material detail and gentle local contrast. Preserve exact room geometry, furniture, camera, object positions and original sunlight direction. No decor or lighting changes. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: original room composition, sun direction, furniture and decor preserved. Subtle editorial finishing: more controlled highlights, cleaner neutral cream tones and crisp wood/fabric detail. Change is a restrained tonal treatment, not a remodel.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-style-natural",
+    "src": "/assets/v2/options/property-style-natural.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-style-natural.png",
+    "prompt": "Baseline reuse for property-style-natural. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected original source reused directly: naturally finished warm architectural photo with cream plaster, woven ceiling, wood furniture, tropical garden and pool. Original camera, sunlit materials and layout retained, resize only.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-view-corner",
+    "src": "/assets/v2/options/property-view-corner.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-view-corner.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison property-view-corner, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact room geometry, furniture and materials reference. Preserve cream plaster walls, large arched pool opening, tropical palms outside, woven ceiling, cream sofa, round wood coffee table and same objects, ceramic planter, linen curtains, rattan chair and jute rug. Do not invent a different property. Primary request: Change only camera position to a diagonal corner view from the rear-right corner of this SAME living room, looking across the existing cream sofa and round wooden table toward the same arched pool opening. Preserve spatial layout and all furniture designs, materials and daylight direction. Straight architectural verticals. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: diagonal room view across cream seating toward arched pool opening, same main sofa, table, vase/bowl/books, curtains, planter, rattan chair, woven ceiling and rug. More foreground upholstery is revealed by the corner framing; unseen geometry is illustrative AI inference.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-view-detail",
+    "src": "/assets/v2/options/property-view-detail.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-view-detail.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison property-view-detail, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact room geometry, furniture and materials reference. Preserve cream plaster walls, large arched pool opening, tropical palms outside, woven ceiling, cream sofa, round wood coffee table and same objects, ceramic planter, linen curtains, rattan chair and jute rug. Do not invent a different property. Primary request: Change only camera framing to a close architectural detail of the existing round wooden coffee table, dark ceramic foliage vase, stone bowl and book stack, with part of the same cream sofa behind. Preserve exact objects and their arrangement, same natural daylight direction; no new readable text. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: close view of same round timber table, dark foliage vase, stone bowl and book stack with small sculptural object. Cream sofa, pool opening and garden remain recognizable behind; natural warm daylight and original material palette retained.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-view-straight",
+    "src": "/assets/v2/options/property-view-straight.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-view-straight.png",
+    "prompt": "Use case: precise-object-edit. Asset type: Aichemy option comparison property-view-straight, one single polished photorealistic commercial photograph, vertical 4:5. Image 1 is the edit target and invariant reference. Image 1 is the exact room geometry, furniture and materials reference. Preserve cream plaster walls, large arched pool opening, tropical palms outside, woven ceiling, cream sofa, round wood coffee table and same objects, ceramic planter, linen curtains, rattan chair and jute rug. Do not invent a different property. Primary request: Change only camera placement and orientation to a straight-on architectural view squarely facing the existing cream sofa with arched opening at its left. Keep verticals straight. Same room, furniture and objects in their real positions, same daylight direction and decor. Preserve every other aspect. Realistic materials and skin texture. No captions, random text, added logos, watermarks, collage or multiple panels. Illustrative AI photography, no physical optical simulation or camera-brand claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected output: straight-on sofa view, same cream sofa/olive throw, round timber table, ceramic vase/bowl/books, rattan chair, jute rug, woven ceiling and arched pool opening at left. Vertical lines straight. Newly visible rear dining/kitchen area is AI-inferred continuation, not a measured reconstruction.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-view-wide",
+    "src": "/assets/v2/options/property-view-wide.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v2/options-originals/property-view-wide.png",
+    "prompt": "Baseline reuse for property-view-wide. Use the visually inspected existing AI image directly; no semantic alteration. Resize only to 700 and 350 pixels wide.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/originals/real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Inspected source: wide room scene with arched pool opening, cream sofa, round timber table, ceramic vase and bowl, woven chair and jute rug; clear architectural lines and warm daylight. No semantic changes.",
+    "tool": "built-in image_gen"
+  }
+]

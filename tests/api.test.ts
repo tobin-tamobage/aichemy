@@ -9,6 +9,7 @@ import { createServer, applyPayment } from "../server/app";
 import { config } from "../server/config";
 import type { Payment } from "../server/payments";
 import { PRICE } from "../shared/product";
+import { NEW_SERVICES } from "../shared/services-v3";
 if (
   config.NODE_ENV !== "test" ||
   !new URL(config.DATABASE_URL).pathname.endsWith("_test")
@@ -65,6 +66,37 @@ after(async () => {
   await app?.close();
   await pool.end();
 });
+// Separate IP keeps the bounded public-demo stress check independent of account fixtures.
+test("demo publik dibatasi dan origin asing ditolak dengan aman", async () => {
+  assert.equal(
+    (
+      await app.inject({
+        method: "POST",
+        url: "/api/demo/preview",
+        headers: { origin: "https://example.invalid" },
+        payload: { serviceId: "product" },
+      })
+    ).statusCode,
+    403,
+  );
+  let limited: Awaited<ReturnType<typeof app.inject>> | undefined;
+  for (let n = 0; n < 42; n++) {
+    const response = await app.inject({
+      method: "POST",
+      url: "/api/demo/preview",
+      remoteAddress: "127.0.0.77",
+      headers: { origin },
+      payload: { serviceId: "product" },
+    });
+    if (response.statusCode === 429) {
+      limited = response;
+      break;
+    }
+    assert.equal(response.statusCode, 200);
+  }
+  assert.ok(limited);
+  assert.match(limited.json().error, /Terlalu banyak percobaan/);
+});
 test("akses API studio ditolak untuk pengunjung dan akun belum berbayar", async () => {
   assert.equal(
     (await app.inject({ method: "GET", url: "/api/studios" })).statusCode,
@@ -90,6 +122,243 @@ test("akses API studio ditolak untuk pengunjung dan akun belum berbayar", async 
     ).statusCode,
     403,
   );
+});
+test("V2 premium dan Prompt Viral tetap memerlukan sesi serta entitlement", async () => {
+  for (const url of [
+    "/api/viral-prompts",
+    "/api/viral-prompts/flash-digicam",
+  ]) {
+    assert.equal((await app.inject({ method: "GET", url })).statusCode, 401);
+  }
+  const demo = await app.inject({
+    method: "POST",
+    url: "/api/demo/preview",
+    headers: { origin },
+    payload: { serviceId: "formal", selections: { background: "red" } },
+  });
+  assert.equal(demo.statusCode, 200);
+  assert.equal(demo.json().engineVersion, 2);
+  const denied = await app.inject({
+    method: "POST",
+    url: "/api/demo/preview",
+    headers: { origin },
+    payload: { serviceId: "branding" },
+  });
+  assert.equal(denied.statusCode, 400);
+  const paid = fixtures[0];
+  await pool.query(
+    "INSERT INTO aichemy_entitlements(id,user_id,environment,status) VALUES($1,$2,'sandbox','active') ON CONFLICT(user_id,environment) DO UPDATE SET status='active'",
+    [crypto.randomUUID(), paid.id],
+  );
+  const preview = await app.inject({
+    method: "POST",
+    url: "/api/studios/product/preview",
+    headers: { origin, cookie: paid.cookie },
+    payload: {
+      engineVersion: 2,
+      state: { serviceId: "product", setId: "product-skincare" },
+    },
+  });
+  assert.equal(preview.statusCode, 200);
+  assert.equal(preview.json().document.engineVersion, 2);
+  const mismatch = await app.inject({
+    method: "POST",
+    url: "/api/studios/product/preview",
+    headers: { origin, cookie: paid.cookie },
+    payload: { engineVersion: 2, state: { serviceId: "formal" } },
+  });
+  assert.equal(mismatch.statusCode, 400);
+  const full = await app.inject({
+    method: "GET",
+    url: "/api/viral-prompts/flash-digicam",
+    headers: { cookie: paid.cookie },
+  });
+  assert.equal(full.statusCode, 200);
+  assert.ok(full.json().prompt.length > 200);
+  const list = await app.inject({
+    method: "GET",
+    url: "/api/viral-prompts",
+    headers: { cookie: paid.cookie },
+  });
+  assert.equal(list.statusCode, 200);
+  assert.equal(list.json().items.length, 18);
+  assert.ok(
+    list
+      .json()
+      .items.every((v: { medium: string }) => v.medium === "photography"),
+  );
+  assert.equal(
+    (
+      await app.inject({
+        method: "GET",
+        url: "/api/viral-prompts/clay",
+        headers: { cookie: paid.cookie },
+      })
+    ).statusCode,
+    404,
+  );
+  assert.ok(list.json().items.every((v: { prompt?: string }) => !v.prompt));
+  assert.equal(
+    (
+      await app.inject({
+        method: "GET",
+        url: "/api/viral-prompts/unpublished",
+        headers: { cookie: paid.cookie },
+      })
+    ).statusCode,
+    404,
+  );
+  await pool.query(
+    "UPDATE aichemy_entitlements SET status='revoked' WHERE user_id=$1",
+    [paid.id],
+  );
+  assert.equal(
+    (
+      await app.inject({
+        method: "GET",
+        url: "/api/viral-prompts/flash-digicam",
+        headers: { cookie: paid.cookie },
+      })
+    ).statusCode,
+    402,
+  );
+  assert.equal(
+    (
+      await app.inject({
+        method: "POST",
+        url: "/api/studios/product/preview",
+        headers: { origin, cookie: paid.cookie },
+        payload: { engineVersion: 2, state: { serviceId: "product" } },
+      })
+    ).statusCode,
+    402,
+  );
+  await pool.query(
+    "UPDATE aichemy_entitlements SET status='active' WHERE user_id=$1",
+    [paid.id],
+  );
+});
+test("jasa baru tetap dibatasi akses dan draft V3 tersimpan pada akun pembuat", async () => {
+  for (const service of NEW_SERVICES) {
+    const payload = {
+      engineVersion: 2,
+      state: {
+        catalogVersion: 3,
+        serviceId: service.id,
+        setId: service.sets[0].id,
+      },
+    };
+    const url = `/api/studios/${service.recipeId}/preview`;
+    assert.equal(
+      (await app.inject({ method: "POST", url, headers: { origin }, payload }))
+        .statusCode,
+      401,
+    );
+    assert.equal(
+      (
+        await app.inject({
+          method: "POST",
+          url,
+          headers: { origin, cookie: fixtures[1].cookie },
+          payload,
+        })
+      ).statusCode,
+      402,
+    );
+    const result = await app.inject({
+      method: "POST",
+      url,
+      headers: { origin, cookie: fixtures[0].cookie },
+      payload,
+    });
+    assert.equal(result.statusCode, 200, result.body);
+    assert.equal(result.json().service.id, service.id);
+    assert.equal(result.json().catalogVersion, 3);
+    assert.ok(
+      result
+        .json()
+        .fields.every((f: { options: { value: string }[] }) =>
+          f.options.some((o) => o.value === "__skip"),
+        ),
+    );
+    const id = crypto.randomUUID();
+    const data = {
+      schemaVersion: 2,
+      engineVersion: 2,
+      state: result.json().state,
+      manual: "MANUAL V3 PROTECTED",
+    };
+    const save = await app.inject({
+      method: "PUT",
+      url: `/api/library/${id}`,
+      headers: { origin, cookie: fixtures[0].cookie },
+      payload: {
+        kind: "draft",
+        studioId: service.recipeId,
+        name: `V3 ${service.id}`,
+        data,
+      },
+    });
+    assert.equal(save.statusCode, 200, save.body);
+  }
+  const rows = await app.inject({
+    method: "GET",
+    url: "/api/library",
+    headers: { cookie: fixtures[0].cookie },
+  });
+  assert.equal(
+    rows
+      .json()
+      .items.filter((item: { name: string }) => item.name.startsWith("V3 "))
+      .length,
+    7,
+  );
+  const unpaidRows = await app.inject({
+    method: "GET",
+    url: "/api/library",
+    headers: { cookie: fixtures[1].cookie },
+  });
+  assert.equal(unpaidRows.statusCode, 402);
+});
+test("autosave V2 terlambat tidak menimpa prompt manual yang lebih baru", async () => {
+  const user = fixtures[0];
+  const id = crypto.randomUUID();
+  const state = {
+    serviceId: "product",
+    setId: "product-marketplace",
+    selections: {},
+  };
+  const put = (manual: string, clientModifiedAt: string) =>
+    app.inject({
+      method: "PUT",
+      url: `/api/library/${id}`,
+      headers: { origin, cookie: user.cookie },
+      payload: {
+        kind: "draft",
+        studioId: "product",
+        name: "Uji urutan autosave",
+        data: {
+          schemaVersion: 2,
+          engineVersion: 2,
+          state,
+          manual,
+          clientModifiedAt,
+        },
+      },
+    });
+  assert.equal(
+    (await put("NEWEST MANUAL", "2026-10-22T12:00:02.000Z")).statusCode,
+    200,
+  );
+  assert.equal(
+    (await put("STALE MANUAL", "2026-10-22T12:00:01.000Z")).statusCode,
+    409,
+  );
+  const saved = await pool.query(
+    "SELECT data FROM aichemy_library WHERE id=$1 AND user_id=$2",
+    [id, user.id],
+  );
+  assert.equal(saved.rows[0].data.manual, "NEWEST MANUAL");
 });
 test("pembayaran terverifikasi mengaktifkan akun tepat sekali tanpa kedaluwarsa", async () => {
   const id = crypto.randomUUID();

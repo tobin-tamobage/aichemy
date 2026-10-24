@@ -17,6 +17,9 @@ import { api } from "./api";
 import { useSite } from "./context";
 import { Confirm, ExampleImage, Modal } from "./ui";
 import { CustomStudio } from "./StudioBuilder";
+import { setImage, findService } from "../shared/v2-catalog";
+import { AssetImage } from "./V2Visuals";
+import type { StudioV2State } from "../shared/v2";
 export default function LibraryPage() {
   const { user, notify } = useSite();
   const [items, setItems] = useState<LibraryItem[]>([]);
@@ -185,13 +188,29 @@ export default function LibraryPage() {
         <div className="library-grid">
           {visible.map((item) => (
             <article key={item.id} className="library-card">
-              <ExampleImage
-                id={findLook(item.studioId)?.id ?? "cinematic"}
-                alt=""
-              />
+              {item.data.engineVersion === 2 ? (
+                <AssetImage
+                  src={setImage((item.data.state as StudioV2State).setId)}
+                  alt=""
+                  small
+                />
+              ) : (
+                <ExampleImage
+                  id={findLook(item.studioId)?.id ?? "cinematic"}
+                  alt=""
+                />
+              )}
               <div className="library-card-body">
                 <span className="eyebrow">
-                  {findLook(item.studioId)?.label ?? "Studio Pribadi"}
+                  {findService(
+                    String(
+                      item.data.serviceId ??
+                        (item.data.state as StudioV2State)?.serviceId ??
+                        "",
+                    ),
+                  )?.label ??
+                    findLook(item.studioId)?.label ??
+                    "Studio Pribadi"}
                 </span>
                 <h3>{item.name}</h3>
                 <small>
@@ -213,7 +232,7 @@ export default function LibraryPage() {
                   ) : (
                     <Link
                       className="text-button"
-                      to={`/app/studio/${item.studioId}${item.kind === "draft" ? `?draft=${item.id}` : ""}`}
+                      to={`/app/studio/${item.studioId}${item.kind === "draft" ? `?draft=${item.id}` : item.data.serviceId ? `?service=${item.data.serviceId}&starter=1` : item.data.engineVersion === 2 ? `?service=${(item.data.state as StudioV2State).serviceId}&starter=1` : ""}`}
                     >
                       Buka Studio <ArrowUpRight size={14} />
                     </Link>

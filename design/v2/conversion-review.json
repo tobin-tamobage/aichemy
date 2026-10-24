@@ -1,0 +1,291 @@
+{
+  "date": "2026-10-23",
+  "scope": "Aichemy: landing penjualan, demo publik, penemuan jasa, dan pemakaian builder.",
+  "method": "Self-audit dari lima sudut pandang, dengan lima siklus kritik–perbaikan dan bukti browser. Rubrik diterapkan pada keadaan yang disimpan, bukan penilaian independen atau prediksi konversi.",
+  "scoreMeaning": "25 kriteria × 4 poin. Kriteria yang belum dibuktikan tidak mendapat poin. Skor ini hanya checklist internal, bukan ukuran universal kualitas desain atau kemampuan menghasilkan penjualan.",
+  "criteria": [
+    {
+      "id": "B1",
+      "perspective": "Calon pembeli",
+      "criterion": "Hero menyebut jasa yang bisa ditawarkan.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "B2",
+      "perspective": "Calon pembeli",
+      "criterion": "Prompt dijelaskan sebagai instruksi untuk AI dengan bahasa biasa.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "B3",
+      "perspective": "Calon pembeli",
+      "criterion": "Biaya aplikasi gambar yang terpisah terlihat dengan teks minimal 12px.",
+      "points": 4,
+      "passedFromRound": 2
+    },
+    {
+      "id": "B4",
+      "perspective": "Calon pembeli",
+      "criterion": "Harga dan tombol akses terlihat serta menuju alur akun yang sesuai.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "B5",
+      "perspective": "Calon pembeli",
+      "criterion": "Kartu jasa memakai nama dan jenis pelanggan yang mudah dipahami.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "V1",
+      "perspective": "UI/UX",
+      "criterion": "Tidak ada overflow horizontal pada 390, 768, 1280, dan 1440 px, kedua tema.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "V2",
+      "perspective": "UI/UX",
+      "criterion": "Teks pengantar bagian minimal 14px di seluruh ukuran yang diperiksa.",
+      "points": 4,
+      "passedFromRound": 2
+    },
+    {
+      "id": "V3",
+      "perspective": "UI/UX",
+      "criterion": "Pilihan hero, filter landing, dan tombol utama HP mempunyai sasaran sentuh setidaknya 44px.",
+      "points": 4,
+      "passedFromRound": 4
+    },
+    {
+      "id": "V4",
+      "perspective": "UI/UX",
+      "criterion": "Satu komponen hero menyesuaikan layar tanpa duplikasi konten.",
+      "points": 4,
+      "passedFromRound": 2
+    },
+    {
+      "id": "V5",
+      "perspective": "UI/UX",
+      "criterion": "Galeri awal ringkas, beragam, dan menyediakan detail melalui dialog.",
+      "points": 4,
+      "passedFromRound": 2
+    },
+    {
+      "id": "S1",
+      "perspective": "Kesederhanaan",
+      "criterion": "Potensi omzet langsung terbaca tanpa kalkulator atau isian angka.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "S2",
+      "perspective": "Kesederhanaan",
+      "criterion": "Cara memakai Aichemy dirangkum dalam tiga langkah.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "S3",
+      "perspective": "Kesederhanaan",
+      "criterion": "Meracik tidak mewajibkan brief atau isian teks.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "S4",
+      "perspective": "Kesederhanaan",
+      "criterion": "Demo gratis dapat dicapai langsung dari hero.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "S5",
+      "perspective": "Kesederhanaan",
+      "criterion": "Pemula sungguhan berhasil memilih, meracik, dan menyalin tanpa bantuan.",
+      "points": 4,
+      "passedFromRound": null
+    },
+    {
+      "id": "M1",
+      "perspective": "Marketing",
+      "criterion": "Jumlah jasa, gaya, dan prompt sesuai katalog; metadata tidak memakai jumlah lama.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "M2",
+      "perspective": "Marketing",
+      "criterion": "Manfaat fitur dijelaskan sebagai kegiatan yang dipahami calon pengguna.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "M3",
+      "perspective": "Marketing",
+      "criterion": "Tiga contoh omzet mempunyai perkalian benar serta penjelasan biaya dan status contoh.",
+      "points": 4,
+      "passedFromRound": 1
+    },
+    {
+      "id": "M4",
+      "perspective": "Marketing",
+      "criterion": "Label CTA sesuai tujuan klik; anggota aktif diarahkan kembali ke studio.",
+      "points": 4,
+      "passedFromRound": 5
+    },
+    {
+      "id": "M5",
+      "perspective": "Marketing",
+      "criterion": "Harga, satu akun pribadi, akses tanpa kedaluwarsa, pembaruan, dan biaya AI terpisah dijelaskan.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "F1",
+      "perspective": "Fungsi & kepercayaan",
+      "criterion": "Sampul semua gaya tersedia; galeri 16 gaya dan sampul gaya tambahan teruji di browser.",
+      "points": 4,
+      "passedFromRound": 3
+    },
+    {
+      "id": "F2",
+      "perspective": "Fungsi & kepercayaan",
+      "criterion": "Demo publik dapat diubah dan disalin; versi otomatis gagal tidak dapat disalin, manual tetap aman.",
+      "points": 4,
+      "passedFromRound": 3
+    },
+    {
+      "id": "F3",
+      "perspective": "Fungsi & kepercayaan",
+      "criterion": "Dialog mendukung keyboard, Escape, pemulihan fokus, dan reduced motion.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "F4",
+      "perspective": "Fungsi & kepercayaan",
+      "criterion": "Draft, undo, preset gaya, dan suntingan manual lolos regresi penyimpanan.",
+      "points": 4,
+      "passedFromRound": 0
+    },
+    {
+      "id": "F5",
+      "perspective": "Fungsi & kepercayaan",
+      "criterion": "Typecheck, build, validasi aset, akses premium, dan isolasi akun lulus.",
+      "points": 4,
+      "passedFromRound": 0
+    }
+  ],
+  "rounds": [
+    {
+      "id": "baseline",
+      "focus": "Audit awal",
+      "score": 32,
+      "changes": [
+        "Angka lama 33 set/12 efek masih tampil.",
+        "Hero memakai dua komponen portfolio terpisah.",
+        "Kalkulator membutuhkan empat input.",
+        "Sampul gaya tambahan memakai jalur studi kasus; ada tautan gambar yang tidak tepat."
+      ],
+      "evidence": "artifacts/conversion-review/baseline/evidence.json"
+    },
+    {
+      "id": "round-1",
+      "focus": "Penawaran dan bahasa",
+      "score": 64,
+      "changes": [
+        "Ganti kalkulator dengan tiga contoh omzet.",
+        "Pakai sumber jumlah katalog yang sama.",
+        "Sederhanakan judul, penjelasan, FAQ, manfaat, dan harga.",
+        "Ringkas cara kerja menjadi tiga langkah."
+      ],
+      "evidence": "artifacts/conversion-review/round-1/evidence.json"
+    },
+    {
+      "id": "round-2",
+      "focus": "Tata letak dan beban membaca",
+      "score": 80,
+      "changes": [
+        "Gunakan satu hero responsif, penjelasan dan CTA muncul lebih awal di HP.",
+        "Perbesar teks pengantar dan biaya aplikasi AI.",
+        "Enam jasa utama serta tiga contoh beragam tampil dahulu; pilihan lainnya dapat dibuka.",
+        "Ringkas kartu galeri dan beri jalur langsung ke demo."
+      ],
+      "evidence": "artifacts/conversion-review/round-2/evidence.json"
+    },
+    {
+      "id": "round-3",
+      "focus": "Pengalaman memakai fitur",
+      "score": 88,
+      "changes": [
+        "Perbaiki sampul gaya di pemilih, draft, preset, dan pustaka.",
+        "Sediakan jalur mulai racikan pertama.",
+        "Tambahkan penyalinan demo gratis dan tampilan prompt ringkas.",
+        "Samakan kesiapan tombol salin, termasuk saat pratinjau gagal dan mode manual."
+      ],
+      "evidence": "artifacts/conversion-review/round-3/evidence.json"
+    },
+    {
+      "id": "round-4",
+      "focus": "Keyboard, HP, dan kondisi gagal",
+      "score": 92,
+      "changes": [
+        "Tambahkan skip link, fokus menu, Escape, dan fokus judul setelah navigasi.",
+        "Perbesar sasaran sentuh dan keterbacaan FAQ/harga.",
+        "Uji 16 sampul serta kegagalan pratinjau di HP; prompt manual tetap dapat disalin.",
+        "Tes sempat memakai nama tab terlalu ketat; diperbaiki agar mengenali status manual yang memang tampil."
+      ],
+      "evidence": "artifacts/conversion-review/round-4/evidence.json"
+    },
+    {
+      "id": "round-5",
+      "focus": "Konsistensi dan verifikasi akhir",
+      "score": 96,
+      "changes": [
+        "Selaraskan CTA akses koleksi dan tujuan klik; anggota aktif melihat Buka Studio.",
+        "Perbarui metadata dan gambar berbagi versi baru.",
+        "Sederhanakan penjelasan demo yang masih memakai istilah teknis.",
+        "Jalankan regresi, pemeriksaan screenshot, dan lab performa build produksi.",
+        "Ringkas panduan anggota baru menjadi kartu Foto Profil bergambar agar pilihan jasa terlihat lebih awal di HP."
+      ],
+      "evidence": "artifacts/conversion-review/round-5/evidence.json"
+    }
+  ],
+  "final": {
+    "score": 96,
+    "maxScore": 100,
+    "passed": 24,
+    "totalCriteria": 25,
+    "unverified": [
+      "S5: belum ada peserta pemula sungguhan atau data konversi pembelian."
+    ]
+  },
+  "measured": {
+    "initialSnapshotWords": 1332,
+    "round5InitialSnapshotWords": 1149,
+    "finalWordsAfterDemoLoads": 1270,
+    "wordCountNote": "Hitungan snapshot awal dapat berbeda saat demo asinkron selesai. Angka kata tidak dipakai untuk memberi skor atau mengklaim peningkatan keterbacaan.",
+    "mobileIntroFontPx": 15,
+    "desktopIntroFontPx": 16,
+    "costNoteFontPx": 12,
+    "overflowInEightViewportThemeChecks": false,
+    "performance": {
+      "lcpMs": 624,
+      "cls": 0.0000888418617201102,
+      "method": "Satu cold run Chromium 390×844, 4 Mbps down/1 Mbps up, latensi 80ms, CPU 4×; bukan data lapangan.",
+      "evidence": "artifacts/conversion-review/performance/metrics.json"
+    }
+  },
+  "verification": {
+    "typecheck": "passed",
+    "unitAndApiTests": 30,
+    "build": "passed",
+    "assetValidation": "passed; includes 176 set covers",
+    "browserTests": "12 passed in full run without snapshot updates; responsive catalog/keyboard regression passed again after compact onboarding polish"
+  },
+  "outOfScope": "Konfigurasi merchant produksi dan VPS tetap mengikuti tahap deployment yang sudah ada. Tidak menambah janji pendapatan, testimoni, atau angka pelanggan rekaan."
+}

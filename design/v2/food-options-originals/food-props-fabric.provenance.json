@@ -1,0 +1,29 @@
+{
+  "id": "food-props-fabric",
+  "tool": "built-in image_gen",
+  "operation": "built-in image edit; saved original copied without semantic alteration",
+  "generatedInput": "/Users/tobin/.codex/generated_images/01a163aa-e592-7aa1-be98-814f02008472/exec-1a9a9376-f9e2-4569-9494-e32df60db851.png",
+  "savedOriginal": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-props-fabric.png",
+  "toolInput": {
+    "prompt": "Use case: precise-object-edit\nAsset type: Aichemy V2 controlled food option comparison food-props-fabric; one single portrait 4:5 photorealistic food photograph.\nInput images: Image 1 is the edit target and invariant baseline.\nPrimary request: Add ONLY a small softly folded piece of natural ivory linen on the tabletop OUTSIDE the plate near the lower-left edge, with a visible gap to the ceramic rim. Linen texture and a few folds should be clear. Keep the entire dish, serving, plate, white tabletop, gray backdrop, camera and soft diffuse lighting unchanged. Do not place fabric on or under the plate, and do not add utensils or other props.\nSubject invariants: Preserve this exact synthetic nasi goreng serving and its beige speckled ceramic plate, dark small sambal bowl at left, one sunny-side-up egg with orange yolk and crisp lacy edges over the same chicken fried rice, same visible rice grains, chicken pieces, scallion, red chili, cooked egg pieces and fried shallot already present. Keep the exact serving quantity, cucumber and tomato fan at rear left, pale crackers at rear right, and their relative arrangement. Do not invent ingredients, add garnish, restyle or redistribute the food, change the plate or bowl, or change the portion.\nScene invariants: retain the same smooth matte white horizontal tabletop, plain light warm-gray neutral backdrop, elevated three-quarter camera at about 40 degrees downward, exact plate size and position in frame, entire plate visible with small side margins, and broad soft neutral diffuse light from upper left, except the ONE variable explicitly requested above. Do not change any other variable.\nStyle/medium: realistic commercial food photography with natural texture and food color; preserve ceramic speckles, rice grain detail and appetizing crisp egg edge.\nConstraints: single portrait 4:5 photo, no collage, no diagrams, no text, logo or watermark. No added ingredients, food on the plate, utensils, hands, containers or other props except the expressly requested external styling. External styling must remain outside the plate with visible separation; it conveys no ingredient or product claim.",
+    "referenced_image_paths": [
+      "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-three-quarter.png"
+    ],
+    "transparent_background": false
+  },
+  "reuse": null,
+  "derivativeEncoding": [
+    {
+      "width": 700,
+      "quality": 82,
+      "format": "webp"
+    },
+    {
+      "width": 350,
+      "quality": 80,
+      "format": "webp"
+    }
+  ],
+  "reviewed": true,
+  "reviewNotes": "Visually inspected original: folded ivory linen with visible weave occupies the lower-left tabletop, outside and separate from the plate, not under or over it. Same three-quarter framing, white surface and gray backdrop, soft neutral light, beige speckled plate, single orange-yolk egg, chicken fried rice portion and original cucumber/tomato/cracker/sambal arrangement retained. No utensils, new ingredients, other props, text or watermark."
+}

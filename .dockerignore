@@ -4,7 +4,6 @@ dist-server
 .git
 .env
 .env.*
-design/originals
 artifacts
 test-results
 playwright-report

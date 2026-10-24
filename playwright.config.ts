@@ -7,7 +7,7 @@ export default defineConfig({
     toHaveScreenshot: { animations: "disabled", maxDiffPixelRatio: 0.015 },
   },
   use: {
-    baseURL: "http://localhost:5173",
+    baseURL: process.env.BROWSER_TEST_BASE_URL ?? "http://localhost:5173",
     browserName: "chromium",
     viewport: { width: 1440, height: 960 },
     trace: "retain-on-failure",

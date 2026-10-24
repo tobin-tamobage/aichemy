@@ -1,0 +1,775 @@
+[
+  {
+    "id": "fashion-catalog",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "catalog",
+    "src": "/assets/v3/portfolio/fashion-catalog-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-catalog.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa mengenakan setelan linen krem di studio putih. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Katalog bersih' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand with full outfit visible, neck vertical, both arms hanging naturally, shoulders level. Camera frontal. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: full-length upright standing pose, arms at sides, cream pantsuit, face consistent. No cheek-on-hand repetition."
+  },
+  {
+    "id": "fashion-street",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "street",
+    "src": "/assets/v3/portfolio/fashion-street-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-street.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa mengenakan jaket denim biru dan celana hitam di jalan kota. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Gaya jalanan' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Walk naturally along the street, looking past camera, neck upright, arms in natural swing. Full outfit readable. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "walking",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/walking.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: visible walking stride and arm swing, denim jacket, upright neck, recognizably same character."
+  },
+  {
+    "id": "fashion-modest",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "modest",
+    "src": "/assets/v3/portfolio/fashion-modest-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-modest.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa mengenakan tunik sage dan hijab krem di studio hangat. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Busana tertutup' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Sit upright on a simple stool, both hands resting on thighs, chin level, shoulders relaxed, no face touching. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "seated-upright",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/seated-upright.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: seated upright, hands on lap, cream hijab and sage tunic, no face-touching, face consistent."
+  },
+  {
+    "id": "fashion-resort",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "resort",
+    "src": "/assets/v3/portfolio/fashion-resort-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-resort.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa mengenakan gaun linen putih di teras vila tropis. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Koleksi liburan' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Soft warm late-afternoon natural light with controlled highlights. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand in three-quarter view facing right, neck upright, hands loosely resting near waist, gaze toward the distance. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-right",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-right.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: body angled toward the side and gaze off camera, hands at waist, white dress, no habitual neck lean."
+  },
+  {
+    "id": "fashion-editorial",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "editorial",
+    "src": "/assets/v3/portfolio/fashion-editorial-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-editorial.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa dengan blazer hitam di studio abu berbayang terarah. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Editorial berani' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Controlled side light with rich detailed shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand with torso angled left, face looking to camera, neck upright, relaxed arms down. Show complete black pantsuit over a high-neck cream shirt. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: standing three-quarter pose, complete black pantsuit and cream high-neck shirt, arms relaxed, upright neck."
+  },
+  {
+    "id": "fashion-batik",
+    "serviceId": "fashion",
+    "setting": "concept",
+    "option": "batik",
+    "src": "/assets/v3/portfolio/fashion-batik-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/fashion-batik.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Model dewasa mengenakan blus batik orisinal di pelataran berarsitektur sederhana. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Batik modern' for Fashion & Katalog Busana. Show clothing silhouette and fabric, knees-up or full-body; avoid cropping the outfit awkwardly. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand facing camera with level chin and neck, hands lightly joined at waist, show original batik blouse and neutral trousers. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: upright standing pose with hands joined at waist, patterned blouse and neutral trousers, face remains recognizable."
+  },
+  {
+    "id": "beauty-natural",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "natural",
+    "src": "/assets/v3/portfolio/beauty-natural-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-natural.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan makeup natural dan tekstur kulit nyata. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Makeup natural' for Beauty & Potret Makeup. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Frontal close portrait, vertical neck, level eyes and shoulders, neutral relaxed closed lips, hands entirely out of frame. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "front-neutral",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/front-neutral.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: frontal face with level eyes, upright neck and no hands in frame; natural makeup and skin texture."
+  },
+  {
+    "id": "beauty-dewy",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "dewy",
+    "src": "/assets/v3/portfolio/beauty-dewy-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-dewy.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan makeup dewy dan highlight lembut. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Kulit tampak segar' for Beauty & Potret Makeup. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Close beauty portrait in three-quarter view to right, chin level, neck upright, eyes gently toward camera, hands entirely out of frame. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-right",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-right.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: three-quarter beauty view, upright supported neck, hands outside frame, subtle luminous makeup."
+  },
+  {
+    "id": "beauty-glam",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "glam",
+    "src": "/assets/v3/portfolio/beauty-glam-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-glam.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan makeup glam berwarna hangat. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Glam elegan' for Beauty & Potret Makeup. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Close beauty portrait angled left, neck upright, chin level, gaze past camera, hands below frame. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: different three-quarter direction and warm makeup treatment, no hand supporting face, recognizable features."
+  },
+  {
+    "id": "beauty-bridal",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "bridal",
+    "src": "/assets/v3/portfolio/beauty-bridal-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-bridal.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan makeup bridal lembut dan busana putih tertutup. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Makeup pengantin' for Beauty & Potret Makeup. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Frontal bridal beauty portrait with upright vertical neck and a warm natural smile, both hands below frame, high-neck ivory bridal clothing. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "front-smile",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/front-smile.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: frontal warm smile with upright neck, bridal lace and veil, hands outside crop."
+  },
+  {
+    "id": "beauty-color",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "color",
+    "src": "/assets/v3/portfolio/beauty-color-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-color.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan eyeshadow lilac yang rapi. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Aksen warna' for Beauty & Potret Makeup. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Exact left-facing side profile beauty photograph showing lilac eye makeup, only one eye visible, chin level and neck vertical. Hands entirely below frame. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "profile-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/profile-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: true left-facing profile, lilac accent, level chin and supported neck. Not a duplicate frontal portrait."
+  },
+  {
+    "id": "beauty-mono",
+    "serviceId": "beauty",
+    "setting": "concept",
+    "option": "mono",
+    "src": "/assets/v3/portfolio/beauty-mono-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/beauty-mono.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Potret beauty dewasa dengan makeup minimal dalam hitam putih. Head and shoulders beauty closeup, visible real pores, restrained retouching. The whole photograph must clearly demonstrate 'Beauty hitam putih' for Beauty & Potret Makeup. True black-and-white monochrome photograph. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Exact right-facing profile beauty photograph in black and white, chin level and vertical neck, only one eye visible, hands outside frame. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "profile-right",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/profile-right.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: true right-facing profile in black and white, consistent bob and face outline, no face-touching."
+  },
+  {
+    "id": "jewelry-ring",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "ring",
+    "src": "/assets/v3/portfolio/jewelry-ring.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-ring.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Satu cincin emas polos orisinal di atas batu krem. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Cincin minimalis' for Perhiasan & Aksesori. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: single plain gold ring on pale stone, coherent silhouette and reflections, no brand or purity claim."
+  },
+  {
+    "id": "jewelry-necklace",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "necklace",
+    "src": "/assets/v3/portfolio/jewelry-necklace.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-necklace.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Satu kalung emas dengan liontin bundar polos di atas kain ivory. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Kalung elegan' for Perhiasan & Aksesori. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: gold chain and circular pendant on ivory textile, no invented inscription or brand."
+  },
+  {
+    "id": "jewelry-earrings",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "earrings",
+    "src": "/assets/v3/portfolio/jewelry-earrings.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-earrings.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Sepasang anting emas orisinal di atas marmer abu. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Anting berkilau' for Perhiasan & Aksesori. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: paired gold earrings, plausible construction and readable detail on marble."
+  },
+  {
+    "id": "jewelry-watch",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "watch",
+    "src": "/assets/v3/portfolio/jewelry-watch.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-watch.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Jam tangan orisinal tanpa merek dengan dial sederhana dan tali kulit cokelat. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Jam premium' for Perhiasan & Aksesori. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: unbranded wristwatch, simple dial, leather strap and controlled reflections. Not a certification example."
+  },
+  {
+    "id": "jewelry-gift",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "gift",
+    "src": "/assets/v3/portfolio/jewelry-gift.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-gift.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Cincin emas polos dalam kotak hadiah krem yang terbuka. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Kotak hadiah' for Perhiasan & Aksesori. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: gold ring in one open cream box, believable material and layout."
+  },
+  {
+    "id": "jewelry-dark",
+    "serviceId": "jewelry",
+    "setting": "concept",
+    "option": "dark",
+    "src": "/assets/v3/portfolio/jewelry-dark.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/jewelry-dark.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Cincin emas polos orisinal di atas beludru hitam. Precise premium commercial still-life photograph, physically plausible reflections, unbranded original object. The whole photograph must clearly demonstrate 'Latar gelap' for Perhiasan & Aksesori. True-to-life colors. Controlled side light with rich detailed shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: gold ring on dark velvet, legible contour and controlled highlights."
+  },
+  {
+    "id": "creator-cafe",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "cafe",
+    "src": "/assets/v3/portfolio/creator-cafe-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-cafe.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa duduk di kafe dengan cangkir polos tanpa merek. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Konten di kafe' for Konten Influencer & Brand. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Sit upright at the cafe table, shoulders level, neck vertical. Hold a plain cup low near the table with one hand, the other rests on table. Smile naturally. Do not rest face on hand. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "seated-upright",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/seated-upright.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: seated upright at cafe table, cup held low, hands away from cheek, natural smile and recognizable face."
+  },
+  {
+    "id": "creator-skincare",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "skincare",
+    "src": "/assets/v3/portfolio/creator-skincare-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-skincare.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa memegang botol skincare putih polos tanpa merek. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Produk di tangan' for Konten Influencer & Brand. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand upright facing camera, neck vertical. Hold one unbranded white bottle at upper chest height away from the face with one hand, other hand relaxed at waist. Natural smile. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: frontal upright pose holding plain bottle at chest height, no face-touching. Plain gray clothing is deliberate variation."
+  },
+  {
+    "id": "creator-desk",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "desk",
+    "src": "/assets/v3/portfolio/creator-desk-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-desk.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa duduk di meja kerja yang rapi dengan laptop tanpa merek. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Meja kerja kreator' for Konten Influencer & Brand. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Sit upright at the desk in a gentle side angle, both hands typing naturally on laptop keyboard, look toward laptop screen, neck natural not sideways tilted. Do not touch face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "seated-upright",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/seated-upright.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: seated at laptop with hands typing, gaze toward screen and different body orientation. Natural functional head angle, not selfie neck lean."
+  },
+  {
+    "id": "creator-travel",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "travel",
+    "src": "/assets/v3/portfolio/creator-travel-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-travel.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa menikmati kelapa muda di halaman tropis. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Cerita liburan' for Konten Influencer & Brand. True-to-life colors. Soft warm late-afternoon natural light with controlled highlights. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand upright in a tropical courtyard, level neck and shoulders. Hold a coconut with both hands at waist level and smile naturally. Do not use a hand to support the face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: standing with coconut held at waist by both hands, head supported upright, tropical setting, face remains recognizable."
+  },
+  {
+    "id": "creator-city",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "city",
+    "src": "/assets/v3/portfolio/creator-city-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-city.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa dalam pakaian kasual berjalan di trotoar kota saat sore. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Jalan sore' for Konten Influencer & Brand. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Walk naturally along a city sidewalk, upright neck, relaxed shoulders, natural arm swing, gaze slightly away from camera. Do not touch neck or face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "walking",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/walking.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: full-length walking stride, natural arms, gaze away from camera, no recurring cheek-rest pose."
+  },
+  {
+    "id": "creator-home",
+    "serviceId": "creator",
+    "setting": "concept",
+    "option": "home",
+    "src": "/assets/v3/portfolio/creator-home-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/creator-home.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Kreator dewasa duduk santai dengan pakaian rumah sopan di ruang bernuansa krem. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Santai di rumah' for Konten Influencer & Brand. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Sit comfortably on a sofa with torso gently angled right, upright neck, hands loosely together in lap, relaxed natural expression, not leaning on a hand. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-right",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-right.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: relaxed seated sofa pose with hands in lap and supported neck, no hand against face."
+  },
+  {
+    "id": "graduation-studio",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "studio",
+    "src": "/assets/v3/portfolio/graduation-studio-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-studio.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa mengenakan toga hitam polos di studio krem. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Toga di studio' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand upright in the graduation gown, chin level, neck vertical, both arms resting at sides. Head-to-knees composition, gentle confident closed-mouth smile. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: upright standing graduate with arms down, plain gown and mortarboard, face remains recognizable."
+  },
+  {
+    "id": "graduation-garden",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "garden",
+    "src": "/assets/v3/portfolio/graduation-garden-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-garden.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa mengenakan toga hitam polos di taman hijau. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Taman kampus' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand turned three-quarter left, upright neck, hold a small ivory bouquet with BOTH hands at waist level, look toward camera. No hand near face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: turned body with bouquet held by both hands at waist, no hand supporting face, no invented institution branding."
+  },
+  {
+    "id": "graduation-formal",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "formal",
+    "src": "/assets/v3/portfolio/graduation-formal-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-formal.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa bertoga hitam polos memegang map kosong tanpa lambang. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Potret ijazah' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand frontally with upright neck and natural smile. Hold a closed plain folder with both hands at waist level, not across chest or face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "front-smile",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/front-smile.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: front-facing natural smile and plain closed folder held low, upright neck, no invented credentials."
+  },
+  {
+    "id": "graduation-confetti",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "confetti",
+    "src": "/assets/v3/portfolio/graduation-confetti-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-confetti.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa bertoga hitam polos dengan sedikit confetti emas. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Perayaan kecil' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand straight with vertical neck and natural laughing smile, both hands holding a small bouquet at waist, restrained confetti behind and beside the subject, not covering face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: upright celebratory portrait, bouquet at waist and restrained confetti, same face, no repeated cheek pose."
+  },
+  {
+    "id": "graduation-sunset",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "sunset",
+    "src": "/assets/v3/portfolio/graduation-sunset-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-sunset.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa bertoga hitam polos di halaman saat sore. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Senja kelulusan' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True-to-life colors. Soft warm late-afternoon natural light with controlled highlights. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Stand in three-quarter view toward right at sunset, upright neck, chin level, look toward distance, bouquet held with both hands at waist. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-right",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-right.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: sideward gaze and three-quarter body, level chin, bouquet held low, warm outdoor setting."
+  },
+  {
+    "id": "graduation-mono",
+    "serviceId": "graduation",
+    "setting": "concept",
+    "option": "mono",
+    "src": "/assets/v3/portfolio/graduation-mono-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/graduation-mono.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Primary request: Lulusan dewasa bertoga hitam polos dalam potret hitam putih. Natural editorial commercial photography, beautiful but believable texture. The whole photograph must clearly demonstrate 'Kenangan hitam putih' for Wisuda & Kelulusan. Black graduation gown and plain mortarboard; no university crests, names, degrees, or false lettering. True black-and-white monochrome photograph. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Left-facing near-profile graduate portrait in black and white, neck upright and chin level, arms below the crop, plain mortarboard level on head. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "profile-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/profile-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: left-facing graduate profile in black and white, level mortarboard, neck naturally supported."
+  },
+  {
+    "id": "family-studio",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "studio",
+    "src": "/assets/v3/portfolio/family-studio.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-studio.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Dua orang tua dewasa dan seorang anak berpakaian krem sopan di studio hangat. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Studio keluarga' for Keluarga & Momen Spesial. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: two adults and one child in ordinary coordinated clothing, three distinct faces, warm studio."
+  },
+  {
+    "id": "family-garden",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "garden",
+    "src": "/assets/v3/portfolio/family-garden.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-garden.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Dua orang tua dewasa dan seorang anak duduk di taman hijau. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Piknik keluarga' for Keluarga & Momen Spesial. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: three family members at picnic, ordinary clothing and natural poses. Synthetic concept, not a real family story."
+  },
+  {
+    "id": "family-celebration",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "celebration",
+    "src": "/assets/v3/portfolio/family-celebration.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-celebration.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Keluarga tiga orang di ruang rumah dengan kue polos dan dekorasi sederhana. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Ulang tahun' for Keluarga & Momen Spesial. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: three people and simple birthday cake, no invented text or age. Consent guidance provided separately."
+  },
+  {
+    "id": "family-festive",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "festive",
+    "src": "/assets/v3/portfolio/family-festive.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-festive.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Keluarga tiga orang mengenakan busana tertutup warna sage di ruang rumah. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Hari raya' for Keluarga & Momen Spesial. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: three people in fully covering sage festive clothing, distinct faces and modest styling."
+  },
+  {
+    "id": "family-home",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "home",
+    "src": "/assets/v3/portfolio/family-home.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-home.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Keluarga tiga orang duduk berdekatan di sofa rumah yang hangat. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Cerita di rumah' for Keluarga & Momen Spesial. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: three people seated together at home, coherent natural interaction and visible hands."
+  },
+  {
+    "id": "family-beach",
+    "serviceId": "family",
+    "setting": "concept",
+    "option": "beach",
+    "src": "/assets/v3/portfolio/family-beach.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/family-beach.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Keluarga tiga orang berjalan di pantai saat sore. Use the same fictional family throughout: Indonesian father with short black hair, mother in her thirties with shoulder-length dark hair, one child aged about seven. Ordinary fully clothed family photograph, warm and respectful. The whole photograph must clearly demonstrate 'Sore di pantai' for Keluarga & Momen Spesial. True-to-life colors. Soft warm late-afternoon natural light with controlled highlights. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: three people walking on a beach, natural proportions and warm sunset scene. Not paired as an identity-preserving before/after case."
+  },
+  {
+    "id": "pets-cat",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "cat",
+    "src": "/assets/v3/portfolio/pets-cat.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-cat.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Kucing domestik berbulu jingga dan putih duduk di studio krem. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Kucing di studio' for Foto Hewan Kesayangan. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: orange-and-white cat, natural sitting anatomy, cream studio, clear markings."
+  },
+  {
+    "id": "pets-dog",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "dog",
+    "src": "/assets/v3/portfolio/pets-dog.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-dog.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Anjing golden retriever dewasa duduk santai di taman hijau. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Anjing di taman' for Foto Hewan Kesayangan. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: golden retriever in green garden, natural proportions and readable fur."
+  },
+  {
+    "id": "pets-cozy",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "cozy",
+    "src": "/assets/v3/portfolio/pets-cozy.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-cozy.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Kucing domestik jingga dan putih berbaring di atas selimut krem. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Sudut nyaman' for Foto Hewan Kesayangan. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: orange-and-white cat resting on cream blanket, believable anatomy and fur."
+  },
+  {
+    "id": "pets-birthday",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "birthday",
+    "src": "/assets/v3/portfolio/pets-birthday.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-birthday.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Anjing golden retriever di dekat dekorasi ulang tahun sederhana yang aman. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Ulang tahun hewan' for Foto Hewan Kesayangan. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: dog beside celebration props; no depicted ingestion. Example does not recommend feeding cake; safety instruction retained."
+  },
+  {
+    "id": "pets-detail",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "detail",
+    "src": "/assets/v3/portfolio/pets-detail.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-detail.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Potret dekat wajah kucing domestik jingga dan putih dengan mata tajam. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Detail si kesayangan' for Foto Hewan Kesayangan. True-to-life colors. Soft realistic directional light, readable shadows. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: close cat portrait, coherent eyes and whiskers, no species changes."
+  },
+  {
+    "id": "pets-outdoor",
+    "serviceId": "pets",
+    "setting": "concept",
+    "option": "outdoor",
+    "src": "/assets/v3/portfolio/pets-outdoor.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/pets-outdoor.png",
+    "prompt": "Use case: photorealistic-natural. Asset type: Aichemy service-specific visual example, one portrait 4:5 photograph, not a collage. Primary request: Anjing golden retriever dewasa di halaman hijau pada sore hari. Respect natural animal anatomy and species. No costume or unsafe objects touching the animal. The whole photograph must clearly demonstrate 'Main di halaman' for Foto Hewan Kesayangan. True-to-life colors. Soft warm late-afternoon natural light with controlled highlights. Uncluttered commercial composition, subject safely within a crop-friendly central area. Keep faces distinct and hands anatomically correct. No text, numbers, watermark, visible third-party brands, fake endorsements or collage panels.",
+    "references": [],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: golden retriever outdoors with natural anatomy and warm light; not a calibrated lighting comparison."
+  },
+  {
+    "id": "formal-front",
+    "serviceId": "formal",
+    "setting": "portfolio",
+    "option": "formal-front",
+    "src": "/assets/v3/portfolio/formal-front.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy photographic example, ONE portrait 4:5 photo. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Create a formal head-and-upper-chest photograph of this same adult woman. Face straight and centered, neutral closed-mouth expression, both eyes level, white collared shirt and dark blazer, clean solid blue background #1769ba, soft even frontal illumination. Preserve her real facial features and bob. No glam retouch, no jewelry, no tilt. Photorealistic natural skin texture, no watermark, no collage.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-1.png",
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-2.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: influencer face frontal, level eyes, white shirt and dark blazer, plain blue backdrop. Does not promise document acceptance."
+  },
+  {
+    "id": "prewedding-before",
+    "serviceId": "prewedding",
+    "setting": "portfolio",
+    "option": "prewedding-before",
+    "src": "/assets/v3/portfolio/prewedding-before.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/prewedding-before.png",
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy photographic example, ONE portrait 4:5 photo. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Create a plain casual couple reference photograph: this same adult woman in modest white tee beside a distinct adult Indonesian man with short dark hair wearing a gray collared shirt. Stand together facing camera in a simple neutral home with soft ordinary daylight. Show heads to knees. This is a synthetic before-photo, not wedding styling. Photorealistic natural skin texture, no watermark, no collage.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-1.png",
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-2.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: synthetic casual couple with distinct identities. Archived as an example source; not publicly paired with the independently generated cover."
+  },
+  {
+    "id": "prewedding-modern",
+    "serviceId": "prewedding",
+    "setting": "portfolio",
+    "option": "prewedding-modern",
+    "src": "/assets/v3/portfolio/prewedding-modern-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/prewedding-modern.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy photographic example, ONE portrait 4:5 photo. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Create an elegant modern prewedding photograph of this same adult woman beside a distinct adult Indonesian man with short dark hair. Woman in refined ivory high-neck long-sleeve wedding gown, man in dark tailored suit, standing close holding hands, both looking gently at camera. Minimal cream studio, small ivory bouquet, soft side light, full-length couple photograph. Preserve woman identity; keep man distinct. Photorealistic natural skin texture, no watermark, no collage. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Full-length modern wedding couple: the same woman stands upright, neck vertical, chin level and face directed toward camera, holding hands with a distinct adult male partner at waist level. Her ivory wedding gown is high-neck and long-sleeved; partner in black suit. Cream studio, natural different poses, no heads leaning together or hand supporting face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "standing-front",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: full-length couple standing with individually supported heads, hands joined at waist, distinct adult identities. Portfolio cover only, not paired with independently generated before-photo."
+  },
+  {
+    "id": "cinematic-city",
+    "serviceId": "cinematic",
+    "setting": "portfolio",
+    "option": "cinematic-city",
+    "src": "/assets/v3/portfolio/cinematic-city-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/cinematic-city.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy photographic example, ONE portrait 4:5 photo. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Create a cinematic three-quarter portrait of this same adult woman standing on a quiet city street at blue hour. Plain black jacket and dark shirt, calm confident expression, 50mm natural framing, soft warm streetlight and cool ambient light, subtle film grain. No signs, logos, text or sunglasses obscuring her face. Photorealistic natural skin texture, no watermark, no collage. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Natural walking street editorial at blue hour, full torso and arms visible, neck upright, gaze toward distance, arms down in gentle motion, no hand touching face. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "walking",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/walking.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: upright torso, arms lowered and gaze away from lens, cinematic city light, distinct from the previous selfie-derived pose."
+  },
+  {
+    "id": "relight-window",
+    "serviceId": "relight",
+    "setting": "portfolio",
+    "option": "relight-window",
+    "src": "/assets/v3/portfolio/relight-window-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/relight-window.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Use case: identity-preserve. Asset type: Aichemy photographic example, ONE portrait 4:5 photo. Images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user. Preserve her recognizable facial identity, dark brown eyes, natural small freckles, short black bob hair, skin tone and natural proportions. These are references, not layout targets. Create a natural head-and-shoulders portrait of this same adult woman in a plain cream blouse, beside a window in a warm quiet room. Directional soft window light from left, detailed gentle shadows, relaxed neutral expression. Preserve bob, natural skin texture and facial identity. No text or logos. Photorealistic natural skin texture, no watermark, no collage. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Three-quarter portrait by a window, neck upright and chin level, both hands below frame, quiet natural expression. Cream high-neck blouse. Soft window light from left. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: three-quarter portrait by window with upright supported neck and no hand touching cheek; portfolio cover, not a lighting-only edit claim."
+  },
+  {
+    "id": "professional-profile",
+    "serviceId": "professional",
+    "setting": "portfolio",
+    "option": "linkedin",
+    "src": "/assets/v3/portfolio/professional-profile-v2.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals-v2/professional-profile.png",
+    "prompt": "Use case: identity-preserve. Create ONE finished commercial photograph, not a collage. Image 1 supplies the REQUIRED BODY/HEAD POSE of the user's adult synthetic AI influencer; image 2 confirms facial identity only. Preserve the same recognizable face, dark eyes, short black bob and natural skin texture. Create a realistic professional head-and-shoulders portrait in a dark blazer and cream high-neck shirt, neutral gray studio, soft large studio light, accurate natural skin and recognizable face, no logos or text. IMPORTANT POSE OVERRIDE, takes priority over any previous composition: Professional head-and-shoulders portrait, torso angled slightly left and face directed to camera, neck perfectly upright, level chin, both hands below crop. Dark blazer over cream high-neck shirt, neutral gray studio, soft light. Do NOT repeat the old tilted-head selfie pose. Do NOT lean face or chin on a hand. Do NOT angle the neck sideways. The head and spine are naturally supported. If no hands are required, leave hands resting naturally away from the face. Follow the specified gaze and body angle. Outfit and scene come from the requested final photograph, NOT the neutral gray pose-bank clothing. No watermark or text.",
+    "poseReference": "threequarter-left",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed second generation: professional three-quarter torso, upright neck and level chin, dark blazer and cream shirt, no hand near face."
+  },
+  {
+    "id": "influencer-source",
+    "serviceId": "professional",
+    "setting": "source",
+    "option": "source",
+    "src": "/assets/v3/portfolio/influencer-source.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/references/influencer-1.png",
+    "prompt": "Original user-supplied synthetic influencer identity reference. Resized for before-and-after presentation; not generated by Aichemy and not a customer testimonial.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-1.png",
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-2.png"
+    ],
+    "tool": "user-provided synthetic reference",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: original synthetic character reference supplied and authorized by the user. Resized mechanically, not a customer image or paid endorsement."
+  },
+  {
+    "id": "influencer-cutout",
+    "serviceId": "formal",
+    "setting": "background",
+    "option": "preview-subject",
+    "src": "/assets/v3/portfolio/influencer-cutout.webp",
+    "source": "/Users/tobin/orca/aichemy/design/v3/originals/influencer-cutout.png",
+    "prompt": "Use case: background-extraction. Create a photorealistic head-and-upper-chest portrait cutout of the SAME adult synthetic AI influencer in the reference. Preserve her recognizable facial identity, dark eyes, subtle freckles and short black bob. Straight frontal head, calm neutral closed lips, white high-neck shirt and dark tailored blazer, balanced soft frontal light, real skin pores, both shoulders visible. Isolate cleanly on a genuinely transparent alpha background with preserved individual hair edges. No room, no background color, no text, no watermark. Asset for demonstrating formal backdrop colors in a prompt builder.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/references/influencer-2.png"
+    ],
+    "tool": "built-in image_gen",
+    "reviewed": true,
+    "reviewNotes": "Reviewed: recognizable influencer in blazer, full shoulders, transparent background for precise color swatches. Neutral portrait illustration, not an official ID photo."
+  }
+]

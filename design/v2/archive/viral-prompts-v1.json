@@ -1,0 +1,50 @@
+[
+  {
+    "id": "collectible",
+    "prompt": "Transform the person in the attached reference photo into an original premium collectible figure displayed in a clear blister package. Preserve recognizable facial identity and personal features in a tasteful miniature interpretation. Use a warm ivory backing card, restrained violet accents, realistic molded plastic, soft studio light, and a neatly organized empty accessory compartment. Keep the full package visible in a straight-on composition. Do not invent branded accessories, product claims, prices, logos, or text. Render a fictional concept, not a real licensed product."
+  },
+  {
+    "id": "diorama",
+    "prompt": "Create an original handcrafted miniature diorama featuring the person in the attached reference photograph. Preserve their recognizable facial identity, hairstyle, skin tone, clothing colors, and distinctive features through careful miniature stylization. Seat the person at a tiny wooden desk inside a cozy cream-and-terracotta creative studio, with a small lamp, blank notebook, and potted plant. Present a cutaway room on a square display plinth, tactile model-making materials, soft studio light, and an elevated three-quarter view. Keep the entire miniature readable with restrained selective focus. No written signs, famous characters, invented brands, or watermark. Clearly a fictional crafted miniature concept."
+  },
+  {
+    "id": "clay",
+    "prompt": "Reimagine the person in the attached reference photograph as an original handcrafted clay avatar. Retain recognizable hairstyle, facial proportions, skin tone, clothing colors, and distinctive identity cues while simplifying them into soft sculptural forms. Use matte clay texture, subtle hand-shaped irregularities, warm pastel studio background, gentle diffused light, and a friendly natural expression. A waist-up centered portrait with clean margins. Avoid exaggerated anatomy, famous character resemblance, text, logos, or watermark."
+  },
+  {
+    "id": "retro",
+    "prompt": "Create an original retro editorial portrait from the attached reference photo. Preserve the person's facial identity, age, skin tone, and distinctive features. Use a warm late-afternoon studio atmosphere, understated vintage-inspired styling, restrained analog grain, gentle highlight rolloff, and a muted amber and olive palette. Compose a natural three-quarter portrait with realistic skin texture and calm confidence. Do not add historical insignia, famous brand logos, invented magazine text, or watermark."
+  },
+  {
+    "id": "film-poster",
+    "prompt": "Create an original fictional cinematic poster concept featuring the person in the attached reference photograph. Preserve their recognizable facial identity, age, hairstyle, skin tone, and natural facial proportions. Use a dramatic close portrait with an atmospheric sea horizon and layered sunset clouds softly integrated behind the shoulders. Warm amber key light, deep blue shadows, coherent facial illumination, and restrained film grain. Keep one main recognizable face and clean space for a title to be added manually. No generated title, credits, release date, franchise cues, copied artwork, famous logos, or watermark. This is an original conceptual poster, not a real film endorsement."
+  },
+  {
+    "id": "neon",
+    "prompt": "Relight the person in the attached reference photograph for an original contemporary neon portrait. Preserve exact facial identity, expression, skin texture, hairstyle, age, clothing, and natural proportions. Use a controlled magenta key light from camera left and a cyan rim light from behind camera right, with a dark navy background and abstract out-of-focus neon bars. Keep both eyes readable, skin highlights controlled, and light directions coherent. A refined close head-and-shoulders editorial photograph with natural pores. No written signs, invented text, extra faces, cybernetic implants, brands, or watermark."
+  },
+  {
+    "id": "double-exposure",
+    "prompt": "Create a refined original double-exposure artwork from the person in the attached reference photograph. Preserve a recognizable facial silhouette and key personal features. Integrate a misty forest and a quiet mountain ridge within the silhouette, using carefully layered exposure, natural monochrome tonal transitions, and generous ivory negative space. Keep the face readable rather than replacing it with random scenery. Editorial fine-art composition, subtle texture, no generated text, logos, copied artwork, or watermark."
+  },
+  {
+    "id": "papercut",
+    "prompt": "Transform the person in the attached reference photo into an original layered papercut portrait. Preserve recognizable facial planes, hairstyle, expression, skin tone, clothing colors, and distinctive personal features through careful stylization. Build the portrait from crisp overlapping colored-paper layers with tactile cut edges and subtle real cast shadows. Use a restrained cream, terracotta, charcoal, and sage palette on a clean cream paper background. Keep one face clearly readable and the construction plausible as layered paper craft. No famous character resemblance, artist imitation, generated lettering, logos, or watermark."
+  },
+  {
+    "id": "product-splash",
+    "prompt": "Create a fictional high-end advertising photograph of the product in the attached reference photo, surrounded by an elegant dynamic clear-water splash. Preserve the exact product silhouette, packaging structure, material color, brand marks, and existing label content. Freeze realistic liquid droplets with clean studio backlighting and a soft readable frontal key. Keep the front label unobstructed and the product standing plausibly on a reflective surface. This is a visual concept, not a claim that the product is waterproof or contains particular ingredients. No invented benefits, ratings, discounts, added copy, or watermark."
+  },
+  {
+    "id": "giant-product",
+    "prompt": "Create an obviously fictional surreal advertising concept in which the product in the attached reference photograph is enlarged to the height of a small two-story building within a miniature tropical plaza. Preserve exact product geometry, proportions, material colors, existing brand marks, and label content without inventing additional words. Add tiny palms, warm stone steps, restrained arches, and a shallow reflecting pool to establish exaggerated scale. Use coherent warm daylight, believable perspective, and physically plausible contact shadows. No people, recognizable landmarks, signs, additional brands, product benefit claims, prices, or watermark. Clearly a conceptual illustration, not a real installation, waterproof claim, or endorsement."
+  },
+  {
+    "id": "character",
+    "prompt": "Reimagine the person in the attached reference photo as a completely original stylized illustrated character. Retain recognizable hairstyle, skin tone, clothing colors, facial structure, and personal identity cues while using clean expressive shapes, confident linework, subtle painterly shading, and a warm restrained palette. Show a relaxed three-quarter pose against a simple environment with clear depth. Do not imitate any named artist, existing franchise, famous character, or brand. Natural anatomy, no generated text, logo, or watermark."
+  },
+  {
+    "id": "cover-portrait",
+    "prompt": "Create an original illustrated editorial cover portrait of the person in the attached reference photo. Preserve their recognizable facial identity, age, skin tone, and natural features. Use elegant painterly texture, a balanced coral and warm ivory palette, clear directional light, and a sophisticated shoulder-up composition. Reserve a generous clean top margin and smaller side margins for typography to be added manually. This is a fictional cover concept: no generated magazine title, credentials, quotes, publication logos, endorsement, or watermark."
+  }
+]

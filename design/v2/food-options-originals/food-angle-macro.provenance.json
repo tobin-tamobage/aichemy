@@ -1,0 +1,29 @@
+{
+  "id": "food-angle-macro",
+  "tool": "built-in image_gen",
+  "operation": "built-in image edit; saved original copied without semantic alteration",
+  "generatedInput": "/Users/tobin/.codex/generated_images/01a163aa-e592-7aa1-be98-814f02008472/exec-2e7338cc-e5ae-4a3e-9d44-93b9e625e2b6.png",
+  "savedOriginal": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-macro.png",
+  "toolInput": {
+    "prompt": "Use case: precise-object-edit\nAsset type: Aichemy V2 controlled food option comparison food-angle-macro; one single portrait 4:5 photorealistic food photograph.\nInput images: Image 1 is the edit target and invariant baseline.\nPrimary request: Change only camera framing to an obvious tight MACRO texture close-up at the same three-quarter view: sharply resolve the fried egg crisp edge and glossy orange yolk, individual seasoned rice grains and existing chicken below. Outer plate naturally extends outside the frame. Keep the actual serving and all ingredients intact; this is a crop of the same dish, not a smaller or replated portion. Shallow close-focus falloff is appropriate; retain same soft neutral light and white tabletop. Do not add droplets, garnish, ingredients or props.\nSubject invariants: Preserve this exact synthetic nasi goreng serving and its beige speckled ceramic plate, dark small sambal bowl at left, one sunny-side-up egg with orange yolk and crisp lacy edges over the same chicken fried rice, same visible rice grains, chicken pieces, scallion, red chili, cooked egg pieces and fried shallot already present. Keep the exact serving quantity, cucumber and tomato fan at rear left, pale crackers at rear right, and their relative arrangement. Do not invent ingredients, add garnish, restyle or redistribute the food, change the plate or bowl, or change the portion.\nScene invariants: retain the same smooth matte white horizontal tabletop, plain light warm-gray neutral backdrop, elevated three-quarter camera at about 40 degrees downward, exact plate size and position in frame, entire plate visible with small side margins, and broad soft neutral diffuse light from upper left, except the ONE variable explicitly requested above. Do not change any other variable.\nStyle/medium: realistic commercial food photography with natural texture and food color; preserve ceramic speckles, rice grain detail and appetizing crisp egg edge.\nConstraints: single portrait 4:5 photo, no collage, no diagrams, no text, logo or watermark. No added ingredients, food on the plate, utensils, hands, containers or other props except the expressly requested external styling. External styling must remain outside the plate with visible separation; it conveys no ingredient or product claim.",
+    "referenced_image_paths": [
+      "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-three-quarter.png"
+    ],
+    "transparent_background": false
+  },
+  "reuse": null,
+  "derivativeEncoding": [
+    {
+      "width": 700,
+      "quality": 82,
+      "format": "webp"
+    },
+    {
+      "width": 350,
+      "quality": 80,
+      "format": "webp"
+    }
+  ],
+  "reviewed": true,
+  "reviewNotes": "Visually inspected original: tight close-up resolves individual seasoned rice grains, existing chicken, scallion/chili, glossy orange yolk and crisp lacy egg edge. Same sambal bowl cropped at left, cucumber/tomato and crackers at top; speckled plate partially cropped naturally. No new ingredients or added props observed; same serving shown at closer framing, neutral soft light, no text or watermark."
+}

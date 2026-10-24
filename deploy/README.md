@@ -2,6 +2,9 @@
 
 Aplikasi terdiri dari frontend React yang diprarender, API Node/Fastify, PostgreSQL 17, dan Caddy untuk HTTPS. Akun memakai Better Auth dan email melalui SMTP. Pembayaran default **sandbox**.
 
+Panduan katalog 11 jasa, mesin prompt V2, kompatibilitas draft lama, aset visual, dan pembaruan Prompt Viral tersedia di [panduan V2](V2.md).
+Hasil pengujian serta batas kesiapan produksi dicatat pada [verifikasi V2](VERIFICATION-V2.md).
+
 ## Pengembangan lokal
 
 Gunakan Node 24, PostgreSQL, dan Mailpit. Salin `.env.example` menjadi `.env`, isi secret acak, dan buat database sesuai `DATABASE_URL`.

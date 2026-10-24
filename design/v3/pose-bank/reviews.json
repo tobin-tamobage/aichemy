@@ -1,0 +1,11 @@
+{
+  "front-neutral": "Reviewed: frontal face, level eyes, upright neck, neutral expression, no face-touching. Identity remains recognizable.",
+  "front-smile": "Reviewed: frontal face, upright neck, natural visible-teeth smile, no face-touching; distinct expression from neutral.",
+  "threequarter-left": "Reviewed: torso and head turned in one direction, both eyes visible, neck supported naturally, hands away from face. Left/right label denotes composition reference, not anatomical measurement.",
+  "threequarter-right": "Reviewed: opposite torso orientation from the left reference, eyes toward camera, upright posture and no face-touching.",
+  "profile-left": "Reviewed: genuine left-facing profile with one eye visible, level chin, upright neck, distinctive bob and facial outline.",
+  "profile-right": "Reviewed: genuine right-facing profile with one eye visible, level chin, upright neck, consistent face and bob.",
+  "standing-front": "Reviewed: full body, both feet visible, relaxed arms at sides, level shoulders and vertical neck, no hand near face.",
+  "seated-upright": "Reviewed: seated on stool with both hands on thighs, upright supported spine and neck, natural fingers; no cheek-on-hand pose.",
+  "walking": "Reviewed: visible forward stride and arm swing, full body with feet, upright neck and natural smile; clearly different from static standing."
+}

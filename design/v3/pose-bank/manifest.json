@@ -1,0 +1,119 @@
+[
+  {
+    "id": "front-neutral",
+    "label": "Depan · kepala tegak",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Head and shoulders, directly frontal face, neck perfectly upright on the vertical axis, level eyes and shoulders, neutral closed-mouth expression, arms down out of frame. No head tilt or hand near face. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/front-neutral.png",
+    "src": "/assets/v3/poses/front-neutral.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: frontal face, level eyes, upright neck, neutral expression, no face-touching. Identity remains recognizable."
+  },
+  {
+    "id": "front-smile",
+    "label": "Depan · senyum alami",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Head and shoulders, frontal face and upright vertical neck, level shoulders, natural open smile with modestly visible teeth, relaxed cheeks, both hands below frame. No head tilt. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/front-smile.png",
+    "src": "/assets/v3/poses/front-smile.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: frontal face, upright neck, natural visible-teeth smile, no face-touching; distinct expression from neutral."
+  },
+  {
+    "id": "threequarter-left",
+    "label": "Tiga perempat kiri",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Waist-up portrait; torso rotated about 35 degrees toward the left side of the image, face follows torso with both eyes still visible, eyes glance gently toward camera. Spine and neck upright, shoulders level. Both arms relaxed by the waist, no hand near face. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-left.png",
+    "src": "/assets/v3/poses/threequarter-left.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: torso and head turned in one direction, both eyes visible, neck supported naturally, hands away from face. Left/right label denotes composition reference, not anatomical measurement."
+  },
+  {
+    "id": "threequarter-right",
+    "label": "Tiga perempat kanan",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Waist-up portrait; torso rotated about 35 degrees toward the right side of the image, face follows torso with both eyes visible. Look slightly past camera, upright spine and vertical neck, level shoulders, both arms relaxed naturally by sides. No tilted head or hand near face. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/threequarter-right.png",
+    "src": "/assets/v3/poses/threequarter-right.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: opposite torso orientation from the left reference, eyes toward camera, upright posture and no face-touching."
+  },
+  {
+    "id": "profile-left",
+    "label": "Profil samping kiri",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Chest-up exact side profile with nose pointing toward the LEFT edge of the image. Only one eye visible. Upright vertical neck, chin level, spine straight, shoulders naturally turned with body, arms below frame. No head tilt. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/profile-left.png",
+    "src": "/assets/v3/poses/profile-left.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: genuine left-facing profile with one eye visible, level chin, upright neck, distinctive bob and facial outline."
+  },
+  {
+    "id": "profile-right",
+    "label": "Profil samping kanan",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Chest-up exact side profile with nose pointing toward the RIGHT edge of the image. Only one eye visible. Upright vertical neck, chin level, spine straight, shoulders naturally turned with body, arms below frame. No head tilt. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/profile-right.png",
+    "src": "/assets/v3/poses/profile-right.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: genuine right-facing profile with one eye visible, level chin, upright neck, consistent face and bob."
+  },
+  {
+    "id": "standing-front",
+    "label": "Berdiri santai",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: FULL BODY head to shoes: stand naturally facing camera with level shoulders, upright vertical neck, relaxed straight posture, weight comfortably balanced, arms resting at sides, hands visible with natural fingers, feet on ground. No crossed arms, no hand near face, no sideways head tilt. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/standing-front.png",
+    "src": "/assets/v3/poses/standing-front.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: full body, both feet visible, relaxed arms at sides, level shoulders and vertical neck, no hand near face."
+  },
+  {
+    "id": "seated-upright",
+    "label": "Duduk tegak",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: Three-quarter-length seated portrait on a plain stool, spine upright, vertical relaxed neck, chin level, shoulders level, BOTH hands resting naturally on thighs, fingers visible, face looking calmly at camera. No leaning on a hand, no face touching, no sideways tilt. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/seated-upright.png",
+    "src": "/assets/v3/poses/seated-upright.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: seated on stool with both hands on thighs, upright supported spine and neck, natural fingers; no cheek-on-hand pose."
+  },
+  {
+    "id": "walking",
+    "label": "Berjalan natural",
+    "prompt": "Use case: identity-preserve. Asset type: neutral photographic pose reference bank for a visual prompt builder, ONE photograph, portrait 4:5. Image 1 is a frontal identity reference of the user's adult synthetic AI influencer; preserve her recognizable face, dark brown eyes, small freckles and short black bob. Do not clone the reference composition when a different pose is requested. Outfit in every image: plain light gray high-neck crewneck cotton T-shirt, straight charcoal trousers, plain white shoes where visible. Background in every image: simple matte warm gray studio. Soft even neutral daylight, realistic pores and hair strands, minimal natural makeup. POSE REQUIRED: FULL BODY head to shoes: caught mid-stride walking toward camera with a gentle natural arm swing, upright vertical neck, chin level, shoulders relaxed, gaze slightly past camera, natural candid smile. No hands near face, no forced neck lean. Camera at natural chest/eye height, realistic anatomy. No props other than a stool when seated, no logos, no jewelry, no text, no watermark, not a collage. The goal is distinct body/head orientations while preserving identity.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v3/originals/formal-front.png"
+    ],
+    "reviewed": true,
+    "source": "/Users/tobin/orca/aichemy/design/v3/pose-bank/originals/walking.png",
+    "src": "/assets/v3/poses/walking.webp",
+    "tool": "built-in image_gen",
+    "reviewNotes": "Reviewed: visible forward stride and arm swing, full body with feet, upright neck and natural smile; clearly different from static standing."
+  }
+]

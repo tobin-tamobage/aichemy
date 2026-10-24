@@ -6,7 +6,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import Landing from "./Landing";
+import Landing from "./V2Landing";
 import { SiteProvider } from "./context";
 import { Protected, Loading } from "./Access";
 import { Brand } from "./ui";
@@ -25,10 +25,11 @@ const MemberLayout = lazy(() =>
   import("./Members").then((m) => ({ default: m.MemberLayout })),
 );
 const ExplorePage = lazy(() =>
-  import("./Members").then((m) => ({ default: m.ExplorePage })),
+  import("./V2Members").then((m) => ({ default: m.ExploreV2 })),
 );
-const StudioPage = lazy(() =>
-  import("./Members").then((m) => ({ default: m.StudioPage })),
+const StudioPage = lazy(() => import("./V2Studio"));
+const ViralPage = lazy(() =>
+  import("./V2Members").then((m) => ({ default: m.ViralPage })),
 );
 const AccountPage = lazy(() =>
   import("./Settings").then((m) => ({ default: m.AccountPage })),
@@ -42,7 +43,7 @@ function NavigationEffects() {
     window.scrollTo(0, 0);
     document.title =
       pathname === "/"
-        ? "Aichemy — Racik Prompt, Wujudkan Ide. Rp149.000 Lifetime."
+        ? "Aichemy — Bangun Studio AI-mu. Rp149.000 Sekali Bayar."
         : `${pathname.includes("/studio") ? "Studio Kreatif" : pathname.includes("masuk") ? "Masuk" : pathname.includes("daftar") ? "Buat Akun" : "Ruang Kreatif"} — Aichemy`;
   }, [pathname]);
   return null;
@@ -102,6 +103,15 @@ function InformationPage({
               pembelian Aichemy. Gambar contoh merupakan ilustrasi; hasil tidak
               dijamin sama.
             </p>
+            <h2>Pekerjaan komersial dan pemeriksaan hasil</h2>
+            <p>
+              Aichemy membantu menyusun prompt, bukan menjamin pesanan,
+              pendapatan, kesamaan wajah, atau penerimaan foto oleh instansi.
+              Pastikan izin foto referensi, lisensi generator, hak merek, serta
+              kualitas hasil sebelum digunakan atau dijual. Ilustrasi virtual
+              staging perlu dijelaskan sebagai ilustrasi, bukan kondisi properti
+              sebenarnya.
+            </p>
             <h2>Pembelian dan aktivasi</h2>
             <p>
               Akses aktif setelah pembayaran terverifikasi. Transaksi sandbox
@@ -133,6 +143,13 @@ function InformationPage({
               Cookie sesi digunakan untuk login. Tema, preferensi animasi, dan
               penanda impor dapat disimpan di browser. Data lama hanya diimpor
               ke akun setelah Anda memilih melakukannya.
+            </p>
+            <p>
+              Untuk melindungi perubahan yang belum tersimpan, salinan sementara
+              draft dapat disimpan di browser dengan penanda akun dan ID draft.
+              Salinan dibersihkan setelah penyimpanan dikonfirmasi server. Foto
+              referensi klien tidak diunggah ke Aichemy; lampirkan langsung di
+              generator pilihan Anda sesuai izin penggunaannya.
             </p>
             <h2>Permintaan data</h2>
             <p>
@@ -218,6 +235,7 @@ export default function App() {
               }
             >
               <Route path="/app" element={<ExplorePage />} />
+              <Route path="/app/viral" element={<ViralPage />} />
               <Route path="/app/studio/:id" element={<StudioPage />} />
               <Route path="/app/pustaka" element={<Library />} />
             </Route>

@@ -24,7 +24,13 @@ export function Brand({ light = false }: { light?: boolean }) {
       className={`brand ${light ? "brand-light" : ""}`}
       aria-label="Aichemy — beranda"
     >
-      <img src="/assets/brand/mark-64.png" width="38" height="38" alt="" />
+      <img
+        src="/assets/brand/mark-64.png"
+        srcSet="/assets/brand/mark-64.png 1x, /assets/brand/mark-192.png 3x"
+        width="38"
+        height="38"
+        alt=""
+      />
       <span>
         aichemy<span className="brand-dot">.</span>
       </span>
@@ -60,7 +66,13 @@ export function PurchaseButton({
       className={`button button-primary ${className}`}
       to={user?.active ? "/app" : user ? "/checkout" : "/daftar"}
     >
-      {children}
+      {user?.active ? (
+        <>
+          Buka Studio <ArrowUpRight size={18} />
+        </>
+      ) : (
+        children
+      )}
     </Link>
   );
 }
@@ -94,11 +106,13 @@ export function Modal({
   children,
   onClose,
   wide = false,
+  initialFocus = "form",
 }: {
   title: string;
   children: React.ReactNode;
   onClose: () => void;
   wide?: boolean;
+  initialFocus?: "form" | "close";
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const previousFocus = useRef<HTMLElement | null>(
@@ -117,7 +131,9 @@ export function Modal({
     node?.showModal();
     node
       ?.querySelector<HTMLElement>(
-        'input:not([type="hidden"]), textarea, select',
+        initialFocus === "close"
+          ? 'button[aria-label="Tutup dialog"]'
+          : 'input:not([type="hidden"]), textarea, select',
       )
       ?.focus();
     return () => {

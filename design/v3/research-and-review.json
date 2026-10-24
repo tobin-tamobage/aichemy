@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-23",
+  "scope": "Perluasan jasa dan katalog 3 Aichemy, termasuk perbaikan keragaman pose berdasarkan umpan balik pemilik.",
+  "method": "Sepuluh putaran self-review dan perbaikan oleh implementer, bukan sepuluh penilai independen. Skor adalah checklist internal, bukan prediksi kepuasan, konversi, atau penghasilan.",
+  "research": [
+    {
+      "title": "Upwork In-Demand Skills 2026",
+      "url": "https://www.upwork.com/press/releases/upworks-in-demand-skills-2026-demand-for-top-ai-skills-more-than-doubles-as-ai-is-embedded-into-everyday-work",
+      "published": "2026-02-04",
+      "scope": "Data marketplace Upwork dengan permintaan berasal dari AS; bukan survei pembeli Indonesia.",
+      "use": "Sinyal untuk mempertahankan fokus image editing, visual merek, dan kebutuhan pemasaran. Tidak membuktikan setiap niche baru pasti laku."
+    },
+    {
+      "title": "Shopify — Guide To AI Product Photography",
+      "url": "https://www.shopify.com/blog/ai-product-photography",
+      "published": "2026-09-02",
+      "use": "Contoh penggunaan foto studio, lifestyle, editorial produk, dan visual lintas kanal mendasari pilihan fashion serta aksesori."
+    },
+    {
+      "title": "Fiverr Fall 2025 Business Trends Index",
+      "url": "https://www.fiverr.com/news/2025-fall-business-trends-index",
+      "use": "Sinyal pencarian layanan AI influencer dan creative marketing. Data pencarian platform global tidak sama dengan pesanan atau tarif di Indonesia."
+    }
+  ],
+  "productJudgment": {
+    "businessFacing": ["fashion", "beauty", "jewelry", "creator"],
+    "personalKeepsakes": ["graduation", "family", "pets"],
+    "limitations": "Pemilihan tujuh kategori adalah inferensi produk dari kegunaan yang konkret, bukan peringkat permintaan pasar yang telah terbukti. Validasi pelanggan Indonesia tetap diperlukan. Tidak ada janji pendapatan atau klaim bahwa hasil AI merupakan bukti kejadian, endorsement, treatment, atau kualifikasi."
+  },
+  "rounds": [
+    { "round": 1, "lens": "Calon pembeli", "criticism": "Katalog lama kurang menunjukkan jasa khusus yang bisa ditawarkan kepada jenis klien berbeda.", "change": "Tetapkan tujuh niche baru dengan calon klien, hasil layanan, dan batas kualitas yang jelas.", "score": 6.5 },
+    { "round": 2, "lens": "Nilai fitur", "criticism": "Menambah judul kartu saja tidak cukup.", "change": "Bangun 42 gaya baru dengan descriptor, pilihan nyata, prompt server, dan penyimpanan akun. Total 18 jasa dan 218 gaya.", "score": 7.5 },
+    { "round": 3, "lens": "Kesederhanaan", "criticism": "Katalog yang membesar lebih sulit dipindai.", "change": "Kelompok jasa, pencarian alias Indonesia, pencarian pengaturan, serta filter Diatur/Tidak diatur.", "score": 8 },
+    { "round": 4, "lens": "Kendali pengguna", "criticism": "Pengguna tidak bisa benar-benar melewati pengaturan.", "change": "Tanpa arahan tambahan menghapus instruksi field, dengan jalan pintas pada kartu dan representasi yang jelas di galeri.", "score": 8.5 },
+    { "round": 5, "lens": "Kualitas prompt", "criticism": "Sebagian instruksi generik tidak cocok untuk aksesori/hewan, dan ada tumpang tindih posisi teks atau framing.", "change": "Pilihan jasa khusus, tanggung jawab blok terpisah, lokasi bawaan yang terlihat, pose terpisah dari ekspresi/potongan, dan pemeriksaan seluruh gaya/opsi.", "score": 8.5 },
+    { "round": 6, "lens": "Kepercayaan", "criticism": "Pengguna bisa mengira konsep beauty, influencer, atau wisuda adalah bukti hasil nyata.", "change": "Panduan referensi dan checklist kontekstual per jasa, tanpa testimoni atau klaim khasiat/kualifikasi rekaan. Galeri baru tidak dipasangkan sebagai before/after palsu.", "score": 9 },
+    { "round": 7, "lens": "Keamanan data", "criticism": "Katalog baru berisiko mengubah draft lama dan menimpa prompt manual.", "change": "Versi katalog eksplisit, duplikasi ke versi baru, perlindungan manual, opt-out tersimpan, serta regresi akses anggota dan kepemilikan.", "score": 9 },
+    { "round": 8, "lens": "HP dan aksesibilitas", "criticism": "Filter baru mengambil ruang vertikal dan kontrol opsional harus mudah disentuh.", "change": "Filter jasa horizontal di HP, target sentuh opt-out 44 px, dialog keyboard, sticky copy, pemeriksaan empat lebar dan dua tema.", "score": 9 },
+    { "round": 9, "lens": "Identitas dan keragaman visual", "criticism": "Pemilik menunjukkan banyak foto mewarisi kepala miring dan tangan di pipi dari referensi awal.", "change": "Buat dan tinjau sembilan pose netral, lalu buat ulang 28 foto utama memakai pose berbeda. Versi sebelumnya diarsipkan. Beberapa pose baru juga digunakan di builder.", "score": 9 },
+    { "round": 10, "lens": "Marketing dan regresi menyeluruh", "criticism": "Kartu jasa baru mengarah ke galeri before/after tanpa kasus yang cocok; hasil belum boleh dianggap sempurna hanya karena build lulus.", "change": "Dialog portofolio enam contoh untuk jasa baru, urutan penawaran yang menampilkan fashion/influencer, validasi aset dan regresi browser/API/build. Satu kriteria tetap belum diklaim tanpa uji calon pembeli sungguhan.", "score": 9.5 }
+  ],
+  "rubric": {
+    "pointsPerCriterion": 0.5,
+    "criteria": [
+      { "id": "clear-service", "status": "pass", "text": "Jenis jasa, calon klien, dan hasil konkret terbaca." },
+      { "id": "real-starters", "status": "pass", "text": "Seluruh gaya menerapkan pilihan nyata, bukan form kosong." },
+      { "id": "visual-choice", "status": "pass", "text": "Klik kartu membuka galeri dan pilihan kembali terlihat pada kartu." },
+      { "id": "discoverability", "status": "pass", "text": "Pencarian alias dan kelompok membantu menemukan jasa." },
+      { "id": "optional-controls", "status": "pass", "text": "Pengaturan dapat dilewati tanpa instruksi bawaan masuk kembali." },
+      { "id": "settings-search", "status": "pass", "text": "Pengaturan bisa dicari dan difilter menurut statusnya." },
+      { "id": "no-required-brief", "status": "pass", "text": "Prompt bisa dibuat tanpa mengisi teks." },
+      { "id": "semantic-effects", "status": "pass", "text": "Perubahan opsi memiliki pengaruh terverifikasi pada satu blok prompt." },
+      { "id": "contextual-options", "status": "pass", "text": "Pilihan produk, manusia, hewan, dan formal dibedakan." },
+      { "id": "manual-safe", "status": "pass", "text": "Prompt manual tetap aman saat kontrol berubah atau pratinjau gagal." },
+      { "id": "draft-safe", "status": "pass", "text": "Pilihan dan opt-out pulih setelah refresh." },
+      { "id": "legacy-safe", "status": "pass", "text": "Katalog lama tetap lama sampai duplikasi eksplisit." },
+      { "id": "protected-api", "status": "pass", "text": "API jasa baru tetap memerlukan sesi dan entitlement." },
+      { "id": "asset-integrity", "status": "pass", "text": "Sumber, prompt, thumbnail, versi, dan tinjauan aset tersedia dan digate pada build." },
+      { "id": "pose-variety", "status": "pass", "text": "Bank sembilan pose dan 28 penggantian menghindari pola kepala/tangan yang sama." },
+      { "id": "mobile", "status": "pass", "text": "Empat lebar, dua tema, salin di HP, dan tanpa overflow diperiksa." },
+      { "id": "a11y", "status": "pass", "text": "Fokus dialog, Escape, keyboard, reduced motion, dan Axe pada permukaan utama diuji." },
+      { "id": "honest-sales", "status": "pass", "text": "Harga/cakupan nyata, biaya eksternal jelas, tanpa janji penghasilan." },
+      { "id": "functional-quality", "status": "pass", "text": "Typecheck, build, recipe/API, dan perjalanan browser utama lulus." },
+      { "id": "real-buyers", "status": "unverified", "text": "Pemula dan calon pembeli Indonesia sungguhan menyelesaikan tugas serta menilai manfaat tanpa bantuan. Belum dilakukan; tidak diberi poin." }
+    ],
+    "finalScore": 9.5,
+    "stopReason": "Sepuluh putaran selesai; jangan mengarang 10/10 tanpa bukti pengguna nyata."
+  },
+  "evidence": {
+    "catalog": "shared/services-v3.ts",
+    "engine": "server/options-v3.ts",
+    "unitTests": "tests/v3.test.ts",
+    "apiTests": "tests/api.test.ts",
+    "browserTests": "tests/browser/product.spec.ts",
+    "visualReview": "design/v3/visual-reviews.json",
+    "poseJobs": "design/v3/pose-bank/jobs.json",
+    "poseReview": "design/v3/pose-bank/contact-sheet.png",
+    "portfolioJobs": "design/v3/diverse-portfolio-jobs.json",
+    "portfolioReview": "design/v3/review-contact-sheet.png",
+    "previousLandingCapture": "artifacts/conversion-review/expansion-round-8/evidence.json"
+  },
+  "verification": {
+    "typecheck": "passed",
+    "build": "passed: asset gate, Vite, landing prerender, Fastify bundle",
+    "unitApiTests": "37 passed",
+    "recipeRegression": "10 default V1 recipes plus marketing, relight, portrait and logo branches passed",
+    "browserTests": "15 passed against localhost:4173 built application without snapshot updates, including saving current controls while preview fails",
+    "assetManifest": "50 portfolio entries and 9 pose-bank entries reviewed; 28 portfolio replacements use versioned v2 paths",
+    "performance": "artifacts/expansion-review/performance/metrics.json: one local lab run, LCP 684ms, CLS 0.00008884; not field data",
+    "localDev": "localhost:5173 retained and API health checked; dedicated 3002/4173 QA services stopped"
+  },
+  "productionLimits": "Tidak ada deployment atau aktivasi pembayaran produksi. Merchant sandbox sungguhan, konfigurasi VPS, serta pengujian pengguna nyata masih belum dibuktikan; batas yang telah dicatat sebelumnya tetap berlaku."
+}

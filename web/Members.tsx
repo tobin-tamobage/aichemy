@@ -67,7 +67,11 @@ export function MemberLayout() {
           <nav aria-label="Navigasi anggota">
             <NavLink to="/app" end>
               <LayoutGrid size={16} />
-              Jelajahi
+              Pilih Jasa
+            </NavLink>
+            <NavLink to="/app/viral">
+              <Sparkles size={16} />
+              Prompt Viral
             </NavLink>
             <NavLink to="/app/pustaka">
               <Bookmark size={16} />

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "flash-digicam",
+    "afterSource": "design/v2/viral-photography-originals/flash-digicam-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, broad friendly smile and charcoal crew-neck shirt. Create a photorealistic early-2000s compact-digicam snapshot of this exact woman at night against a dark unlettered cafe exterior. Direct on-camera flash, crisp recognizable face, small hard shadow behind her, slightly cool highlights and restrained compact-camera noise; candid chest-up framing. Preserve her exact facial geometry, age, hair, smile, skin tone and shirt. No cartoon, 3D render, words, logos, date stamp or watermark. One 4:5 photograph, not a collage.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output against source: same facial identity, dark bob, warm complexion, broad smile and charcoal shirt. Direct flash, dark cafe background and compact-camera texture are visible; no lettering or added accessories."
+  },
+  {
+    "id": "motion-blur",
+    "afterSource": "design/v2/viral-photography-originals/motion-blur-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the edit target. Create a photorealistic editorial panning portrait of the EXACT SAME synthetic adult Indonesian woman with short wavy dark bob, tan skin, friendly smile and charcoal shirt, walking sideways along a city pavement at dusk. Waist-up framing; recognizable eyes, nose and smile remain relatively sharp while the distant city background forms horizontal motion streaks; subtle garment movement only, plausible anatomy and balanced exposure. Keep identity, age, hair, complexion and charcoal shirt, use charcoal trousers if visible. No duplicate face or limbs, no signs or lettering, no artificial speed lines, no cartoon or 3D. One 4:5 photograph, no collage/watermark.\nTargeted follow-up: Use case: precise-object-edit. Image 1 is edit target, the generated panning portrait of a synthetic adult woman. Remove only the black shoulder-bag strap and black bag visible behind her right side. Reconstruct the charcoal T-shirt and trousers naturally in those small regions. Keep her exact face, smile, age, hair, skin, pose, shirt, trousers, background horizontal motion streaks, lighting, framing and photographic texture completely unchanged. No new accessories or text. One 4:5 photograph, no collage/watermark.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png",
+      "design/v2/viral-photography-originals/motion-blur-stage1.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed corrected output against source: recognizable face, bob, complexion, smile and charcoal shirt retained. Horizontal city streaks communicate panning while face remains readable. An unsolicited bag in the first generation was removed in a targeted edit; plain trousers are synthetic extrapolation."
+  },
+  {
+    "id": "prism-glow",
+    "afterSource": "design/v2/viral-photography-originals/prism-glow-v2.png",
+    "prompt": "Use case: identity-preserve, lighting-weather. Image 1 is the edit target. Preserve the EXACT SAME synthetic adult Indonesian woman's facial identity, short wavy dark bob, tan skin, smile, charcoal T-shirt, head position and chest-up framing. Make an elegant photorealistic prism-light portrait on a neutral warm gray studio backdrop: a restrained refracted rainbow band falls across one cheek and shoulder, soft diffused white key light keeps eyes and natural skin readable; delicate optical flare near an outer corner only. Keep facial features singly coherent, no duplicate eyes, no crystal objects obstructing the face, no illustration, cartoon, words, watermark or collage. One 4:5 photographic image.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: source facial geometry, smile, hair and shirt preserved. Restrained rainbow band crosses outer cheek and shoulder while both eyes remain unobstructed. Coherent photo lighting, no duplicate face or typography."
+  },
+  {
+    "id": "rainy-window",
+    "afterSource": "design/v2/viral-photography-originals/rainy-window-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the edit target. Create a photorealistic close portrait of the EXACT SAME synthetic adult Indonesian woman behind a real rain-speckled cafe window at blue hour. Face stays clear and recognizable between foreground droplets; warm indoor key light and cool soft city bokeh outside reflected faintly in glass, no reflections crossing the eyes. Preserve exact facial geometry, age, dark wavy bob, tan complexion, smile and charcoal shirt. Shallow depth of field with distinct droplets at edges, coherent glass reflections and natural skin texture. No invented lettering, signs, duplicate faces, cartoon, 3D render, watermark or collage. One 4:5 photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: same source face and shirt; foreground droplets, restrained reflections and warm/cool cafe lighting match the effect. Central face stays readable, no duplicate face, signs or lettering."
+  },
+  {
+    "id": "overhead-street",
+    "afterSource": "design/v2/viral-photography-originals/overhead-street-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the synthetic adult Indonesian woman source/edit target. Create a photorealistic high-angle street editorial of this EXACT same woman with exact recognizable face, short wavy bob, tan skin, broad friendly smile and charcoal T-shirt. Place her standing relaxed on clean geometric pale stone pavement, wearing plain charcoal wide trousers and simple white sneakers. Entire head/body/shoes visible in 4:5 frame, camera clearly elevated looking diagonally downward about 55 degrees; she looks naturally up toward camera. Soft afternoon light, restrained neutral tones, plausible body and perspective. No exaggerated head size, extra limbs, accessories, lettering, logos, collage, illustration or watermark. One photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: recognizable source face, hair, shirt and smile in a clear elevated pavement composition. Legs, plain trousers and white shoes are synthetic extrapolation from a chest-up source; user guidance recommends a full-body reference. Anatomy and framing coherent, no text."
+  },
+  {
+    "id": "low-angle-editorial",
+    "afterSource": "design/v2/viral-photography-originals/low-angle-editorial-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the synthetic adult Indonesian woman edit target. Create a photorealistic full-body fashion editorial of this EXACT same woman, preserving exact recognizable face, age, short wavy dark bob, tan skin, broad smile and charcoal T-shirt. Complete outfit with plain charcoal trousers and white sneakers. Modest low camera around knee height angled up, restrained wide-angle perspective, clean concrete architecture leading lines and pale sky. Relaxed confident stance, face near upper center with low distortion, entire shoes and head visible, plausible limb lengths, soft bright daylight, real texture. No added accessories, duplicated limbs, text, brands, cartoon, 3D, collage or watermark. One 4:5 photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: source face, hair, smile and shirt recognizable, low viewpoint and concrete leading lines clear. Plain trousers, shoes and lower body are synthetic extrapolation; user guidance requests a full-body reference. No extra limbs, lettering or logos."
+  },
+  {
+    "id": "retro-studio",
+    "afterSource": "design/v2/viral-photography-originals/retro-studio-v2.png",
+    "prompt": "Use case: identity-preserve. Image 1 is the edit target. Create a photorealistic 1980s studio portrait of the EXACT SAME synthetic adult Indonesian woman with exact facial geometry, dark short wavy bob, tan skin, broad friendly smile and charcoal shirt retained. Express the era through softly graduated dusty blue/mauve backdrop, broad soft key/fill, slight optical diffusion, fine film grain and warm printed skin tones. Centered chest-up composition, eyes and facial identity sharply readable beneath gentle diffusion, realistic skin. Preserve hair style and clothing rather than inventing large hair or costumes. No props, added jewelry, dates, lettering, cartoon, 3D, collage, brand or watermark. One 4:5 photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output against source: exact recognizable facial features, bob, smile and shirt. Dusty blue/mauve backdrop, soft diffusion and warm photographic grain give the intended studio nostalgia without identity restyling or invented props."
+  },
+  {
+    "id": "black-white",
+    "afterSource": "design/v2/viral-photography-originals/black-white-v2.png",
+    "prompt": "Use case: identity-preserve, lighting-weather. Image 1 is edit target. Create a photorealistic black-and-white editorial photograph of the EXACT SAME synthetic adult Indonesian woman, preserving exact face/age, short wavy bob, friendly broad smile, pose and charcoal shirt. Large directional key 45 degrees from one side with restrained fill, rich charcoal shadows, luminous midtones, subtle highlight rolloff and fine monochrome grain; separate hair and clothing from dark-gray backdrop. Both eyes remain clear, natural skin texture and pores retained. Chest-up 4:5 framing, no duotone tint or face reshaping, no new accessories, no illustration, words, border, collage, logos or watermark. One photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: recognizable source face, hair, expression, shirt and natural skin in monochrome. Directional light and midtone detail retained, eyes clear, no tint, added accessories or typography."
+  },
+  {
+    "id": "blue-hour",
+    "afterSource": "design/v2/viral-photography-originals/blue-hour-v2.png",
+    "prompt": "Use case: identity-preserve, lighting-weather. Image 1 is edit target. Create a photorealistic blue-hour terrace portrait of the EXACT SAME synthetic adult Indonesian woman; keep exact recognizable facial geometry/age, short wavy bob, tan skin, broad friendly smile, pose and charcoal shirt. Deep luminous blue sky immediately after sunset, a few softly blurred warm city windows in distance, no signs or landmarks. Subtle warm key on face balanced with cool ambient, no neon-colored skin, correctly exposed eyes, natural texture. Chest-up 4:5, coherent perspective, no additional accessories, lettering, collage, cartoon, 3D, logos or watermark. One photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: same recognizable face, hair, shirt, pose and smile; deep blue sky and warm city bokeh remain photographic. Skin readable and natural under warm key, no signage or lettering."
+  },
+  {
+    "id": "sunset-rim",
+    "afterSource": "design/v2/viral-photography-originals/sunset-rim-v2.png",
+    "prompt": "Use case: identity-preserve, lighting-weather. Image 1 is edit target. Create a photorealistic golden-hour meadow portrait of the EXACT SAME synthetic adult Indonesian woman, retaining exact face/age, tan skin, short wavy bob, broad smile, pose and charcoal shirt. Low sun behind and to one side, thin beautiful warm rim through hair and shoulder, gentle reflected fill keeping both eyes and entire face visible. Soft distant natural meadow and restrained greens, tiny warm flare only near outer edge, never over eyes. Realistic pores and coherent shadows, no new flowers or accessories, duplicated people, illustration, text, logo, collage or watermark. One chest-up 4:5 photograph.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output: exact recognizable face, bob, expression and shirt with thin golden rim and softly separated meadow. Face exposed with fill, no flare over eyes, no added flowers or props."
+  },
+  {
+    "id": "product-caustics",
+    "afterSource": "design/v2/viral-photography-originals/product-caustics-v2.png",
+    "prompt": "Use case: precise-object-edit. Image 1 is edit target, synthetic frosted peach serum bottle with rose-gold metallic collar and ivory rubber bulb, no label. Create one photorealistic premium commercial product photograph of this EXACT SAME bottle, keeping full geometry, shoulder/base proportions, peach frosted glass, rose-gold collar, ivory bulb and blank surface. Upright entirely visible on pale warm stone tabletop against a simple aqua-tinted backdrop. Beautiful delicate water-caustic sunlight patterns cross the surrounding surface/background, coming from water outside frame; subtle clean reflection near base, bottle stays DRY with no splash. Realistic highlights/contact shadow, no ingredients, added branding, text, benefit claims, duplicate bottle, CGI render, illustration, collage or watermark. Single 4:5 photograph.",
+    "references": [
+      "design/v2/cases-originals/source-product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output against product source: peach frosted bottle silhouette/proportions, rose-gold collar, ivory bulb and blank surface preserved. Delicate water-caustic light around dry product and stone surface, no splash, new label or invented claim."
+  },
+  {
+    "id": "window-shadow",
+    "afterSource": "design/v2/viral-photography-originals/window-shadow-v2.png",
+    "prompt": "Use case: identity-preserve, lighting-weather. Image 1 is edit target. Create a photorealistic minimalist portrait of the EXACT SAME synthetic adult Indonesian woman: exact facial identity/age, short wavy bob, tan skin, friendly smile, charcoal shirt and head position retained. Matte warm ivory wall, afternoon sunlight through a real rectangular window creates broad diagonal light/shadow bands mainly on wall and shoulder, subtle on outer cheek; both eyes and center of face readable with ambient fill. Correct consistent shadow direction/falloff across body and wall, warm neutrals, natural skin. Chest-up 4:5 photograph, no added furniture, objects, drawn stripes, duplicate faces, words, logos, illustration, collage or watermark.",
+    "references": [
+      "design/v2/cases-originals/source-professional.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed full output against portrait source: identity, bob, smile, skin and charcoal shirt preserved. Broad coherent window-light bands on ivory wall/shoulder with readable central face. No drawn stripes, furniture or lettering."
+  }
+]

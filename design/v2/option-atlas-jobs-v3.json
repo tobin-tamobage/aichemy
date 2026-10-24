@@ -1,0 +1,813 @@
+[
+  {
+    "source": "design/v2/options-originals-v3/prewedding-wardrobe-atlas.png",
+    "prefix": "prewedding-wardrobe-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Jas hitam & gaun putih",
+      "Krem senada",
+      "Taupe elegan",
+      "Sage lembut",
+      "Dusty rose",
+      "Navy formal",
+      "Batik modern",
+      "Tuxedo klasik",
+      "Krem berhijab",
+      "Biru muda",
+      "Putih minimalis",
+      "Terracotta",
+      "Hijau tua",
+      "Putih berhijab",
+      "Marun hangat",
+      "Hitam & ivory"
+    ],
+    "prompt": "A 4 by 4 fashion reference atlas showing the same Indonesian wedding couple in the same neutral studio pose, with each panel changing only their coordinated wedding clothing and colors. Respectful modest options, no logos or text. Cropped to an individual visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-pose-atlas.png",
+    "prefix": "prewedding-pose-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Berdiri berdampingan",
+      "Saling menatap",
+      "Berjalan bersama",
+      "Duduk berdekatan",
+      "Saling menggenggam",
+      "Pelukan ringan",
+      "Memandang kamera",
+      "Bahu bersandar",
+      "Membelakangi kamera",
+      "Berdiri berjauhan",
+      "Duduk di bangku",
+      "Kepala berdekatan",
+      "Memegang buket",
+      "Tertawa bersama",
+      "Berjalan menjauh",
+      "Potret dekat berdua"
+    ],
+    "prompt": "A 4 by 4 pose reference atlas showing the same Indonesian prewedding couple, same garden, outfits and light; each panel changes the couple's pose only. Natural anatomy, both identities remain distinct, tasteful wedding context, no text. Cropped to an individual visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-place-atlas.png",
+    "prefix": "prewedding-place-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Studio putih",
+      "Taman hijau",
+      "Kebun bunga",
+      "Pantai senja",
+      "Ballroom klasik",
+      "Pelataran heritage",
+      "Makan malam intim",
+      "Padang pegunungan",
+      "Rumah kaca",
+      "Vila tropis",
+      "Taman saat hujan",
+      "Jalur hutan",
+      "Rooftop kota",
+      "Lobi hotel",
+      "Halaman batu",
+      "Tepi danau"
+    ],
+    "prompt": "A 4 by 4 location reference atlas showing the same Indonesian prewedding couple in the same ivory wedding attire, pose, and soft light. Only the wedding location/background changes in each panel. Cropped to an individual visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-lens-atlas.png",
+    "prefix": "prewedding-lens-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "cols": 2,
+    "rows": 3,
+    "gutterX": 4,
+    "gutterY": 4,
+    "names": [
+      "35 mm",
+      "50 mm",
+      "85 mm",
+      "100 mm",
+      "24 mm",
+      "135 mm"
+    ],
+    "prompt": "A 2 by 3 lens-perspective comparison atlas showing the same Indonesian prewedding couple, attire, garden and light. Framing and background compression vary as illustrative focal-length references; not an optical simulation. Cropped to individual examples. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/professional-wardrobe-atlas.png",
+    "prefix": "professional-wardrobe-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Kemeja putih",
+      "Blazer hitam",
+      "Blazer krem",
+      "Kardigan rapi",
+      "Blus dusty rose",
+      "Outer batik",
+      "Jas formal",
+      "Blus biru muda",
+      "Jas medis",
+      "Kasual kreatif",
+      "Blazer navy",
+      "Blazer sage",
+      "Kemeja kerah",
+      "Hijab & blazer",
+      "Busana wisuda",
+      "Monokrom gelap"
+    ],
+    "prompt": "A 4 by 4 professional wardrobe reference atlas for an Indonesian AI portrait studio. An adult Indonesian woman in consistent neutral head-and-shoulders framing and soft studio light; each cell demonstrates a distinct appropriate work outfit. No logos, credentials, insignia, or text. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/professional-pose-atlas.png",
+    "prefix": "professional-pose-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Potret kepala",
+      "Tiga perempat lembut",
+      "Duduk tegak",
+      "Berdiri santai",
+      "Bahu sedikit miring",
+      "Tangan terlipat",
+      "Tangan rileks",
+      "Pandang ke samping",
+      "Tatapan percaya diri",
+      "Potret setengah badan",
+      "Duduk di meja kerja",
+      "Profil samping",
+      "Senyum natural",
+      "Ekspresi reflektif",
+      "Tangan bersilang",
+      "Potret lingkungan"
+    ],
+    "prompt": "A 4 by 4 professional pose reference atlas for an Indonesian AI portrait studio. Same adult Indonesian woman, cream blouse, neutral studio and soft light; each cell demonstrates a different realistic client-friendly portrait pose or framing. Plausible anatomy, no text or logos. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/product-surface-atlas.png",
+    "prefix": "product-surface-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Putih matte",
+      "Batu terang",
+      "Kayu oak",
+      "Slate gelap",
+      "Akrilik blush",
+      "Cermin",
+      "Travertine",
+      "Kain linen",
+      "Terrazzo",
+      "Kaca bening",
+      "Beton",
+      "Kertas krem",
+      "Lacquer hitam",
+      "Keramik sage",
+      "Pasir",
+      "Peach lembut"
+    ],
+    "prompt": "A 4 by 4 product surface reference atlas showing the exact same unbranded amber bottle, camera angle, lighting, bottle shape and blank label. Only the physical display surface changes in each cell. No text or logos. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-presentation-atlas.png",
+    "prefix": "food-presentation-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Menu di atas kayu",
+      "Aksen daun pisang",
+      "Tata letak dari atas",
+      "Detail tekstur",
+      "Mangkuk keramik",
+      "Piring gelap",
+      "Piring putih",
+      "Sajian dengan pendamping",
+      "Meja linen",
+      "Suasana kafe",
+      "Papan kayu",
+      "Piring stoneware",
+      "Ruang lega",
+      "Komposisi editorial",
+      "Kemasan takeaway",
+      "Sajian keluarga"
+    ],
+    "prompt": "A 4 by 4 food presentation reference atlas centered on the same Indonesian nasi goreng dish. Keep recognizable dish and serving portion while varying plating/container/composition in each cell. No invented claims, text, or logos. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-lighting-16-atlas.png",
+    "prefix": "prewedding-lighting-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Lembut dari depan",
+      "Jendela kiri",
+      "Jendela kanan",
+      "Golden hour",
+      "Teduh hijau",
+      "Mendung lembut",
+      "Tepi keemasan",
+      "Samping teduh",
+      "Latar hijau lembut",
+      "Matahari sore",
+      "Kontras dramatis",
+      "Terang bersih",
+      "Sinematik gelap",
+      "Cahaya belakang",
+      "Bercak pepohonan",
+      "Studio netral"
+    ],
+    "prompt": "A 4 by 4 prewedding lighting reference atlas of the same Indonesian couple, wedding clothes, pose, framing and garden. Vary only light direction/quality; maintain natural visible faces. Illustrative AI samples, not measured lighting. Cropped to one example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/product-lighting-16-atlas.png",
+    "prefix": "product-lighting-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Softbox kiri",
+      "Softbox kanan",
+      "Cahaya jendela",
+      "Terang merata",
+      "Hangat keemasan",
+      "Cahaya sejuk",
+      "Tepi produk",
+      "Dari atas",
+      "High-key",
+      "Low-key",
+      "Samping dramatis",
+      "Pantulan lembut",
+      "Bayangan tegas",
+      "Bayangan lembut",
+      "Cahaya belakang",
+      "Studio netral"
+    ],
+    "prompt": "A 4 by 4 product lighting reference atlas with the same unbranded amber bottle, blank label, angle and studio background. Change lighting setup only. Preserve bottle geometry and avoid adding text. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-lighting-16-atlas.png",
+    "prefix": "food-lighting-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Jendela kiri",
+      "Jendela kanan",
+      "Terang dari atas",
+      "Hangat kafe",
+      "Menu netral",
+      "Cahaya tepi",
+      "High-key",
+      "Low-key",
+      "Pantulan lembut",
+      "Matahari sore",
+      "Mendung",
+      "Samping tegas",
+      "Bayangan lembut",
+      "Highlight terkontrol",
+      "Cahaya belakang",
+      "Studio seimbang"
+    ],
+    "prompt": "A 4 by 4 Indonesian food lighting atlas using the same plated nasi goreng, viewpoint, table and portion as far as possible; vary light direction/quality only. Illustrative examples, not measured lighting. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/professional-lighting-16-atlas.png",
+    "prefix": "professional-lighting-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Soft dari depan",
+      "Jendela kiri",
+      "Jendela kanan",
+      "Rembrandt lembut",
+      "Butterfly",
+      "Clamshell",
+      "Golden hour",
+      "Teduh sejuk",
+      "High-key",
+      "Cahaya tepi",
+      "Samping dramatis",
+      "Pantulan lembut",
+      "Mendung",
+      "Low-key",
+      "Cahaya rambut",
+      "Studio netral"
+    ],
+    "prompt": "A 4 by 4 professional portrait lighting atlas with the same Indonesian woman, outfit, pose, framing and studio. Vary lighting only; retain facial identity and natural skin. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/professional-background-atlas.png",
+    "prefix": "professional-background-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Studio putih",
+      "Studio abu",
+      "Studio krem",
+      "Studio biru",
+      "Studio peach",
+      "Studio gelap",
+      "Kantor modern",
+      "Ruang kerja bersama",
+      "Perpustakaan",
+      "Kafe tenang",
+      "Dekat jendela",
+      "Latar tanaman",
+      "Studio arang",
+      "Dinding bata hangat",
+      "Lobi bisnis",
+      "Kota berjarak"
+    ],
+    "prompt": "A 4 by 4 professional portrait background atlas using the same adult Indonesian woman, same white blouse, pose, framing and neutral skin tone. Change only the background from clean studio colors to believable work environments. No logos, signs, or readable text. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/product-background-atlas.png",
+    "prefix": "product-background-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Putih bersih",
+      "Krem hangat",
+      "Abu lembut",
+      "Peach pastel",
+      "Sage lembut",
+      "Biru lembut",
+      "Navy premium",
+      "Lilac lembut",
+      "Hijau tanaman",
+      "Kamar mandi terang",
+      "Meja kayu",
+      "Kafe minimalis",
+      "Jendela bercahaya",
+      "Batu terang",
+      "Arang gelap",
+      "Gradien hangat"
+    ],
+    "prompt": "A 4 by 4 product background atlas showing the exact same small amber skincare bottle with the same blank label, scale, angle, surface and lighting. Change only the backdrop, from seamless colors to restrained believable environments. No text, logos, or extra products. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-environment-atlas.png",
+    "prefix": "food-environment-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "names": [
+      "Meja kayu",
+      "Kafe hangat",
+      "Batu terang",
+      "Meja putih",
+      "Slate gelap",
+      "Linen netral",
+      "Dapur rumahan",
+      "Kafe jendela",
+      "Taman teduh",
+      "Bata hangat",
+      "Meja marmer",
+      "Kertas krem",
+      "Papan rustic",
+      "Latar biru",
+      "Meja rotan",
+      "Studio bersih"
+    ],
+    "prompt": "A 4 by 4 Indonesian food photography environment atlas featuring the same recognizable plate of nasi goreng with egg, same portion, garnish, camera angle and dishware. Change only the table/background environment, using realistic dining settings. Do not change ingredients or add text/logos. Cropped to one visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-decoration-atlas.png",
+    "prefix": "prewedding-decor-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "columnBounds": [
+      [
+        0,
+        306
+      ],
+      [
+        316,
+        624
+      ],
+      [
+        632,
+        937
+      ],
+      [
+        950,
+        1254
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        300
+      ],
+      [
+        307,
+        604
+      ],
+      [
+        612,
+        909
+      ],
+      [
+        916,
+        1254
+      ]
+    ],
+    "names": [
+      "Lengkung minimalis",
+      "Lengkung bunga putih",
+      "Lengkung dedaunan",
+      "Lorong lilin",
+      "Kain lembut",
+      "Lentera hangat",
+      "Pilar klasik",
+      "Lengkung geometris",
+      "Rangkaian mawar",
+      "Tropis rimbun",
+      "Tekstil bernuansa adat",
+      "Ballroom berbunga",
+      "Lengkung taman",
+      "Pampas netral",
+      "Lampu gantung hangat",
+      "Plinth studio"
+    ],
+    "prompt": "A 4 by 4 wedding-decoration atlas with the same adult Indonesian bride and groom, identical ivory wedding attire, pose, framing and neutral studio light. Change only tasteful wedding decor/background arrangement in each cell. Keep both faces unobstructed, realistic scale, no text or logos. Cropped to an individual visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/prewedding-bouquet-atlas.png",
+    "prefix": "prewedding-bouquet-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "columnBounds": [
+      [
+        0,
+        307
+      ],
+      [
+        316,
+        621
+      ],
+      [
+        633,
+        934
+      ],
+      [
+        948,
+        1254
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        307
+      ],
+      [
+        318,
+        620
+      ],
+      [
+        633,
+        934
+      ],
+      [
+        947,
+        1254
+      ]
+    ],
+    "names": [
+      "Mawar putih",
+      "Mawar blush",
+      "Peony krem",
+      "Bunga liar",
+      "Anggrek putih",
+      "Lavender lembut",
+      "Mawar merah",
+      "Bunga kering",
+      "Baby's breath",
+      "Calla lily",
+      "Dominan hijau",
+      "Aksen matahari",
+      "Campuran pink",
+      "Lili putih",
+      "Aksen terracotta",
+      "Tanpa buket"
+    ],
+    "prompt": "A 4 by 4 bouquet atlas with the same adult Indonesian bride and groom, identical ivory attire, pose, framing, soft studio light and warm neutral backdrop. Change only the modest wedding bouquet held between them; one final tile has their hands gently joined with no flowers. Keep faces unobstructed, bouquet scale plausible, no text or logos. Cropped to an individual visual example. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/professional-lens-atlas.png",
+    "prefix": "professional-lens-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "cols": 2,
+    "rows": 3,
+    "columnBounds": [
+      [
+        0,
+        620
+      ],
+      [
+        634,
+        1254
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        410
+      ],
+      [
+        423,
+        830
+      ],
+      [
+        844,
+        1254
+      ]
+    ],
+    "names": [
+      "24 mm",
+      "35 mm",
+      "50 mm",
+      "85 mm",
+      "100 mm",
+      "135 mm"
+    ],
+    "prompt": "A 2 by 3 portrait lens-character comparison atlas with the same adult Indonesian woman, cream blouse, office-window scene and soft light. Vary illustrative camera perspective and framing only; maintain natural face anatomy and identity. AI examples, not measured optics. Cropped to one tile. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/product-angle-atlas.png",
+    "prefix": "product-angle-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "cols": 4,
+    "rows": 2,
+    "columnBounds": [
+      [
+        0,
+        378
+      ],
+      [
+        390,
+        763
+      ],
+      [
+        777,
+        1148
+      ],
+      [
+        1160,
+        1536
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        508
+      ],
+      [
+        516,
+        1024
+      ]
+    ],
+    "fit": "contain",
+    "background": "#a8a8a8",
+    "names": [
+      "Sejajar produk",
+      "Tiga perempat",
+      "Dari atas",
+      "Flat lay",
+      "Sudut rendah",
+      "Sisi produk",
+      "Detail label",
+      "Detail tutup"
+    ],
+    "prompt": "An 8-cell product angle atlas with the exact same unbranded amber bottle, blank label, display plinth and studio light. Vary only camera viewpoint/detail framing. Preserve bottle geometry. Cropped to one tile with whole-object framing. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-angle-atlas.png",
+    "prefix": "food-angle-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "cols": 4,
+    "rows": 2,
+    "columnBounds": [
+      [
+        0,
+        437
+      ],
+      [
+        449,
+        882
+      ],
+      [
+        896,
+        1326
+      ],
+      [
+        1340,
+        1774
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        438
+      ],
+      [
+        448,
+        887
+      ]
+    ],
+    "names": [
+      "Sejajar hidangan",
+      "Tiga perempat",
+      "Sedikit dari atas",
+      "Flat lay",
+      "Sudut rendah",
+      "Diagonal meja",
+      "Detail tekstur",
+      "Sajian lebih luas"
+    ],
+    "prompt": "An 8-cell food photography angle atlas with the same nasi goreng serving, plate, garnish, tabletop and soft light. Change only camera viewpoint and crop. Keep ingredients and portion consistent. Cropped to one tile. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/product-props-atlas.png",
+    "prefix": "product-props-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "columnBounds": [
+      [
+        0,
+        310
+      ],
+      [
+        316,
+        623
+      ],
+      [
+        630,
+        937
+      ],
+      [
+        943,
+        1254
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        309
+      ],
+      [
+        316,
+        623
+      ],
+      [
+        630,
+        937
+      ],
+      [
+        943,
+        1254
+      ]
+    ],
+    "names": [
+      "Daun kecil",
+      "Kain krem",
+      "Bola kaca",
+      "Nampan keramik",
+      "Aksen citrus",
+      "Bunga kering",
+      "Kartu cermin",
+      "Batu halus",
+      "Kertas blush",
+      "Pita netral",
+      "Tetes air",
+      "Balok sage",
+      "Bunga kering besar",
+      "Akrilik bening",
+      "Linen natural",
+      "Tanpa properti"
+    ],
+    "prompt": "A 4 by 4 product styling prop atlas with the same amber bottle, blank label, surface, angle and light. Vary only restrained props outside the bottle; no claims, text or logos. Cropped to one tile. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-props-atlas.png",
+    "prefix": "food-props-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "columnBounds": [
+      [
+        0,
+        311
+      ],
+      [
+        321,
+        630
+      ],
+      [
+        641,
+        947
+      ],
+      [
+        959,
+        1268
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        297
+      ],
+      [
+        305,
+        596
+      ],
+      [
+        607,
+        902
+      ],
+      [
+        913,
+        1241
+      ]
+    ],
+    "names": [
+      "Linen terlipat",
+      "Alat makan polos",
+      "Gelas air",
+      "Daun pisang",
+      "Sambal kecil",
+      "Sendok kayu",
+      "Serbet netral",
+      "Cangkir keramik",
+      "Daun herba",
+      "Papan menu kosong",
+      "Alas anyaman",
+      "Mangkuk saus",
+      "Nampan bersih",
+      "Vas bunga jauh",
+      "Meja tanpa dekorasi",
+      "Fokus hanya pada sajian"
+    ],
+    "prompt": "A 4 by 4 food styling prop atlas with the same Indonesian nasi goreng plate, portion, light, angle and wood tabletop. Vary only small supporting props around and outside the plate. No text/logos, extra food, or covered dish. Cropped to one tile. Built-in image_gen."
+  },
+  {
+    "source": "design/v2/options-originals-v3/food-surface-atlas.png",
+    "prefix": "food-surface-",
+    "output": "public/assets/v2/options-v3",
+    "manifest": "design/v2/option-assets-v3.json",
+    "columnBounds": [
+      [
+        0,
+        310
+      ],
+      [
+        316,
+        623
+      ],
+      [
+        630,
+        937
+      ],
+      [
+        943,
+        1254
+      ]
+    ],
+    "rowBounds": [
+      [
+        0,
+        292
+      ],
+      [
+        300,
+        599
+      ],
+      [
+        606,
+        900
+      ],
+      [
+        908,
+        1254
+      ]
+    ],
+    "names": [
+      "Putih matte",
+      "Batu terang",
+      "Kayu oak",
+      "Slate gelap",
+      "Linen krem",
+      "Terrazzo",
+      "Bambu",
+      "Keramik sage",
+      "Walnut gelap",
+      "Marmer terang",
+      "Peach lembut",
+      "Biru abu",
+      "Beton halus",
+      "Rotan",
+      "Kertas kraft",
+      "Travertine"
+    ],
+    "prompt": "A 4 by 4 food tabletop surface atlas with the same Indonesian nasi goreng plate, portion and soft light. Change only the surface beneath the plate, preserving the food and plate. Cropped to one tile. Built-in image_gen."
+  }
+]

@@ -17,7 +17,7 @@ export default defineConfig({
     exclude: ["@renderzero/shared-core"],
   },
   server: {
-    proxy: { "/api": "http://localhost:3001" },
+    proxy: { "/api": process.env.AICHEMY_API_PROXY ?? "http://localhost:3001" },
     fs: {
       allow: [path.resolve(__dirname), sharedCoreRoot],
     },

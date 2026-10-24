@@ -1,0 +1,194 @@
+[
+  {
+    "id": "collectible",
+    "kind": "viral",
+    "before": "/assets/v2/viral/collectible-before.webp",
+    "after": "/assets/v2/viral/collectible-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/collectible.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Turn this same adult Indonesian woman into an original premium collectible figurine displayed inside a clear-front minimalist cream display box. Retain recognizable short wavy dark bob, warm tan skin, smiling face and charcoal T-shirt; stylized 3D full body with beige trousers and simple white sneakers. Accurate anatomy, sculpted toy materials, soft studio light. Plain packaging with no words, lettering, brands, certification or franchise cues. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: recognizable adult woman's bob, tan complexion, eyes, nose, teeth and smile retained in a conceptual full-body collectible/display-box treatment. Charcoal shirt retained, beige trousers and shoes added, anatomy coherent and box unlettered. Highly realistic figurine treatment rather than strongly cartooned toy; explicitly conceptual synthetic AI illustration.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "diorama",
+    "kind": "viral",
+    "before": "/assets/v2/viral/diorama-before.webp",
+    "after": "/assets/v2/viral/diorama-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/diorama.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Turn this same adult Indonesian woman into a handcrafted miniature diorama: recognizable smiling short-bob woman in charcoal T-shirt seated at a tiny wood desk in a cozy cream-and-terracotta creative studio room with miniature lamp, blank notebook and small plant, cutaway room on a square plinth. Keep recognizable face, hair, skin tone and adult identity, stylized carefully crafted miniature materials, tilt-shift studio photography, no written signs. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: recognizable adult woman's short bob, tan face, eyes/nose/teeth and smile retained in a miniature cutaway studio diorama. Charcoal shirt retained, desk/chair/miniature room added coherently, hands plausible; no words. Explicitly conceptual synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "clay",
+    "kind": "viral",
+    "before": "/assets/v2/viral/clay-before.webp",
+    "after": "/assets/v2/viral/clay-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/clay.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Transform this exact adult Indonesian woman's portrait into a beautiful handcrafted clay sculpture bust with visible softly pressed clay texture. Preserve recognizable short wavy dark bob, tan complexion, smiling eyes, nose, broad smile/teeth and charcoal T-shirt silhouette. Warm cream seamless background, playful premium stop-motion material quality, gentle studio light. Original conceptual clay illustration, no franchise or artist imitation. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: recognizable facial geometry, short wavy bob, eyes/nose/teeth and smile retained in sculpted clay bust; clay hair/shirt/skin textures and plinth visible. Stylization is intentionally illustrative, no unrelated person or protected character. Synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "retro",
+    "kind": "viral",
+    "before": "/assets/v2/viral/retro-before.webp",
+    "after": "/assets/v2/viral/retro-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/retro.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Create a retro analog editorial portrait of this EXACT SAME adult Indonesian woman, preserving exact short wavy bob, tan skin, facial geometry, eyes, nose, teeth and smile. Charcoal shirt retained, warm amber and faded teal studio color palette, subtle 1970s-style color-film grain, softly textured cream backdrop, gentle vignette, professional photographic skin texture. No borders, dates, typography or famous film/artist references. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: exact adult woman's short wavy bob, tan face, eyes, nose, teeth/smile, pose and charcoal shirt retained. Warm faded amber/teal analog texture and background change create retro editorial concept, no printed dates or lettering. Synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "film-poster",
+    "kind": "viral",
+    "before": "/assets/v2/viral/film-poster-before.webp",
+    "after": "/assets/v2/viral/film-poster-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/film-poster.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Create an original conceptual film-poster image of this EXACT SAME adult Indonesian woman, preserving recognizable short bob, warm tan skin, smiling face and adult identity. Charcoal outfit, dramatic close portrait with atmospheric sea horizon and cloud layers softly composited behind shoulders, warm amber key with deep blue shadows and restrained film grain. Tasteful cinematic design, one main face, no title, credits, written words, franchise cues or artist mimicry. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same recognizable adult woman's facial geometry, bob, smile, skin tone and charcoal shirt; sea/sunset/clouds and cinematic rim lighting added coherently. No title, credits, brands or protected-franchise cues. Explicitly conceptual synthetic illustrative AI poster effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "neon",
+    "kind": "viral",
+    "before": "/assets/v2/viral/neon-before.webp",
+    "after": "/assets/v2/viral/neon-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/neon.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Relight this EXACT SAME adult Indonesian woman's portrait with cinematic magenta and cyan neon studio lighting, dark navy backdrop with abstract out-of-focus neon bars. Preserve exact facial identity, short wavy bob, tan skin under colored light, eyes, nose, teeth/smile, pose and charcoal T-shirt. Professional editorial photograph with realistic pores and coherent shadows, no signs, writing or extra face. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: exact recognizable adult woman's bob, eyes, nose, teeth/smile, skin tone, pose and charcoal shirt retained. Magenta/cyan rim light and navy neon-bar background applied with coherent shadows; no lettering or face substitution. Conceptual synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "double-exposure",
+    "kind": "viral",
+    "before": "/assets/v2/viral/double-exposure-before.webp",
+    "after": "/assets/v2/viral/double-exposure-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/double-exposure.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Create an elegant conceptual double-exposure artwork from this EXACT SAME adult Indonesian woman's portrait. Preserve recognizable smiling face, short wavy bob silhouette and charcoal shirt outline; blend misty tropical forest canopy and soft mountain contours within the hair and shoulder silhouette while leaving central eyes, nose and smile clearly recognizable. Warm ivory background, deep green and amber tones, refined photographic fine-art treatment. No duplicate faces or words. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: original adult woman's eyes, nose, lips/teeth smile, face angle and bob remain recognizable; forest/mountain double exposure blends through hair and shoulders with central face clear. No duplicate face or words. Explicitly conceptual synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "papercut",
+    "kind": "viral",
+    "before": "/assets/v2/viral/papercut-before.webp",
+    "after": "/assets/v2/viral/papercut-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/papercut.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Transform this same adult Indonesian woman's portrait into an original layered paper-cut illustration, retaining her recognizable short wavy dark bob, warm tan facial planes, smiling eyes, nose, broad teeth smile and charcoal top. Physical stacked colored-paper layers with clean cut edges and subtle real shadows, cream/terracotta/charcoal/sage palette, centered portrait on cream paper background. Clear identity where possible through stylization, no writing or franchise cues. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: stylized but recognizable bob, facial planes, eyes/nose and broad teeth smile retained; charcoal shirt silhouette matches source. Layered paper cut edges, texture and shadows clearly visible; identity intentionally approximate through stylization. No lettering or franchise cues. Synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-splash",
+    "kind": "viral",
+    "before": "/assets/v2/viral/product-splash-before.webp",
+    "after": "/assets/v2/viral/product-splash-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/product-splash.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Image 1 edit target is a synthetic frosted peach amber serum bottle with rounded square shoulders and base, a rose-gold metallic dropper collar and ivory rubber bulb, no label. Create an ordinary phone product photo of this EXACT SAME bottle standing vertically on a plain pale gray tabletop against a plain off-white wall. Remove orange slice, flowers, drapery, stone plinth and dramatic scenery. Preserve bottle geometry, packaging shape, peach-orange color, material, rose-gold collar, ivory bulb, proportions, and absence of label. Bottle entirely visible centered at comparable scale, 4:5 portrait. Flat everyday ambient room lighting and small natural contact shadow; no added packaging, lettering, logos, watermark, hands or people. Single photorealistic image, not collage. Synthetic illustrative AI before image for same-product transformations.\nAFTER generation or edit:\nUse case: precise-object-edit. Input image 1 is the edit target/source. Place the EXACT SAME frosted peach serum bottle into a dynamic conceptual beauty-product splash composition. Preserve exact packaging shape/proportions, peach color, frosted glass, rose-gold collar, ivory bulb and absence of label. Bottle centered upright in a sculptural clear water splash with a few peach droplets around it, warm blush seamless studio background and glossy reflection, sharp professional product photo. Splash remains outside bottle, no alteration of product, no text. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same frosted peach bottle silhouette, shoulder/base proportions, rose-gold collar and ivory dropper bulb; unlabeled packaging preserved. Conceptual clear splash and peach droplets outside bottle, glossy studio surface, no product substitution or lettering. Synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "giant-product",
+    "kind": "viral",
+    "before": "/assets/v2/viral/giant-product-before.webp",
+    "after": "/assets/v2/viral/giant-product-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/giant-product.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Image 1 edit target is a synthetic frosted peach amber serum bottle with rounded square shoulders and base, a rose-gold metallic dropper collar and ivory rubber bulb, no label. Create an ordinary phone product photo of this EXACT SAME bottle standing vertically on a plain pale gray tabletop against a plain off-white wall. Remove orange slice, flowers, drapery, stone plinth and dramatic scenery. Preserve bottle geometry, packaging shape, peach-orange color, material, rose-gold collar, ivory bulb, proportions, and absence of label. Bottle entirely visible centered at comparable scale, 4:5 portrait. Flat everyday ambient room lighting and small natural contact shadow; no added packaging, lettering, logos, watermark, hands or people. Single photorealistic image, not collage. Synthetic illustrative AI before image for same-product transformations.\nAFTER generation or edit:\nUse case: precise-object-edit. Input image 1 is the edit target/source. Create an obviously conceptual surreal advertising illustration of the EXACT SAME frosted peach serum bottle enlarged to the height of a small two-story building in a clean miniature tropical plaza with tiny palms and stone steps. Preserve bottle shape/proportions, frosted peach color, rose-gold collar, ivory bulb and blank unlabeled surface. Warm natural light, architectural miniature photographic realism, clear exaggerated scale, no people, signs, brands or written text. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same peach frosted bottle geometry/proportions, rose-gold collar, ivory bulb and blank surface; enlarged surreal scale against miniature tropical plaza with coherent lighting. Object identity retained; explicitly conceptual, not a real installation or customer result. Synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "cover-portrait",
+    "kind": "viral",
+    "before": "/assets/v2/viral/cover-portrait-before.webp",
+    "after": "/assets/v2/viral/cover-portrait-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/cover-portrait.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Input image 1 is the edit target/source. Create a sophisticated editorial cover portrait of this EXACT SAME adult Indonesian woman, preserving exact short wavy bob, tan complexion, eyes, nose, smile/teeth and recognizable facial identity. Change outfit to a refined cream blazer over charcoal shirt, warm terracotta studio background, dramatic soft window light, natural skin texture, portrait with ample empty space above head for future layout. No actual masthead, text, publication brands or claims. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Explicitly conceptual synthetic illustrative AI example, no real customer or factual result claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: recognizable adult woman's exact facial geometry, short dark bob, warm tan skin, eyes/nose and teeth smile retained. Cream blazer over charcoal shirt, terracotta background, window shadows and upper negative space applied. No masthead, publication branding or words. Conceptual synthetic illustrative AI cover portrait.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "character",
+    "kind": "viral",
+    "before": "/assets/v2/viral/character-before.webp",
+    "after": "/assets/v2/viral/character-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/character.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve with strong style-transfer. Input image 1 is a synthetic adult Indonesian woman's portrait. Transform her into an UNMISTAKABLY STYLIZED ORIGINAL 3D ANIMATED CHARACTER, not a photograph: slightly oversized rounded head, simplified smooth sculpted facial planes, expressive larger brown eyes, small stylized nose, broad warm smile with simplified teeth, clearly sculpted chunky locks forming her recognizable short dark wavy bob. Preserve her recognizable adult identity cues, tan complexion, hair silhouette, head tilt, friendly smile and charcoal crew-neck T-shirt. Clearly rendered rounded 3D materials with subtle satin surface and soft subsurface shading; minimal fabric folds, warm cream studio background, polished animated-character bust. Do not reproduce photographic skin pores or individual flyaway photographic hair strands. Original character design, no protected franchises, no specific studio/artist mimicry. One 4:5 portrait, no words, logos, watermarks or collage. Explicitly conceptual synthetic illustrative AI example.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and revised output: recognizable adult woman's short wavy bob, tan complexion, head tilt, smile and charcoal shirt retained through clear stylized 3D animation treatment. Enlarged expressive eyes and simplified sculpted facial planes intentionally change exact photoreal facial geometry; coherent original character, no franchise/artist mimicry. Explicitly conceptual synthetic illustrative AI effect.",
+    "tool": "built-in image_gen"
+  }
+]

@@ -1,0 +1,203 @@
+{
+  "expected": 16,
+  "completed": 16,
+  "skipped": [],
+  "missing": [],
+  "problems": [],
+  "webpFiles": 32,
+  "totalWebpBytes": 1882656,
+  "files": [
+    {
+      "file": "public/assets/v2/options/food-angle-eye.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 47966
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-eye-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 15724
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-macro.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 138040
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-macro-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 45370
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-overhead.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 105222
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-overhead-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 30346
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-three-quarter.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 81404
+    },
+    {
+      "file": "public/assets/v2/options/food-angle-three-quarter-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 24440
+    },
+    {
+      "file": "public/assets/v2/options/food-light-golden.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 85464
+    },
+    {
+      "file": "public/assets/v2/options/food-light-golden-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 25246
+    },
+    {
+      "file": "public/assets/v2/options/food-light-rim.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 86696
+    },
+    {
+      "file": "public/assets/v2/options/food-light-rim-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 25152
+    },
+    {
+      "file": "public/assets/v2/options/food-light-soft.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 81404
+    },
+    {
+      "file": "public/assets/v2/options/food-light-soft-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 24440
+    },
+    {
+      "file": "public/assets/v2/options/food-light-window.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 87870
+    },
+    {
+      "file": "public/assets/v2/options/food-light-window-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 25862
+    },
+    {
+      "file": "public/assets/v2/options/food-props-botanical.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 87700
+    },
+    {
+      "file": "public/assets/v2/options/food-props-botanical-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 26328
+    },
+    {
+      "file": "public/assets/v2/options/food-props-citrus.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 88700
+    },
+    {
+      "file": "public/assets/v2/options/food-props-citrus-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 26378
+    },
+    {
+      "file": "public/assets/v2/options/food-props-fabric.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 97224
+    },
+    {
+      "file": "public/assets/v2/options/food-props-fabric-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 27686
+    },
+    {
+      "file": "public/assets/v2/options/food-props-none.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 81404
+    },
+    {
+      "file": "public/assets/v2/options/food-props-none-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 24440
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-pastel.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 82482
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-pastel-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 24856
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-stone.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 113980
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-stone-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 32582
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-white.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 81404
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-white-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 24440
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-wood.webp",
+      "width": 700,
+      "height": 875,
+      "bytes": 101796
+    },
+    {
+      "file": "public/assets/v2/options/food-surface-wood-small.webp",
+      "width": 350,
+      "height": 438,
+      "bytes": 30610
+    }
+  ]
+}

@@ -24,6 +24,7 @@ import { useSite } from "./context";
 import { api, post } from "./api";
 import { authClient } from "./authentication";
 import { PRICE_LABEL, type Order } from "../shared/product";
+import { VIRAL_TEASERS } from "../shared/viral-photography";
 export function AuthPage({
   mode,
 }: {
@@ -301,33 +302,31 @@ export function AuthPage({
             </button>
           )}
         </div>
-        <p className="auth-footer">
-          Dari ide sederhana, jadi kemungkinan luar biasa.
-        </p>
+        <p className="auth-footer">Racik prompt untuk arah visual studio-mu.</p>
       </div>
       <aside className="auth-art">
         <ExampleImage id="product" alt="Contoh visual produk kreatif" eager />
         <div className="auth-art-shade" />
         <span className="auth-art-label">
           <Sparkles size={15} />
-          RUANG UNTUK SEMUA IDEMU
+          RUANG KERJA STUDIO AI-MU
         </span>
         <div className="auth-art-copy">
           <h2>
-            Kreativitasmu.
+            Studio-mu.
             <br />
-            Racikan baru.
+            Arah kreatifmu.
           </h2>
           <p>
-            Semua berawal dari satu ide.
+            Pilih visual, susun prompt.
             <br />
-            Biar Aichemy bantu langkah berikutnya.
+            Siapkan karya untuk kebutuhan klien.
           </p>
         </div>
         <span className="auth-art-sticker">
-          Make it
+          Racik
           <br />
-          <em>yours.</em> ✦
+          <em>versimu.</em> ✦
         </span>
       </aside>
     </div>
@@ -359,11 +358,11 @@ export function CheckoutPage() {
             <ArrowLeft size={16} />
             Kembali ke beranda
           </Link>
-          <div className="eyebrow">SATU LANGKAH MENUJU RUANG KREATIFMU</div>
+          <div className="eyebrow">SATU LANGKAH MENUJU STUDIO AI-MU</div>
           <h1>
-            Ide berikutnya
+            Bangun studio AI-mu.
             <br />
-            dimulai di sini<span className="purple-text">.</span>
+            Mulai dari sini<span className="purple-text">.</span>
           </h1>
           <p className="large-muted">
             Akses semua studio Aichemy.
@@ -372,7 +371,8 @@ export function CheckoutPage() {
           </p>
           <ul className="check-list">
             {[
-              "10 studio dengan pilihan visual",
+              `${PRODUCT_COUNTS.services} jasa dan ${PRODUCT_COUNTS.styles} gaya awal dengan pilihan visual`,
+              `${VIRAL_TEASERS.length} prompt fotografi siap salin`,
               "Draft dan preset tersimpan di akun",
               "Studio kustom untuk ide yang unik",
               "Pembaruan fitur mendatang",
@@ -586,3 +586,4 @@ export function OrderPage() {
     </div>
   );
 }
+import { PRODUCT_COUNTS } from "../shared/marketing";

@@ -1,0 +1,79 @@
+[
+  {
+    "source": "design/v2/sets-originals-v3/prewedding-16-set-styles.png",
+    "prefix": "prewedding-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Studio minimal", "Taman hijau", "Kebun bunga", "Pantai senja", "Ballroom klasik", "Pelataran heritage", "Makan malam intim", "Pegunungan", "Rumah kaca", "Adat modern", "Hujan romantis", "Hutan hijau", "Hitam putih", "Pagi pastel", "Kota malam", "Potret dekat"],
+    "prompt": "Photorealistic wedding-style contact atlas showing an Indonesian engaged couple together in the specified distinct wedding setting; original source generated with built-in image_gen, no visible text. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/professional-16-set-styles.png",
+    "prefix": "professional-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Profil LinkedIn", "Eksekutif pria", "Pemilik bisnis", "Konsultan wanita", "Konsultan pria", "Wisuda wanita", "Wisuda pria", "Kreator", "Profesional medis", "Arsitek", "Pengajar", "Profesional berhijab", "Pemilik usaha", "Pemimpin tim", "Potret personal", "Monokrom"],
+    "prompt": "Photorealistic professional portrait atlas of diverse Indonesian adults for AI-studio service samples. One person per panel, neutral portrait framing, no organization logos or invented text. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/formal-16-set-styles.png",
+    "prefix": "formal-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Putih formal pria", "Biru muda hijab", "Abu formal pria", "Biru formal wanita", "Merah dan hijab krem", "Biru muda pria", "Abu formal wanita", "Putih netral pria", "Biru gelap pria", "Biru formal pria", "Abu netral pria", "Merah formal pria", "Abu wanita berhijab", "Dusty pink hijab", "Navy hijab", "Biru abu pria"],
+    "prompt": "Photorealistic straight-on formal ID-photo examples with Indonesian adults, clean solid background, even lighting, neutral expression, and no document or institutional emblems. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/product-16-set-styles.png",
+    "prefix": "product-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Serum amber", "Kopi kemasan", "Cangkir keramik", "Sepatu putih", "Jam tangan", "Tas kulit", "Jar minimalis", "Perhiasan emas", "Lilin kaca", "Krim skincare", "Headphone", "Parfum kaca", "Sabun artisan", "Kacamata", "Tanaman pot", "Cokelat premium"],
+    "prompt": "Premium photorealistic product photography atlas of unbranded objects. One distinct product per panel with clear silhouette and realistic material. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/food-16-set-styles.png",
+    "prefix": "food-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Nasi goreng", "Rendang", "Soto ayam", "Sate", "Gado-gado", "Mi goreng", "Martabak manis", "Pisang goreng", "Kopi susu", "Latte art", "Teh jeruk", "Kue cokelat", "Kue pandan", "Ikan bakar", "Mi kuah", "Klepon"],
+    "prompt": "Photorealistic Indonesian menu photography atlas. Each authentic dish is the distinct central subject in its own appetizing, naturally lit scene. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/ads-16-set-styles.png",
+    "prefix": "ads-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Botol netral", "Kopi kemasan", "Serum botani", "Pedestal terracotta", "Premium gelap", "Pantulan air", "Botol amber", "Panggung pink", "Botol hijau", "Flat lay kopi", "Terracotta", "Tube minimal", "Bentuk playful", "Set floral", "Panggung hijau", "Studio hangat"],
+    "prompt": "Polished commercial product campaign visual with deliberate negative space and no invented writing, logo, or claims. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/cinematic-16-set-styles.png",
+    "prefix": "cinematic-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Potret amber", "Jalan neon", "Perjalanan pesisir", "Cahaya jendela", "Pasar malam", "Stasiun", "Jalan pegunungan", "Monokrom kota", "Padang senja", "Studio biru", "Kafe", "Kota saat senja", "Hutan", "Potret dekat", "Gerak kota", "Suasana panggung"],
+    "prompt": "Original cinematic editorial still with natural-looking Indonesian subject, cinematic atmosphere, no text or copyrighted character. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/social-16-set-styles.png",
+    "prefix": "social-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Skincare feed", "Kreator kafe", "Keramik handmade", "Flat lay alat tulis", "Kreator dan produk", "Story kecantikan", "Kemasan UMKM", "Suasana kafe", "Cover carousel", "Flat lay skincare", "Detail butik", "Konten makanan", "Kreator perjalanan", "Produk mint", "Potret editorial", "Latar brand netral"],
+    "prompt": "Photorealistic social-media content sample for an Indonesian small business or creator. No text, logo, or fake user interface. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/property-16-set-styles.png",
+    "prefix": "property-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Listing terang", "Interior hangat", "Kamar minimal", "Ruang keluarga", "Ruang makan", "Dapur modern", "Kamar mandi", "Rumah heritage", "Cahaya alami", "Detail kayu", "Lounge netral", "Aksen hijau", "Apartemen ringkas", "Lounge tropis", "Sudut baca", "Tangga elegan"],
+    "prompt": "Photorealistic Indonesian home and interior photography with accurate room proportions and straight architectural lines. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/branding-16-set-styles.png",
+    "prefix": "branding-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Daun minimal", "Geometri modular", "Percik coral", "Biji kopi", "Rumah", "Botani", "Mangkuk", "Cincin", "Apertur", "Gelombang", "Lengkung", "Bunga", "Geometri ubin", "Gunung", "Arah abstrak", "Tetes"],
+    "prompt": "Original clean vector-like logo symbol concept on warm-white background. No text, letter, trademark, or watermark. Cropped to a standalone visual example."
+  },
+  {
+    "source": "design/v2/sets-originals-v3/relight-16-set-styles.png",
+    "prefix": "relight-style-",
+    "manifest": "design/v2/style-assets-v3.json",
+    "names": ["Lembut frontal", "Jendela kiri", "Jendela kanan", "Terang merata", "Samping keemasan", "Samping sejuk", "Tepi kiri", "Tepi kanan", "Potret berkarakter", "Cahaya dari atas", "Kontras terarah", "Lembut mendung", "Pantulan hangat", "Studio netral", "Latar lebih gelap", "Cahaya belakang"],
+    "prompt": "Controlled lighting portrait atlas: same Indonesian woman, outfit, pose, framing, and background; lighting only varies. Cropped to a standalone visual example."
+  }
+]

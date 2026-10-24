@@ -1,0 +1,21 @@
+{
+  "professional-profile": {
+    "prompt": "Use case: identity-preserve. Asset type: Aichemy visual prompt builder service cover, photorealistic finished editorial photograph, portrait 4:5. Input images 1 and 2 are identity references of the SAME adult synthetic AI influencer owned by the user, not layout targets. Preserve her distinctive face, dark brown eyes, small nose, natural skin freckles, short black bob haircut and recognizable identity. Create a polished professional LinkedIn head-and-shoulders portrait, black tailored blazer over cream shirt, neutral warm gray seamless studio background, shoulders at slight three-quarter angle, looking directly at camera, gentle confident closed-mouth smile. Soft large key light from camera left, realistic pores, restrained makeup, true skin texture, 85mm portrait feel. Keep framing generous for responsive crop. No jewelry logos, no text, no watermark, no contact sheet, ONE photograph.",
+    "references": [
+      "/Users/tobin/Downloads/hf_20260420_131356_3b50b8d7-1d55-4a2c-8f55-29e232ca0bb4.png",
+      "/Users/tobin/Downloads/hf_20260423_133200_479b4afc-ce60-4fe1-965f-2dfbd5f065cb.png"
+    ]
+  },
+  "fashion-editorial": {
+    "prompt": "Use case: identity-preserve. Create ONE fully clothed professional fashion photograph of the adult AI influencer in the reference. Preserve her short black bob hairstyle, recognizable face and natural skin texture. She is wearing a complete tailored black pantsuit with a high-neck cream shirt underneath. Full body visible, standing confidently with relaxed arms against a neutral gray studio background. Soft side illumination, polished commercial fashion catalog, no text or logos. No collage.",
+    "references": [
+      "/Users/tobin/Downloads/hf_20260423_133200_479b4afc-ce60-4fe1-965f-2dfbd5f065cb.png"
+    ]
+  },
+  "influencer-cutout": {
+    "prompt": "Use case: background-extraction. Create a photorealistic head-and-upper-chest portrait cutout of the SAME adult synthetic AI influencer in the reference. Preserve her recognizable facial identity, dark eyes, subtle freckles and short black bob. Straight frontal head, calm neutral closed lips, white high-neck shirt and dark tailored blazer, balanced soft frontal light, real skin pores, both shoulders visible. Isolate cleanly on a genuinely transparent alpha background with preserved individual hair edges. No room, no background color, no text, no watermark. Asset for demonstrating formal backdrop colors in a prompt builder.",
+    "references": [
+      "/Users/tobin/Downloads/hf_20260423_133200_479b4afc-ce60-4fe1-965f-2dfbd5f065cb.png"
+    ]
+  }
+}

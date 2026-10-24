@@ -1,0 +1,519 @@
+[
+  {
+    "id": "formal-cv",
+    "kind": "case",
+    "before": "/assets/v2/cases/formal-cv-before.webp",
+    "after": "/assets/v2/cases/formal-cv-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-id-photo.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian man with swept black hair, brown eyes, warm medium tan skin and light natural stubble. Make an ordinary casual phone snapshot of this EXACT SAME man in a plain medium gray T-shirt against an off-white indoor wall with slightly uneven ordinary room lighting. Preserve exact facial geometry, nose, eyes, smile, hair, skin tone and adult age. Upright front-facing head and shoulders centered with breathing room above head, 4:5 portrait. Single realistic photo, natural pores, no document, credentials, KTP, ID card, badges, lettering, logo or watermark. This will be a synthetic illustrative AI before image for a professional headshot transformation.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Professional formal headshot of an adult Indonesian man wearing a navy jacket and white shirt, friendly confident expression, clean soft pale blue seamless background, evenly lit clear natural face and realistic skin texture, front facing neatly composed passport inspired corporate profile photo.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-id-photo.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed both originals: same swept black hair, brown eyes, nose, stubble and smile; casual gray tee becomes navy blazer and white shirt on blue backdrop. Professional portrait only, no document or credentials. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "relight-golden",
+    "kind": "case",
+    "before": "/assets/v2/cases/relight-golden-before.webp",
+    "after": "/assets/v2/cases/relight-golden-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Editorial portrait photo of an adult Indonesian woman with long dark hair wearing a cream blouse, neutral calm expression looking at camera, plain dim gray studio background, flat cool overcast illumination, natural skin texture, shoulders and head portrait, deliberately simple neutral source photo for a relighting demonstration.\nAFTER generation or edit:\nHistorical built-in image_gen edit prompt, recorded in design/generated-assets.json: Change only light to warm golden sunlight with peach background; preserve source identity, pose, framing, clothing and facial features.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed both originals: matching adult woman, facial features, long dark hair, white blouse, pose and framing. Golden rim light and warm backdrop replace dim gray light; no identity replacement. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "prewedding-garden",
+    "kind": "case",
+    "before": "/assets/v2/cases/prewedding-garden-before.webp",
+    "after": "/assets/v2/cases/prewedding-garden-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-wedding.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 is the edit target showing a synthetic adult Indonesian couple, man with short swept dark hair and woman with swept-up dark hair, smiling at each other. Produce an ordinary pre-shoot phone photo of the EXACT SAME two people. Preserve both recognizable facial identities, skin tones, adult ages, relative heights, mutual gaze and positions. Replace elaborate wedding wardrobe with plain cream cotton shirt and beige trousers on man, plain pale cream everyday modest dress on woman. Remove bouquet and elaborate hair flowers. Replace wedding garden with a simple undecorated light gray home wall, ordinary soft flat indoor light. Retain plausible hands with his arm gently around her waist and her hands resting naturally together, waist-up two-person 4:5 portrait. Photorealistic natural pores and cotton texture, single photo only. No text, logos, watermarks or real customer claims. Synthetic illustrative AI before photo.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Romantic editorial wedding portrait of an adult Indonesian bride in ivory modern kebaya and groom in white suit at a lush botanical garden, standing close together with delicate floral details, soft golden backlight, candid loving expressions, elegant intimate atmosphere.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and garden original: same two adult faces, mutual gaze, hairstyles, height relationship and positions; cream casual clothes become wedding attire in a lush garden. Hands plausible; synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-skincare",
+    "kind": "case",
+    "before": "/assets/v2/cases/product-skincare-before.webp",
+    "after": "/assets/v2/cases/product-skincare-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-product.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Image 1 edit target is a synthetic frosted peach amber serum bottle with rounded square shoulders and base, a rose-gold metallic dropper collar and ivory rubber bulb, no label. Create an ordinary phone product photo of this EXACT SAME bottle standing vertically on a plain pale gray tabletop against a plain off-white wall. Remove orange slice, flowers, drapery, stone plinth and dramatic scenery. Preserve bottle geometry, packaging shape, peach-orange color, material, rose-gold collar, ivory bulb, proportions, and absence of label. Bottle entirely visible centered at comparable scale, 4:5 portrait. Flat everyday ambient room lighting and small natural contact shadow; no added packaging, lettering, logos, watermark, hands or people. Single photorealistic image, not collage. Synthetic illustrative AI before image for same-product transformations.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: product-mockup. A premium pale peach skincare serum glass bottle with ivory dropper, no label or lettering. Suspended above a peach stone plinth, a soft apricot drape and small orange slice, morning sun through a window, elegant editorial cosmetic advertising, warm blush palette.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed both originals: frosted peach serum bottle, rose-gold collar and ivory bulb remain recognizable; neutral tabletop becomes peach stone-and-citrus beauty set. Packaging color and unlabeled design retained; bottle angle changes. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-restaurant",
+    "kind": "case",
+    "before": "/assets/v2/cases/food-restaurant-before.webp",
+    "after": "/assets/v2/cases/food-restaurant-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-food.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-food.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic nasi goreng plate. Create an ordinary menu-owner phone photo of the EXACT SAME dish and the same wide beige speckled ceramic plate. Preserve fried rice with diced chicken, egg with bright orange yolk, cucumber and tomato slices, pale crackers and small dark sambal bowl, their arrangement and portion sizes. Remove restaurant staging and linen. Place plate fully visible on a simple gray kitchen table against a plain background, everyday flat indoor light, less polished lighting without making food spoiled or changing ingredients. Three-quarter slightly high camera angle, 4:5 portrait. Photorealistic texture, no added food, no people, hands, text, lettering or watermark. Synthetic illustrative AI before photo.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Indonesian nasi goreng with perfectly fried sunny side egg, sambal, sliced cucumber and tomato, crispy shallots, steam visible, handmade ivory plate on dark wooden cafe table with rumpled linen, lush natural side light, mouthwatering sophisticated food photography, true realistic food textures.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-food.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-food.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed ordinary and styled originals: same nasi goreng, chicken rice, orange-yolk egg, cucumber, tomato, crackers, sambal bowl and speckled plate; warm restaurant lighting/background replaces gray tabletop. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "ads-promo",
+    "kind": "case",
+    "before": "/assets/v2/cases/ads-promo-before.webp",
+    "after": "/assets/v2/cases/ads-promo-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: ads-marketing. A creative advertising flat lay of an iced matcha latte in a transparent glass with tiny condensation droplets, vibrant mint green background, cream paper circles and lime wedges, bold graphic shadows, sophisticated playful cafe campaign product photograph. No text or lettering anywhere.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed both originals: same fluted tall glass, ice and green/ivory matcha layers; green pedestal set and citrus props added around unchanged drink for a campaign concept. No promotional/revenue claims or lettering. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "cinematic-travel",
+    "kind": "case",
+    "before": "/assets/v2/cases/cinematic-travel-before.webp",
+    "after": "/assets/v2/cases/cinematic-travel-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-cinematic.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 edit target is a synthetic adult Indonesian woman with long wavy dark hair, warm tan skin, looking back over her right shoulder in a flowing terracotta dress on an ocean cliff. Create a plain ordinary daytime phone photo of the EXACT SAME woman preserving recognizable face, hair, body proportions, over-shoulder gaze and terracotta dress. Replace elaborate cliff setting with a simple gray paved courtyard and unadorned light wall. Remove dramatic fabric train; keep normal dress silhouette. Waist-to-head view with enough space around, 4:5 portrait, flat overcast daylight, natural pores. No text, logo, watermark, collage or extra people. Synthetic illustrative AI source for cinematic concepts.\nAFTER generation or edit:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Dreamlike cinematic wide photograph of a solitary young Indonesian woman in a flowing coral dress on a coastal cliff overlooking turquoise ocean, distant rolling mist and pastel peach sky, warm late afternoon rim light, 35mm film still, expansive elegant composition.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-cinematic.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed both originals: same long-haired adult woman, tan complexion, terracotta dress and over-shoulder gaze; courtyard source becomes a conceptual coastal travel scene. Facial angle and dress remain coherent; flowing train added. Synthetic illustrative AI example, not proof of travel.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "professional-linkedin",
+    "kind": "case",
+    "before": "/assets/v2/cases/professional-linkedin-before.webp",
+    "after": "/assets/v2/cases/professional-linkedin-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/professional-linkedin.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Turn this exact adult Indonesian woman into a polished LinkedIn headshot: navy blazer over ivory blouse, soft neutral gray studio background, balanced flattering softbox light. Preserve exact face geometry, short dark bob, warm tan skin, adult age, smile and teeth; natural pores, head/upper-torso framing. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Visually compared source and edited output: same adult woman, short wavy dark bob, facial geometry, eyes, nose, teeth and smile, with coherent tan skin tone. Professional wardrobe/background changed; natural skin texture, no text or watermark. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "professional-business",
+    "kind": "case",
+    "before": "/assets/v2/cases/professional-business-before.webp",
+    "after": "/assets/v2/cases/professional-business-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/professional-business.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Create a polished business editorial portrait of the exact same adult Indonesian woman, in a charcoal blazer over cream blouse with softly blurred modern warm office behind her. Preserve face geometry, short wavy dark bob, smile/teeth, tan skin and age; waist-up, relaxed professional posture, realistic skin and tailored fabric. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Visually compared source and edited output: same adult woman, short wavy dark bob, facial geometry, eyes, nose, teeth and smile, with coherent tan skin tone. Professional wardrobe/background changed; natural skin texture, no text or watermark. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "professional-graduation",
+    "kind": "case",
+    "before": "/assets/v2/cases/professional-graduation-before.webp",
+    "after": "/assets/v2/cases/professional-graduation-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/professional-graduation.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian woman with short wavy dark bob, warm tan skin, coral knitted polo and distinctive friendly smile. Create a plain ordinary phone snapshot of this EXACT SAME woman to serve as a before photo for professional portrait editing. Change the setting to an undecorated light gray home wall, flat everyday indoor light, show head and upper torso straight upright with both hands out of frame, wearing a simple charcoal crew-neck T-shirt. Preserve her facial geometry, eyes, nose, teeth/smile, skin tone, age and recognizable short bob. Realistic skin texture, modest unstyled photo, not deliberately ugly or distorted. Portrait 4:5 framing. Single photo only, no collage, no text, watermark or logo. Synthetic illustrative AI example, no real customer.\nAFTER generation or edit:\nUse case: identity-preserve. Create an elegant graduation studio portrait of the EXACT SAME adult Indonesian woman in a black academic gown and plain black mortarboard with muted gold stole and tassel. Preserve facial identity, short dark bob, skin tone, adult age and bright smile. Warm gray studio backdrop, professional soft light, no diploma, institution insignia, credentials, logos or text. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-professional.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-portrait.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult woman, bob haircut, eyes, nose, teeth and smile; graduation gown, gold stole and mortarboard added coherently. Portrait crop clips outer cap edge; no institution marks or credentials. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "formal-administration",
+    "kind": "case",
+    "before": "/assets/v2/cases/formal-administration-before.webp",
+    "after": "/assets/v2/cases/formal-administration-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/formal-administration.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian man with swept black hair, brown eyes, warm medium tan skin and light natural stubble. Make an ordinary casual phone snapshot of this EXACT SAME man in a plain medium gray T-shirt against an off-white indoor wall with slightly uneven ordinary room lighting. Preserve exact facial geometry, nose, eyes, smile, hair, skin tone and adult age. Upright front-facing head and shoulders centered with breathing room above head, 4:5 portrait. Single realistic photo, natural pores, no document, credentials, KTP, ID card, badges, lettering, logo or watermark. This will be a synthetic illustrative AI before image for a professional headshot transformation.\nAFTER generation or edit:\nUse case: identity-preserve. Edit this exact adult Indonesian man's casual portrait into a clean professional administration-style head-and-shoulders photo, centered straight-on, pale neutral blue seamless backdrop, crisp white collared shirt, balanced diffuse studio light. Preserve exact eyes, nose, jaw, smile, natural stubble, hair shape and skin tone. Professional portrait only, no ID documents, badge cards, KTP, credentials or lettering. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-id-photo.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult man with swept dark hair, brown eyes, nose, jaw, light stubble and smile; white collared shirt and blue backdrop applied, head/shoulder geometry coherent. Photo only, no document, badge card, KTP or text. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "formal-badge",
+    "kind": "case",
+    "before": "/assets/v2/cases/formal-badge-before.webp",
+    "after": "/assets/v2/cases/formal-badge-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/formal-badge.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Input image 1 is the edit target, a synthetic adult Indonesian man with swept black hair, brown eyes, warm medium tan skin and light natural stubble. Make an ordinary casual phone snapshot of this EXACT SAME man in a plain medium gray T-shirt against an off-white indoor wall with slightly uneven ordinary room lighting. Preserve exact facial geometry, nose, eyes, smile, hair, skin tone and adult age. Upright front-facing head and shoulders centered with breathing room above head, 4:5 portrait. Single realistic photo, natural pores, no document, credentials, KTP, ID card, badges, lettering, logo or watermark. This will be a synthetic illustrative AI before image for a professional headshot transformation.\nAFTER generation or edit:\nUse case: identity-preserve. Create a tidy staff-profile portrait of this EXACT SAME adult Indonesian man in a navy blazer and white shirt on a plain warm red studio background. Preserve exact facial identity, swept black hair, natural stubble, eyes, nose, jaw, smile and skin tone; centered straight-on head-and-shoulders crop, even lighting. Only a photo, no physical badge, document, KTP, card, credentials or text. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-formal.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-id-photo.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult man's eyes, nose, jawline, stubble, swept dark hair and smile; navy blazer/white shirt and red backdrop applied. Head and shoulder geometry coherent; photo only, no badge document or lettering. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "prewedding-minimal",
+    "kind": "case",
+    "before": "/assets/v2/cases/prewedding-minimal-before.webp",
+    "after": "/assets/v2/cases/prewedding-minimal-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/prewedding-minimal.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 is the edit target showing a synthetic adult Indonesian couple, man with short swept dark hair and woman with swept-up dark hair, smiling at each other. Produce an ordinary pre-shoot phone photo of the EXACT SAME two people. Preserve both recognizable facial identities, skin tones, adult ages, relative heights, mutual gaze and positions. Replace elaborate wedding wardrobe with plain cream cotton shirt and beige trousers on man, plain pale cream everyday modest dress on woman. Remove bouquet and elaborate hair flowers. Replace wedding garden with a simple undecorated light gray home wall, ordinary soft flat indoor light. Retain plausible hands with his arm gently around her waist and her hands resting naturally together, waist-up two-person 4:5 portrait. Photorealistic natural pores and cotton texture, single photo only. No text, logos, watermarks or real customer claims. Synthetic illustrative AI before photo.\nAFTER generation or edit:\nUse case: identity-preserve. Transform the EXACT SAME adult Indonesian couple into an elegant minimalist prewedding studio portrait. Man in cream tailored suit; woman in refined ivory long-sleeved dress, both same positions, mutual gaze, relative height, faces, hairstyles and natural smiles. Plain warm ivory seamless studio backdrop, sculptural soft light, waist-up composition. Keep both identities and plausible hands, no letters or extra people. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: both adult identities retained, including man's profile, woman's smile, swept dark hair, tan skin, relative heights and mutual gaze. Cream suit/ivory dress coherent, plausible hands and warm studio setting. Synthetic illustrative AI prewedding concept.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "prewedding-traditional",
+    "kind": "case",
+    "before": "/assets/v2/cases/prewedding-traditional-before.webp",
+    "after": "/assets/v2/cases/prewedding-traditional-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/prewedding-traditional.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 is the edit target showing a synthetic adult Indonesian couple, man with short swept dark hair and woman with swept-up dark hair, smiling at each other. Produce an ordinary pre-shoot phone photo of the EXACT SAME two people. Preserve both recognizable facial identities, skin tones, adult ages, relative heights, mutual gaze and positions. Replace elaborate wedding wardrobe with plain cream cotton shirt and beige trousers on man, plain pale cream everyday modest dress on woman. Remove bouquet and elaborate hair flowers. Replace wedding garden with a simple undecorated light gray home wall, ordinary soft flat indoor light. Retain plausible hands with his arm gently around her waist and her hands resting naturally together, waist-up two-person 4:5 portrait. Photorealistic natural pores and cotton texture, single photo only. No text, logos, watermarks or real customer claims. Synthetic illustrative AI before photo.\nAFTER generation or edit:\nUse case: identity-preserve. Transform the EXACT SAME adult Indonesian couple into a refined traditional Javanese-inspired prewedding studio concept. Man in dark brown beskap and understated blangkon, woman in cream embroidered kebaya with batik lower garment and simple dark hair bun. Preserve both exact facial identities, ages, skin tones, height relationship, mutual gaze and smiles. Warm brown studio backdrop and soft light, tasteful respectful clothing, no exaggerated costumes, text or extra people. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-prewedding.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-wedding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult couple's profile/front facial features, hairstyles, tan skin, smiles, mutual gaze and height relationship; traditional-inspired beskap, blangkon, kebaya and batik added. Hands and garment geometry plausible. Synthetic illustrative AI concept, not a real wedding.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-marketplace",
+    "kind": "case",
+    "before": "/assets/v2/cases/product-marketplace-before.webp",
+    "after": "/assets/v2/cases/product-marketplace-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/product-marketplace.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Image 1 edit target is a synthetic frosted peach amber serum bottle with rounded square shoulders and base, a rose-gold metallic dropper collar and ivory rubber bulb, no label. Create an ordinary phone product photo of this EXACT SAME bottle standing vertically on a plain pale gray tabletop against a plain off-white wall. Remove orange slice, flowers, drapery, stone plinth and dramatic scenery. Preserve bottle geometry, packaging shape, peach-orange color, material, rose-gold collar, ivory bulb, proportions, and absence of label. Bottle entirely visible centered at comparable scale, 4:5 portrait. Flat everyday ambient room lighting and small natural contact shadow; no added packaging, lettering, logos, watermark, hands or people. Single photorealistic image, not collage. Synthetic illustrative AI before image for same-product transformations.\nAFTER generation or edit:\nUse case: precise-object-edit. Make a professional marketplace catalog photo of the EXACT SAME frosted peach serum bottle. Clean pure-white seamless background and surface with a faint realistic contact shadow, even neutral studio light, bottle fully visible vertically centered. Preserve packaging shape, proportions, peach color, rose-gold collar, ivory dropper bulb, frosted glass and absence of label; change only background and lighting. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-product.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-product.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: bottle silhouette and shoulder/base proportions, frosted peach glass, rose-gold collar and ivory bulb retained; unlabeled packaging remains blank. White seamless studio background and soft shadow added without object substitution. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "product-fashion",
+    "kind": "case",
+    "before": "/assets/v2/cases/product-fashion-before.webp",
+    "after": "/assets/v2/cases/product-fashion-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-fashion.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/product-fashion.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: product-mockup. Synthetic illustrative AI source photo: a single unbranded cognac brown smooth leather shoulder bag with compact rectangular body, rounded bottom corners, short curved handle, narrow adjustable strap and plain brass zipper. No logos or lettering, no distinctive designer patterns. Ordinary phone product photo on a plain pale gray tabletop in front of an off-white wall, flat indoor daylight, front three-quarter view, entire bag and handle visible, strap neatly beside it, 4:5 portrait. Realistic leather texture, consistent stitching and hardware. No people, watermark or text.\nAFTER generation or edit:\nUse case: precise-object-edit. Create a premium fashion product editorial photo of this EXACT SAME cognac leather shoulder bag on a warm cream sculptural pedestal, subtle taupe fabric in background, refined soft studio light. Preserve exact bag geometry, cognac color, curved handle, adjustable strap, brass zipper/hardware, seam placement and unbranded plain front. Entire bag visible, no people, lettering, new emblems or altered bag design. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-fashion.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same cognac bag body proportions, handle curve, long strap, zipper, brass hardware, piping and stitching; plain unbranded front preserved. Pedestal/background and studio light changed. No object substitution or lettering. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-coffee",
+    "kind": "case",
+    "before": "/assets/v2/cases/food-coffee-before.webp",
+    "after": "/assets/v2/cases/food-coffee-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-coffee.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/food-coffee.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: photorealistic-natural. Synthetic illustrative AI ordinary phone source photo of one short clear cylindrical glass of iced coffee with brown espresso at top, caramel middle, ivory milk at bottom, several ice cubes, standing on a plain gray cafe counter against off-white wall. Everyday flat indoor light, slight natural condensation, glass fully visible with padding, three-quarter eye-level 4:5 portrait. No straw, logos, text, hands, people or watermark. Single image, natural realistic proportions.\nAFTER generation or edit:\nUse case: precise-object-edit. Transform this EXACT SAME short clear cylindrical glass of layered iced coffee into polished cafe menu photography. Place it on dark warm wood with soft cafe bokeh and a small few coffee beans around base, directional window light, clear condensation and appealing rich tones. Preserve glass geometry, rim/base, coffee/milk color layers, ice cubes and proportions. Same drink not a new beverage; no straw, lettering or added cup. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-coffee.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same short cylindrical glass, rim/base, brown espresso/caramel/ivory layers and recognizable ice arrangement. Warm cafe background, wood and coffee beans added; beverage geometry retained. No text or logo. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "food-snack",
+    "kind": "case",
+    "before": "/assets/v2/cases/food-snack-before.webp",
+    "after": "/assets/v2/cases/food-snack-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-snack.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/food-snack.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: photorealistic-natural. Synthetic illustrative AI ordinary phone source photo of a small white oval ceramic plate with exactly five golden fried banana fritters, lightly dusted with powdered sugar, one fritter split open showing banana interior. Plate on a plain gray kitchen counter, off-white wall, everyday flat indoor light, full plate visible, slightly high three-quarter view, 4:5 portrait. Preserve plausible food texture, no packaging, lettering, people, hands, logo, watermark or collage.\nAFTER generation or edit:\nUse case: precise-object-edit. Create professional warm food-menu photography of the EXACT SAME banana fritters on the same white oval plate: preserve the actual arrangement in source, three whole fritters and the two halves of one split fritter, golden crust, dusting of sugar and visible banana interior. Replace gray kitchen with warm rustic wood and softly blurred neutral cafe background, light linen beside plate, beautiful side window light. No new food or sauces, hands, text or altered portions. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-snack.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same white oval plate with three whole fritters and two halves of one split fritter, same visible banana centers, sugar dusting and arrangement. Warm wood/cafe/linen and lighting changed; food portions retained. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "ads-marketplace",
+    "kind": "case",
+    "before": "/assets/v2/cases/ads-marketplace-before.webp",
+    "after": "/assets/v2/cases/ads-marketplace-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/ads-marketplace.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nUse case: precise-object-edit. Make a clean marketplace campaign visual of the EXACT SAME tall fluted glass of layered green matcha and ivory milk with same ice, centered on a mint and cream geometric studio set with softly lit cream plinth, ample clean margins. Preserve glass shape, fluting, proportions and exact green/ivory drink identity; bright diffused studio light, no words, prices, claims or extra glass. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same tall fluted glass silhouette, vertical facets, layered green matcha/ivory milk, condensation and ice; cream/mint geometric campaign set added. No logo, lettering or outcome claim. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "ads-story",
+    "kind": "case",
+    "before": "/assets/v2/cases/ads-story-before.webp",
+    "after": "/assets/v2/cases/ads-story-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/ads-story.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nUse case: precise-object-edit. Create an energetic vertical social story advertising concept around this EXACT SAME fluted glass of layered iced green matcha and ivory milk. Place glass on a glossy pale mint surface, flowing abstract green silk ribbon in background and frozen fine water droplets behind it, dramatic studio light with clear drink. Preserve glass geometry, fluting, green/milk layers and ice. One hero glass, no labels, slogans, prices, revenue claims or extra beverage. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same fluted tall glass, rim/base geometry, ivory milk and green matcha layers, ice and condensation. Green silk and suspended droplets create conceptual story-ad setting; glass remains singular and coherent. No text or claim. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "social-branding",
+    "kind": "case",
+    "before": "/assets/v2/cases/social-branding-before.webp",
+    "after": "/assets/v2/cases/social-branding-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/social-branding.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nUse case: precise-object-edit. Create a calm cohesive cafe brand mood photograph using the EXACT SAME tall fluted glass of green/ivory iced matcha. Place on terracotta tabletop against pale cream wall with soft plant shadows and a folded cream linen napkin at side. Warm morning light, editorial natural textures and uncluttered framing. Preserve exact glass design, proportions, green/ivory drink and ice. No written brand, labels, extra drinks or claims. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same tall fluted glass proportions, ice and green/ivory matcha layers; terracotta tabletop, cream linen and botanical background shadows added. Glass/object identity retained, no lettering or watermark. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "social-product",
+    "kind": "case",
+    "before": "/assets/v2/cases/social-product-before.webp",
+    "after": "/assets/v2/cases/social-product-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/social-product.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nUse case: precise-object-edit. Create a crisp professional social product photograph of the EXACT SAME tall fluted glass with layered iced green matcha and ivory milk. Cooler pale sage seamless background, wet reflective stone surface, soft side studio light, high detail condensation and ice. Entire same glass visible with balanced margins. Preserve glass geometry/fluting, drink colors/layers, proportions and absence of logo; no words or extra beverages. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same tall fluted glass geometry, base/rim, ice and green matcha/ivory milk layers; cool sage studio background and wet stone reflection applied. No logo, added glass or object substitution. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "social-cover",
+    "kind": "case",
+    "before": "/assets/v2/cases/social-cover-before.webp",
+    "after": "/assets/v2/cases/social-cover-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/social-cover.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Input image 1 edit target is a synthetic tall transparent vertically fluted drinking glass with layered iced green matcha latte, ivory milk at bottom and vibrant matcha green above, visible ice cubes. Make an ordinary phone photo of this EXACT SAME glass and drink standing on a plain light gray kitchen counter against an off-white wall. Remove lime wedges, powder bowl, all pedestal platforms and botanical shadows; preserve glass geometry, fluted texture, its layered drink and ice, height/width proportions, no logo. Flat natural indoor light, simple contact shadow. Entire glass centered with generous padding, 4:5 portrait. Single photorealistic photo only, no text, watermark, hands or people. Synthetic illustrative AI before image for advertising and social content examples.\nAFTER generation or edit:\nUse case: precise-object-edit. Create a refined editorial cover image of the EXACT SAME tall fluted glass of green matcha and ivory milk with ice. Warm ivory background, broad soft arch shadow behind it, pale stone tabletop, small green leaf far in background, generous empty space in upper third for future website typography. Preserve exact glass shape, fluting, drink colors/layers, proportions and ice. Do not render any actual text, branding or additional drink. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-marketing.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-marketing.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same fluted glass, layered green/ivory matcha and ice, scaled slightly smaller for cover composition. Cream stone/arch shadow and upper empty space added; object proportions retained. No actual lettering or claims. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "cinematic-poster",
+    "kind": "case",
+    "before": "/assets/v2/cases/cinematic-poster-before.webp",
+    "after": "/assets/v2/cases/cinematic-poster-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/cinematic-poster.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 edit target is a synthetic adult Indonesian woman with long wavy dark hair, warm tan skin, looking back over her right shoulder in a flowing terracotta dress on an ocean cliff. Create a plain ordinary daytime phone photo of the EXACT SAME woman preserving recognizable face, hair, body proportions, over-shoulder gaze and terracotta dress. Replace elaborate cliff setting with a simple gray paved courtyard and unadorned light wall. Remove dramatic fabric train; keep normal dress silhouette. Waist-to-head view with enough space around, 4:5 portrait, flat overcast daylight, natural pores. No text, logo, watermark, collage or extra people. Synthetic illustrative AI source for cinematic concepts.\nAFTER generation or edit:\nUse case: identity-preserve. Transform the exact same adult Indonesian woman into an original conceptual cinematic poster portrait with her same long dark hair, terracotta dress, over-shoulder gaze and recognizable face. Atmospheric dusky mountains and subtle mist behind her, warm rim light with cool teal shadows, restrained film grain and dramatic depth. Preserve adult identity, skin tone and body proportions. Single subject, no title, lettering, franchise cues or artist imitation. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-cinematic.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult woman's facial features, long dark hair, warm tan skin, terracotta dress, over-shoulder gaze and body proportions. Conceptual mountain/mist/sunset setting and cinematic light added; no franchise cues or title. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "cinematic-street",
+    "kind": "case",
+    "before": "/assets/v2/cases/cinematic-street-before.webp",
+    "after": "/assets/v2/cases/cinematic-street-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/cinematic-street.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: identity-preserve. Image 1 edit target is a synthetic adult Indonesian woman with long wavy dark hair, warm tan skin, looking back over her right shoulder in a flowing terracotta dress on an ocean cliff. Create a plain ordinary daytime phone photo of the EXACT SAME woman preserving recognizable face, hair, body proportions, over-shoulder gaze and terracotta dress. Replace elaborate cliff setting with a simple gray paved courtyard and unadorned light wall. Remove dramatic fabric train; keep normal dress silhouette. Waist-to-head view with enough space around, 4:5 portrait, flat overcast daylight, natural pores. No text, logo, watermark, collage or extra people. Synthetic illustrative AI source for cinematic concepts.\nAFTER generation or edit:\nUse case: identity-preserve. Place the EXACT SAME adult Indonesian woman in her same terracotta dress, long dark wavy hair and over-shoulder gaze onto an atmospheric Indonesian urban street at blue hour with warm cafe lights and subtle rain reflections. Preserve facial geometry, tan skin, adult age, body proportions and identity. Professional cinematic editorial photograph, realistic mixed lighting and shallow depth; no readable signs, lettering, brands or extra foreground people. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-cinematic.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-cinematic.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult woman's eyes/nose/lips, long dark hair, skin tone, dress and over-shoulder pose; rainy street/cafe background and mixed warm/cool lighting replace courtyard. Identity and anatomy coherent, no readable signs. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-interior",
+    "kind": "case",
+    "before": "/assets/v2/cases/property-interior-before.webp",
+    "after": "/assets/v2/cases/property-interior-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-real-estate.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/property-interior.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Architectural editorial photograph of a sunlit modern Bali villa living room, sculptural cream sofa, natural oak, tall arch opening toward tropical garden, linen curtains, a terracotta vase, warm beige and sage palette, ultra realistic tactile materials, clean magazine composition.\nAFTER generation or edit:\nUse case: lighting-weather. Create refined architectural interior photography of this EXACT SAME furnished tropical villa room by softening harsh contrast, balancing warm daylight and recovering bright curtains and dark sofa detail. Change only lighting, exposure and natural color balance. Preserve exact arch, right opening, walls, ceiling, stone floor, furniture, sofa, tables, plants, rug, curtains, decor, garden/pool/pavilion and camera position. No added or removed items, no renovation or text. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed original and output: arch, right opening, bamboo ceiling, plaster walls, stone floor, curtains, sofa, tables, rug, plants, pool and outdoor pavilion remain in matching positions. Light contrast softened with coherent architecture/perspective. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-listing",
+    "kind": "case",
+    "before": "/assets/v2/cases/property-listing-before.webp",
+    "after": "/assets/v2/cases/property-listing-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-real-estate.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/property-listing.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Architectural editorial photograph of a sunlit modern Bali villa living room, sculptural cream sofa, natural oak, tall arch opening toward tropical garden, linen curtains, a terracotta vase, warm beige and sage palette, ultra realistic tactile materials, clean magazine composition.\nAFTER generation or edit:\nUse case: lighting-weather. Input image 1 is the FURNISHED tropical villa photograph to enhance for a truthful property listing. Change ONLY exposure, white balance, highlight/shadow balance and subtle photographic clarity to make daylight readable. Preserve ALL furnishings EXACTLY in place: large cream sofa on right with all olive/cream pillows and gray throw, round wood coffee table at center with books, small branch vase and stone bowl, woven lounge chair at lower left, small hourglass wood side table in foreground, large terracotta potted tree at far left, large beige woven rug, partial cream ottoman lower right, dining table/chairs and pendant in adjacent right room, white outdoor daybed, pool, garden and pavilion. Preserve EXACT architecture including arch, right opening, curtain folds, bamboo ceiling, walls, stone floor, camera angle and perspective. Do not add, remove or replace a single object. NO empty room, NO decluttering, NO virtual staging, NO redesign. Balanced professional daytime real-estate photography, natural colors and textures, straight architectural verticals, same 4:5 composition. No text, watermark or claims. Synthetic illustrative AI enhancement example.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Compared furnished original and regenerated listing output: cream sofa/pillows/throw, coffee table/books/vase/bowl, woven chair, hourglass side table, potted tree, rug, partial ottoman, adjacent dining furniture/pendant and outdoor daybed retained. Arch/openings, ceiling, curtains, floor, pool/garden/pavilion and camera geometry coherent. Balanced daylight/readability enhanced; furnished-to-furnished truthful enhancement, no decluttering. Synthetic illustrative AI example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "property-staging",
+    "kind": "case",
+    "before": "/assets/v2/cases/property-staging-before.webp",
+    "after": "/assets/v2/cases/property-staging-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-property-empty.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/property-staging.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: precise-object-edit. Image 1 edit target is a synthetic tropical villa living room with large central arched opening to pool and palms, white curtains at left, right rectangular opening to dining room, bamboo ceiling, beige plaster walls and stone floor. Remove ONLY movable furniture, rug, plants, tables, sofa and decorative objects from foreground living room, leaving it empty. Preserve EXACT architecture, every opening, arch shape, walls, ceiling, flooring, curtain position, outdoor pool/garden/pavilion, camera position and lens perspective. Keep dining area beyond right opening intact. Keep same natural daylight. Photorealistic empty room, 4:5 portrait. No renovation, new windows, changed geometry, people, text or watermark. Synthetic illustrative AI before photo for virtual staging.\nAFTER generation or edit:\nUse case: precise-object-edit. Virtually stage this EXACT SAME empty villa living room by ADDING FURNITURE ONLY: one low cream sofa along right wall, one round warm wood coffee table, and one simple woven wood lounge chair at lower left. Add realistic matching contact shadows. Preserve EXACT architecture, openings/arch, bamboo ceiling, walls, stone floor, curtains, outdoor pool/garden/pavilion and camera perspective. No rug, plants, art, decor, new lighting fixtures or renovation; retain existing daylight. Single photorealistic staged room. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-property-empty.png",
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-real-estate.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed empty source and staged output: same arch, wall openings, bamboo ceiling, curtains, floor geometry, pool/garden/pavilion and perspective. Added cream sofa, round wood coffee table and woven lounge chair with shadows; no rug, plant, art or architectural renovation added. Synthetic illustrative AI virtual staging.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "branding-monogram",
+    "kind": "case",
+    "before": "/assets/v2/cases/branding-monogram-before.webp",
+    "after": "/assets/v2/cases/branding-monogram-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/branding-monogram.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: logo-brand. Create a simple photographed pencil concept sketch on off-white unlined paper for a fictional Indonesian botanical creative studio. One large loose outline of a five-petal flower with two leaves; below it just the uppercase initials SR, sketched in graphite. The flower and leaves should be simple like an early logo brief with one small orange pencil swatch and one forest-green pencil swatch. Generous clear margins, 4:5 portrait. Straight-on view, flat soft daylight, subtle paper texture. No other words, grids, measurement marks, brands, watermark or famous logo references. Original conceptual synthetic illustrative AI sketch, usable as before input for three coherent logo directions.\nAFTER generation or edit:\nUse case: logo-brand. Develop an ORIGINAL refined SR botanical monogram from this sketch brief. Interlock the uppercase S and R with one small five-petal flower and simple leaf integrated into negative space. Flat forest-green and tiny orange accent on warm ivory background, clean scalable silhouette and balanced generous margins. Preserve the brief's initials SR and botanical idea. One centered mark, no extra text, gradients, mockups, famous logos or trademarks. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed sketch and output: SR initials clearly retained and integrated with botanical flower/leaf concept in forest green/orange. Original monogram concept with balanced overall silhouette; fine floral strokes remain raster illustration detail rather than production vector artwork. No famous brand reference. Synthetic illustrative AI concept.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "branding-symbol",
+    "kind": "case",
+    "before": "/assets/v2/cases/branding-symbol-before.webp",
+    "after": "/assets/v2/cases/branding-symbol-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/branding-symbol.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: logo-brand. Create a simple photographed pencil concept sketch on off-white unlined paper for a fictional Indonesian botanical creative studio. One large loose outline of a five-petal flower with two leaves; below it just the uppercase initials SR, sketched in graphite. The flower and leaves should be simple like an early logo brief with one small orange pencil swatch and one forest-green pencil swatch. Generous clear margins, 4:5 portrait. Straight-on view, flat soft daylight, subtle paper texture. No other words, grids, measurement marks, brands, watermark or famous logo references. Original conceptual synthetic illustrative AI sketch, usable as before input for three coherent logo directions.\nAFTER generation or edit:\nUse case: logo-brand. Develop an ORIGINAL minimal botanical symbol from this sketch brief: one simplified five-petal orange flower with two dark forest-green leaves, rounded clean geometric petals and strong balanced silhouette. Warm ivory plain background, centered mark with generous margins, crisp flat vector-like raster design. Preserve flower-and-two-leaves concept and orange/green palette, omit letters for this symbol direction. No extra ornaments, gradients, brand mimicry or famous logos. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed sketch and output: orange five-petal flower, two green leaves and stem correspond directly to botanical sketch; initials deliberately omitted for symbol direction. Clean rendered floral concept retains fine vein/stamen details, not a production vector. No unrelated logo. Synthetic illustrative AI concept.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "branding-playful",
+    "kind": "case",
+    "before": "/assets/v2/cases/branding-playful-before.webp",
+    "after": "/assets/v2/cases/branding-playful-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/branding-playful.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nUse case: logo-brand. Create a simple photographed pencil concept sketch on off-white unlined paper for a fictional Indonesian botanical creative studio. One large loose outline of a five-petal flower with two leaves; below it just the uppercase initials SR, sketched in graphite. The flower and leaves should be simple like an early logo brief with one small orange pencil swatch and one forest-green pencil swatch. Generous clear margins, 4:5 portrait. Straight-on view, flat soft daylight, subtle paper texture. No other words, grids, measurement marks, brands, watermark or famous logo references. Original conceptual synthetic illustrative AI sketch, usable as before input for three coherent logo directions.\nAFTER generation or edit:\nUse case: logo-brand. Develop an ORIGINAL playful botanical mark from this sketch brief: five rounded orange flower petals, a friendly simple abstract smiling center and two small forest-green leaves, bold clean flat shapes and balanced silhouette. Plain warm ivory background, centered compact mark with generous space. Keep same flower/two-leaf idea and orange/green palette. No letters, other characters, mockup, gradients, famous brands or franchise imitation. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-branding.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed sketch and output: five orange flower petals, two green leaves and stem retained with a coherent smiling center for playful direction. Original flat raster mark concept, no brand or franchise reference, no unwanted letters. Synthetic illustrative AI concept.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "relight-balanced",
+    "kind": "case",
+    "before": "/assets/v2/cases/relight-balanced-before.webp",
+    "after": "/assets/v2/cases/relight-balanced-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/relight-balanced.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Editorial portrait photo of an adult Indonesian woman with long dark hair wearing a cream blouse, neutral calm expression looking at camera, plain dim gray studio background, flat cool overcast illumination, natural skin texture, shoulders and head portrait, deliberately simple neutral source photo for a relighting demonstration.\nAFTER generation or edit:\nUse case: lighting-weather. Relight this EXACT SAME adult Indonesian woman with balanced neutral softbox key and gentle fill against the SAME gray background. Improve exposure and color balance while keeping natural skin texture. Preserve exact face, eyes, expression, long dark hair strands, white blouse, pose, crop and geometry; lighting changes only, no skin reshaping, new makeup or accessories. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed dim source and output: same adult woman's facial geometry, eyes, lips, expression, long dark hair, white blouse, pose and crop. Balanced neutral light improves exposure on same gray backdrop; natural skin texture and geometry retained. Synthetic illustrative AI relighting example.",
+    "tool": "built-in image_gen"
+  },
+  {
+    "id": "relight-backdrop",
+    "kind": "case",
+    "before": "/assets/v2/cases/relight-backdrop-before.webp",
+    "after": "/assets/v2/cases/relight-backdrop-after.webp",
+    "beforeSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png",
+    "afterSource": "/Users/tobin/orca/aichemy/design/v2/cases-originals/relight-backdrop.png",
+    "prompt": "Synthetic illustrative AI example, not a real customer or outcome claim.\nBEFORE source preparation:\nHistorical built-in image_gen prompt, recorded in design/generated-assets.json. Use case: photorealistic-natural. Editorial portrait photo of an adult Indonesian woman with long dark hair wearing a cream blouse, neutral calm expression looking at camera, plain dim gray studio background, flat cool overcast illumination, natural skin texture, shoulders and head portrait, deliberately simple neutral source photo for a relighting demonstration.\nAFTER generation or edit:\nUse case: lighting-weather. Relight this EXACT SAME adult Indonesian woman's portrait with a soft cool blue rim light and warm neutral frontal key, replacing only the gray background with a refined muted deep blue studio gradient. Preserve exact facial identity, expression, eyes, nose, lips, long dark hair, white blouse, pose, skin tone and framing. Realistic skin pores, professional studio image, no physical changes or extra objects. Input image 1 is the edit target/source. Output one coherent 4:5 portrait image, no collage, no watermark or random lettering. Synthetic illustrative AI example; no real customer, revenue or factual outcome claim.",
+    "references": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/original-relight-before.png"
+    ],
+    "reviewed": true,
+    "reviewNotes": "Viewed source and output: same adult woman's facial geometry, eyes/lips, calm expression, long dark hair, white blouse, pose and crop. Deep blue backdrop and cool rim with neutral frontal light added; face/body geometry retained. Synthetic illustrative AI relighting example.",
+    "tool": "built-in image_gen"
+  }
+]

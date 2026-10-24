@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen",
+  "requestedKeys": 16,
+  "approvedKeys": 16,
+  "skippedKeys": [],
+  "omissions": [],
+  "generatedFinalImages": 13,
+  "rejectedAttempts": 1,
+  "baselineReuse": [
+    "food-angle-three-quarter",
+    "food-surface-white",
+    "food-light-soft",
+    "food-props-none"
+  ],
+  "finalEncodedReview": {
+    "file": "qa-food-comparison.webp",
+    "reviewed": true,
+    "notes": "Viewed the actual 4-by-4 sheet of all encoded 350px WebPs after the export correction. Row 1 shows clearly distinct low eye-level, elevated three-quarter, top-down circular plate and close texture macro. Row 2 keeps the dish and framing aligned on white, pale stone, warm oak and pale pink surfaces. Row 3 keeps geometry aligned while showing diffuse soft, directional neutral window, warm low sun and back rim with readable frontal food detail. Row 4 retains the same dish and neutral scene with no props, green leaves, lemon half and slice, or ivory linen; added styling stays outside the plate. No text, logos, watermarks, extra food on the plate or product claims observed. Full originals were individually viewed before their manifest entries were marked reviewed."
+  },
+  "exportCheck": {
+    "webpFiles": 32,
+    "full": { "width": 700, "height": 875, "quality": 82 },
+    "small": { "width": 350, "height": 438, "quality": 80 },
+    "method": "Sharp resize and WebP encoding only; generated originals retained without semantic modification",
+    "audit": "audit.json"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "food-props-none",
+  "tool": "built-in image_gen",
+  "operation": "reuse of reviewed generated baseline; copy and Sharp resize only",
+  "generatedInput": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-three-quarter.png",
+  "savedOriginal": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-props-none.png",
+  "toolInput": {
+    "prompt": "Use case: precise-object-edit\nAsset type: Aichemy V2 food option comparison food-angle-three-quarter, single portrait 4:5 photorealistic food photograph.\nInput images: Image 1 is the edit target and exact dish identity reference.\nPrimary request: establish a quiet neutral controlled comparison baseline. Change only the environment to a smooth matte WHITE tabletop and a plain light warm-gray neutral backdrop with no props. Retain the original elevated THREE-QUARTER camera view at about 40 degrees downward: egg top, rice front and plate rim clearly visible. Pull back just enough to show the entire same plate with a small margin at both sides, centered with quiet space above and below. Broad soft neutral diffuse illumination from upper left with gentle fill and low-contrast shadows. No direct sun or dramatic color cast.\nSubject invariants: Preserve this exact synthetic nasi goreng serving and its beige speckled ceramic plate, dark small sambal bowl at left, one sunny-side-up egg with orange yolk and crisp lacy edges over the same chicken fried rice, same visible rice grains, chicken pieces, scallion, red chili, cooked egg pieces and fried shallot already present. Keep the exact serving quantity, cucumber and tomato fan at rear left, pale crackers at rear right, and their relative arrangement. Do not invent ingredients, add garnish, restyle or redistribute the food, change the plate or bowl, or change the portion.\nStyle/medium: realistic appetizing commercial food photography, natural rice grain texture, ceramic speckles and crisp egg edges; no illustration.\nConstraints: one single portrait 4:5 photo, no collage, no diagram, no text, logo or watermark, no utensils, napkins, plants, hands, extra food or external styling objects. The plate and sambal bowl are the only tableware. Keep natural food colors. This exact framing, plate position, food arrangement, backdrop and light will anchor subsequent comparisons.",
+    "referenced_image_paths": [
+      "/Users/tobin/orca/aichemy/design/v2/cases-originals/source-food.png"
+    ],
+    "transparent_background": false
+  },
+  "reuse": "food-angle-three-quarter",
+  "derivativeEncoding": [
+    {
+      "width": 700,
+      "quality": 82,
+      "format": "webp"
+    },
+    {
+      "width": 350,
+      "quality": 80,
+      "format": "webp"
+    }
+  ],
+  "reviewed": true,
+  "reviewNotes": "Exact reuse of reviewed generated food-angle-three-quarter baseline; no second generation or semantic alteration. Visually inspected generated original: same speckled beige plate, dark sambal bowl at left, cucumber/tomato fan rear left and pale crackers rear right; single orange-yolk fried egg over the same chicken fried rice. Neutral gray backdrop and matte white table with soft diffuse shadows, no external props or text. Source-like elevated three-quarter view retained; lateral rim is slightly cropped as in source. Rice/chicken portion and arrangement visually preserved."
+}

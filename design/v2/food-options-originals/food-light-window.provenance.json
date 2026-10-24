@@ -1,0 +1,29 @@
+{
+  "id": "food-light-window",
+  "tool": "built-in image_gen",
+  "operation": "built-in image edit; saved original copied without semantic alteration",
+  "generatedInput": "/Users/tobin/.codex/generated_images/01a163aa-e592-7aa1-be98-814f02008472/exec-64d58e19-be55-43d1-9bfc-df021fef2ba8.png",
+  "savedOriginal": "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-light-window.png",
+  "toolInput": {
+    "prompt": "Use case: lighting-weather\nAsset type: Aichemy V2 controlled food option comparison food-light-window; one single portrait 4:5 photorealistic food photograph.\nInput images: Image 1 is the edit target and invariant baseline.\nPrimary request: Change ONLY illumination to directional neutral daylight from one window at camera-left. Show a clearly brighter left side and gentle but distinct shadow falloff on the right, a longer directional tabletop shadow, with natural neutral food colors. Keep readable detail on the shadow side. Do not add a physical window, window frame, room or props. Same exact camera, food, plate, white surface and gray backdrop.\nSubject invariants: Preserve this exact synthetic nasi goreng serving and its beige speckled ceramic plate, dark small sambal bowl at left, one sunny-side-up egg with orange yolk and crisp lacy edges over the same chicken fried rice, same visible rice grains, chicken pieces, scallion, red chili, cooked egg pieces and fried shallot already present. Keep the exact serving quantity, cucumber and tomato fan at rear left, pale crackers at rear right, and their relative arrangement. Do not invent ingredients, add garnish, restyle or redistribute the food, change the plate or bowl, or change the portion.\nScene invariants: retain the same smooth matte white horizontal tabletop, plain light warm-gray neutral backdrop, elevated three-quarter camera at about 40 degrees downward, exact plate size and position in frame, entire plate visible with small side margins, and broad soft neutral diffuse light from upper left, except the ONE variable explicitly requested above. Do not change any other variable.\nStyle/medium: realistic commercial food photography with natural texture and food color; preserve ceramic speckles, rice grain detail and appetizing crisp egg edge.\nConstraints: single portrait 4:5 photo, no collage, no diagrams, no text, logo or watermark. No added ingredients, food on the plate, utensils, hands, containers or other props except the expressly requested external styling. External styling must remain outside the plate with visible separation; it conveys no ingredient or product claim.",
+    "referenced_image_paths": [
+      "/Users/tobin/orca/aichemy/design/v2/food-options-originals/food-angle-three-quarter.png"
+    ],
+    "transparent_background": false
+  },
+  "reuse": null,
+  "derivativeEncoding": [
+    {
+      "width": 700,
+      "quality": 82,
+      "format": "webp"
+    },
+    {
+      "width": 350,
+      "quality": 80,
+      "format": "webp"
+    }
+  ],
+  "reviewed": true,
+  "reviewNotes": "Visually inspected original: clear directional neutral illumination from left, brighter left-side highlights and longer readable shadow to lower right, with soft diagonal light patches on the neutral backdrop. Same white table, camera/framing and exact dish arrangement, single fried egg, beige speckled plate and dark sambal bowl. Shadow-side food remains visible. No physical window, new ingredients, props, text or watermark."
+}
