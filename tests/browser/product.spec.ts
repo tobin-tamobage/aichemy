@@ -367,9 +367,9 @@ test("landing page dan login responsif di empat ukuran dan dua tema", async ({
       await menu.click();
       await page
         .getByRole("navigation", { name: "Navigasi utama" })
-        .getByRole("link", { name: "Coba Gratis", exact: true })
+        .getByRole("link", { name: "Cara Kerja", exact: true })
         .click();
-      await expect(page.locator("#demo h2")).toBeFocused();
+      await expect(page.locator("#cara-kerja h2")).toBeFocused();
       await expect(
         page.getByRole("button", { name: "Buka menu", exact: true }),
       ).toHaveAttribute("aria-expanded", "false");
@@ -434,10 +434,14 @@ test("pengunjung diarahkan ke login dan akun berbayar membuka studio", async ({
     page.getByRole("heading", { name: /Mau membuat apa/ }),
   ).toBeVisible();
 });
-test("demo gratis bisa disalin, contoh jasa bisa difilter, dan potensi omzet mudah dibaca", async ({
+test("cara kerja bergambar tanpa demo, contoh jasa bisa difilter, dan potensi omzet mudah dibaca", async ({
   page,
-  context,
 }) => {
+  const demoRequests: string[] = [];
+  await page.route("**/api/demo/preview", (route) => {
+    demoRequests.push(route.request().url());
+    return route.abort();
+  });
   await page.goto("/");
   const slider = page.locator(".v2-hero-work").getByRole("slider");
   await slider.focus();
@@ -460,23 +464,42 @@ test("demo gratis bisa disalin, contoh jasa bisa difilter, dan potensi omzet mud
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(recipe).toBeFocused();
-  const demo = page.locator("#demo");
-  await demo.getByRole("button", { name: "Pas Foto", exact: true }).click();
-  const bg = demo.getByRole("group", { name: "Latar", exact: true });
-  await bg.locator(".v2-choice-current").click();
+  await expect(page.locator("#demo")).toHaveCount(0);
+  await expect(page.locator('a[href="#demo"]')).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /coba.*gratis/i })).toHaveCount(
+    0,
+  );
   await page
-    .getByRole("dialog")
-    .locator(".v2-gallery-select")
-    .filter({ hasText: "Merah formal" })
+    .getByRole("link", { name: "Lihat cara kerjanya", exact: true })
     .click();
-  await expect(demo.locator(".v2-prompt-blocks")).toContainText("#bd2638");
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  await demo
-    .getByRole("button", { name: "Salin contoh prompt", exact: true })
-    .click();
+  await expect(page).toHaveURL(/#cara-kerja$/);
+  const walkthrough = page.locator("#cara-kerja");
+  await expect(
+    walkthrough.locator(".v2-visual-walkthrough > article"),
+  ).toHaveCount(3);
+  await expect(
+    walkthrough.locator(".v2-walkthrough-options figure"),
+  ).toHaveCount(3);
+  await expect(walkthrough.locator(".v2-walkthrough-prompt")).toContainText(
+    "Siap disalin dari studio",
+  );
+  await expect(walkthrough.locator(".v2-walkthrough-note")).toContainText(
+    "bukan demo interaktif",
+  );
   await expect
-    .poll(() => page.evaluate(() => navigator.clipboard.readText()))
-    .toContain("#bd2638");
+    .poll(() =>
+      walkthrough
+        .locator("img")
+        .evaluateAll((images) =>
+          images.every(
+            (node) =>
+              (node as HTMLImageElement).complete &&
+              (node as HTMLImageElement).naturalWidth > 0,
+          ),
+        ),
+    )
+    .toBeTruthy();
+  expect(demoRequests).toEqual([]);
   const income = page.locator("#potensi");
   await expect(income.locator("input")).toHaveCount(0);
   await expect(income.locator(".v2-income-card")).toHaveCount(3);
@@ -495,6 +518,33 @@ test("demo gratis bisa disalin, contoh jasa bisa difilter, dan potensi omzet mud
   await expect(page.locator("#jasa .v2-service-card")).toHaveCount(6);
   await page.getByRole("button", { name: "Lihat 12 jasa lainnya" }).click();
   await expect(page.locator("#jasa .v2-service-card")).toHaveCount(18);
+  for (const width of [390, 768, 1280, 1440]) {
+    await page.setViewportSize({ width, height: 960 });
+    for (const theme of ["light", "dark"]) {
+      await page.evaluate(
+        (mode) =>
+          document.documentElement.classList.toggle("dark", mode === "dark"),
+        theme,
+      );
+      await walkthrough.scrollIntoViewIfNeeded();
+      await walkthrough.screenshot({
+        path: `artifacts/screenshots/walkthrough-${width}-${theme}.png`,
+      });
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      ).toBeTruthy();
+      if (width === 390 && theme === "light") {
+        const audit = await new AxeBuilder({ page })
+          .include("#cara-kerja")
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
+          .analyze();
+        expect(audit.violations).toEqual([]);
+      }
+    }
+  }
+  expect(demoRequests).toEqual([]);
 });
 async function login(page: import("@playwright/test").Page) {
   // Reuse the genuinely email-verified fixture session; the separate test above exercises the login UI.

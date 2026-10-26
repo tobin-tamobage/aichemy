@@ -24,19 +24,9 @@ import {
   VIRAL_TEASERS,
   studioUrl,
 } from "../shared/v2-catalog";
-import {
-  type StudioV2Descriptor,
-  type ServiceId,
-  type StudioSet,
-} from "../shared/v2";
+import { type StudioSet } from "../shared/v2";
 import { Brand, Modal, PurchaseButton, ThemeToggle } from "./ui";
-import {
-  AssetImage,
-  Comparison,
-  VisualChoices,
-  EffectiveSummary,
-} from "./V2Visuals";
-import { post } from "./api";
+import { AssetImage, Comparison } from "./V2Visuals";
 import { useSite } from "./context";
 import { viralCurationLabel } from "../shared/viral-photography";
 import {
@@ -56,15 +46,9 @@ const nav = [
   ["Pilihan Jasa", "jasa"],
   ["Contoh Hasil", "contoh"],
   ["Cara Kerja", "cara-kerja"],
-  ["Coba Gratis", "demo"],
   ["Harga", "harga"],
   ["FAQ", "faq"],
 ];
-const demoHelp: Record<string, string> = {
-  background: "Pilih warna atau tempat yang cocok dengan idemu.",
-  lighting: "Pilih cahaya yang membuat fotonya terasa pas.",
-  lens: "Mau latar lebih terlihat, atau lebih fokus ke wajah? Pilih contoh yang kamu suka.",
-};
 const faq = [
   [
     "Apa yang saya dapat setelah membeli?",
@@ -156,198 +140,6 @@ export function IncomePotential() {
             Mulai bangun studio-mu <ArrowUpRight size={17} />
           </PurchaseButton>
           <span>Aichemy Rp149.000 sekali bayar</span>
-        </div>
-      </div>
-    </section>
-  );
-}
-function PublicDemo() {
-  const { notify } = useSite();
-  const [service, setService] = useState<ServiceId>("professional");
-  const [selections, setSelections] = useState<Record<string, string>>({});
-  const [result, setResult] = useState<StudioV2Descriptor | null>(null);
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [fullPrompt, setFullPrompt] = useState(false);
-  const sequence = useRef(0);
-  useEffect(() => {
-    let live = true;
-    const current = ++sequence.current;
-    setBusy(true);
-    setCopied(false);
-    const timer = setTimeout(() => {
-      post<StudioV2Descriptor>("/demo/preview", {
-        serviceId: service,
-        selections,
-      })
-        .then((r) => {
-          if (live && current === sequence.current) {
-            setResult(r);
-            setError("");
-          }
-        })
-        .catch((e) => {
-          if (live) setError(e.message);
-        })
-        .finally(() => {
-          if (live) setBusy(false);
-        });
-    }, 180);
-    return () => {
-      live = false;
-      clearTimeout(timer);
-    };
-  }, [service, selections]);
-  async function copyExample() {
-    if (!result || busy || error) return;
-    try {
-      await navigator.clipboard.writeText(result.document.text);
-      setCopied(true);
-      notify("Contoh prompt tersalin! Coba bersama fotomu di aplikasi AI.");
-    } catch {
-      notify(
-        "Belum bisa menyalin. Buka prompt lengkap untuk menyalin teksnya.",
-        true,
-      );
-    }
-  }
-  return (
-    <section id="demo" className="v2-section v2-demo-section">
-      <div className="v2-shell">
-        <div className="v2-section-head">
-          <div>
-            <div className="v2-kicker">COBA SEBELUM MEMBELI</div>
-            <h2>
-              Klik gambar.
-              <br />
-              Prompt langsung tersusun.
-            </h2>
-          </div>
-          <p>
-            Coba ganti latar dan cahaya. Lihat Aichemy menyusun instruksinya.
-            Demo gratis ini memperlihatkan sebagian pilihan anggota.
-          </p>
-        </div>
-        <div className="v2-demo">
-          <div className="v2-demo-controls">
-            <div className="v2-segmented" aria-label="Pilih jasa demo">
-              {(["professional", "formal", "product"] as ServiceId[]).map(
-                (id) => (
-                  <button
-                    key={id}
-                    aria-pressed={service === id}
-                    onClick={() => {
-                      setService(id);
-                      setSelections({});
-                      setResult(null);
-                    }}
-                  >
-                    {findService(id)!.short}
-                  </button>
-                ),
-              )}
-            </div>
-            {error ? (
-              <p role="alert" className="v2-notice">
-                {error}{" "}
-                <button onClick={() => setSelections({ ...selections })}>
-                  Coba lagi
-                </button>
-              </p>
-            ) : result ? (
-              result.fields.map((f) => (
-                <VisualChoices
-                  compact
-                  key={`${service}-${f.key}`}
-                  field={{
-                    ...f,
-                    label: f.key === "lens" ? "Tampilan foto" : f.label,
-                    help: demoHelp[f.key] ?? f.help,
-                  }}
-                  value={selections[f.key] ?? result.state.selections[f.key]}
-                  onChange={(value) =>
-                    setSelections((s) => ({ ...s, [f.key]: value }))
-                  }
-                />
-              ))
-            ) : (
-              <div className="v2-demo-loading" role="status">
-                Menyiapkan pilihan visual…
-              </div>
-            )}
-          </div>
-          <div className="v2-demo-prompt">
-            <div className="v2-prompt-header">
-              <span>
-                <span className="v2-status-dot" /> Instruksi AI-mu
-              </span>
-              <small role="status">
-                {busy ? "Memperbarui…" : "Demo gratis"}
-              </small>
-            </div>
-            {result && (
-              <EffectiveSummary
-                choices={result.effectiveChoices}
-                set={result.set.label}
-              />
-            )}
-            <div
-              className="v2-prompt-blocks"
-              id="public-demo-prompt"
-              aria-busy={busy}
-              tabIndex={0}
-              role="region"
-              aria-label="Pratinjau prompt demo"
-            >
-              {result?.document.blocks
-                .filter(
-                  (block) =>
-                    fullPrompt ||
-                    ["scene", "look", "lighting"].includes(block.id),
-                )
-                .map((b) => (
-                  <section key={b.id}>
-                    <h4>{b.label}</h4>
-                    <p>{b.text}</p>
-                  </section>
-                )) ?? (
-                <p>
-                  Pilih arah visualmu. Prompt terstruktur akan tampil di sini.
-                </p>
-              )}
-            </div>
-            {result && (
-              <button
-                className="v2-demo-expand"
-                aria-expanded={fullPrompt}
-                aria-controls="public-demo-prompt"
-                onClick={() => setFullPrompt((value) => !value)}
-              >
-                {fullPrompt ? "Ringkas tampilan" : "Lihat prompt lengkap"}{" "}
-                <ChevronDown size={15} />
-              </button>
-            )}
-            <div className="v2-demo-bottom">
-              <p>
-                Coba prompt ini bersama fotomu di aplikasi gambar AI. Akses
-                lengkap membuka semua gaya dan penyimpanan racikan.
-              </p>
-              <button
-                className="button button-primary"
-                onClick={copyExample}
-                disabled={!result || busy || !!error}
-              >
-                <Copy size={17} />
-                {copied
-                  ? "Tersalin! Coba di aplikasi AI-mu"
-                  : "Salin contoh prompt"}
-              </button>
-              <PurchaseButton className="v2-demo-access">
-                Dapatkan semua gaya — Rp149.000 <ArrowUpRight size={16} />
-              </PurchaseButton>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -516,8 +308,8 @@ export default function Landing() {
               <PurchaseButton>
                 Dapatkan Akses — Rp149.000 <ArrowUpRight size={18} />
               </PurchaseButton>
-              <a href="#demo" className="v2-text-link">
-                Coba racik gratis <ArrowRight size={17} />
+              <a href="#cara-kerja" className="v2-text-link">
+                Lihat cara kerjanya <ArrowRight size={17} />
               </a>
             </div>
             <div className="v2-purchase-notes">
@@ -724,13 +516,12 @@ export default function Landing() {
             )}
             <div className="v2-gallery-next">
               <p>Sudah punya gaya yang kamu suka?</p>
-              <a href="#demo" className="button button-primary">
-                Coba racik versimu <ArrowRight size={17} />
+              <a href="#cara-kerja" className="button button-primary">
+                Lihat cara meraciknya <ArrowRight size={17} />
               </a>
             </div>
           </div>
         </section>
-        <PublicDemo />
         <section className="v2-section v2-shell" id="cara-kerja">
           <div className="v2-section-head">
             <div>
@@ -746,7 +537,7 @@ export default function Landing() {
               Mulai dari contoh yang sudah ada.
             </p>
           </div>
-          <div className="v2-steps">
+          <div className="v2-steps v2-visual-walkthrough">
             {[
               [
                 "01",
@@ -765,12 +556,84 @@ export default function Landing() {
               ],
             ].map(([n, title, copy]) => (
               <article key={n}>
+                <div className="v2-walkthrough-art">
+                  {n === "01" ? (
+                    <>
+                      <AssetImage
+                        src={setImage("professional-linkedin")}
+                        alt="Contoh gaya awal foto profesional untuk profil bisnis"
+                        small
+                      />
+                      <span className="v2-walkthrough-caption">
+                        Foto profesional · Profil bisnis
+                      </span>
+                    </>
+                  ) : n === "02" ? (
+                    <div
+                      className="v2-walkthrough-options"
+                      role="group"
+                      aria-label="Ilustrasi pilihan pose di dalam studio"
+                    >
+                      {[
+                        ["standing-front", "Berdiri"],
+                        ["seated-upright", "Duduk"],
+                        ["walking", "Berjalan"],
+                      ].map(([id, label]) => (
+                        <figure
+                          key={id}
+                          className={
+                            id === "seated-upright" ? "is-selected" : ""
+                          }
+                        >
+                          <img
+                            src={`/assets/v3/poses/${id}-small.webp`}
+                            alt={`Contoh pose ${label.toLowerCase()}`}
+                            width="450"
+                            height="563"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                          <figcaption>
+                            {label}
+                            {id === "seated-upright" && (
+                              <Check
+                                size={13}
+                                aria-label="Contoh pilihan aktif"
+                              />
+                            )}
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="v2-walkthrough-prompt">
+                      <span>
+                        <Sparkles size={16} aria-hidden="true" /> Prompt
+                        tersusun
+                      </span>
+                      <p lang="en">
+                        Create a professional portrait. Preserve the person’s
+                        identity. Use a relaxed seated pose and soft, natural
+                        lighting.
+                      </p>
+                      <span>
+                        <Copy size={15} aria-hidden="true" /> Siap disalin dari
+                        studio
+                      </span>
+                    </div>
+                  )}
+                </div>
                 <span>{n}</span>
                 <h3>{title}</h3>
                 <p>{copy}</p>
               </article>
             ))}
           </div>
+          <p className="v2-walkthrough-note">
+            Ilustrasi alur di dalam studio, bukan demo interaktif. Setelah
+            membeli, kamu bisa meracik sendiri dan menyalin prompt ke aplikasi
+            AI pilihanmu. Gambar tidak dibuat di Aichemy.
+          </p>
         </section>
         <section className="v2-section v2-viral-section" id="viral">
           <div className="v2-shell">

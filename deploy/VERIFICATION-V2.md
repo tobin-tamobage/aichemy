@@ -1,5 +1,9 @@
 # Verifikasi Aichemy V2 — 23 Oktober 2026
 
+## Penghapusan demo landing — 26 Oktober 2026
+
+Demo “Coba sebelum membeli” dan seluruh tautan Coba Gratis pada landing aktif diganti dengan Cara Kerja bergambar. HTML prerender diverifikasi tanpa `#demo`, tautan ke demo, atau klaim coba gratis. Tes browser memblokir endpoint demo dan memastikan tidak ada permintaan yang dibuat. Semua gambar pengganti termuat; section diperiksa pada 390/768/1280/1440 px dan kedua tema, termasuk Axe dan fokus navigasi HP. Typecheck, build, 39 tes unit/API dan 16 perjalanan browser lulus tanpa pembaruan baseline screenshot. Builder anggota, pembayaran dan akun tidak diubah. Ini verifikasi lokal, bukan konfirmasi deploy/push produksi.
+
 ## Perluasan Racik terbaru
 
 - Jumlah gaya awal tetap 218 di 18 jasa; fokus perubahan adalah pilihan di dalam setiap pengaturan. Ada 2.496 entri pilihan lintas jasa, tidak menghitung “Tanpa” dan bukan 2.496 opsi unik.

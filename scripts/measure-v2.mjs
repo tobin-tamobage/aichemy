@@ -106,7 +106,6 @@ try {
   for (const selector of [
     "#jasa",
     "#contoh",
-    "#demo",
     "#cara-kerja",
     "#viral",
     "#potensi",
@@ -121,10 +120,12 @@ try {
     });
   }
   await page.setViewportSize({ width: 390, height: 844 });
-  for (const selector of ["#potensi", "#harga", "#demo"]) {
+  for (const selector of ["#potensi", "#harga", "#cara-kerja"]) {
     await page.locator(selector).scrollIntoViewIfNeeded();
     await settleImages();
-    await page.screenshot({ path: `${output}/${selector.slice(1)}-mobile.png` });
+    await page.screenshot({
+      path: `${output}/${selector.slice(1)}-mobile.png`,
+    });
   }
   const summary = {
     url: base,
